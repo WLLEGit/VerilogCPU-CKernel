@@ -1,0 +1,95 @@
+#include "syscall.h"
+
+uint8_t * const ch_mem  = (uint8_t*)VGA_CHAR_OFFSET;
+uint8_t * const color_mem  = (uint8_t*)VGA_COLOR_OFFSET;
+uint32_t * const idt_mem = (uint32_t*)IDT_OFFSET;
+volatile uint32_t sys_time = 0;
+
+uint32_t monitor_write_cursor = 0;
+uint32_t output_front_cursor = 0;
+
+
+void putc(char c, uint8_t color)
+{
+    if(c == '\n')
+    {
+        monitor_write_cursor = (monitor_write_cursor / COL_CNT) * (COL_CNT) + COL_CNT;
+        if(monitor_write_cursor == TOTAL_CHAR)
+            scroll_screen();
+    }
+    else if(c == '\t')
+        print("    ", COLOR_WHITE);
+    else if(c == '\b')
+    {
+        if(output_front_cursor < monitor_write_cursor)
+            _erasec(--monitor_write_cursor);
+    }
+    else
+    {
+        _setc(c, color, monitor_write_cursor);
+        if(monitor_write_cursor == TOTAL_CHAR)
+            scroll_screen();
+    }
+}
+
+void print(char* str, uint8_t color)
+{
+    while(str)
+    {
+        putc(*str, color);
+        ++str;
+    }
+}
+
+char getc()
+{
+    while(!kb_info.c);  //wait input
+    char c = kb_info.c;
+    kb_info.c = '\0';
+    putc(c, COLOR_WHITE);
+    return c;
+}
+
+void getline(char* buf)
+{
+    char c;
+    int i = 0;
+    while((c=getc()) != '\n')
+        buf[i++] = c;
+}
+
+void scroll_screen()
+{
+    vga_info.extra_line_cnt++;
+    if(vga_info.extra_line_cnt == ROW_CNT)
+        vga_info.extra_line_cnt = 0;
+    monitor_write_cursor -= COL_CNT;
+    for(int i = monitor_write_cursor; i < monitor_write_cursor + COL_CNT; ++i)
+        _setc(' ', COLOR_WHITE, i);
+    _update_cursor();
+    *p_vga_info = vga_info;
+}
+
+void clear_screen()
+{
+    int i = vga_info.extra_line_cnt * COL_CNT;
+    int end = i + TOTAL_CHAR;
+    for(; i < end; ++i)
+        _setc(' ', COLOR_WHITE, i);
+}
+
+void _update_cursor()
+{
+    int r = monitor_write_cursor / COL_CNT;
+    int c = monitor_write_cursor % COL_CNT;
+    vga_info.cursor_y = CHAR_HEIGHT * r + 1;
+    if(c != COL_CNT - 1)
+        vga_info.cursor_x = CHAR_WIDTH * c + 1;
+    else
+        vga_info.cursor_x = 1;
+}
+
+inline void lock_output_front() {output_front_cursor = monitor_write_cursor;}
+inline void _setc(char c, uint8_t color, uint32_t addr){ch_mem[addr]=c; color_mem[addr]=color;}
+inline void _erasec(uint32_t addr){ch_mem[addr]=0; color_mem[addr]=0;}
+inline void error(char* msg) {print("Error: ", COLOR_RED); print(msg, COLOR_WHITE);}
