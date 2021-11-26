@@ -1,5 +1,19 @@
 #include "stdfuncs.h"
 
+inline bool isdigit(const char c){return c >= '0' && c <= '9';}
+
+int strcmp(const char* src, const char* dst)
+{
+    int ret = 0;
+    while( !(ret = *(unsigned char*)src - *(unsigned char*)dst) && *dst)
+    {
+        src ++;
+        dst ++;
+    }
+    if( ret < 0) ret = -1;
+    else if(ret > 0) ret = 1;
+    return ret;
+}
 
 char * strtok ( char * str, const char * delimiters ){
 	if( delimiters == NULL) return NULL;
@@ -53,7 +67,7 @@ void itoa(int n,char str[])
         n=-n;         
     i=0;
     do{
-        str[i++]=n%10+'0';    
+        str[i++]=(uint8_t)(n%10)+'0';    
     }while((n/=10)>0);      
 
     if(sign<0)
@@ -70,9 +84,10 @@ void itoa(int n,char str[])
 
 int atoi(char s[])
 {
-    int i=0,n,sign;
+    uint32_t i=0,n;
+	int sign;
 
-    sign=(s[i]=='-')?1:1;
+    sign=(s[i]=='-')?-1:1;
     if(s[i]=='+'||s[i]=='-')   
         i++;
     for(n=0;isdigit(s[i]);i++)

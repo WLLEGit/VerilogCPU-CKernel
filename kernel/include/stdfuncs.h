@@ -2,9 +2,9 @@
 #define _STDFUNCS_H
 
 #include "global.h"
-#include <string.h>
-#include <ctype.h>
 
+bool isdigit(const char c);
+int strcmp(const char* src, const char* dst);
 void itoa(int, char*);
 int atoi(char*);
 

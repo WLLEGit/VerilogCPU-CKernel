@@ -5,7 +5,7 @@ SECTIONS {
     . = 0x00000000;
     .text : {
         *(entry)
-        main.o (.text)
+        ./src/main.o (.text)
         *(.text*)
         *(text_end)
         }

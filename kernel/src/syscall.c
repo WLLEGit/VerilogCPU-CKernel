@@ -9,7 +9,7 @@ uint32_t monitor_write_cursor = 0;
 uint32_t output_front_cursor = 0;
 
 
-void putc(char c, uint8_t color)
+void putc(const char c, const uint8_t color)
 {
     if(c == '\n')
     {
@@ -32,7 +32,7 @@ void putc(char c, uint8_t color)
     }
 }
 
-void print(char* str, uint8_t color)
+void print(const char* str, const uint8_t color)
 {
     while(str)
     {
@@ -90,6 +90,6 @@ void _update_cursor()
 }
 
 inline void lock_output_front() {output_front_cursor = monitor_write_cursor;}
-inline void _setc(char c, uint8_t color, uint32_t addr){ch_mem[addr]=c; color_mem[addr]=color;}
-inline void _erasec(uint32_t addr){ch_mem[addr]=0; color_mem[addr]=0;}
-inline void error(char* msg) {print("Error: ", COLOR_RED); print(msg, COLOR_WHITE);}
+inline void _setc(const char c, const uint8_t color, const uint32_t addr){ch_mem[addr]=c; color_mem[addr]=color;}
+inline void _erasec(const uint32_t addr){ch_mem[addr]=0; color_mem[addr]=0;}
+inline void error(const char* msg) {print("Error: ", COLOR_RED); print(msg, COLOR_WHITE);}
