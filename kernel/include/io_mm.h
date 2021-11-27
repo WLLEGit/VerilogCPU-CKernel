@@ -11,11 +11,10 @@ typedef struct KBInfoStruct
         {
             uint8_t is_shift : 1;
             uint8_t is_ctrl : 1;
-            uint8_t is_alt : 1;
             uint8_t is_caps : 1;
             uint8_t is_special : 1;
             uint8_t is_error : 1;
-            uint8_t unused : 2;
+            uint8_t unused : 3;
         };
         
         uint8_t flags;

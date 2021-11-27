@@ -1,6 +1,9 @@
 module memory_map (
 	input clk,
 
+	input [31:0] instr_addr,
+	output [31:0] instr_data,
+
 	input [31:0] cpu_addr,
 	input [31:0] cpu_wrdata,
 	output reg [31:0] cpu_rddata,
@@ -17,10 +20,10 @@ module memory_map (
 	output [15:0] vga_cursor_y,
 
 	input [31:0] kb_wraddr,
-	input [31:0] kb_wrdata
+	input [31:0] kb_wrdata,
 	input kb_we,
 
-	input [31:0] irq_no,
+	input [31:0] irq_addr,
 	output [31:0] irq_handler_addr
 );
 
@@ -34,7 +37,7 @@ parameter IDT_OFFSET          = 32'h00600000;
 parameter PREFIX_MASK 		  =	32'hfff00000;	
 parameter ADDR_MASK 		  =	32'h000fffff;
 
-wire [31:0] instr_out, dram_dataout, kb_info_dataout;
+wire [31:0] dram_dataout, kb_info_dataout;
 wire dram_we, vga_we, idt_we, char_we, color_we;
 
 assign dram_we = cpu_we & (cpu_addr & PREFIX_MASK == DATA_OFFSET);
@@ -46,21 +49,19 @@ assign color_we = cpu_we & (cpu_addr & PREFIX_MASK == VGA_COLOR_OFFSET);
 always @(*) begin
 	if(cpu_addr & PREFIX_MASK == DATA_OFFSET)
 		cpu_rddata <= dram_dataout;
-	else if(cpu_addr & PREFIX_MASK == INSTR_OFFSET)
-		cpu_rddata <= instr_out;
 	else if(cpu_addr & PREFIX_MASK == KB_INFO_OFFSET)
 		cpu_rddata <= kb_info_dataout;
 	else
 		cpu_rddata <= 0;
 end
 
-instr_rom instr_rom_instance(cpu_addr&ADDR_MASK, clk, instr_out);														// 	read: cpu, 	write: none
+instr_rom instr_rom_instance(instr_addr&ADDR_MASK, clk, instr_data);														// 	read: cpu, 	write: none
 dram dram_instance(cpu_addr&ADDR_MASK, dram_dataout, cpu_wrdata, clk, clk, cpu_memop, dram_we);							//	read: cpu, 	write: cpu
 vga_info vga_info_instance(clk, cpu_addr&ADDR_MASK, cpu_wrdata, vga_we);												// 	read: vga, 	write: cpu
 char_ram vga_ram_instance(cpu_wrdata, vga_char_addr&ADDR_MASK, clk, cpu_addr&ADDR_MASK, clk, char_we, vga_char_data);	//	read: vga, 	write: cpu
 color_ram color_ram_instance(cpu_wrdata, vga_color_addr&ADDR_MASK, clk, cpu_addr&ADDR_MASK, clk, color_we, vga_color_data);	//	read: vga, 	write: cpu
 kb_info kb_info_instance(clk, cpu_addr&ADDR_MASK, kb_info_dataout, kb_wraddr&ADDR_MASK, kb_wrdata, kb_we);				//	read: cpu, 	write: kb
-idt idt_instance(clk, irq_no, irq_handler_addr&ADDR_MASK, cpu_addr&ADDR_MASK, cpu_wrdata, idt_we);						//	read: pipeline, write: cpu
+idt idt_instance(clk, irq_addr&ADDR_MASK, irq_handler_addr&ADDR_MASK, cpu_addr&ADDR_MASK, cpu_wrdata, idt_we);						//	read: pipeline, write: cpu
 
 endmodule
 

@@ -1,16 +1,19 @@
 module pipeline(
-	input 	clock,
-	input 	clr,
-	output [31:0] imemaddr,
-	input  [31:0] imemdataout,
-	output 	imemclk,
-	output [31:0] dmemaddr,
-	input  [31:0] dmemdataout,
-	output [31:0] dmemdatain,
-	output 	dmemrdclk,
-	output	dmemwrclk,
-	output [2:0] dmemop,
-	output	dmemwe);
+	input 	        clock,
+	input 	        clr,
+	output [31:0]   imemaddr,
+	input  [31:0]   imemdataout,
+	output 	        imemclk,
+	output [31:0]   dmemaddr,
+	input  [31:0]   dmemdataout,
+	output [31:0]   dmemdatain,
+	output 	        dmemrdclk,
+	output	        dmemwrclk,
+	output [2:0]    dmemop,
+	output	        dmemwe,
+    
+    input [1:0]     irq_pins
+    );
 
 wire [31:0] nextpc, pc, pc1, pc2, instr, instr1, rw, busW, imm, imm2, rs1, rs12, rs13, rs2, rs22, rs23, rd, rd2, rd3, nextpc_pc, nextpc_pc3,
             nextpc_rs1, nextpc_rs13, aluresult, aluresult3, aluresult4, dmemdata, dmemdata4;
