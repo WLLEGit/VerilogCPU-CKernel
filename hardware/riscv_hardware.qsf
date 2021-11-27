@@ -275,3 +275,8 @@ set_location_assignment PIN_Y23 -to FPGA_I2C_SDAT
 # End of pin assignments by Terasic System Builder
 #============================================================
 
+
+set_global_assignment -name QIP_FILE memory/instr_rom.qip
+set_global_assignment -name QIP_FILE memory/data_ram.qip
+set_global_assignment -name QIP_FILE memory/char_ram.qip
+set_global_assignment -name QIP_FILE memory/color_ram.qip
