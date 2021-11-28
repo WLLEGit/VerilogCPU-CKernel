@@ -17,7 +17,7 @@ module pipeline(
     output [31:0]   dbgdata
     );
 
-wire [31:0] nextpc_mem, pc, pc1, pc2, instr, instr1, busW, imm, imm2, rs1, rs12, rs13, rs2, rs22, rs23, nextpc_pc, nextpc_pc3,
+wire [31:0] nextpc_mem, pc, pc1, pc2, instr, instr1, busW, imm, imm2, rs1, rs12, rs2, rs22, rs23, nextpc_pc, nextpc_pc3,
             nextpc_rs1, nextpc_rs13, aluresult, aluresult3, aluresult4, dmemdata, dmemdata4;
 wire [4:0] rs1_addr, rs2_addr, rs1_addr2, rs2_addr2, rw, rd, rd2, rd3;
 wire [3:0] ALUctr, ALUctr2;
@@ -28,25 +28,29 @@ wire regwr, regwr2, regwr3, regwr4, MemtoReg, MemtoReg2, MemtoReg3, MemtoReg4,
 
 wire [1:0] forward_rs1, forward_rs2;
 
+wire flush;
+
 assign dbgdata = pc;
 // cpu ctrl
-forward_detecter f_d_i(regwr2, regwr3, regwr4, rs1_addr2, rs2_addr2, rd2, rd3, forward_rs1, forward_rs2);
+forward_detecter f_d_i(regwr2, regwr3, regwr4, rs1_addr2, rs2_addr2, rd3, rw, forward_rs1, forward_rs2);
 load_store_detecter l_s_d(MemtoReg2, rd2, instr1[19:15], instr1[24:20], stall);
 
+pipeline_status pipeline_status_ctrl(clr, clk, pc_branch, flush);
 PC PC_instance(clr, clk, nextpc_mem, pc_branch, stall, pc);
 IF IF_instance(clr, clk, pc, instr, imemdataout, imemaddr, imemclk);
-IF_ID_reg IFIDreg_instance(clr, clk, pc, instr, pc1, instr1);
-ID ID_instance(clr, clk, instr1, regwr, rw, busW, imm, rs1_addr, rs2_addr, rs1, rs2, rd, extop, regwr, ALUAsrc, ALUBsrc, ALUctr, branch, MemtoReg, memwr, memop);
-ID_EX_reg ID_EX_reg_instance(clr, clk, pc1, imm, rs1, rs2, rs1_addr, rs2_addr, rd, extop, regwr, ALUAsrc, ALUBsrc, ALUctr, branch, MemtoReg, memwr, memop,
+IF_ID_reg IFIDreg_instance(flush, clk, pc, instr, pc1, instr1);
+ID ID_instance(clr, clk, instr1, regwr4, rw, busW, imm, rs1_addr, rs2_addr, rs1, rs2, rd, extop, regwr, ALUAsrc, ALUBsrc, ALUctr, branch, MemtoReg, memwr, memop);
+ID_EX_reg ID_EX_reg_instance(flush, clk, pc1, imm, rs1, rs2, rs1_addr, rs2_addr, rd, extop, regwr, ALUAsrc, ALUBsrc, ALUctr, branch, MemtoReg, memwr, memop,
                                         pc2, imm2, rs12, rs22, rs1_addr2, rs2_addr2, rd2, extop2, regwr2, ALUAsrc2, ALUBsrc2, ALUctr2, branch2, MemtoReg2, memwr2, memop2);
 EX EX_instance(clr, clk, pc2, imm2, rs12, rs22, ALUAsrc2, ALUBsrc2, ALUctr2,
                         forward_rs1, forward_rs2, aluresult3, aluresult4,
                         nextpc_pc, nextpc_rs1, less, zero, aluresult);
-EX_M_reg EX_M_reg_instance(clr, clk, nextpc_pc, nextpc_rs1, less, zero, rs22, aluresult, rd2, branch2, MemtoReg2, memwr2, memop2, regwr2,
+EX_M_reg EX_M_reg_instance(flush, clk, nextpc_pc, nextpc_rs1, less, zero, rs22, aluresult, rd2, branch2, MemtoReg2, memwr2, memop2, regwr2,
                                         nextpc_pc3, nextpc_rs13, less3, zero3, rs23, aluresult3, rd3, branch3, MemtoReg3, memwr3, memop3, regwr3);
-M M_instance(clr, clk, aluresult3, nextpc_pc3, nextpc_rs13, less3, zero3, branch3, memop3, memwr3, rs23, nextpc_mem, dmemdata, pc_branch,
+M M_instance(clr, clk, aluresult3, nextpc_pc3, nextpc_rs13, less3, zero3, branch3, memop3, memwr3, rs23, 
+                        nextpc_mem, dmemdata, pc_branch,
                         dmemaddr, dmemdataout, dmemdatain, dmemrdclk, dmemwrclk, dmemop, dmemwe);
-M_WB_reg M_WB_reg_instance(clr, clk, dmemdata, aluresult3, rd3, MemtoReg3, regwr3,
+M_WB_reg M_WB_reg_instance(flush, clk, dmemdata, aluresult3, rd3, MemtoReg3, regwr3,
                                         dmemdata4, aluresult4, rw, MemtoReg4, regwr4);
 WB WB_instance(clr, clk, dmemdata4, aluresult4, MemtoReg4, busW);
     
@@ -124,7 +128,7 @@ assign rd = instr[11:7];
 assign rs1_addr = instr[19:15];
 assign rs2_addr = instr[24:20];
 contr_gen contr_gen_instance(instr, extop, regwr, ALUAsrc, ALUBsrc, ALUctr, branch, MemtoReg, memwr, memop);
-regfile myregfile(rs1_addr, rs2_addr, regaddr_wb, busW_wb, regwr_wb, ~clk, rs1, rs2);
+regfile myregfile(rs1_addr, rs2_addr, regaddr_wb, busW_wb, regwr_wb, clk, rs1, rs2);
 imm_gen imm_gen_instance(instr, extop, imm);
     
 endmodule

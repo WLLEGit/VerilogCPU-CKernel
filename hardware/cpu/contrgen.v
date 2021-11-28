@@ -19,7 +19,9 @@ wire [4:0]op = op_[6:2];
 wire func7 = func7_[5];
 
 always @(*) begin
-    if(op==5'b01101 || op==5'b00101)
+    if(instr == 32'd0)
+        extop <= 0;
+    else if(op==5'b01101 || op==5'b00101)
         extop <= 3'b001;
     else if(op==5'b01000)
         extop <= 3'b010;
@@ -32,14 +34,18 @@ always @(*) begin
 end
 
 always @(*) begin
-    if(op==5'b11000 || op==5'b01000)
+    if(instr == 32'd0)
+        regwr <= 0;
+    else if(op==5'b11000 || op==5'b01000)
         regwr<=1'b0;
     else
         regwr<=1'b1;
 end
 
 always @(*) begin
-    if(op==5'b11011)
+    if(instr == 32'd0)
+        branch <= 0;
+    else if(op==5'b11011)
         branch<=3'b001;
     else if(op==5'b11001)
         branch<=3'b010;
@@ -58,15 +64,23 @@ always @(*) begin
 end
 
 always @(*) begin
-    MemtoReg<=(op==5'b00000);
+    if(instr == 32'd0)
+        MemtoReg <= 0;
+    else
+        MemtoReg<=(op==5'b00000);
 end
 
 always @(*) begin
-    memwr <= (op==5'b01000);
+    if(instr == 32'd0)
+        memwr <= 0;
+    else
+        memwr <= (op==5'b01000);
 end
 
 always @(*) begin
-    if(op==5'b00000) begin
+    if(instr == 32'd0)
+        memop <= 0;
+    else if(op==5'b00000) begin
         case (func3)
             3'b000: memop<=3'b000; 
             3'b001: memop<=3'b001; 
@@ -87,14 +101,18 @@ always @(*) begin
 end
 
 always @(*) begin
-    if(op==5'b00101 || op==5'b11011 || op==5'b11001)
+    if(instr == 32'd0)
+        ALUAsrc <= 0;
+    else if(op==5'b00101 || op==5'b11011 || op==5'b11001)
         ALUAsrc<=1'b1;
     else
         ALUAsrc<=1'b0;
 end
 
 always @(*) begin
-    if(op==5'b01101 || op==5'b00101 || op==5'b00100 || op==5'b00000 || op==5'b01000)
+    if(instr == 32'd0)
+        ALUBsrc <= 0;
+    else if(op==5'b01101 || op==5'b00101 || op==5'b00100 || op==5'b00000 || op==5'b01000)
         ALUBsrc<=2'b01;
     else if(op==5'b11011 || op==5'b11001)
         ALUBsrc<=2'b10;
@@ -103,7 +121,9 @@ always @(*) begin
 end
 
 always @(*) begin
-    if(op==5'b01101) ALUctr <= 4'b0011;
+    if(instr == 32'd0)
+        ALUctr <= 0;
+    else if(op==5'b01101) ALUctr <= 4'b0011;
     else if(op==5'b00101) ALUctr <= 4'b0000;
     else if(op==5'b00100 && func3==3'b000) ALUctr <= 4'b0000;
     else if(op==5'b00100 && func3==3'b010) ALUctr <= 4'b0010;

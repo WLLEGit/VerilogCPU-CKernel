@@ -1,5 +1,5 @@
 Analysis & Synthesis report for riscv_hardware
-Sun Nov 28 15:21:45 2021
+Mon Nov 29 00:12:30 2021
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -46,13 +46,13 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Sun Nov 28 15:21:45 2021       ;
+; Analysis & Synthesis Status     ; Successful - Mon Nov 29 00:12:30 2021       ;
 ; Quartus Prime Version           ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                   ; riscv_hardware                              ;
 ; Top-level Entity Name           ; pipeline                                    ;
 ; Family                          ; Cyclone V                                   ;
 ; Logic utilization (in ALMs)     ; N/A                                         ;
-; Total registers                 ; 1460                                        ;
+; Total registers                 ; 1463                                        ;
 ; Total pins                      ; 201                                         ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 0                                           ;
@@ -193,52 +193,52 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------+-----------+
 ; Resource                                    ; Usage     ;
 +---------------------------------------------+-----------+
-; Estimate of Logic utilization (ALMs needed) ; 1295      ;
+; Estimate of Logic utilization (ALMs needed) ; 1374      ;
 ;                                             ;           ;
-; Combinational ALUT usage for logic          ; 1416      ;
-;     -- 7 input functions                    ; 33        ;
-;     -- 6 input functions                    ; 875       ;
-;     -- 5 input functions                    ; 200       ;
-;     -- 4 input functions                    ; 107       ;
-;     -- <=3 input functions                  ; 201       ;
+; Combinational ALUT usage for logic          ; 1477      ;
+;     -- 7 input functions                    ; 21        ;
+;     -- 6 input functions                    ; 984       ;
+;     -- 5 input functions                    ; 175       ;
+;     -- 4 input functions                    ; 98        ;
+;     -- <=3 input functions                  ; 199       ;
 ;                                             ;           ;
-; Dedicated logic registers                   ; 1460      ;
+; Dedicated logic registers                   ; 1463      ;
 ;                                             ;           ;
 ; I/O pins                                    ; 201       ;
 ;                                             ;           ;
 ; Total DSP Blocks                            ; 0         ;
 ;                                             ;           ;
 ; Maximum fan-out node                        ; clk~input ;
-; Maximum fan-out                             ; 1463      ;
-; Total fan-out                               ; 12191     ;
-; Average fan-out                             ; 3.72      ;
+; Maximum fan-out                             ; 1466      ;
+; Total fan-out                               ; 12600     ;
+; Average fan-out                             ; 3.77      ;
 +---------------------------------------------+-----------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                               ;
-+------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+----------------------------------------------------------+---------------------+--------------+
-; Compilation Hierarchy Node               ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                      ; Entity Name         ; Library Name ;
-+------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+----------------------------------------------------------+---------------------+--------------+
-; |pipeline                                ; 1416 (0)            ; 1460 (0)                  ; 0                 ; 0          ; 201  ; 0            ; |pipeline                                                ; pipeline            ; work         ;
-;    |EX:EX_instance|                      ; 418 (203)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|EX:EX_instance                                 ; EX                  ; work         ;
-;       |alu:alu_instance|                 ; 215 (156)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|EX:EX_instance|alu:alu_instance                ; alu                 ; work         ;
-;          |adder:alu_addr|                ; 59 (59)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|EX:EX_instance|alu:alu_instance|adder:alu_addr ; adder               ; work         ;
-;    |EX_M_reg:EX_M_reg_instance|          ; 137 (137)           ; 144 (144)                 ; 0                 ; 0          ; 0    ; 0            ; |pipeline|EX_M_reg:EX_M_reg_instance                     ; EX_M_reg            ; work         ;
-;    |ID:ID_instance|                      ; 55 (0)              ; 992 (0)                   ; 0                 ; 0          ; 0    ; 0            ; |pipeline|ID:ID_instance                                 ; ID                  ; work         ;
-;       |contr_gen:contr_gen_instance|     ; 19 (19)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|ID:ID_instance|contr_gen:contr_gen_instance    ; contr_gen           ; work         ;
-;       |imm_gen:imm_gen_instance|         ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|ID:ID_instance|imm_gen:imm_gen_instance        ; imm_gen             ; work         ;
-;       |regfile:myregfile|                ; 34 (34)             ; 992 (992)                 ; 0                 ; 0          ; 0    ; 0            ; |pipeline|ID:ID_instance|regfile:myregfile               ; regfile             ; work         ;
-;    |ID_EX_reg:ID_EX_reg_instance|        ; 695 (695)           ; 159 (159)                 ; 0                 ; 0          ; 0    ; 0            ; |pipeline|ID_EX_reg:ID_EX_reg_instance                   ; ID_EX_reg           ; work         ;
-;    |IF_ID_reg:IFIDreg_instance|          ; 0 (0)               ; 62 (62)                   ; 0                 ; 0          ; 0    ; 0            ; |pipeline|IF_ID_reg:IFIDreg_instance                     ; IF_ID_reg           ; work         ;
-;    |M:M_instance|                        ; 2 (0)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|M:M_instance                                   ; M                   ; work         ;
-;       |branch_cond:branch_cond_instance| ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|M:M_instance|branch_cond:branch_cond_instance  ; branch_cond         ; work         ;
-;    |M_WB_reg:M_WB_reg_instance|          ; 0 (0)               ; 71 (71)                   ; 0                 ; 0          ; 0    ; 0            ; |pipeline|M_WB_reg:M_WB_reg_instance                     ; M_WB_reg            ; work         ;
-;    |PC:PC_instance|                      ; 64 (64)             ; 32 (32)                   ; 0                 ; 0          ; 0    ; 0            ; |pipeline|PC:PC_instance                                 ; PC                  ; work         ;
-;    |WB:WB_instance|                      ; 32 (32)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|WB:WB_instance                                 ; WB                  ; work         ;
-;    |forward_detecter:f_d_i|              ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|forward_detecter:f_d_i                         ; forward_detecter    ; work         ;
-;    |load_store_detecter:l_s_d|           ; 5 (5)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|load_store_detecter:l_s_d                      ; load_store_detecter ; work         ;
-+------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+----------------------------------------------------------+---------------------+--------------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                             ;
++-------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+----------------------------------------------------------+------------------+--------------+
+; Compilation Hierarchy Node                ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                      ; Entity Name      ; Library Name ;
++-------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+----------------------------------------------------------+------------------+--------------+
+; |pipeline                                 ; 1477 (0)            ; 1463 (0)                  ; 0                 ; 0          ; 201  ; 0            ; |pipeline                                                ; pipeline         ; work         ;
+;    |EX:EX_instance|                       ; 447 (234)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|EX:EX_instance                                 ; EX               ; work         ;
+;       |alu:alu_instance|                  ; 213 (154)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|EX:EX_instance|alu:alu_instance                ; alu              ; work         ;
+;          |adder:alu_addr|                 ; 59 (59)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|EX:EX_instance|alu:alu_instance|adder:alu_addr ; adder            ; work         ;
+;    |EX_M_reg:EX_M_reg_instance|           ; 153 (153)           ; 144 (144)                 ; 0                 ; 0          ; 0    ; 0            ; |pipeline|EX_M_reg:EX_M_reg_instance                     ; EX_M_reg         ; work         ;
+;    |ID:ID_instance|                       ; 53 (0)              ; 992 (0)                   ; 0                 ; 0          ; 0    ; 0            ; |pipeline|ID:ID_instance                                 ; ID               ; work         ;
+;       |contr_gen:contr_gen_instance|      ; 18 (18)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|ID:ID_instance|contr_gen:contr_gen_instance    ; contr_gen        ; work         ;
+;       |imm_gen:imm_gen_instance|          ; 4 (4)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|ID:ID_instance|imm_gen:imm_gen_instance        ; imm_gen          ; work         ;
+;       |regfile:myregfile|                 ; 31 (31)             ; 992 (992)                 ; 0                 ; 0          ; 0    ; 0            ; |pipeline|ID:ID_instance|regfile:myregfile               ; regfile          ; work         ;
+;    |ID_EX_reg:ID_EX_reg_instance|         ; 714 (714)           ; 159 (159)                 ; 0                 ; 0          ; 0    ; 0            ; |pipeline|ID_EX_reg:ID_EX_reg_instance                   ; ID_EX_reg        ; work         ;
+;    |IF_ID_reg:IFIDreg_instance|           ; 0 (0)               ; 64 (64)                   ; 0                 ; 0          ; 0    ; 0            ; |pipeline|IF_ID_reg:IFIDreg_instance                     ; IF_ID_reg        ; work         ;
+;    |M:M_instance|                         ; 2 (0)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|M:M_instance                                   ; M                ; work         ;
+;       |branch_cond:branch_cond_instance|  ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|M:M_instance|branch_cond:branch_cond_instance  ; branch_cond      ; work         ;
+;    |M_WB_reg:M_WB_reg_instance|           ; 0 (0)               ; 71 (71)                   ; 0                 ; 0          ; 0    ; 0            ; |pipeline|M_WB_reg:M_WB_reg_instance                     ; M_WB_reg         ; work         ;
+;    |PC:PC_instance|                       ; 70 (70)             ; 32 (32)                   ; 0                 ; 0          ; 0    ; 0            ; |pipeline|PC:PC_instance                                 ; PC               ; work         ;
+;    |WB:WB_instance|                       ; 32 (32)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|WB:WB_instance                                 ; WB               ; work         ;
+;    |forward_detecter:f_d_i|               ; 6 (6)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|forward_detecter:f_d_i                         ; forward_detecter ; work         ;
+;    |pipeline_status:pipeline_status_ctrl| ; 0 (0)               ; 1 (1)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|pipeline_status:pipeline_status_ctrl           ; pipeline_status  ; work         ;
++-------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+----------------------------------------------------------+------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
@@ -288,8 +288,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 1460  ;
-; Number of registers using Synchronous Clear  ; 435   ;
+; Total registers                              ; 1463  ;
+; Number of registers using Synchronous Clear  ; 427   ;
 ; Number of registers using Synchronous Load   ; 0     ;
 ; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
@@ -303,35 +303,36 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                     ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------+
+; 3:1                ; 5 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|MemtoReg_out            ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |pipeline|PC:PC_instance|pc[1]                                 ;
-; 4:1                ; 6 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|imm_out[8]              ;
-; 4:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|imm_out[26]             ;
-; 5:1                ; 30 bits   ; 90 LEs        ; 60 LEs               ; 30 LEs                 ; Yes        ; |pipeline|PC:PC_instance|pc[17]                                ;
-; 5:1                ; 2 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|branch_out[2]           ;
+; 4:1                ; 6 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|imm_out[5]              ;
+; 4:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|imm_out[30]             ;
+; 5:1                ; 30 bits   ; 90 LEs        ; 60 LEs               ; 30 LEs                 ; Yes        ; |pipeline|PC:PC_instance|pc[26]                                ;
 ; 5:1                ; 4 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|imm_out[3]              ;
-; 5:1                ; 4 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|imm_out[24]             ;
-; 6:1                ; 8 bits    ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|imm_out[14]             ;
-; 33:1               ; 32 bits   ; 704 LEs       ; 640 LEs              ; 64 LEs                 ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|rs1_out[18]             ;
-; 33:1               ; 32 bits   ; 704 LEs       ; 640 LEs              ; 64 LEs                 ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|rs2_out[5]              ;
-; 22:1               ; 8 bits    ; 112 LEs       ; 64 LEs               ; 48 LEs                 ; Yes        ; |pipeline|EX_M_reg:EX_M_reg_instance|aluresult_out[21]         ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|imm_out[23]             ;
+; 6:1                ; 8 bits    ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|imm_out[18]             ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|branch_out[1]           ;
+; 33:1               ; 32 bits   ; 704 LEs       ; 640 LEs              ; 64 LEs                 ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|rs1_out[21]             ;
+; 33:1               ; 32 bits   ; 704 LEs       ; 640 LEs              ; 64 LEs                 ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|rs2_out[29]             ;
+; 22:1               ; 8 bits    ; 112 LEs       ; 64 LEs               ; 48 LEs                 ; Yes        ; |pipeline|EX_M_reg:EX_M_reg_instance|aluresult_out[19]         ;
 ; 21:1               ; 5 bits    ; 70 LEs        ; 50 LEs               ; 20 LEs                 ; Yes        ; |pipeline|EX_M_reg:EX_M_reg_instance|aluresult_out[4]          ;
-; 23:1               ; 2 bits    ; 30 LEs        ; 20 LEs               ; 10 LEs                 ; Yes        ; |pipeline|EX_M_reg:EX_M_reg_instance|aluresult_out[9]          ;
-; 21:1               ; 3 bits    ; 42 LEs        ; 30 LEs               ; 12 LEs                 ; Yes        ; |pipeline|EX_M_reg:EX_M_reg_instance|aluresult_out[14]         ;
-; 25:1               ; 3 bits    ; 48 LEs        ; 36 LEs               ; 12 LEs                 ; Yes        ; |pipeline|EX_M_reg:EX_M_reg_instance|aluresult_out[28]         ;
+; 23:1               ; 2 bits    ; 30 LEs        ; 20 LEs               ; 10 LEs                 ; Yes        ; |pipeline|EX_M_reg:EX_M_reg_instance|aluresult_out[10]         ;
+; 21:1               ; 3 bits    ; 42 LEs        ; 30 LEs               ; 12 LEs                 ; Yes        ; |pipeline|EX_M_reg:EX_M_reg_instance|aluresult_out[12]         ;
+; 25:1               ; 3 bits    ; 48 LEs        ; 36 LEs               ; 12 LEs                 ; Yes        ; |pipeline|EX_M_reg:EX_M_reg_instance|aluresult_out[30]         ;
 ; 24:1               ; 2 bits    ; 32 LEs        ; 22 LEs               ; 10 LEs                 ; Yes        ; |pipeline|EX_M_reg:EX_M_reg_instance|aluresult_out[26]         ;
-; 24:1               ; 3 bits    ; 48 LEs        ; 36 LEs               ; 12 LEs                 ; Yes        ; |pipeline|EX_M_reg:EX_M_reg_instance|aluresult_out[3]          ;
-; 22:1               ; 2 bits    ; 28 LEs        ; 28 LEs               ; 0 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|ALUctr_out[2]           ;
-; 29:1               ; 2 bits    ; 38 LEs        ; 38 LEs               ; 0 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|ALUctr_out[1]           ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |pipeline|EX:EX_instance|rs1_proc[5]                           ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |pipeline|EX:EX_instance|alu:alu_instance|ShiftRight0          ;
+; 24:1               ; 3 bits    ; 48 LEs        ; 36 LEs               ; 12 LEs                 ; Yes        ; |pipeline|EX_M_reg:EX_M_reg_instance|aluresult_out[2]          ;
+; 23:1               ; 2 bits    ; 30 LEs        ; 30 LEs               ; 0 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|ALUctr_out[2]           ;
+; 30:1               ; 2 bits    ; 40 LEs        ; 40 LEs               ; 0 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|ALUctr_out[1]           ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |pipeline|EX:EX_instance|rs1_proc[13]                          ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |pipeline|EX:EX_instance|alu:alu_instance|ShiftLeft0           ;
 ; 4:1                ; 49 bits   ; 98 LEs        ; 98 LEs               ; 0 LEs                  ; No         ; |pipeline|EX:EX_instance|alu:alu_instance|ShiftLeft0           ;
 ; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |pipeline|EX:EX_instance|alu:alu_instance|ShiftLeft0           ;
 ; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |pipeline|EX:EX_instance|alu:alu_instance|ShiftLeft0           ;
 ; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |pipeline|EX:EX_instance|alu:alu_instance|ShiftLeft0           ;
 ; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |pipeline|EX:EX_instance|alu:alu_instance|ShiftRight0          ;
 ; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |pipeline|EX:EX_instance|alu:alu_instance|ShiftRight1          ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |pipeline|ID:ID_instance|contr_gen:contr_gen_instance|extop[0] ;
-; 5:1                ; 32 bits   ; 96 LEs        ; 96 LEs               ; 0 LEs                  ; No         ; |pipeline|EX:EX_instance|datab[9]                              ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |pipeline|ID:ID_instance|contr_gen:contr_gen_instance|extop[0] ;
+; 5:1                ; 32 bits   ; 96 LEs        ; 96 LEs               ; 0 LEs                  ; No         ; |pipeline|EX:EX_instance|datab[8]                              ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------+
 
 
@@ -349,32 +350,32 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_ff             ; 1460                        ;
+; arriav_ff             ; 1463                        ;
 ;     ENA               ; 992                         ;
 ;     ENA SCLR          ; 32                          ;
-;     SCLR              ; 403                         ;
-;     plain             ; 33                          ;
-; arriav_lcell_comb     ; 1416                        ;
+;     SCLR              ; 395                         ;
+;     plain             ; 44                          ;
+; arriav_lcell_comb     ; 1477                        ;
 ;     arith             ; 94                          ;
 ;         1 data inputs ; 30                          ;
 ;         2 data inputs ; 32                          ;
 ;         4 data inputs ; 32                          ;
-;     extend            ; 33                          ;
-;         7 data inputs ; 33                          ;
-;     normal            ; 1256                        ;
-;         2 data inputs ; 48                          ;
-;         3 data inputs ; 74                          ;
-;         4 data inputs ; 59                          ;
-;         5 data inputs ; 200                         ;
-;         6 data inputs ; 875                         ;
+;     extend            ; 21                          ;
+;         7 data inputs ; 21                          ;
+;     normal            ; 1329                        ;
+;         2 data inputs ; 40                          ;
+;         3 data inputs ; 80                          ;
+;         4 data inputs ; 50                          ;
+;         5 data inputs ; 175                         ;
+;         6 data inputs ; 984                         ;
 ;     shared            ; 33                          ;
 ;         0 data inputs ; 1                           ;
 ;         2 data inputs ; 16                          ;
 ;         4 data inputs ; 16                          ;
 ; boundary_port         ; 201                         ;
 ;                       ;                             ;
-; Max LUT depth         ; 11.60                       ;
-; Average LUT depth     ; 4.16                        ;
+; Max LUT depth         ; 10.20                       ;
+; Average LUT depth     ; 4.11                        ;
 +-----------------------+-----------------------------+
 
 
@@ -383,7 +384,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:03     ;
+; Top            ; 00:00:04     ;
 +----------------+--------------+
 
 
@@ -393,30 +394,31 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
-    Info: Processing started: Sun Nov 28 15:21:33 2021
+    Info: Processing started: Mon Nov 29 00:12:15 2021
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off riscv_hardware -c riscv_hardware
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
 Info (12021): Found 10 design units, including 10 entities, in source file cpu/pipeline.v
     Info (12023): Found entity 1: pipeline File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 3
-    Info (12023): Found entity 2: IF File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 55
-    Info (12023): Found entity 3: IF_ID_reg File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 73
-    Info (12023): Found entity 4: ID File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 94
-    Info (12023): Found entity 5: ID_EX_reg File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 132
-    Info (12023): Found entity 6: EX File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 192
-    Info (12023): Found entity 7: EX_M_reg File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 229
-    Info (12023): Found entity 8: M File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 277
-    Info (12023): Found entity 9: M_WB_reg File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 320
-    Info (12023): Found entity 10: WB File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 346
+    Info (12023): Found entity 2: IF File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 59
+    Info (12023): Found entity 3: IF_ID_reg File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 77
+    Info (12023): Found entity 4: ID File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 98
+    Info (12023): Found entity 5: ID_EX_reg File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 136
+    Info (12023): Found entity 6: EX File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 196
+    Info (12023): Found entity 7: EX_M_reg File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 233
+    Info (12023): Found entity 8: M File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 281
+    Info (12023): Found entity 9: M_WB_reg File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 324
+    Info (12023): Found entity 10: WB File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 350
 Info (12021): Found 1 design units, including 1 entities, in source file cpu/regfile.v
     Info (12023): Found entity 1: regfile File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/regfile.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file cpu/immgen.v
     Info (12023): Found entity 1: imm_gen File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/immgen.v Line: 1
 Info (12021): Found 0 design units, including 0 entities, in source file cpu/define.v
-Info (12021): Found 3 design units, including 3 entities, in source file cpu/cpu_ctrl.v
+Info (12021): Found 4 design units, including 4 entities, in source file cpu/cpu_ctrl.v
     Info (12023): Found entity 1: forward_detecter File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/cpu_ctrl.v Line: 1
     Info (12023): Found entity 2: load_store_detecter File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/cpu_ctrl.v Line: 26
     Info (12023): Found entity 3: PC File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/cpu_ctrl.v Line: 36
+    Info (12023): Found entity 4: pipeline_status File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/cpu_ctrl.v Line: 66
 Info (12021): Found 1 design units, including 1 entities, in source file cpu/contrgen.v
     Info (12023): Found entity 1: contr_gen File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/contrgen.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file cpu/branch_cond.v
@@ -433,38 +435,36 @@ Info (12021): Found 1 design units, including 1 entities, in source file memory/
 Info (12021): Found 1 design units, including 1 entities, in source file memory/color_ram.v
     Info (12023): Found entity 1: color_ram File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/memory/color_ram.v Line: 40
 Info (12127): Elaborating entity "pipeline" for the top level hierarchy
-Info (12128): Elaborating entity "forward_detecter" for hierarchy "forward_detecter:f_d_i" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 33
-Info (12128): Elaborating entity "load_store_detecter" for hierarchy "load_store_detecter:l_s_d" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 34
-Info (12128): Elaborating entity "PC" for hierarchy "PC:PC_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 36
-Info (12128): Elaborating entity "IF" for hierarchy "IF:IF_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 37
-Info (12128): Elaborating entity "IF_ID_reg" for hierarchy "IF_ID_reg:IFIDreg_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 38
-Info (12128): Elaborating entity "ID" for hierarchy "ID:ID_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 39
-Info (12128): Elaborating entity "contr_gen" for hierarchy "ID:ID_instance|contr_gen:contr_gen_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 126
-Info (12128): Elaborating entity "regfile" for hierarchy "ID:ID_instance|regfile:myregfile" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 127
-Info (12128): Elaborating entity "imm_gen" for hierarchy "ID:ID_instance|imm_gen:imm_gen_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 128
-Info (12128): Elaborating entity "ID_EX_reg" for hierarchy "ID_EX_reg:ID_EX_reg_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 41
-Info (12128): Elaborating entity "EX" for hierarchy "EX:EX_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 44
-Info (12128): Elaborating entity "alu" for hierarchy "EX:EX_instance|alu:alu_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 225
+Info (12128): Elaborating entity "forward_detecter" for hierarchy "forward_detecter:f_d_i" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 35
+Info (12128): Elaborating entity "load_store_detecter" for hierarchy "load_store_detecter:l_s_d" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 36
+Info (12128): Elaborating entity "pipeline_status" for hierarchy "pipeline_status:pipeline_status_ctrl" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 38
+Info (12128): Elaborating entity "PC" for hierarchy "PC:PC_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 39
+Info (12128): Elaborating entity "IF" for hierarchy "IF:IF_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 40
+Info (12128): Elaborating entity "IF_ID_reg" for hierarchy "IF_ID_reg:IFIDreg_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 41
+Info (12128): Elaborating entity "ID" for hierarchy "ID:ID_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 42
+Info (12128): Elaborating entity "contr_gen" for hierarchy "ID:ID_instance|contr_gen:contr_gen_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 130
+Info (12128): Elaborating entity "regfile" for hierarchy "ID:ID_instance|regfile:myregfile" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 131
+Info (12128): Elaborating entity "imm_gen" for hierarchy "ID:ID_instance|imm_gen:imm_gen_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 132
+Info (12128): Elaborating entity "ID_EX_reg" for hierarchy "ID_EX_reg:ID_EX_reg_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 44
+Info (12128): Elaborating entity "EX" for hierarchy "EX:EX_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 47
+Info (12128): Elaborating entity "alu" for hierarchy "EX:EX_instance|alu:alu_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 229
 Info (12128): Elaborating entity "adder" for hierarchy "EX:EX_instance|alu:alu_instance|adder:alu_addr" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/alu.v Line: 14
-Info (12128): Elaborating entity "EX_M_reg" for hierarchy "EX_M_reg:EX_M_reg_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 46
-Info (12128): Elaborating entity "M" for hierarchy "M:M_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 48
-Info (12128): Elaborating entity "branch_cond" for hierarchy "M:M_instance|branch_cond:branch_cond_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 315
-Info (12128): Elaborating entity "M_WB_reg" for hierarchy "M_WB_reg:M_WB_reg_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 50
-Info (12128): Elaborating entity "WB" for hierarchy "WB:WB_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 51
+Info (12128): Elaborating entity "EX_M_reg" for hierarchy "EX_M_reg:EX_M_reg_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 49
+Info (12128): Elaborating entity "M" for hierarchy "M:M_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 52
+Info (12128): Elaborating entity "branch_cond" for hierarchy "M:M_instance|branch_cond:branch_cond_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 319
+Info (12128): Elaborating entity "M_WB_reg" for hierarchy "M_WB_reg:M_WB_reg_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 54
+Info (12128): Elaborating entity "WB" for hierarchy "WB:WB_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 55
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 2 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "imemdataout[0]" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 7
-    Warning (15610): No output dependent on input pin "imemdataout[1]" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 7
-Info (21057): Implemented 2839 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 2899 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 66 input pins
     Info (21059): Implemented 135 output pins
-    Info (21061): Implemented 2638 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 4 warnings
-    Info: Peak virtual memory: 4843 megabytes
-    Info: Processing ended: Sun Nov 28 15:21:45 2021
-    Info: Elapsed time: 00:00:12
-    Info: Total CPU time (on all processors): 00:00:24
+    Info (21061): Implemented 2698 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 1 warning
+    Info: Peak virtual memory: 4840 megabytes
+    Info: Processing ended: Mon Nov 29 00:12:30 2021
+    Info: Elapsed time: 00:00:15
+    Info: Total CPU time (on all processors): 00:00:28
 
 

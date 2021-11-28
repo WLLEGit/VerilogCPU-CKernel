@@ -52,8 +52,6 @@ task step;  //step for one cycle ends 1ns AFTER the posedge of the next cycle
 		#10 clk=1'b1;
 		numcycles = numcycles + 1;
 		#1 ;
-		if(mycpu.ID_instance.myregfile.regs[10]==32'hdeaddead)
-			$display("reg[10] become deaddead in cycle %3d, pc %x", numcycles-1, cpudbgdata);
 	end
 endtask
 
@@ -136,22 +134,17 @@ integer maxcycles =10000;
 
 task run;
    integer i;
-   integer cont;
 	begin
-	   	i = 0;
-		cont = 1;
-	   	while(cont != 0) begin
-		   	cont = 0;
-			while( (idataout!=32'hdead10cc) && (i<maxcycles))
-			begin
-				step();
-				i=i+1;
-			end
-			if(cont != 1) begin step(); if(mycpu.IFIDreg_instance.instr_out==32'h0) cont = 1; end
-			if(cont != 1) begin step(); if(mycpu.IFIDreg_instance.instr_out==32'h0) cont = 1; end
-			if(cont != 1) begin step(); if(mycpu.IFIDreg_instance.instr_out==32'h0) cont = 1; end
-			if(cont != 1) begin step(); if(mycpu.IFIDreg_instance.instr_out==32'h0) cont = 1; end
+	   i = 0;
+	   while( (idataout!=32'hdead10cc) && (i<maxcycles))
+		begin
+		   step();
+			i=i+1;
 		end
+		step();
+		step();
+		step();
+		step();
 	end
 endtask
 
@@ -203,9 +196,9 @@ initial begin:TestBench
 		testcase = "rv32ui-p-add";
 //		run_riscv_test();
 		testcase = "rv32ui-p-addi";
-//		run_riscv_test();
+		run_riscv_test();
 		testcase = "rv32ui-p-and";
-//		run_riscv_test();
+		run_riscv_test();
 		testcase = "rv32ui-p-andi";
 		run_riscv_test();
 	   testcase = "rv32ui-p-auipc";

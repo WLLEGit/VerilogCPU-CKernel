@@ -13,13 +13,13 @@ module forward_detecter(
 
 // forward rs1, mem first
 wire tmp_rs1 = regwr_mem && (rs1 == rd_addr_mem);
-assign forward_rs1[1] = regwr_ex && tmp_rs1;
-assign forward_rs1[0] = regwr_ex && regwr_wb && !tmp_rs1 && (rs1 == rd_addr_wb);
+assign forward_rs1[1] = /*regwr_ex &&*/ tmp_rs1;
+assign forward_rs1[0] = /*regwr_ex &&*/ regwr_wb && !tmp_rs1 && (rs1 == rd_addr_wb);
 
 // forward rs2
 wire tmp_rs2 = regwr_mem && (rs2 == rd_addr_mem);
-assign forward_rs2[1] = regwr_ex && tmp_rs2;
-assign forward_rs2[0] = regwr_ex && regwr_wb && !tmp_rs2 && (rs2 == rd_addr_wb);
+assign forward_rs2[1] = /*regwr_ex &&*/ tmp_rs2;
+assign forward_rs2[0] = /*regwr_ex &&*/ regwr_wb && !tmp_rs2 && (rs2 == rd_addr_wb);
 
 endmodule
 
@@ -52,15 +52,30 @@ always @(negedge clk) begin
    if(clr) 
       pc <= 0;
    else begin
-      if(stall)
+      if(pc_branch)
+         pc <= nextpc_mem;
+      else if(stall)
          pc <= pc;
-      else begin
-         if(pc_branch)
-            pc <= nextpc_mem;
-         else
-            pc <= pc + 4;
-      end
+      else
+         pc <= pc + 4;
    end
+end
+   
+endmodule
+
+module pipeline_status (
+   input clr,
+   input clk,
+   input branch,
+
+   output reg flush
+);
+
+always @(posedge clk) begin
+   if(branch | clr)
+      flush <= 1;
+   else
+      flush <= 0;
 end
    
 endmodule
