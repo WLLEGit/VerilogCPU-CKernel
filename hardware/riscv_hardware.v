@@ -59,14 +59,14 @@ integer timer_ms;
 /*=====Pipeline=====*/
 wire [31:0] imemaddr;
 wire [31:0] imemdataout;
-wire imemclk;
+wire 		imemclk;
 wire [31:0] dmemaddr;
-wire  [31:0] dmemdataout;
+wire [31:0]	dmemdataout;
 wire [31:0] dmemdatain;
-wire 	dmemrdclk;
-wire	dmemwrclk;
-wire [2:0] dmemop;
-wire	dmemwe;
+wire 		dmemrdclk;
+wire		dmemwrclk;
+wire [2:0] 	dmemop;
+wire		dmemwe;
 
 wire rst = SW[0];
 
@@ -102,6 +102,7 @@ integer timer_kb;
 
 /*=====irq=====*/
 reg [1:0] irq_pins;
+wire irq_en;
 
 clkgen #(25200000) vgaclk_generator(CLOCK_50, rst, 1'b1, VGA_CLK);
 color_map color_gen(vga_color_data, vga_color);
@@ -117,7 +118,7 @@ assign tmp_y = 12'd15 - y_remain;
 assign vga_data = (h_addr == cursor_x && v_addr >= cursor_y && v_addr <= cursor_y + 15 && cursor_cnt >= MS500) ? {24{1'b1}} : (h_addr >= 576 ? 24'd0 : (font_out[(mul12(tmp_y))+(x_remain)] ? vga_color : 32'd0));
 
 
-pipeline cpu(CLOCK_50, rst, imemaddr, imemdataout, imemclk, dmemaddr, dmemdataout, dmemdatain, dmemrdclk, dmemwrclk, dmemop, dmemwe);
+pipeline cpu(CLOCK_50, rst, imemaddr, imemdataout, imemclk, dmemaddr, dmemdataout, dmemdatain, dmemrdclk, dmemwrclk, dmemop, dmemwe, irq_pins, irq_en);,
 
 kb_driver keyboard(CLOCK_50, rst, PS2_CLK, PS2_DAT, is_shift, is_ctrl, is_capital, is_error, is_special, ascii);
 
@@ -143,6 +144,8 @@ always @(posedge CLOCK_50) begin
 end
 
 always @(posedge CLOCK_50) begin
+	if(!irq_en)
+		irq_pins <= {1'b0, 1'b0};
 	if(rst) begin
 		timer_kb = 1;
 		kb_state <= S0;

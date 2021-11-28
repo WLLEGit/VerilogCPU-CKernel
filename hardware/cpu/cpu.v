@@ -1,3 +1,5 @@
+`include "define.v"
+
 module pipeline(
 	input 	        clock,
 	input 	        clr,
@@ -10,27 +12,34 @@ module pipeline(
 	output 	        dmemrdclk,
 	output	        dmemwrclk,
 	output [2:0]    dmemop,
-	output	        dmemwe,
-    
-    input [1:0]     irq_pins
+	output	        dmemwe
     );
 
-wire [31:0] nextpc, pc, pc1, pc2, instr, instr1, rw, busW, imm, imm2, rs1, rs12, rs13, rs2, rs22, rs23, rd, rd2, rd3, nextpc_pc, nextpc_pc3,
+wire [31:0] nextpc_mem, pc, pc1, pc2, instr, instr1, rw, busW, imm, imm2, rs1, rs12, rs13, rs2, rs22, rs23, rd, rd2, rd3, nextpc_pc, nextpc_pc3,
             nextpc_rs1, nextpc_rs13, aluresult, aluresult3, aluresult4, dmemdata, dmemdata4;
+wire [4:0] rs1_addr, rs2_addr, rs1_addr2, rs2_addr2;
 wire [3:0] ALUctr, ALUctr2;
 wire [2:0] extop, extop2, branch, branch2, branch3, memop, memop2, memop3, 
 wire [1:0] ALUBsrc, ALUBsrc2;
 
-IF IF_instance(clr, clk, nextpc, pcsrc, pc, instr,
-                    imemdataout, imemaddr, imemclk);
+wire [1:0] forward_rs1, forward_rs2;
+
+// cpu ctrl
+forward_detecter f_d_i(regwr2, regwr3, regwr4, rs1_addr2, rs2_addr2, rd2, rd3, forward_rs1, forward_rs2);
+load_store_detecter l_s_d(MemtoReg2, rd2, instr1[19:15], instr1[24:20], stall);
+
+PC PC_instance(clr, clk, nextpc_mem, pc_branch, stall, pc);
+IF IF_instance(clr, clk, pc, instr, imemdataout, imemaddr, imemclk);
 IF_ID_reg IFIDreg_instance(clr, clk, pc, instr, pc1, instr1);
-ID ID_instance(clr, clk, instr1, regwr, rw, busW, imm, rs1, rs2, rd, extop, regwr, ALUAsrc, ALUBsrc, ALUctr, branch, MemtoReg, memwr, memop);
-ID_EX_reg ID_EX_reg_instance(clr, clk, pc1, imm, rs1, rs2, rd, extop, regwr, ALUAsrc, ALUBsrc, ALUctr, branch, MemtoReg, memwr, memop,
-                                        pc2, imm2, rs12, rs22, rd2, extop2, regwr2, ALUAsrc2, ALUBsrc2, ALUctr2, branch2, MemtoReg2, memwr2, memop2);
-EX EX_instance(clr, clk, pc2, imm2, rs12, rs22, ALUAsrc2, ALUBsrc2, ALUctr2, nextpc_pc, nextpc_rs1, less, zero, aluresult);
+ID ID_instance(clr, clk, instr1, regwr, rw, busW, imm, rs1_addr, rs2_addr, rs1, rs2, rd, extop, regwr, ALUAsrc, ALUBsrc, ALUctr, branch, MemtoReg, memwr, memop);
+ID_EX_reg ID_EX_reg_instance(clr, clk, pc1, imm, rs1, rs2, rs1_addr, rs2_addr, rd, extop, regwr, ALUAsrc, ALUBsrc, ALUctr, branch, MemtoReg, memwr, memop,
+                                        pc2, imm2, rs12, rs22, rs1_addr2, rs2_addr2, rd2, extop2, regwr2, ALUAsrc2, ALUBsrc2, ALUctr2, branch2, MemtoReg2, memwr2, memop2);
+EX EX_instance(clr, clk, pc2, imm2, rs12, rs22, ALUAsrc2, ALUBsrc2, 
+                        forward_rs1, forward_rs2, aluresult3, aluresult4,
+                        ALUctr2, nextpc_pc, nextpc_rs1, less, zero, aluresult);
 EX_M_reg EX_M_reg_instance(clr, clk, nextpc_pc, nextpc_rs1, less, zero, rs22, aluresult, rd2, branch2, MemtoReg2, memwr2, memop2, regwr2
                                         nextpc_pc3, nextpc_rs13, less3, zero3, rs23, aluresult3, rd3, branch3, MemtoReg3, memwr3, memop3, regwr3);
-M M_instance(clr, clk, aluresult3, nextpc_pc3, nextpc_rs13, less3, zero3, branch3, memop3, memwr3, rs23, nextpc, dmemdata, pcsrc,
+M M_instance(clr, clk, aluresult3, nextpc_pc3, nextpc_rs13, less3, zero3, branch3, memop3, memwr3, rs23, nextpc_mem, dmemdata, pc_branch,
                         dmemaddr, dmemdataout, dmemdatain, dmemrdclk, dmemwrclk, dmemop, dmemwe);
 M_WB_reg M_WB_reg_instance(clr, clk, dmemdata, aluresult3, rd3, MemtoReg3, regwr3,
                                         dmemdata4, aluresult4, rw, MemtoReg4, regwr4);
@@ -41,9 +50,8 @@ endmodule
 module IF (
     input               clr,
     input               clk,
-    input       [31:0]  nextpc,
-    input               pcsrc,
-    output reg  [31:0]  pc,
+    
+    input       [31:0]  pc,
     output      [31:0]  instr,
 
     input       [31:0]  imemdataout,
@@ -54,13 +62,6 @@ module IF (
 assign imemaddr = pc;
 assign instr = imemdataout;
 assign imemclk = clk;
-
-always @(negedge clk) begin
-    if(clr)
-        pc <= 32'd0;
-    else
-        pc <= pcsrc ? nextpc : (pc + 32'd4);
-end
     
 endmodule
 
@@ -97,6 +98,8 @@ module ID (
     
     output      [31:0]  imm,
     
+    output      [4:0]   rs1_addr,
+    output      [4:0]   rs2_addr,
     output      [31:0]  rs1,
     output      [31:0]  rs2,
     output      [4:0]   rd,
@@ -113,8 +116,10 @@ module ID (
 );
 
 assign rd = instr[11:7];
+assign rs1_addr = instr[19:15];
+assign rs2_addr = instr[24:20];
 contr_gen contr_gen_instance(instr_in, extop, regwr, ALUAsrc, ALUBsrc, ALUctr, branch, MemtoReg, memwr, memop);
-regfile myregfile(instr[19:15], instr[24:20], regaddr_wb, busW_wb, regwr_wb, ~clock, rs1, rs2);
+regfile myregfile(rs1_addr, rs2_addr, regaddr_wb, busW_wb, regwr_wb, ~clock, rs1, rs2);
 imm_gen imm_gen_instance(instr, extop, imm);
     
 endmodule
@@ -127,6 +132,8 @@ module ID_EX_reg (
     input      [31:0]   imm_in,
     input      [31:0]   rs1_in,
     input      [31:0]   rs2_in,
+    input      [4:0]    rs1_addr_in,
+    input      [4:0]    rs2_addr_in,
     input      [4:0]    rd_in,
     input      [2:0]    extop_in,
     input               regwr_in,
@@ -142,6 +149,8 @@ module ID_EX_reg (
     output reg [31:0]   imm_out,
     output reg [31:0]   rs1_out,
     output reg [31:0]   rs2_out,
+    output reg [4:0]    rs1_addr_out,
+    output reg [4:0]    rs2_addr_out,
     output reg [4:0]    rd_out,
     output reg [2:0]    extop_out,
     output reg          regwr_out,
@@ -159,6 +168,8 @@ always @(negedge clk) begin
     imm_out <= clr ? 32'd0 : imm_in;
     rs1_out <= clr ? 32'd0 : rs1_in;
     rs2_out <= clr ? 32'd0 : rs2_in;
+    rs1_addr_out <= clr ? 4'd0 : rs1_addr_in;
+    rs2_addr_out <= clr ? 4'd0 : rs2_addr_in;
     rd_out <= clr ? 4'd0 : rd_in;
     extop_out <= clr ? 2'd0 : extop_in;
     regwr_out <= clr ? 1'b0 : regwr_in;
@@ -184,6 +195,11 @@ module EX (
     input               ALUBsrc,
     input               ALUctr,
 
+    input       [1:0]   forward_rs1,
+    input       [1:0]   forward_rs2,
+    input       [31:0]  aluresult_mem,
+    input       [31:0]  aluresult_wb,
+
     output      [31:0]  nextpc_pc,
     output      [31:0]  nextpc_rs1,
     output              less;
@@ -194,10 +210,13 @@ module EX (
 wire [31:0] dataa;
 wire [31:0] datab;
 
+wire [31:0] rs1_proc = forward_rs1[0] ? aluresult_wb : (forward_rs1[1] ? aluresult_mem : rs1);
+wire [31:0] rs2_proc = forward_rs2[0] ? aluresult_wb : (forward_rs2[1] ? aluresult_mem : rs2);
+
 assign nextpc_pc = pc + imm;
-assign nextpc_rs1 = rs1 + imm;
-assign dataa = ALUAsrc?pc:rs1;
-assign datab = (ALUBsrc==2'b00 ? rs2 : (ALUBsrc==2'b01 ? imm : 32'd4));
+assign nextpc_rs1 = rs1_proc + imm;
+assign dataa = ALUAsrc?pc:rs1_proc;
+assign datab = (ALUBsrc==2'b00 ? rs2_proc : (ALUBsrc==2'b01 ? imm : 32'd4));
 alu alu_instance(dataa, datab, ALUctr, less, zero, aluresult);
     
 endmodule
@@ -266,7 +285,7 @@ module M (
     
     output      [31:0]  nextpc,
     output      [31:0]  dmemdata,
-    output              pcsrc,
+    output      [1:0]   pc_branch,
 
 
     output      [31:0]  dmemaddr,
@@ -288,7 +307,7 @@ assign dmemwe = memwr;
 wire PCAsrc, PCBsrc;
 branch_cond branch_cond_instance(less, zero, branch, PCAsrc, PCBsrc);
 assign nextpc = PCBsrc?nextpc_rs1:nextpc_pc;
-assign pcsrc = PCAsrc?1'b1:1'b0;
+assign pc_branch = PCAsrc?1'b1:1'b0;
 endmodule
 
 module M_WB_reg (
