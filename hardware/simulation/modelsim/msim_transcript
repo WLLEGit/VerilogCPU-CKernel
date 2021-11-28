@@ -1,0 +1,221 @@
+# Reading pref.tcl
+# do riscv_hardware_run_msim_rtl_verilog.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 2020.1 Lib Mapping Utility 2020.02 Feb 28 2020
+# vmap work rtl_work 
+# Copying D:/ProgramFiles/ModelSim/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# 
+# vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/regfile.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 15:22:10 on Nov 28,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/regfile.v 
+# -- Compiling module regfile
+# 
+# Top level modules:
+# 	regfile
+# End time: 15:22:10 on Nov 28,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/immgen.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 15:22:10 on Nov 28,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/immgen.v 
+# -- Compiling module imm_gen
+# 
+# Top level modules:
+# 	imm_gen
+# End time: 15:22:10 on Nov 28,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/define.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 15:22:11 on Nov 28,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/define.v 
+# End time: 15:22:11 on Nov 28,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/cpu_ctrl.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 15:22:11 on Nov 28,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/cpu_ctrl.v 
+# -- Compiling module forward_detecter
+# -- Compiling module load_store_detecter
+# -- Compiling module PC
+# 
+# Top level modules:
+# 	forward_detecter
+# 	load_store_detecter
+# 	PC
+# End time: 15:22:11 on Nov 28,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/contrgen.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 15:22:11 on Nov 28,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/contrgen.v 
+# -- Compiling module contr_gen
+# 
+# Top level modules:
+# 	contr_gen
+# End time: 15:22:11 on Nov 28,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/branch_cond.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 15:22:11 on Nov 28,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/branch_cond.v 
+# -- Compiling module branch_cond
+# 
+# Top level modules:
+# 	branch_cond
+# End time: 15:22:11 on Nov 28,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/alu.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 15:22:11 on Nov 28,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/alu.v 
+# -- Compiling module alu
+# -- Compiling module adder
+# 
+# Top level modules:
+# 	alu
+# End time: 15:22:11 on Nov 28,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 15:22:11 on Nov 28,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v 
+# -- Compiling module pipeline
+# -- Compiling module IF
+# -- Compiling module IF_ID_reg
+# -- Compiling module ID
+# -- Compiling module ID_EX_reg
+# -- Compiling module EX
+# -- Compiling module EX_M_reg
+# -- Compiling module M
+# -- Compiling module M_WB_reg
+# -- Compiling module WB
+# 
+# Top level modules:
+# 	pipeline
+# End time: 15:22:11 on Nov 28,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/modelsim/cpu_singlestep {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/modelsim/cpu_singlestep/cpu_step.vt}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 15:22:11 on Nov 28,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/modelsim/cpu_singlestep" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/modelsim/cpu_singlestep/cpu_step.vt 
+# -- Compiling module cpu_single_vlg_tst
+# -- Compiling module dmem
+# -- Compiling module testdmem
+# -- Compiling module testmem
+# 
+# Top level modules:
+# 	cpu_single_vlg_tst
+# End time: 15:22:11 on Nov 28,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver -L rtl_work -L work -voptargs="+acc"  cpu_single_vlg_tst
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver -L rtl_work -L work -voptargs=""+acc"" cpu_single_vlg_tst 
+# Start time: 15:22:11 on Nov 28,2021
+# Loading work.cpu_single_vlg_tst
+# Loading work.pipeline
+# Loading work.forward_detecter
+# Loading work.load_store_detecter
+# Loading work.PC
+# Loading work.IF
+# Loading work.IF_ID_reg
+# Loading work.ID
+# Loading work.contr_gen
+# Loading work.regfile
+# Loading work.imm_gen
+# Loading work.ID_EX_reg
+# Loading work.EX
+# Loading work.alu
+# Loading work.adder
+# Loading work.EX_M_reg
+# Loading work.M
+# Loading work.branch_cond
+# Loading work.M_WB_reg
+# Loading work.WB
+# Loading work.testmem
+# Loading work.dmem
+# Loading work.testdmem
+# 
+# add wave *
+# view structure
+# .main_pane.structure.interior.cs.body.struct
+# view signals
+# .main_pane.objects.interior.cs.body.tree
+# run -all
+# ~~~ Begin test case      add ~~~
+# ~~~ Error: end of cycle   1 reg 06 need to be 00000064, get xxxxxxxx
+# ~~~ OK: end of cycle   1 PC/dbgdata need to be 00000004, get 00000004
+# ~~~ Error: end of cycle   2 reg 07 need to be 00000014, get xxxxxxxx
+# ~~~ Error: end of cycle   2 PC/dbgdata need to be 00000008, get 00000004
+# ~~~ Error: end of cycle   3 reg 1c need to be 00000078, get xxxxxxxx
+# ~~~ Begin test case      alu ~~~
+# ~~~ Error: end of cycle   1 reg 06 need to be 0000004f, get xxxxxxxx
+# ~~~ Error: end of cycle   2 reg 07 need to be 00000003, get xxxxxxxx
+# ~~~ Error: end of cycle   3 reg 1c need to be 0000004c, get xxxxxxxx
+# ~~~ Error: end of cycle   4 reg 1c need to be 00000003, get xxxxxxxx
+# ~~~ Error: end of cycle   5 reg 1c need to be 00000278, get xxxxxxxx
+# ~~~ Error: end of cycle   6 reg 1c need to be 00000000, get xxxxxxxx
+# ~~~ Error: end of cycle   7 reg 1c need to be 00000001, get xxxxxxxx
+# ~~~ Error: end of cycle   8 reg 1c need to be 0000004c, get xxxxxxxx
+# ~~~ Error: end of cycle   9 reg 1c need to be 00000009, get 000000Xx
+# ~~~ Error: end of cycle  10 reg 1c need to be 0000004f, get 00000278
+# ~~~ Error: end of cycle  11 reg 06 need to be ffffffb1, get 0000004f
+# ~~~ Error: end of cycle  12 reg 1c need to be ffffffb4, get 00000001
+# ~~~ Error: end of cycle  13 reg 1c need to be fffffff6, get 0000004c
+# ~~~ Error: end of cycle  14 reg 1c need to be 1ffffff6, get 00000009
+# ~~~ Error: end of cycle  15 reg 1c need to be 00000001, get 0000004f
+# ~~~ Error: end of cycle  16 reg 1c need to be 00000000, get 0000004f
+# ~~~ Begin test case      mem ~~~
+# ~~~ Error: end of cycle   1 reg 0a need to be 00008000, get xxxxxxxx
+# ~~~ Error: end of cycle   2 reg 0a need to be 00008010, get xxxxxxxx
+# ~~~ Error: end of cycle   3 reg 06 need to be 000004d2, get ffffffb1
+# ~~~ Error: end of cycle   4 mem addr= 00008014 need to be 000004d2, get xxxxxxxx
+# ~~~ Error: end of cycle   5 reg 07 need to be 000004d2, get 00000003
+# ~~~ Error: end of cycle   6 mem addr= 00008018 need to be 00000000, get xxxxxxxx
+# ~~~ Error: end of cycle   7 reg 06 need to be 000000ff, get ffffffb1
+# ~~~ Error: end of cycle   8 mem addr= 00008018 need to be 000000ff, get xxxxxxxx
+# ~~~ Error: end of cycle   9 reg 07 need to be ffffffff, get 00000003
+# ~~~ Error: end of cycle  10 reg 07 need to be 000000ff, get 00000003
+# ~~~ Error: end of cycle  11 mem addr= 00008018 need to be 0000ffff, get xxxxxxxx
+# ~~~ Error: end of cycle  12 reg 07 need to be ffffffff, get 00000003
+# ~~~ Error: end of cycle  13 reg 07 need to be 0000ffff, get 00000003
+# ~~~ Error: end of cycle  14 reg 07 need to be ffffffff, get ffffffb1
+# ~~~ Error: end of cycle  15 reg 07 need to be 00000000, get 000000b1
+# ~~~ Error: end of cycle  16 mem addr= 0000801c need to be 00000000, get xxxxxxxx
+# ~~~ Error: end of cycle  17 reg 06 need to be 00000078, get 000000ff
+# ~~~ Error: end of cycle  18 mem addr= 0000801c need to be 00000078, get xxxxxxxx
+# ~~~ Error: end of cycle  19 reg 06 need to be 00000056, get 000000ff
+# ~~~ Error: end of cycle  20 mem addr= 0000801c need to be 00005678, get xxxxxxxx
+# ~~~ Error: end of cycle  21 reg 06 need to be 00000034, get 000000ff
+# ~~~ Error: end of cycle  22 mem addr= 0000801c need to be 00345678, get xxxxxxxx
+# ~~~ Error: end of cycle  23 reg 06 need to be 00000012, get 000000ff
+# ~~~ Error: end of cycle  24 mem addr= 0000801c need to be 12345678, get xxxxxxxx
+# ~~~ Error: end of cycle  25 reg 07 need to be 12345678, get ffffffff
+# ~~~ Begin test case   branch ~~~
+# ~~~ Error: end of cycle   1 reg 05 need to be 00000064, get xxxxxxxx
+# ~~~ Error: end of cycle   2 reg 06 need to be fffffffe, get 000000ff
+# ~~~ Error: end of cycle   3 PC/dbgdata need to be 0000000c, get 00000008
+# ~~~ Error: end of cycle   4 PC/dbgdata need to be 00000014, get 0000000c
+# ~~~ Error: end of cycle   5 PC/dbgdata need to be 00000018, get 00000010
+# ~~~ Error: end of cycle   6 PC/dbgdata need to be 0000001c, get 00000014
+# ~~~ Error: end of cycle   7 PC/dbgdata need to be 00000024, get 00000018
+# ~~~ Error: end of cycle   8 PC/dbgdata need to be 00000028, get 0000001c
+# ~~~ Error: end of cycle   9 PC/dbgdata need to be 00000044, get 0000002c
+# ~~~ Error: end of cycle   9 reg 01 need to be 0000002c, get xxxxxxxx
+# ~~~ Error: end of cycle  10 PC/dbgdata need to be 00000048, get 00000030
+# ~~~ Error: end of cycle  10 reg 05 need to be 0000007b, get xxxxxxxx
+# ~~~ Error: end of cycle  11 PC/dbgdata need to be 00000038, get 00000034
+# ~~~ Error: end of cycle  12 PC/dbgdata need to be 0000003c, get 00000038
+# ~~~ Error: end of cycle  13 reg 0a need to be 00c0ffee, get 00008020
+# ~~~ Error: end of cycle  14 PC/dbgdata need to be 0000004c, get 00000040
+# ** Note: $stop    : D:/HomeWork/ShuDianShiYan/12/exp12/hardware/modelsim/cpu_singlestep/cpu_step.vt(360)
+#    Time: 1360 ns  Iteration: 0  Instance: /cpu_single_vlg_tst
+# Break in NamedBeginStat TestBench at D:/HomeWork/ShuDianShiYan/12/exp12/hardware/modelsim/cpu_singlestep/cpu_step.vt line 360
+# End time: 15:23:23 on Nov 28,2021, Elapsed time: 0:01:12
+# Errors: 0, Warnings: 0

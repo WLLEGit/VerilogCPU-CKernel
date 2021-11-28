@@ -1,0 +1,470 @@
+Analysis & Synthesis report for riscv_hardware
+Sun Nov 28 15:21:45 2021
+Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Registers Removed During Synthesis
+  9. General Register Statistics
+ 10. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 11. Port Connectivity Checks: "ID_EX_reg:ID_EX_reg_instance"
+ 12. Post-Synthesis Netlist Statistics for Top Partition
+ 13. Elapsed Time Per Partition
+ 14. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2020  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
+
+
+
++-------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                  ;
++---------------------------------+---------------------------------------------+
+; Analysis & Synthesis Status     ; Successful - Sun Nov 28 15:21:45 2021       ;
+; Quartus Prime Version           ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
+; Revision Name                   ; riscv_hardware                              ;
+; Top-level Entity Name           ; pipeline                                    ;
+; Family                          ; Cyclone V                                   ;
+; Logic utilization (in ALMs)     ; N/A                                         ;
+; Total registers                 ; 1460                                        ;
+; Total pins                      ; 201                                         ;
+; Total virtual pins              ; 0                                           ;
+; Total block memory bits         ; 0                                           ;
+; Total DSP Blocks                ; 0                                           ;
+; Total HSSI RX PCSs              ; 0                                           ;
+; Total HSSI PMA RX Deserializers ; 0                                           ;
+; Total HSSI TX PCSs              ; 0                                           ;
+; Total HSSI PMA TX Serializers   ; 0                                           ;
+; Total PLLs                      ; 0                                           ;
+; Total DLLs                      ; 0                                           ;
++---------------------------------+---------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                             ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                          ; Setting            ; Default Value      ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                          ; 5CSXFC6D6F31C6     ;                    ;
+; Top-level entity name                                                           ; pipeline           ; riscv_hardware     ;
+; Family name                                                                     ; Cyclone V          ; Cyclone V          ;
+; Use smart compilation                                                           ; Off                ; Off                ;
+; Enable parallel Assembler and Timing Analyzer during compilation                ; On                 ; On                 ;
+; Enable compact report table                                                     ; Off                ; Off                ;
+; Restructure Multiplexers                                                        ; Auto               ; Auto               ;
+; MLAB Add Timing Constraints For Mixed-Port Feed-Through Mode Setting Don't Care ; Off                ; Off                ;
+; Create Debugging Nodes for IP Cores                                             ; Off                ; Off                ;
+; Preserve fewer node names                                                       ; On                 ; On                 ;
+; Intel FPGA IP Evaluation Mode                                                   ; Enable             ; Enable             ;
+; Verilog Version                                                                 ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                                    ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                        ; Auto               ; Auto               ;
+; Safe State Machine                                                              ; Off                ; Off                ;
+; Extract Verilog State Machines                                                  ; On                 ; On                 ;
+; Extract VHDL State Machines                                                     ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                               ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                      ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                                  ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                         ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                       ; On                 ; On                 ;
+; Parallel Synthesis                                                              ; On                 ; On                 ;
+; DSP Block Balancing                                                             ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                              ; On                 ; On                 ;
+; Power-Up Don't Care                                                             ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                                    ; Off                ; Off                ;
+; Remove Duplicate Registers                                                      ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                            ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                          ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                           ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                       ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                            ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                             ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                                  ; Off                ; Off                ;
+; Optimization Technique                                                          ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                              ; 70                 ; 70                 ;
+; Auto Carry Chains                                                               ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                            ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                           ; Off                ; Off                ;
+; Auto ROM Replacement                                                            ; On                 ; On                 ;
+; Auto RAM Replacement                                                            ; On                 ; On                 ;
+; Auto DSP Block Replacement                                                      ; On                 ; On                 ;
+; Auto Shift Register Replacement                                                 ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                                 ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                                   ; On                 ; On                 ;
+; Strict RAM Replacement                                                          ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                               ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                           ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                                   ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                             ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                               ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                         ; On                 ; On                 ;
+; Report Parameter Settings                                                       ; On                 ; On                 ;
+; Report Source Assignments                                                       ; On                 ; On                 ;
+; Report Connectivity Checks                                                      ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                              ; Off                ; Off                ;
+; Synchronization Register Chain Length                                           ; 3                  ; 3                  ;
+; Power Optimization During Synthesis                                             ; Normal compilation ; Normal compilation ;
+; HDL message level                                                               ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                                 ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                        ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                              ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                       ; 100                ; 100                ;
+; Clock MUX Protection                                                            ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                     ; Off                ; Off                ;
+; Block Design Naming                                                             ; Auto               ; Auto               ;
+; SDC constraint protection                                                       ; Off                ; Off                ;
+; Synthesis Effort                                                                ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal                    ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                            ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                              ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                     ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                          ; On                 ; On                 ;
+; Automatic Parallel Synthesis                                                    ; On                 ; On                 ;
+; Partial Reconfiguration Bitstream ID                                            ; Off                ; Off                ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 8           ;
+; Maximum allowed            ; 4           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 4           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;   0.0%      ;
+;     Processor 3            ;   0.0%      ;
+;     Processor 4            ;   0.0%      ;
++----------------------------+-------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                ;
++----------------------------------+-----------------+------------------------+---------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path                                  ; Library ;
++----------------------------------+-----------------+------------------------+---------------------------------------------------------------+---------+
+; cpu/pipeline.v                   ; yes             ; User Verilog HDL File  ; D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v    ;         ;
+; cpu/regfile.v                    ; yes             ; User Verilog HDL File  ; D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/regfile.v     ;         ;
+; cpu/immgen.v                     ; yes             ; User Verilog HDL File  ; D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/immgen.v      ;         ;
+; cpu/define.v                     ; yes             ; User Verilog HDL File  ; D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/define.v      ;         ;
+; cpu/cpu_ctrl.v                   ; yes             ; User Verilog HDL File  ; D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/cpu_ctrl.v    ;         ;
+; cpu/contrgen.v                   ; yes             ; User Verilog HDL File  ; D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/contrgen.v    ;         ;
+; cpu/branch_cond.v                ; yes             ; User Verilog HDL File  ; D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/branch_cond.v ;         ;
+; cpu/alu.v                        ; yes             ; User Verilog HDL File  ; D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/alu.v         ;         ;
++----------------------------------+-----------------+------------------------+---------------------------------------------------------------+---------+
+
+
++---------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary             ;
++---------------------------------------------+-----------+
+; Resource                                    ; Usage     ;
++---------------------------------------------+-----------+
+; Estimate of Logic utilization (ALMs needed) ; 1295      ;
+;                                             ;           ;
+; Combinational ALUT usage for logic          ; 1416      ;
+;     -- 7 input functions                    ; 33        ;
+;     -- 6 input functions                    ; 875       ;
+;     -- 5 input functions                    ; 200       ;
+;     -- 4 input functions                    ; 107       ;
+;     -- <=3 input functions                  ; 201       ;
+;                                             ;           ;
+; Dedicated logic registers                   ; 1460      ;
+;                                             ;           ;
+; I/O pins                                    ; 201       ;
+;                                             ;           ;
+; Total DSP Blocks                            ; 0         ;
+;                                             ;           ;
+; Maximum fan-out node                        ; clk~input ;
+; Maximum fan-out                             ; 1463      ;
+; Total fan-out                               ; 12191     ;
+; Average fan-out                             ; 3.72      ;
++---------------------------------------------+-----------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                               ;
++------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+----------------------------------------------------------+---------------------+--------------+
+; Compilation Hierarchy Node               ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                      ; Entity Name         ; Library Name ;
++------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+----------------------------------------------------------+---------------------+--------------+
+; |pipeline                                ; 1416 (0)            ; 1460 (0)                  ; 0                 ; 0          ; 201  ; 0            ; |pipeline                                                ; pipeline            ; work         ;
+;    |EX:EX_instance|                      ; 418 (203)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|EX:EX_instance                                 ; EX                  ; work         ;
+;       |alu:alu_instance|                 ; 215 (156)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|EX:EX_instance|alu:alu_instance                ; alu                 ; work         ;
+;          |adder:alu_addr|                ; 59 (59)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|EX:EX_instance|alu:alu_instance|adder:alu_addr ; adder               ; work         ;
+;    |EX_M_reg:EX_M_reg_instance|          ; 137 (137)           ; 144 (144)                 ; 0                 ; 0          ; 0    ; 0            ; |pipeline|EX_M_reg:EX_M_reg_instance                     ; EX_M_reg            ; work         ;
+;    |ID:ID_instance|                      ; 55 (0)              ; 992 (0)                   ; 0                 ; 0          ; 0    ; 0            ; |pipeline|ID:ID_instance                                 ; ID                  ; work         ;
+;       |contr_gen:contr_gen_instance|     ; 19 (19)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|ID:ID_instance|contr_gen:contr_gen_instance    ; contr_gen           ; work         ;
+;       |imm_gen:imm_gen_instance|         ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|ID:ID_instance|imm_gen:imm_gen_instance        ; imm_gen             ; work         ;
+;       |regfile:myregfile|                ; 34 (34)             ; 992 (992)                 ; 0                 ; 0          ; 0    ; 0            ; |pipeline|ID:ID_instance|regfile:myregfile               ; regfile             ; work         ;
+;    |ID_EX_reg:ID_EX_reg_instance|        ; 695 (695)           ; 159 (159)                 ; 0                 ; 0          ; 0    ; 0            ; |pipeline|ID_EX_reg:ID_EX_reg_instance                   ; ID_EX_reg           ; work         ;
+;    |IF_ID_reg:IFIDreg_instance|          ; 0 (0)               ; 62 (62)                   ; 0                 ; 0          ; 0    ; 0            ; |pipeline|IF_ID_reg:IFIDreg_instance                     ; IF_ID_reg           ; work         ;
+;    |M:M_instance|                        ; 2 (0)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|M:M_instance                                   ; M                   ; work         ;
+;       |branch_cond:branch_cond_instance| ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|M:M_instance|branch_cond:branch_cond_instance  ; branch_cond         ; work         ;
+;    |M_WB_reg:M_WB_reg_instance|          ; 0 (0)               ; 71 (71)                   ; 0                 ; 0          ; 0    ; 0            ; |pipeline|M_WB_reg:M_WB_reg_instance                     ; M_WB_reg            ; work         ;
+;    |PC:PC_instance|                      ; 64 (64)             ; 32 (32)                   ; 0                 ; 0          ; 0    ; 0            ; |pipeline|PC:PC_instance                                 ; PC                  ; work         ;
+;    |WB:WB_instance|                      ; 32 (32)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|WB:WB_instance                                 ; WB                  ; work         ;
+;    |forward_detecter:f_d_i|              ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|forward_detecter:f_d_i                         ; forward_detecter    ; work         ;
+;    |load_store_detecter:l_s_d|           ; 5 (5)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|load_store_detecter:l_s_d                      ; load_store_detecter ; work         ;
++------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+----------------------------------------------------------+---------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++---------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                    ;
++----------------------------------------------+----------------------------------------+
+; Register name                                ; Reason for Removal                     ;
++----------------------------------------------+----------------------------------------+
+; ID:ID_instance|regfile:myregfile|regs[0][31] ; Stuck at GND due to stuck port data_in ;
+; ID:ID_instance|regfile:myregfile|regs[0][30] ; Stuck at GND due to stuck port data_in ;
+; ID:ID_instance|regfile:myregfile|regs[0][29] ; Stuck at GND due to stuck port data_in ;
+; ID:ID_instance|regfile:myregfile|regs[0][28] ; Stuck at GND due to stuck port data_in ;
+; ID:ID_instance|regfile:myregfile|regs[0][27] ; Stuck at GND due to stuck port data_in ;
+; ID:ID_instance|regfile:myregfile|regs[0][26] ; Stuck at GND due to stuck port data_in ;
+; ID:ID_instance|regfile:myregfile|regs[0][25] ; Stuck at GND due to stuck port data_in ;
+; ID:ID_instance|regfile:myregfile|regs[0][24] ; Stuck at GND due to stuck port data_in ;
+; ID:ID_instance|regfile:myregfile|regs[0][23] ; Stuck at GND due to stuck port data_in ;
+; ID:ID_instance|regfile:myregfile|regs[0][22] ; Stuck at GND due to stuck port data_in ;
+; ID:ID_instance|regfile:myregfile|regs[0][21] ; Stuck at GND due to stuck port data_in ;
+; ID:ID_instance|regfile:myregfile|regs[0][20] ; Stuck at GND due to stuck port data_in ;
+; ID:ID_instance|regfile:myregfile|regs[0][19] ; Stuck at GND due to stuck port data_in ;
+; ID:ID_instance|regfile:myregfile|regs[0][18] ; Stuck at GND due to stuck port data_in ;
+; ID:ID_instance|regfile:myregfile|regs[0][17] ; Stuck at GND due to stuck port data_in ;
+; ID:ID_instance|regfile:myregfile|regs[0][16] ; Stuck at GND due to stuck port data_in ;
+; ID:ID_instance|regfile:myregfile|regs[0][15] ; Stuck at GND due to stuck port data_in ;
+; ID:ID_instance|regfile:myregfile|regs[0][14] ; Stuck at GND due to stuck port data_in ;
+; ID:ID_instance|regfile:myregfile|regs[0][13] ; Stuck at GND due to stuck port data_in ;
+; ID:ID_instance|regfile:myregfile|regs[0][12] ; Stuck at GND due to stuck port data_in ;
+; ID:ID_instance|regfile:myregfile|regs[0][11] ; Stuck at GND due to stuck port data_in ;
+; ID:ID_instance|regfile:myregfile|regs[0][10] ; Stuck at GND due to stuck port data_in ;
+; ID:ID_instance|regfile:myregfile|regs[0][9]  ; Stuck at GND due to stuck port data_in ;
+; ID:ID_instance|regfile:myregfile|regs[0][8]  ; Stuck at GND due to stuck port data_in ;
+; ID:ID_instance|regfile:myregfile|regs[0][7]  ; Stuck at GND due to stuck port data_in ;
+; ID:ID_instance|regfile:myregfile|regs[0][6]  ; Stuck at GND due to stuck port data_in ;
+; ID:ID_instance|regfile:myregfile|regs[0][5]  ; Stuck at GND due to stuck port data_in ;
+; ID:ID_instance|regfile:myregfile|regs[0][4]  ; Stuck at GND due to stuck port data_in ;
+; ID:ID_instance|regfile:myregfile|regs[0][3]  ; Stuck at GND due to stuck port data_in ;
+; ID:ID_instance|regfile:myregfile|regs[0][2]  ; Stuck at GND due to stuck port data_in ;
+; ID:ID_instance|regfile:myregfile|regs[0][1]  ; Stuck at GND due to stuck port data_in ;
+; ID:ID_instance|regfile:myregfile|regs[0][0]  ; Stuck at GND due to stuck port data_in ;
+; Total Number of Removed Registers = 32       ;                                        ;
++----------------------------------------------+----------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 1460  ;
+; Number of registers using Synchronous Clear  ; 435   ;
+; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 1024  ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                               ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                     ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------+
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |pipeline|PC:PC_instance|pc[1]                                 ;
+; 4:1                ; 6 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|imm_out[8]              ;
+; 4:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|imm_out[26]             ;
+; 5:1                ; 30 bits   ; 90 LEs        ; 60 LEs               ; 30 LEs                 ; Yes        ; |pipeline|PC:PC_instance|pc[17]                                ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|branch_out[2]           ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|imm_out[3]              ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|imm_out[24]             ;
+; 6:1                ; 8 bits    ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|imm_out[14]             ;
+; 33:1               ; 32 bits   ; 704 LEs       ; 640 LEs              ; 64 LEs                 ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|rs1_out[18]             ;
+; 33:1               ; 32 bits   ; 704 LEs       ; 640 LEs              ; 64 LEs                 ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|rs2_out[5]              ;
+; 22:1               ; 8 bits    ; 112 LEs       ; 64 LEs               ; 48 LEs                 ; Yes        ; |pipeline|EX_M_reg:EX_M_reg_instance|aluresult_out[21]         ;
+; 21:1               ; 5 bits    ; 70 LEs        ; 50 LEs               ; 20 LEs                 ; Yes        ; |pipeline|EX_M_reg:EX_M_reg_instance|aluresult_out[4]          ;
+; 23:1               ; 2 bits    ; 30 LEs        ; 20 LEs               ; 10 LEs                 ; Yes        ; |pipeline|EX_M_reg:EX_M_reg_instance|aluresult_out[9]          ;
+; 21:1               ; 3 bits    ; 42 LEs        ; 30 LEs               ; 12 LEs                 ; Yes        ; |pipeline|EX_M_reg:EX_M_reg_instance|aluresult_out[14]         ;
+; 25:1               ; 3 bits    ; 48 LEs        ; 36 LEs               ; 12 LEs                 ; Yes        ; |pipeline|EX_M_reg:EX_M_reg_instance|aluresult_out[28]         ;
+; 24:1               ; 2 bits    ; 32 LEs        ; 22 LEs               ; 10 LEs                 ; Yes        ; |pipeline|EX_M_reg:EX_M_reg_instance|aluresult_out[26]         ;
+; 24:1               ; 3 bits    ; 48 LEs        ; 36 LEs               ; 12 LEs                 ; Yes        ; |pipeline|EX_M_reg:EX_M_reg_instance|aluresult_out[3]          ;
+; 22:1               ; 2 bits    ; 28 LEs        ; 28 LEs               ; 0 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|ALUctr_out[2]           ;
+; 29:1               ; 2 bits    ; 38 LEs        ; 38 LEs               ; 0 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|ALUctr_out[1]           ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |pipeline|EX:EX_instance|rs1_proc[5]                           ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |pipeline|EX:EX_instance|alu:alu_instance|ShiftRight0          ;
+; 4:1                ; 49 bits   ; 98 LEs        ; 98 LEs               ; 0 LEs                  ; No         ; |pipeline|EX:EX_instance|alu:alu_instance|ShiftLeft0           ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |pipeline|EX:EX_instance|alu:alu_instance|ShiftLeft0           ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |pipeline|EX:EX_instance|alu:alu_instance|ShiftLeft0           ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |pipeline|EX:EX_instance|alu:alu_instance|ShiftLeft0           ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |pipeline|EX:EX_instance|alu:alu_instance|ShiftRight0          ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |pipeline|EX:EX_instance|alu:alu_instance|ShiftRight1          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |pipeline|ID:ID_instance|contr_gen:contr_gen_instance|extop[0] ;
+; 5:1                ; 32 bits   ; 96 LEs        ; 96 LEs               ; 0 LEs                  ; No         ; |pipeline|EX:EX_instance|datab[9]                              ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "ID_EX_reg:ID_EX_reg_instance"                                                            ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port      ; Type   ; Severity ; Details                                                                             ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+; extop_out ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; arriav_ff             ; 1460                        ;
+;     ENA               ; 992                         ;
+;     ENA SCLR          ; 32                          ;
+;     SCLR              ; 403                         ;
+;     plain             ; 33                          ;
+; arriav_lcell_comb     ; 1416                        ;
+;     arith             ; 94                          ;
+;         1 data inputs ; 30                          ;
+;         2 data inputs ; 32                          ;
+;         4 data inputs ; 32                          ;
+;     extend            ; 33                          ;
+;         7 data inputs ; 33                          ;
+;     normal            ; 1256                        ;
+;         2 data inputs ; 48                          ;
+;         3 data inputs ; 74                          ;
+;         4 data inputs ; 59                          ;
+;         5 data inputs ; 200                         ;
+;         6 data inputs ; 875                         ;
+;     shared            ; 33                          ;
+;         0 data inputs ; 1                           ;
+;         2 data inputs ; 16                          ;
+;         4 data inputs ; 16                          ;
+; boundary_port         ; 201                         ;
+;                       ;                             ;
+; Max LUT depth         ; 11.60                       ;
+; Average LUT depth     ; 4.16                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:03     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
+    Info: Processing started: Sun Nov 28 15:21:33 2021
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off riscv_hardware -c riscv_hardware
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
+Info (12021): Found 10 design units, including 10 entities, in source file cpu/pipeline.v
+    Info (12023): Found entity 1: pipeline File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 3
+    Info (12023): Found entity 2: IF File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 55
+    Info (12023): Found entity 3: IF_ID_reg File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 73
+    Info (12023): Found entity 4: ID File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 94
+    Info (12023): Found entity 5: ID_EX_reg File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 132
+    Info (12023): Found entity 6: EX File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 192
+    Info (12023): Found entity 7: EX_M_reg File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 229
+    Info (12023): Found entity 8: M File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 277
+    Info (12023): Found entity 9: M_WB_reg File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 320
+    Info (12023): Found entity 10: WB File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 346
+Info (12021): Found 1 design units, including 1 entities, in source file cpu/regfile.v
+    Info (12023): Found entity 1: regfile File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/regfile.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file cpu/immgen.v
+    Info (12023): Found entity 1: imm_gen File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/immgen.v Line: 1
+Info (12021): Found 0 design units, including 0 entities, in source file cpu/define.v
+Info (12021): Found 3 design units, including 3 entities, in source file cpu/cpu_ctrl.v
+    Info (12023): Found entity 1: forward_detecter File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/cpu_ctrl.v Line: 1
+    Info (12023): Found entity 2: load_store_detecter File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/cpu_ctrl.v Line: 26
+    Info (12023): Found entity 3: PC File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/cpu_ctrl.v Line: 36
+Info (12021): Found 1 design units, including 1 entities, in source file cpu/contrgen.v
+    Info (12023): Found entity 1: contr_gen File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/contrgen.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file cpu/branch_cond.v
+    Info (12023): Found entity 1: branch_cond File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/branch_cond.v Line: 1
+Info (12021): Found 2 design units, including 2 entities, in source file cpu/alu.v
+    Info (12023): Found entity 1: alu File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/alu.v Line: 1
+    Info (12023): Found entity 2: adder File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/alu.v Line: 50
+Info (12021): Found 1 design units, including 1 entities, in source file memory/instr_rom.v
+    Info (12023): Found entity 1: instr_rom File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/memory/instr_rom.v Line: 40
+Info (12021): Found 1 design units, including 1 entities, in source file memory/data_ram.v
+    Info (12023): Found entity 1: data_ram File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/memory/data_ram.v Line: 40
+Info (12021): Found 1 design units, including 1 entities, in source file memory/char_ram.v
+    Info (12023): Found entity 1: char_ram File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/memory/char_ram.v Line: 40
+Info (12021): Found 1 design units, including 1 entities, in source file memory/color_ram.v
+    Info (12023): Found entity 1: color_ram File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/memory/color_ram.v Line: 40
+Info (12127): Elaborating entity "pipeline" for the top level hierarchy
+Info (12128): Elaborating entity "forward_detecter" for hierarchy "forward_detecter:f_d_i" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 33
+Info (12128): Elaborating entity "load_store_detecter" for hierarchy "load_store_detecter:l_s_d" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 34
+Info (12128): Elaborating entity "PC" for hierarchy "PC:PC_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 36
+Info (12128): Elaborating entity "IF" for hierarchy "IF:IF_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 37
+Info (12128): Elaborating entity "IF_ID_reg" for hierarchy "IF_ID_reg:IFIDreg_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 38
+Info (12128): Elaborating entity "ID" for hierarchy "ID:ID_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 39
+Info (12128): Elaborating entity "contr_gen" for hierarchy "ID:ID_instance|contr_gen:contr_gen_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 126
+Info (12128): Elaborating entity "regfile" for hierarchy "ID:ID_instance|regfile:myregfile" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 127
+Info (12128): Elaborating entity "imm_gen" for hierarchy "ID:ID_instance|imm_gen:imm_gen_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 128
+Info (12128): Elaborating entity "ID_EX_reg" for hierarchy "ID_EX_reg:ID_EX_reg_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 41
+Info (12128): Elaborating entity "EX" for hierarchy "EX:EX_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 44
+Info (12128): Elaborating entity "alu" for hierarchy "EX:EX_instance|alu:alu_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 225
+Info (12128): Elaborating entity "adder" for hierarchy "EX:EX_instance|alu:alu_instance|adder:alu_addr" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/alu.v Line: 14
+Info (12128): Elaborating entity "EX_M_reg" for hierarchy "EX_M_reg:EX_M_reg_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 46
+Info (12128): Elaborating entity "M" for hierarchy "M:M_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 48
+Info (12128): Elaborating entity "branch_cond" for hierarchy "M:M_instance|branch_cond:branch_cond_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 315
+Info (12128): Elaborating entity "M_WB_reg" for hierarchy "M_WB_reg:M_WB_reg_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 50
+Info (12128): Elaborating entity "WB" for hierarchy "WB:WB_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 51
+Info (286030): Timing-Driven Synthesis is running
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 2 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "imemdataout[0]" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 7
+    Warning (15610): No output dependent on input pin "imemdataout[1]" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 7
+Info (21057): Implemented 2839 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 66 input pins
+    Info (21059): Implemented 135 output pins
+    Info (21061): Implemented 2638 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 4 warnings
+    Info: Peak virtual memory: 4843 megabytes
+    Info: Processing ended: Sun Nov 28 15:21:45 2021
+    Info: Elapsed time: 00:00:12
+    Info: Total CPU time (on all processors): 00:00:24
+
+

@@ -72,8 +72,8 @@ wire rst = SW[0];
 
 
 /*=====vga=====*/
-//	640ï¿½ï¿½480
-//	9ï¿½ï¿½16
+//	640¡Á480
+//	9¡Á16
 //	64*64
 wire [9:0] h_addr;
 wire [9:0] v_addr;
@@ -110,7 +110,7 @@ vga_ctrl vga(VGA_CLK, rst, vga_data, h_addr, v_addr, VGA_HS, VGA_VS, valid, VGA_
 assign VGA_SYNC_N = 1'b0;
 assign VGA_BLANK_N = valid;
 
-assign vga_addr = x + (((y + vga_extra_line_cnt) & 32'h3F) << 6);
+assign vga_addr = x + (((y + vga_extra_line_cnt) & 0x3F) << 6);
 process_haddr haddr_pro(h_addr, x, x_remain[3:0]);
 process_vaddr vaddr_pro(v_addr, y, y_remain[3:0]);
 font_rom font_rom_instance(vga_char_data, CLOCK_50, font_out);

@@ -1,0 +1,417 @@
+`timescale 1 ns / 10 ps
+module cpu_batch_vlg_tst();
+
+integer numcycles;  //number of cycles in test
+
+reg clk,reset;  //clk and reset signals
+
+reg[8*15:1] testcase; //name of testcase
+
+// CPU declaration
+
+// signals
+wire [31:0] iaddr,idataout;
+wire iclk;
+wire [31:0] daddr,ddataout,ddatain;
+wire drdclk, dwrclk, dwe;
+wire [2:0]  dop;
+wire [31:0] cpudbgdata;
+
+
+
+//main CPU
+pipeline mycpu(.clk(clk),
+             .clr(reset),
+				 .imemaddr(iaddr), .imemdataout(idataout), .imemclk(iclk),
+				 .dmemaddr(daddr), .dmemdataout(ddataout), .dmemdatain(ddatain), .dmemrdclk(drdclk), .dmemwrclk(dwrclk), .dmemop(dop), .dmemwe(dwe),
+				 .dbgdata(cpudbgdata));
+
+
+//instruction memory, no writing
+testmem instructions(
+	.address(iaddr[17:2]),
+	.clock(iclk),
+	.data(32'b0),
+	.wren(1'b0),
+	.q(idataout));
+
+
+//data memory
+dmem datamem(.addr(daddr),
+             .dataout(ddataout),
+				 .datain(ddatain),
+				 .rdclk(drdclk),
+				 .wrclk(dwrclk),
+				 .memop(dop),
+				 .we(dwe));
+
+//useful tasks
+task step;  //step for one cycle ends 1ns AFTER the posedge of the next cycle
+	begin
+		#9  clk=1'b0;
+		#10 clk=1'b1;
+		numcycles = numcycles + 1;
+		#1 ;
+	end
+endtask
+
+task stepn; //step n cycles
+   input integer n;
+	integer i;
+	begin
+		for (i =0; i<n ; i=i+1)
+			step();
+	end
+endtask
+
+task resetcpu;  //reset the CPU and the test
+	begin
+		reset = 1'b1;
+		step();
+		#5 reset = 1'b0;
+		numcycles = 0;
+	end
+endtask
+
+task loadtestcase;  //load intstructions to instruction mem
+	begin
+		$readmemh({"D:/HomeWork/ShuDianShiYan/11/exp11/simulation/modelsim/cpu_batch/", testcase, ".hex"},instructions.ram);
+		$display("~~~ Begin test case %s ~~~", testcase);
+	end
+endtask
+
+task checkreg;//check registers
+   input [4:0] regid;
+	input [31:0] results;
+	reg [31:0] debugdata;
+	begin
+	    debugdata=mycpu.ID_instance.myregfile.regs[regid]; //wait for signal to settle
+		 if(debugdata==results)
+		 	begin
+				$display("~~~ OK: end of cycle %d reg %h need to be %h, get %h", numcycles-1, regid, results, debugdata);
+			end
+		else
+			begin
+				$display("~~~ Error: end of cycle %d reg %h need to be %h, get %h", numcycles-1, regid, results, debugdata);
+			 end
+	end
+endtask
+
+task checkmem;//check registers
+   input [31:0] inputaddr;
+   input [31:0] results;
+	reg [31:0] debugdata;
+	reg [14:0] dmemaddr;
+	begin
+	    dmemaddr=inputaddr[16:2];
+	    debugdata=datamem.mymem.ram[dmemaddr];
+		 if(debugdata==results)
+		 	begin
+				$display("~~~ OK: end of cycle %d mem addr= %h need to be %h, get %h", numcycles-1, inputaddr, results, debugdata);
+			end
+		else
+			begin
+				$display("~~~ Error: end of cycle %d mem addr= %h need to be %h, get %h", numcycles-1, inputaddr, results, debugdata);
+			 end
+	end
+endtask
+
+task checkpc;//check PC
+	input [31:0] results;
+	begin
+		 if(cpudbgdata==results)
+		 	begin
+				$display("~~~ OK: end of cycle %3d PC/dbgdata need to be %h, get %h", numcycles,  results, cpudbgdata);
+			end
+		else
+			begin
+				$display("~~~ Error: end of cycle %3d PC/dbgdata need to be %h, get %h", numcycles, results, cpudbgdata);
+			 end
+	end
+endtask
+
+integer maxcycles =10000;
+
+task run;
+   integer i;
+	begin
+	   i = 0;
+	   while( (idataout!=32'hdead10cc) && (i<maxcycles))
+		begin
+		   step();
+			i=i+1;
+		end
+	end
+endtask
+
+task checkmagnum;
+    begin
+	    if(numcycles>=maxcycles)
+		 begin
+		   $display("~~~ Error:test case %s does not terminate!", testcase);
+		 end
+		 else if(mycpu.ID_instance.myregfile.regs[10]==32'hc0ffee)
+		    begin
+		       $display("~~~ OK:test case %s finshed OK at cycle %3d.", testcase, numcycles-1);
+		    end
+		 else if(mycpu.ID_instance.myregfile.regs[10]==32'hdeaddead)
+		 begin
+		   $display("~~~ ERROR:test case %s finshed with error in cycle %3d.", testcase, numcycles-1);
+		 end
+		 else
+		 begin
+		    $display("~~~ ERROR:test case %s unknown error in cycle %3d.", testcase, numcycles-1);
+		 end
+	 end
+endtask
+
+task loaddatamem;
+    begin
+	     $readmemh({"D:/HomeWork/ShuDianShiYan/11/exp11/simulation/modelsim/cpu_batch/", testcase, "_d.hex"},datamem.mymem.ram);
+	 end
+endtask
+
+task run_riscv_test;
+    begin
+	   loadtestcase();
+		loaddatamem();
+		resetcpu();
+		run();
+		checkmagnum();
+	 end
+endtask
+
+initial begin:TestBench
+      #80
+    //   output the state of every instruction
+testcase = "rv32ui-p-simple";
+		run_riscv_test();
+		testcase = "rv32ui-p-add";
+		run_riscv_test();
+		testcase = "rv32ui-p-addi";
+		run_riscv_test();
+		testcase = "rv32ui-p-and";
+		run_riscv_test();
+		testcase = "rv32ui-p-andi";
+		run_riscv_test();
+	   testcase = "rv32ui-p-auipc";
+		run_riscv_test();
+		testcase = "rv32ui-p-beq";
+		run_riscv_test();
+		testcase = "rv32ui-p-bge";
+		run_riscv_test();
+		testcase = "rv32ui-p-bgeu";
+		run_riscv_test();
+		testcase = "rv32ui-p-blt";
+		run_riscv_test();
+		testcase = "rv32ui-p-bltu";
+		run_riscv_test();
+		testcase = "rv32ui-p-bne";
+		run_riscv_test();
+		testcase = "rv32ui-p-jal";
+		run_riscv_test();
+		testcase = "rv32ui-p-jalr";
+		run_riscv_test();
+		testcase = "rv32ui-p-lb";
+		run_riscv_test();
+		testcase = "rv32ui-p-lbu";
+		run_riscv_test();
+		testcase = "rv32ui-p-lh";
+		run_riscv_test();
+		testcase = "rv32ui-p-lhu";
+		run_riscv_test();
+		testcase = "rv32ui-p-lui";
+		run_riscv_test();
+		testcase = "rv32ui-p-lw";
+		run_riscv_test();
+		testcase = "rv32ui-p-or";
+		run_riscv_test();
+		testcase = "rv32ui-p-ori";
+		run_riscv_test();
+		testcase = "rv32ui-p-sb";
+		run_riscv_test();
+		testcase = "rv32ui-p-sh";
+		run_riscv_test();
+		testcase = "rv32ui-p-sll";
+		run_riscv_test();
+		testcase = "rv32ui-p-slli";
+		run_riscv_test();
+		testcase = "rv32ui-p-slt";
+		run_riscv_test();
+		testcase = "rv32ui-p-slti";
+		run_riscv_test();
+		testcase = "rv32ui-p-sltiu";
+		run_riscv_test();
+		testcase = "rv32ui-p-sltu";
+		run_riscv_test();
+		testcase = "rv32ui-p-sra";
+		run_riscv_test();
+		testcase = "rv32ui-p-srai";
+		run_riscv_test();
+		testcase = "rv32ui-p-srl";
+		run_riscv_test();
+		testcase = "rv32ui-p-srli";
+		run_riscv_test();
+		testcase = "rv32ui-p-sub";
+		run_riscv_test();
+		testcase = "rv32ui-p-sw";
+		run_riscv_test();
+		testcase = "rv32ui-p-xor";
+		run_riscv_test();
+		testcase = "rv32ui-p-xori";
+		run_riscv_test();
+		$stop;
+
+end
+
+
+module testdmem(
+   byteena_a,
+	data,
+	rdaddress,
+	rdclock,
+	wraddress,
+	wrclock,
+	wren,
+	q);
+
+
+	input [3:0]  byteena_a;
+	input	[31:0]  data;
+	input	[14:0]  rdaddress;
+	input	  rdclock;
+	input	[14:0]  wraddress;
+	input	  wrclock;
+	input	  wren;
+	output reg	[31:0]  q;
+
+	reg  [31:0] tempout;
+	wire [31:0] tempin;
+
+
+	reg [31:0] ram [32767:0];
+	always@(posedge rdclock)
+	begin
+	   if(wren)
+			tempout<=ram[wraddress];
+		else
+			q <= ram[rdaddress];
+	end
+
+	assign tempin[7:0]   = (byteena_a[0])? data[7:0]  : tempout[7:0];
+   assign tempin[15:8]  = (byteena_a[1])? data[15:8] : tempout[15:8];
+   assign tempin[23:16] = (byteena_a[2])? data[23:16]: tempout[23:16];
+   assign tempin[31:24] = (byteena_a[3])? data[31:24]: tempout[31:24];
+
+	always@(posedge wrclock)
+	begin
+		if(wren)
+		begin
+			ram[wraddress]<=tempin;
+		end
+	end
+
+endmodule
+
+module testmem(
+	address,
+	clock,
+	data,
+	wren,
+	q);
+
+	input	[15:0]  address;
+	input	  clock;
+	input	[31:0]  data;
+	input	  wren;
+	output reg	[31:0]  q;
+
+	reg [31:0] ram [65535:0];
+	always@(posedge clock)
+		q <= ram[address];
+
+endmodule
+
+module dmem(addr, dataout, datain, rdclk, wrclk, memop, we);
+	input  [31:0] addr;
+	output reg [31:0] dataout;
+	input  [31:0] datain;
+	input  rdclk;
+	input  wrclk;
+	input [2:0] memop;
+	input we;
+
+	wire [31:0] memin;
+	reg  [3:0] wmask;
+	wire [7:0] byteout;
+	wire [15:0] wordout;
+	wire [31:0] dwordout;
+
+
+assign memin = (memop[1:0]==2'b00)?{4{datain[7:0]}}:((memop[1:0]==2'b10)?datain:{2{datain[15:0]}}) ; //lb: same for all four, lh:copy twice; lw:copy
+
+//four memory chips
+testdmem mymem(.byteena_a(wmask),.data(memin), .rdaddress(addr[16:2]), .rdclock(rdclk), .wraddress(addr[16:2]), .wrclock(wrclk), .wren(we), .q(dwordout) );
+//wmask,addr[16:2]
+assign wordout = (addr[1]==1'b1)? dwordout[31:16]:dwordout[15:0];
+
+assign byteout = (addr[1]==1'b1)? ((addr[0]==1'b1)? dwordout[31:24]:dwordout[23:16]):((addr[0]==1'b1)? dwordout[15:8]:dwordout[7:0]);
+
+
+always @(*)
+begin
+  case(memop)
+  3'b000: //lb
+     dataout = { {24{byteout[7]}}, byteout};
+  3'b001: //lh
+     dataout = { {16{wordout[15]}}, wordout};
+  3'b010: //lw
+     dataout = dwordout;
+  3'b100: //lbu
+     dataout = { 24'b0, byteout};
+  3'b101: //lhu
+     dataout = { 16'b0, wordout};
+  default:
+     dataout = dwordout;
+  endcase
+end
+
+always@(*)
+begin
+	if(we==1'b1)
+	begin
+		case(memop)
+			3'b000://sb
+			begin
+				wmask[0]=(addr[1:0]==2'b00)?1'b1:1'b0;
+				wmask[1]=(addr[1:0]==2'b01)?1'b1:1'b0;
+				wmask[2]=(addr[1:0]==2'b10)?1'b1:1'b0;
+				wmask[3]=(addr[1:0]==2'b11)?1'b1:1'b0;
+			end
+			3'b001://sh
+			begin
+				wmask[0]=(addr[1]==1'b0)?1'b1:1'b0;
+				wmask[1]=(addr[1]==1'b0)?1'b1:1'b0;
+				wmask[2]=(addr[1]==1'b1)?1'b1:1'b0;
+				wmask[3]=(addr[1]==1'b1)?1'b1:1'b0;
+			end
+			3'b010://sw
+			begin
+				wmask=4'b1111;
+			end
+			default:
+			begin
+				wmask=4'b0000;
+			end
+		endcase
+	end
+	else
+	begin
+	   wmask=4'b0000;
+	end
+end
+
+endmodule
+
+
+endmodule

@@ -7,8 +7,8 @@ module forward_detecter(
    input      [4 : 0]   rd_addr_mem,
    input      [4 : 0]   rd_addr_wb,
    // forward ctrl: 00 = no forward, 01 = forward from m/wb, 10 = forward from ex/mem
-   output 	  [1 : 0]   forward_rs1,
-   output     [1 : 0]   forward_rs2
+   output reg [1 : 0]   forward_rs1,
+   output reg [1 : 0]   forward_rs2
   );
 
 // forward rs1, mem first
@@ -42,7 +42,7 @@ module PC (
 
    input stall,
 
-   output [31:0] pc_out
+   output [31:0] pc_out;
 );
 
 reg [31:0] pc;
