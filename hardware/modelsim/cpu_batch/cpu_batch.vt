@@ -208,6 +208,7 @@ initial begin:TestBench
 //		run_riscv_test();
 		testcase = "rv32ui-p-andi";
 		run_riscv_test();
+		$stop;
 	   testcase = "rv32ui-p-auipc";
 		run_riscv_test();
 		testcase = "rv32ui-p-beq";
