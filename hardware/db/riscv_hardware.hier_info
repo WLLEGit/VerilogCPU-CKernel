@@ -1,6 +1,6 @@
 |pipeline
 clk => clk.IN11
-clr => clr.IN7
+clr => clr.IN8
 imemaddr[0] <= IF:IF_instance.port5
 imemaddr[1] <= IF:IF_instance.port5
 imemaddr[2] <= IF:IF_instance.port5
@@ -203,55 +203,64 @@ dbgdata[31] <= pc[31].DB_MAX_OUTPUT_PORT_TYPE
 
 
 |pipeline|forward_detecter:f_d_i
-regwr_ex => ~NO_FANOUT~
-regwr_mem => comb.IN1
-regwr_mem => comb.IN1
+regwr_mem => tmp_rs1.IN1
+regwr_mem => tmp_rs2.IN1
 regwr_wb => forward_rs1.IN1
 regwr_wb => forward_rs2.IN1
 rs1[0] => Equal0.IN4
+rs1[0] => Equal2.IN4
 rs1[0] => Equal1.IN4
 rs1[1] => Equal0.IN3
+rs1[1] => Equal2.IN3
 rs1[1] => Equal1.IN3
 rs1[2] => Equal0.IN2
+rs1[2] => Equal2.IN2
 rs1[2] => Equal1.IN2
 rs1[3] => Equal0.IN1
+rs1[3] => Equal2.IN1
 rs1[3] => Equal1.IN1
 rs1[4] => Equal0.IN0
+rs1[4] => Equal2.IN0
 rs1[4] => Equal1.IN0
-rs2[0] => Equal2.IN4
 rs2[0] => Equal3.IN4
-rs2[1] => Equal2.IN3
+rs2[0] => Equal5.IN4
+rs2[0] => Equal4.IN4
 rs2[1] => Equal3.IN3
-rs2[2] => Equal2.IN2
+rs2[1] => Equal5.IN3
+rs2[1] => Equal4.IN3
 rs2[2] => Equal3.IN2
-rs2[3] => Equal2.IN1
+rs2[2] => Equal5.IN2
+rs2[2] => Equal4.IN2
 rs2[3] => Equal3.IN1
-rs2[4] => Equal2.IN0
+rs2[3] => Equal5.IN1
+rs2[3] => Equal4.IN1
 rs2[4] => Equal3.IN0
+rs2[4] => Equal5.IN0
+rs2[4] => Equal4.IN0
 rd_addr_mem[0] => Equal0.IN9
-rd_addr_mem[0] => Equal2.IN9
+rd_addr_mem[0] => Equal3.IN9
 rd_addr_mem[1] => Equal0.IN8
-rd_addr_mem[1] => Equal2.IN8
+rd_addr_mem[1] => Equal3.IN8
 rd_addr_mem[2] => Equal0.IN7
-rd_addr_mem[2] => Equal2.IN7
+rd_addr_mem[2] => Equal3.IN7
 rd_addr_mem[3] => Equal0.IN6
-rd_addr_mem[3] => Equal2.IN6
+rd_addr_mem[3] => Equal3.IN6
 rd_addr_mem[4] => Equal0.IN5
-rd_addr_mem[4] => Equal2.IN5
-rd_addr_wb[0] => Equal1.IN9
-rd_addr_wb[0] => Equal3.IN9
-rd_addr_wb[1] => Equal1.IN8
-rd_addr_wb[1] => Equal3.IN8
-rd_addr_wb[2] => Equal1.IN7
-rd_addr_wb[2] => Equal3.IN7
-rd_addr_wb[3] => Equal1.IN6
-rd_addr_wb[3] => Equal3.IN6
-rd_addr_wb[4] => Equal1.IN5
-rd_addr_wb[4] => Equal3.IN5
+rd_addr_mem[4] => Equal3.IN5
+rd_addr_wb[0] => Equal2.IN9
+rd_addr_wb[0] => Equal5.IN9
+rd_addr_wb[1] => Equal2.IN8
+rd_addr_wb[1] => Equal5.IN8
+rd_addr_wb[2] => Equal2.IN7
+rd_addr_wb[2] => Equal5.IN7
+rd_addr_wb[3] => Equal2.IN6
+rd_addr_wb[3] => Equal5.IN6
+rd_addr_wb[4] => Equal2.IN5
+rd_addr_wb[4] => Equal5.IN5
 forward_rs1[0] <= forward_rs1.DB_MAX_OUTPUT_PORT_TYPE
-forward_rs1[1] <= comb.DB_MAX_OUTPUT_PORT_TYPE
+forward_rs1[1] <= forward_rs1.DB_MAX_OUTPUT_PORT_TYPE
 forward_rs2[0] <= forward_rs2.DB_MAX_OUTPUT_PORT_TYPE
-forward_rs2[1] <= comb.DB_MAX_OUTPUT_PORT_TYPE
+forward_rs2[1] <= forward_rs2.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |pipeline|load_store_detecter:l_s_d
@@ -280,10 +289,10 @@ stall <= stall.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |pipeline|pipeline_status:pipeline_status_ctrl
-clr => always0.IN0
-clk => flush~reg0.CLK
-branch => always0.IN1
-flush <= flush~reg0.DB_MAX_OUTPUT_PORT_TYPE
+clr => flush.IN1
+clk => flush_branch.CLK
+branch => flush_branch.DATAIN
+flush <= flush.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |pipeline|PC:PC_instance

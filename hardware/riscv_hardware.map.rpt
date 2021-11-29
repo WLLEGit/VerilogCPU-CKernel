@@ -1,5 +1,5 @@
 Analysis & Synthesis report for riscv_hardware
-Mon Nov 29 00:12:30 2021
+Mon Nov 29 15:34:00 2021
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -46,7 +46,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Mon Nov 29 00:12:30 2021       ;
+; Analysis & Synthesis Status     ; Successful - Mon Nov 29 15:34:00 2021       ;
 ; Quartus Prime Version           ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                   ; riscv_hardware                              ;
 ; Top-level Entity Name           ; pipeline                                    ;
@@ -193,14 +193,14 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------+-----------+
 ; Resource                                    ; Usage     ;
 +---------------------------------------------+-----------+
-; Estimate of Logic utilization (ALMs needed) ; 1374      ;
+; Estimate of Logic utilization (ALMs needed) ; 1345      ;
 ;                                             ;           ;
-; Combinational ALUT usage for logic          ; 1477      ;
-;     -- 7 input functions                    ; 21        ;
-;     -- 6 input functions                    ; 984       ;
-;     -- 5 input functions                    ; 175       ;
-;     -- 4 input functions                    ; 98        ;
-;     -- <=3 input functions                  ; 199       ;
+; Combinational ALUT usage for logic          ; 1460      ;
+;     -- 7 input functions                    ; 22        ;
+;     -- 6 input functions                    ; 937       ;
+;     -- 5 input functions                    ; 207       ;
+;     -- 4 input functions                    ; 99        ;
+;     -- <=3 input functions                  ; 195       ;
 ;                                             ;           ;
 ; Dedicated logic registers                   ; 1463      ;
 ;                                             ;           ;
@@ -210,8 +210,8 @@ https://fpgasoftware.intel.com/eula.
 ;                                             ;           ;
 ; Maximum fan-out node                        ; clk~input ;
 ; Maximum fan-out                             ; 1466      ;
-; Total fan-out                               ; 12600     ;
-; Average fan-out                             ; 3.77      ;
+; Total fan-out                               ; 12480     ;
+; Average fan-out                             ; 3.75      ;
 +---------------------------------------------+-----------+
 
 
@@ -220,24 +220,24 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+----------------------------------------------------------+------------------+--------------+
 ; Compilation Hierarchy Node                ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                      ; Entity Name      ; Library Name ;
 +-------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+----------------------------------------------------------+------------------+--------------+
-; |pipeline                                 ; 1477 (0)            ; 1463 (0)                  ; 0                 ; 0          ; 201  ; 0            ; |pipeline                                                ; pipeline         ; work         ;
-;    |EX:EX_instance|                       ; 447 (234)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|EX:EX_instance                                 ; EX               ; work         ;
-;       |alu:alu_instance|                  ; 213 (154)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|EX:EX_instance|alu:alu_instance                ; alu              ; work         ;
+; |pipeline                                 ; 1460 (0)            ; 1463 (0)                  ; 0                 ; 0          ; 201  ; 0            ; |pipeline                                                ; pipeline         ; work         ;
+;    |EX:EX_instance|                       ; 438 (219)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|EX:EX_instance                                 ; EX               ; work         ;
+;       |alu:alu_instance|                  ; 219 (160)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|EX:EX_instance|alu:alu_instance                ; alu              ; work         ;
 ;          |adder:alu_addr|                 ; 59 (59)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|EX:EX_instance|alu:alu_instance|adder:alu_addr ; adder            ; work         ;
-;    |EX_M_reg:EX_M_reg_instance|           ; 153 (153)           ; 144 (144)                 ; 0                 ; 0          ; 0    ; 0            ; |pipeline|EX_M_reg:EX_M_reg_instance                     ; EX_M_reg         ; work         ;
-;    |ID:ID_instance|                       ; 53 (0)              ; 992 (0)                   ; 0                 ; 0          ; 0    ; 0            ; |pipeline|ID:ID_instance                                 ; ID               ; work         ;
-;       |contr_gen:contr_gen_instance|      ; 18 (18)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|ID:ID_instance|contr_gen:contr_gen_instance    ; contr_gen        ; work         ;
-;       |imm_gen:imm_gen_instance|          ; 4 (4)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|ID:ID_instance|imm_gen:imm_gen_instance        ; imm_gen          ; work         ;
+;    |EX_M_reg:EX_M_reg_instance|           ; 139 (139)           ; 144 (144)                 ; 0                 ; 0          ; 0    ; 0            ; |pipeline|EX_M_reg:EX_M_reg_instance                     ; EX_M_reg         ; work         ;
+;    |ID:ID_instance|                       ; 51 (0)              ; 992 (0)                   ; 0                 ; 0          ; 0    ; 0            ; |pipeline|ID:ID_instance                                 ; ID               ; work         ;
+;       |contr_gen:contr_gen_instance|      ; 17 (17)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|ID:ID_instance|contr_gen:contr_gen_instance    ; contr_gen        ; work         ;
+;       |imm_gen:imm_gen_instance|          ; 3 (3)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|ID:ID_instance|imm_gen:imm_gen_instance        ; imm_gen          ; work         ;
 ;       |regfile:myregfile|                 ; 31 (31)             ; 992 (992)                 ; 0                 ; 0          ; 0    ; 0            ; |pipeline|ID:ID_instance|regfile:myregfile               ; regfile          ; work         ;
-;    |ID_EX_reg:ID_EX_reg_instance|         ; 714 (714)           ; 159 (159)                 ; 0                 ; 0          ; 0    ; 0            ; |pipeline|ID_EX_reg:ID_EX_reg_instance                   ; ID_EX_reg        ; work         ;
+;    |ID_EX_reg:ID_EX_reg_instance|         ; 716 (716)           ; 159 (159)                 ; 0                 ; 0          ; 0    ; 0            ; |pipeline|ID_EX_reg:ID_EX_reg_instance                   ; ID_EX_reg        ; work         ;
 ;    |IF_ID_reg:IFIDreg_instance|           ; 0 (0)               ; 64 (64)                   ; 0                 ; 0          ; 0    ; 0            ; |pipeline|IF_ID_reg:IFIDreg_instance                     ; IF_ID_reg        ; work         ;
 ;    |M:M_instance|                         ; 2 (0)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|M:M_instance                                   ; M                ; work         ;
 ;       |branch_cond:branch_cond_instance|  ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|M:M_instance|branch_cond:branch_cond_instance  ; branch_cond      ; work         ;
 ;    |M_WB_reg:M_WB_reg_instance|           ; 0 (0)               ; 71 (71)                   ; 0                 ; 0          ; 0    ; 0            ; |pipeline|M_WB_reg:M_WB_reg_instance                     ; M_WB_reg         ; work         ;
 ;    |PC:PC_instance|                       ; 70 (70)             ; 32 (32)                   ; 0                 ; 0          ; 0    ; 0            ; |pipeline|PC:PC_instance                                 ; PC               ; work         ;
 ;    |WB:WB_instance|                       ; 32 (32)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|WB:WB_instance                                 ; WB               ; work         ;
-;    |forward_detecter:f_d_i|               ; 6 (6)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|forward_detecter:f_d_i                         ; forward_detecter ; work         ;
-;    |pipeline_status:pipeline_status_ctrl| ; 0 (0)               ; 1 (1)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|pipeline_status:pipeline_status_ctrl           ; pipeline_status  ; work         ;
+;    |forward_detecter:f_d_i|               ; 11 (11)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|forward_detecter:f_d_i                         ; forward_detecter ; work         ;
+;    |pipeline_status:pipeline_status_ctrl| ; 1 (1)               ; 1 (1)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|pipeline_status:pipeline_status_ctrl           ; pipeline_status  ; work         ;
 +-------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+----------------------------------------------------------+------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -305,25 +305,25 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------+
 ; 3:1                ; 5 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|MemtoReg_out            ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |pipeline|PC:PC_instance|pc[1]                                 ;
-; 4:1                ; 6 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|imm_out[5]              ;
+; 4:1                ; 6 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|imm_out[6]              ;
 ; 4:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|imm_out[30]             ;
-; 5:1                ; 30 bits   ; 90 LEs        ; 60 LEs               ; 30 LEs                 ; Yes        ; |pipeline|PC:PC_instance|pc[26]                                ;
+; 5:1                ; 30 bits   ; 90 LEs        ; 60 LEs               ; 30 LEs                 ; Yes        ; |pipeline|PC:PC_instance|pc[24]                                ;
 ; 5:1                ; 4 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|imm_out[3]              ;
-; 5:1                ; 4 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|imm_out[23]             ;
-; 6:1                ; 8 bits    ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|imm_out[18]             ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|imm_out[21]             ;
+; 6:1                ; 8 bits    ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|imm_out[19]             ;
 ; 6:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|branch_out[1]           ;
-; 33:1               ; 32 bits   ; 704 LEs       ; 640 LEs              ; 64 LEs                 ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|rs1_out[21]             ;
-; 33:1               ; 32 bits   ; 704 LEs       ; 640 LEs              ; 64 LEs                 ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|rs2_out[29]             ;
-; 22:1               ; 8 bits    ; 112 LEs       ; 64 LEs               ; 48 LEs                 ; Yes        ; |pipeline|EX_M_reg:EX_M_reg_instance|aluresult_out[19]         ;
+; 33:1               ; 32 bits   ; 704 LEs       ; 640 LEs              ; 64 LEs                 ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|rs1_out[13]             ;
+; 33:1               ; 32 bits   ; 704 LEs       ; 640 LEs              ; 64 LEs                 ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|rs2_out[15]             ;
+; 22:1               ; 8 bits    ; 112 LEs       ; 64 LEs               ; 48 LEs                 ; Yes        ; |pipeline|EX_M_reg:EX_M_reg_instance|aluresult_out[17]         ;
 ; 21:1               ; 5 bits    ; 70 LEs        ; 50 LEs               ; 20 LEs                 ; Yes        ; |pipeline|EX_M_reg:EX_M_reg_instance|aluresult_out[4]          ;
 ; 23:1               ; 2 bits    ; 30 LEs        ; 20 LEs               ; 10 LEs                 ; Yes        ; |pipeline|EX_M_reg:EX_M_reg_instance|aluresult_out[10]         ;
-; 21:1               ; 3 bits    ; 42 LEs        ; 30 LEs               ; 12 LEs                 ; Yes        ; |pipeline|EX_M_reg:EX_M_reg_instance|aluresult_out[12]         ;
+; 21:1               ; 3 bits    ; 42 LEs        ; 30 LEs               ; 12 LEs                 ; Yes        ; |pipeline|EX_M_reg:EX_M_reg_instance|aluresult_out[14]         ;
 ; 25:1               ; 3 bits    ; 48 LEs        ; 36 LEs               ; 12 LEs                 ; Yes        ; |pipeline|EX_M_reg:EX_M_reg_instance|aluresult_out[30]         ;
 ; 24:1               ; 2 bits    ; 32 LEs        ; 22 LEs               ; 10 LEs                 ; Yes        ; |pipeline|EX_M_reg:EX_M_reg_instance|aluresult_out[26]         ;
 ; 24:1               ; 3 bits    ; 48 LEs        ; 36 LEs               ; 12 LEs                 ; Yes        ; |pipeline|EX_M_reg:EX_M_reg_instance|aluresult_out[2]          ;
 ; 23:1               ; 2 bits    ; 30 LEs        ; 30 LEs               ; 0 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|ALUctr_out[2]           ;
-; 30:1               ; 2 bits    ; 40 LEs        ; 40 LEs               ; 0 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|ALUctr_out[1]           ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |pipeline|EX:EX_instance|rs1_proc[13]                          ;
+; 30:1               ; 2 bits    ; 40 LEs        ; 40 LEs               ; 0 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|ALUctr_out[3]           ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |pipeline|EX:EX_instance|rs1_proc[5]                           ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |pipeline|EX:EX_instance|alu:alu_instance|ShiftLeft0           ;
 ; 4:1                ; 49 bits   ; 98 LEs        ; 98 LEs               ; 0 LEs                  ; No         ; |pipeline|EX:EX_instance|alu:alu_instance|ShiftLeft0           ;
 ; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |pipeline|EX:EX_instance|alu:alu_instance|ShiftLeft0           ;
@@ -355,27 +355,27 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ;     ENA SCLR          ; 32                          ;
 ;     SCLR              ; 395                         ;
 ;     plain             ; 44                          ;
-; arriav_lcell_comb     ; 1477                        ;
+; arriav_lcell_comb     ; 1460                        ;
 ;     arith             ; 94                          ;
 ;         1 data inputs ; 30                          ;
 ;         2 data inputs ; 32                          ;
 ;         4 data inputs ; 32                          ;
-;     extend            ; 21                          ;
-;         7 data inputs ; 21                          ;
-;     normal            ; 1329                        ;
-;         2 data inputs ; 40                          ;
-;         3 data inputs ; 80                          ;
-;         4 data inputs ; 50                          ;
-;         5 data inputs ; 175                         ;
-;         6 data inputs ; 984                         ;
+;     extend            ; 22                          ;
+;         7 data inputs ; 22                          ;
+;     normal            ; 1311                        ;
+;         2 data inputs ; 37                          ;
+;         3 data inputs ; 79                          ;
+;         4 data inputs ; 51                          ;
+;         5 data inputs ; 207                         ;
+;         6 data inputs ; 937                         ;
 ;     shared            ; 33                          ;
 ;         0 data inputs ; 1                           ;
 ;         2 data inputs ; 16                          ;
 ;         4 data inputs ; 16                          ;
 ; boundary_port         ; 201                         ;
 ;                       ;                             ;
-; Max LUT depth         ; 10.20                       ;
-; Average LUT depth     ; 4.11                        ;
+; Max LUT depth         ; 11.60                       ;
+; Average LUT depth     ; 4.25                        ;
 +-----------------------+-----------------------------+
 
 
@@ -394,7 +394,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
-    Info: Processing started: Mon Nov 29 00:12:15 2021
+    Info: Processing started: Mon Nov 29 15:33:45 2021
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off riscv_hardware -c riscv_hardware
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -457,14 +457,14 @@ Info (12128): Elaborating entity "WB" for hierarchy "WB:WB_instance" File: D:/Ho
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 2899 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 2882 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 66 input pins
     Info (21059): Implemented 135 output pins
-    Info (21061): Implemented 2698 logic cells
+    Info (21061): Implemented 2681 logic cells
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 4840 megabytes
-    Info: Processing ended: Mon Nov 29 00:12:30 2021
+    Info: Peak virtual memory: 4842 megabytes
+    Info: Processing ended: Mon Nov 29 15:34:00 2021
     Info: Elapsed time: 00:00:15
-    Info: Total CPU time (on all processors): 00:00:28
+    Info: Total CPU time (on all processors): 00:00:30
 
 

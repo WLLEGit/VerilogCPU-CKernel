@@ -32,7 +32,7 @@ wire flush;
 
 assign dbgdata = pc;
 // cpu ctrl
-forward_detecter f_d_i(regwr2, regwr3, regwr4, rs1_addr2, rs2_addr2, rd3, rw, forward_rs1, forward_rs2);
+forward_detecter f_d_i(/*regwr2,*/ regwr3, regwr4, rs1_addr2, rs2_addr2, rd3, rw, forward_rs1, forward_rs2);
 load_store_detecter l_s_d(MemtoReg2, rd2, instr1[19:15], instr1[24:20], stall);
 
 pipeline_status pipeline_status_ctrl(clr, clk, pc_branch, flush);
@@ -50,7 +50,7 @@ EX_M_reg EX_M_reg_instance(flush, clk, nextpc_pc, nextpc_rs1, less, zero, rs22, 
 M M_instance(clr, clk, aluresult3, nextpc_pc3, nextpc_rs13, less3, zero3, branch3, memop3, memwr3, rs23, 
                         nextpc_mem, dmemdata, pc_branch,
                         dmemaddr, dmemdataout, dmemdatain, dmemrdclk, dmemwrclk, dmemop, dmemwe);
-M_WB_reg M_WB_reg_instance(flush, clk, dmemdata, aluresult3, rd3, MemtoReg3, regwr3,
+M_WB_reg M_WB_reg_instance(clr, clk, dmemdata, aluresult3, rd3, MemtoReg3, regwr3,
                                         dmemdata4, aluresult4, rw, MemtoReg4, regwr4);
 WB WB_instance(clr, clk, dmemdata4, aluresult4, MemtoReg4, busW);
     

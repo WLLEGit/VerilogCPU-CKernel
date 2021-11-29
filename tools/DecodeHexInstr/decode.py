@@ -20,12 +20,22 @@ def decode(instr_str):
     os.remove("tmp.o")
     return msg
 
+def ishex(s, size):
+    return (len(s) == size) and all([(lambda c: c in "0123456789abcdefABCDEF")(c) for c in s])
 
 if __name__ == "__main__":
     if(len(sys.argv) == 1):
         print("Usage: python decode.py <hex_string_list>")
         exit(1)
+    if(sys.argv[1] == "i"):
+        while(True):
+            s = input("Input hex string: ")
+            s = s.replace("0x", "")
+            if(ishex(s, 8)):
+                print(decode(s))           
     else:
         for s in sys.argv[1:]:
-            print(decode(s))
+            s = s.replace("0x", "")
+            if(ishex(s, 8)):
+                print(decode(s))
 

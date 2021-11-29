@@ -52,8 +52,6 @@ task step;  //step for one cycle ends 1ns AFTER the posedge of the next cycle
 		#10 clk=1'b1;
 		numcycles = numcycles + 1;
 		#1 ;
-		if(mycpu.ID_instance.myregfile.regs[10]==32'hdeaddead)
-			$display("reg[10] become deaddead in cycle %3d, pc %x", numcycles-1, cpudbgdata);
 	end
 endtask
 
@@ -147,10 +145,13 @@ task run;
 				step();
 				i=i+1;
 			end
-			if(cont != 1) begin step(); if(mycpu.IFIDreg_instance.instr_out==32'h0) cont = 1; end
-			if(cont != 1) begin step(); if(mycpu.IFIDreg_instance.instr_out==32'h0) cont = 1; end
-			if(cont != 1) begin step(); if(mycpu.IFIDreg_instance.instr_out==32'h0) cont = 1; end
-			if(cont != 1) begin step(); if(mycpu.IFIDreg_instance.instr_out==32'h0) cont = 1; end
+			if(mycpu.pc_branch!=0) begin cont = 1; step(); end
+			else begin
+				if(cont != 1) begin step(); if(mycpu.pc_branch!=0) cont = 1; end
+				if(cont != 1) begin step(); if(mycpu.pc_branch!=0) cont = 1; end
+				if(cont != 1) begin step(); if(mycpu.pc_branch!=0) cont = 1; end
+				if(cont != 1) begin step(); if(mycpu.pc_branch!=0) cont = 1; end
+			end
 		end
 	end
 endtask
@@ -198,37 +199,37 @@ endtask
 initial begin:TestBench
       #80
     //   output the state of every instruction
-//		testcase = "rv32ui-p-simple";
-//		run_riscv_test();
+		testcase = "rv32ui-p-simple";
+		//run_riscv_test();
 		testcase = "rv32ui-p-add";
-//		run_riscv_test();
+		//run_riscv_test();
 		testcase = "rv32ui-p-addi";
-//		run_riscv_test();
+		//run_riscv_test();
 		testcase = "rv32ui-p-and";
-//		run_riscv_test();
+		//run_riscv_test();
 		testcase = "rv32ui-p-andi";
-		run_riscv_test();
-		$stop;
+		//run_riscv_test();
 	   testcase = "rv32ui-p-auipc";
-		run_riscv_test();
+		//run_riscv_test();
 		testcase = "rv32ui-p-beq";
-		run_riscv_test();
+		//run_riscv_test();
 		testcase = "rv32ui-p-bge";
-		run_riscv_test();
+		//run_riscv_test();
 		testcase = "rv32ui-p-bgeu";
-		run_riscv_test();
+		//run_riscv_test();
 		testcase = "rv32ui-p-blt";
-		run_riscv_test();
+		//run_riscv_test();
 		testcase = "rv32ui-p-bltu";
-		run_riscv_test();
+		//run_riscv_test();
 		testcase = "rv32ui-p-bne";
-		run_riscv_test();
+		//run_riscv_test();
 		testcase = "rv32ui-p-jal";
-		run_riscv_test();
+		//run_riscv_test();
 		testcase = "rv32ui-p-jalr";
-		run_riscv_test();
+		//run_riscv_test();
 		testcase = "rv32ui-p-lb";
 		run_riscv_test();
+		$stop;
 		testcase = "rv32ui-p-lbu";
 		run_riscv_test();
 		testcase = "rv32ui-p-lh";
