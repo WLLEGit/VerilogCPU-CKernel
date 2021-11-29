@@ -8,11 +8,11 @@ vmap work rtl_work
 vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/regfile.v}
 vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/immgen.v}
 vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/define.v}
-vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/cpu_ctrl.v}
 vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/contrgen.v}
 vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/branch_cond.v}
 vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/alu.v}
 vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v}
+vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/cpu_ctrl.v}
 
 vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/modelsim/cpu_batch {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/modelsim/cpu_batch/cpu_batch.vt}
 

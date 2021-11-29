@@ -12,64 +12,64 @@
 # 
 # vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/regfile.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 18:54:00 on Nov 29,2021
+# Start time: 19:24:55 on Nov 29,2021
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/regfile.v 
 # -- Compiling module regfile
 # 
 # Top level modules:
 # 	regfile
-# End time: 18:54:00 on Nov 29,2021, Elapsed time: 0:00:00
+# End time: 19:24:55 on Nov 29,2021, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/immgen.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 18:54:00 on Nov 29,2021
+# Start time: 19:24:55 on Nov 29,2021
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/immgen.v 
 # -- Compiling module imm_gen
 # 
 # Top level modules:
 # 	imm_gen
-# End time: 18:54:00 on Nov 29,2021, Elapsed time: 0:00:00
+# End time: 19:24:55 on Nov 29,2021, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/define.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 18:54:00 on Nov 29,2021
+# Start time: 19:24:55 on Nov 29,2021
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/define.v 
-# End time: 18:54:00 on Nov 29,2021, Elapsed time: 0:00:00
+# End time: 19:24:55 on Nov 29,2021, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/contrgen.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 18:54:00 on Nov 29,2021
+# Start time: 19:24:55 on Nov 29,2021
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/contrgen.v 
 # -- Compiling module contr_gen
 # 
 # Top level modules:
 # 	contr_gen
-# End time: 18:54:00 on Nov 29,2021, Elapsed time: 0:00:00
+# End time: 19:24:55 on Nov 29,2021, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/branch_cond.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 18:54:00 on Nov 29,2021
+# Start time: 19:24:55 on Nov 29,2021
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/branch_cond.v 
 # -- Compiling module branch_cond
 # 
 # Top level modules:
 # 	branch_cond
-# End time: 18:54:00 on Nov 29,2021, Elapsed time: 0:00:00
+# End time: 19:24:55 on Nov 29,2021, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/alu.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 18:54:00 on Nov 29,2021
+# Start time: 19:24:55 on Nov 29,2021
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/alu.v 
 # -- Compiling module alu
 # -- Compiling module adder
 # 
 # Top level modules:
 # 	alu
-# End time: 18:54:01 on Nov 29,2021, Elapsed time: 0:00:01
+# End time: 19:24:55 on Nov 29,2021, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 18:54:01 on Nov 29,2021
+# Start time: 19:24:55 on Nov 29,2021
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v 
 # -- Compiling module pipeline
 # -- Compiling module IF
@@ -84,11 +84,11 @@
 # 
 # Top level modules:
 # 	pipeline
-# End time: 18:54:01 on Nov 29,2021, Elapsed time: 0:00:00
+# End time: 19:24:55 on Nov 29,2021, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/cpu_ctrl.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 18:54:01 on Nov 29,2021
+# Start time: 19:24:55 on Nov 29,2021
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/cpu_ctrl.v 
 # -- Compiling module forward_detecter
 # -- Compiling module load_store_detecter
@@ -100,12 +100,12 @@
 # 	load_store_detecter
 # 	PC
 # 	pipeline_status
-# End time: 18:54:01 on Nov 29,2021, Elapsed time: 0:00:00
+# End time: 19:24:55 on Nov 29,2021, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
 # vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/modelsim/cpu_batch {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/modelsim/cpu_batch/cpu_batch.vt}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 18:54:01 on Nov 29,2021
+# Start time: 19:24:55 on Nov 29,2021
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/modelsim/cpu_batch" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/modelsim/cpu_batch/cpu_batch.vt 
 # -- Compiling module cpu_batch_vlg_tst
 # -- Compiling module testdmem
@@ -114,12 +114,12 @@
 # 
 # Top level modules:
 # 	cpu_batch_vlg_tst
-# End time: 18:54:01 on Nov 29,2021, Elapsed time: 0:00:00
+# End time: 19:24:56 on Nov 29,2021, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # 
 # vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver -L rtl_work -L work -voptargs="+acc"  cpu_batch_vlg_tst
 # vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver -L rtl_work -L work -voptargs=""+acc"" cpu_batch_vlg_tst 
-# Start time: 18:54:02 on Nov 29,2021
+# Start time: 19:24:56 on Nov 29,2021
 # Loading work.cpu_batch_vlg_tst
 # ** Error: (vsim-7) Failed to open data file "D:/HomeWork/ShuDianShiYan/12/exp12/hardware/simulation/modelsim/rtl_work/testdmem/_primary.dat" in read mode.
 # No such file or directory. (errno = ENOENT)
@@ -154,39 +154,11 @@
 # view signals
 # .main_pane.objects.interior.cs.body.tree
 # run -all
-# ~~~ Begin test case rv32ui-p-simple ~~~
-# ~~~ OK:test case rv32ui-p-simple finshed OK at cycle  36.
-# ~~~ Begin test case    rv32ui-p-add ~~~
-# ~~~ OK:test case    rv32ui-p-add finshed OK at cycle 508.
-# ~~~ Begin test case   rv32ui-p-addi ~~~
-# ~~~ OK:test case   rv32ui-p-addi finshed OK at cycle 258.
-# ~~~ Begin test case    rv32ui-p-and ~~~
-# ~~~ OK:test case    rv32ui-p-and finshed OK at cycle 528.
-# ~~~ Begin test case   rv32ui-p-andi ~~~
-# ~~~ OK:test case   rv32ui-p-andi finshed OK at cycle 214.
-# ~~~ Begin test case  rv32ui-p-auipc ~~~
-# ~~~ OK:test case  rv32ui-p-auipc finshed OK at cycle  63.
-# ~~~ Begin test case    rv32ui-p-beq ~~~
-# ~~~ OK:test case    rv32ui-p-beq finshed OK at cycle 367.
-# ~~~ Begin test case    rv32ui-p-bge ~~~
-# ~~~ OK:test case    rv32ui-p-bge finshed OK at cycle 412.
-# ~~~ Begin test case   rv32ui-p-bgeu ~~~
-# ~~~ OK:test case   rv32ui-p-bgeu finshed OK at cycle 437.
-# ~~~ Begin test case    rv32ui-p-blt ~~~
-# ~~~ OK:test case    rv32ui-p-blt finshed OK at cycle 367.
-# ~~~ Begin test case   rv32ui-p-bltu ~~~
-# ~~~ OK:test case   rv32ui-p-bltu finshed OK at cycle 392.
-# ~~~ Begin test case    rv32ui-p-bne ~~~
-# ~~~ OK:test case    rv32ui-p-bne finshed OK at cycle 373.
-# ~~~ Begin test case    rv32ui-p-jal ~~~
-# ~~~ OK:test case    rv32ui-p-jal finshed OK at cycle  59.
-# ~~~ Begin test case   rv32ui-p-jalr ~~~
-# ~~~ OK:test case   rv32ui-p-jalr finshed OK at cycle 149.
-# ~~~ Begin test case     rv32ui-p-lb ~~~
-# ~~~ OK:test case     rv32ui-p-lb finshed OK at cycle 264.
-# ** Note: $stop    : D:/HomeWork/ShuDianShiYan/12/exp12/hardware/modelsim/cpu_batch/cpu_batch.vt(232)
-#    Time: 89295 ns  Iteration: 0  Instance: /cpu_batch_vlg_tst
-# Break in NamedBeginStat TestBench at D:/HomeWork/ShuDianShiYan/12/exp12/hardware/modelsim/cpu_batch/cpu_batch.vt line 232
+# ~~~ Begin test case     rv32ui-p-sb ~~~
+# ~~~ OK:test case     rv32ui-p-sb finshed OK at cycle 464.
+# ** Note: $stop    : D:/HomeWork/ShuDianShiYan/12/exp12/hardware/modelsim/cpu_batch/cpu_batch.vt(278)
+#    Time: 9405 ns  Iteration: 0  Instance: /cpu_batch_vlg_tst
+# Break in NamedBeginStat TestBench at D:/HomeWork/ShuDianShiYan/12/exp12/hardware/modelsim/cpu_batch/cpu_batch.vt line 278
 do riscv_hardware_run_msim_rtl_verilog.do
 # if {[file exists rtl_work]} {
 # 	vdel -lib rtl_work -all
@@ -201,64 +173,64 @@ do riscv_hardware_run_msim_rtl_verilog.do
 # 
 # vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/regfile.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 18:54:35 on Nov 29,2021
+# Start time: 19:25:53 on Nov 29,2021
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/regfile.v 
 # -- Compiling module regfile
 # 
 # Top level modules:
 # 	regfile
-# End time: 18:54:35 on Nov 29,2021, Elapsed time: 0:00:00
+# End time: 19:25:54 on Nov 29,2021, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/immgen.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 18:54:35 on Nov 29,2021
+# Start time: 19:25:54 on Nov 29,2021
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/immgen.v 
 # -- Compiling module imm_gen
 # 
 # Top level modules:
 # 	imm_gen
-# End time: 18:54:36 on Nov 29,2021, Elapsed time: 0:00:01
+# End time: 19:25:54 on Nov 29,2021, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/define.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 18:54:36 on Nov 29,2021
+# Start time: 19:25:54 on Nov 29,2021
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/define.v 
-# End time: 18:54:36 on Nov 29,2021, Elapsed time: 0:00:00
+# End time: 19:25:54 on Nov 29,2021, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/contrgen.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 18:54:36 on Nov 29,2021
+# Start time: 19:25:54 on Nov 29,2021
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/contrgen.v 
 # -- Compiling module contr_gen
 # 
 # Top level modules:
 # 	contr_gen
-# End time: 18:54:36 on Nov 29,2021, Elapsed time: 0:00:00
+# End time: 19:25:54 on Nov 29,2021, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/branch_cond.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 18:54:36 on Nov 29,2021
+# Start time: 19:25:54 on Nov 29,2021
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/branch_cond.v 
 # -- Compiling module branch_cond
 # 
 # Top level modules:
 # 	branch_cond
-# End time: 18:54:36 on Nov 29,2021, Elapsed time: 0:00:00
+# End time: 19:25:54 on Nov 29,2021, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/alu.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 18:54:36 on Nov 29,2021
+# Start time: 19:25:54 on Nov 29,2021
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/alu.v 
 # -- Compiling module alu
 # -- Compiling module adder
 # 
 # Top level modules:
 # 	alu
-# End time: 18:54:36 on Nov 29,2021, Elapsed time: 0:00:00
+# End time: 19:25:54 on Nov 29,2021, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 18:54:36 on Nov 29,2021
+# Start time: 19:25:54 on Nov 29,2021
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v 
 # -- Compiling module pipeline
 # -- Compiling module IF
@@ -273,11 +245,11 @@ do riscv_hardware_run_msim_rtl_verilog.do
 # 
 # Top level modules:
 # 	pipeline
-# End time: 18:54:36 on Nov 29,2021, Elapsed time: 0:00:00
+# End time: 19:25:54 on Nov 29,2021, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/cpu_ctrl.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 18:54:36 on Nov 29,2021
+# Start time: 19:25:54 on Nov 29,2021
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/cpu_ctrl.v 
 # -- Compiling module forward_detecter
 # -- Compiling module load_store_detecter
@@ -289,12 +261,12 @@ do riscv_hardware_run_msim_rtl_verilog.do
 # 	load_store_detecter
 # 	PC
 # 	pipeline_status
-# End time: 18:54:36 on Nov 29,2021, Elapsed time: 0:00:00
+# End time: 19:25:54 on Nov 29,2021, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
 # vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/modelsim/cpu_batch {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/modelsim/cpu_batch/cpu_batch.vt}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 18:54:36 on Nov 29,2021
+# Start time: 19:25:54 on Nov 29,2021
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/modelsim/cpu_batch" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/modelsim/cpu_batch/cpu_batch.vt 
 # -- Compiling module cpu_batch_vlg_tst
 # -- Compiling module testdmem
@@ -303,14 +275,14 @@ do riscv_hardware_run_msim_rtl_verilog.do
 # 
 # Top level modules:
 # 	cpu_batch_vlg_tst
-# End time: 18:54:36 on Nov 29,2021, Elapsed time: 0:00:00
+# End time: 19:25:54 on Nov 29,2021, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
 # vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver -L rtl_work -L work -voptargs="+acc"  cpu_batch_vlg_tst
-# End time: 18:54:39 on Nov 29,2021, Elapsed time: 0:00:37
+# End time: 19:25:56 on Nov 29,2021, Elapsed time: 0:01:00
 # Errors: 3, Warnings: 0
 # vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver -L rtl_work -L work -voptargs=""+acc"" cpu_batch_vlg_tst 
-# Start time: 18:54:39 on Nov 29,2021
+# Start time: 19:25:56 on Nov 29,2021
 # Loading work.cpu_batch_vlg_tst
 # ** Error: (vsim-7) Failed to open data file "D:/HomeWork/ShuDianShiYan/12/exp12/hardware/simulation/modelsim/rtl_work/testdmem/_primary.dat" in read mode.
 # No such file or directory. (errno = ENOENT)
@@ -390,10 +362,9 @@ do riscv_hardware_run_msim_rtl_verilog.do
 # ~~~ Begin test case    rv32ui-p-ori ~~~
 # ~~~ OK:test case    rv32ui-p-ori finshed OK at cycle 221.
 # ~~~ Begin test case     rv32ui-p-sb ~~~
-# ~~~ ERROR:test case     rv32ui-p-sb finshed with error in cycle  47.
-# 		regs[10]: deaddead
+# ~~~ OK:test case     rv32ui-p-sb finshed OK at cycle 464.
 # ~~~ Begin test case     rv32ui-p-sh ~~~
-# ~~~ ERROR:test case     rv32ui-p-sh finshed with error in cycle  47.
+# ~~~ ERROR:test case     rv32ui-p-sh finshed with error in cycle  68.
 # 		regs[10]: deaddead
 # ~~~ Begin test case    rv32ui-p-sll ~~~
 # ~~~ OK:test case    rv32ui-p-sll finshed OK at cycle 536.
@@ -418,14 +389,583 @@ do riscv_hardware_run_msim_rtl_verilog.do
 # ~~~ Begin test case    rv32ui-p-sub ~~~
 # ~~~ OK:test case    rv32ui-p-sub finshed OK at cycle 500.
 # ~~~ Begin test case     rv32ui-p-sw ~~~
-# ~~~ ERROR:test case     rv32ui-p-sw finshed with error in cycle  49.
-# 		regs[10]: deaddead
+# ~~~ OK:test case     rv32ui-p-sw finshed OK at cycle 524.
 # ~~~ Begin test case    rv32ui-p-xor ~~~
 # ~~~ OK:test case    rv32ui-p-xor finshed OK at cycle 530.
 # ~~~ Begin test case   rv32ui-p-xori ~~~
 # ~~~ OK:test case   rv32ui-p-xori finshed OK at cycle 223.
 # ** Note: $stop    : D:/HomeWork/ShuDianShiYan/12/exp12/hardware/modelsim/cpu_batch/cpu_batch.vt(278)
-#    Time: 235630 ns  Iteration: 0  Instance: /cpu_batch_vlg_tst
+#    Time: 253890 ns  Iteration: 0  Instance: /cpu_batch_vlg_tst
 # Break in NamedBeginStat TestBench at D:/HomeWork/ShuDianShiYan/12/exp12/hardware/modelsim/cpu_batch/cpu_batch.vt line 278
-# End time: 18:55:30 on Nov 29,2021, Elapsed time: 0:00:51
+do riscv_hardware_run_msim_rtl_verilog.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 2020.1 Lib Mapping Utility 2020.02 Feb 28 2020
+# vmap work rtl_work 
+# Modifying modelsim.ini
+# 
+# vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/regfile.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:26:55 on Nov 29,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/regfile.v 
+# -- Compiling module regfile
+# 
+# Top level modules:
+# 	regfile
+# End time: 19:26:55 on Nov 29,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/immgen.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:26:55 on Nov 29,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/immgen.v 
+# -- Compiling module imm_gen
+# 
+# Top level modules:
+# 	imm_gen
+# End time: 19:26:55 on Nov 29,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/define.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:26:55 on Nov 29,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/define.v 
+# End time: 19:26:55 on Nov 29,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/contrgen.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:26:55 on Nov 29,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/contrgen.v 
+# -- Compiling module contr_gen
+# 
+# Top level modules:
+# 	contr_gen
+# End time: 19:26:55 on Nov 29,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/branch_cond.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:26:55 on Nov 29,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/branch_cond.v 
+# -- Compiling module branch_cond
+# 
+# Top level modules:
+# 	branch_cond
+# End time: 19:26:56 on Nov 29,2021, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/alu.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:26:56 on Nov 29,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/alu.v 
+# -- Compiling module alu
+# -- Compiling module adder
+# 
+# Top level modules:
+# 	alu
+# End time: 19:26:56 on Nov 29,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:26:56 on Nov 29,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v 
+# -- Compiling module pipeline
+# -- Compiling module IF
+# -- Compiling module IF_ID_reg
+# -- Compiling module ID
+# -- Compiling module ID_EX_reg
+# -- Compiling module EX
+# -- Compiling module EX_M_reg
+# -- Compiling module M
+# -- Compiling module M_WB_reg
+# -- Compiling module WB
+# 
+# Top level modules:
+# 	pipeline
+# End time: 19:26:56 on Nov 29,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/cpu_ctrl.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:26:56 on Nov 29,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/cpu_ctrl.v 
+# -- Compiling module forward_detecter
+# -- Compiling module load_store_detecter
+# -- Compiling module PC
+# -- Compiling module pipeline_status
+# 
+# Top level modules:
+# 	forward_detecter
+# 	load_store_detecter
+# 	PC
+# 	pipeline_status
+# End time: 19:26:56 on Nov 29,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/modelsim/cpu_batch {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/modelsim/cpu_batch/cpu_batch.vt}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:26:56 on Nov 29,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/modelsim/cpu_batch" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/modelsim/cpu_batch/cpu_batch.vt 
+# -- Compiling module cpu_batch_vlg_tst
+# -- Compiling module testdmem
+# -- Compiling module testmem
+# -- Compiling module dmem
+# 
+# Top level modules:
+# 	cpu_batch_vlg_tst
+# End time: 19:26:56 on Nov 29,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver -L rtl_work -L work -voptargs="+acc"  cpu_batch_vlg_tst
+# End time: 19:27:00 on Nov 29,2021, Elapsed time: 0:01:04
+# Errors: 3, Warnings: 0
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver -L rtl_work -L work -voptargs=""+acc"" cpu_batch_vlg_tst 
+# Start time: 19:27:00 on Nov 29,2021
+# Loading work.cpu_batch_vlg_tst
+# ** Error: (vsim-7) Failed to open data file "D:/HomeWork/ShuDianShiYan/12/exp12/hardware/simulation/modelsim/rtl_work/testdmem/_primary.dat" in read mode.
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-7) Failed to open data file "D:/HomeWork/ShuDianShiYan/12/exp12/hardware/simulation/modelsim/rtl_work/testmem/_primary.dat" in read mode.
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-7) Failed to open data file "D:/HomeWork/ShuDianShiYan/12/exp12/hardware/simulation/modelsim/rtl_work/dmem/_primary.dat" in read mode.
+# No such file or directory. (errno = ENOENT)
+# Loading work.pipeline
+# Loading work.forward_detecter
+# Loading work.load_store_detecter
+# Loading work.pipeline_status
+# Loading work.PC
+# Loading work.IF
+# Loading work.IF_ID_reg
+# Loading work.ID
+# Loading work.contr_gen
+# Loading work.regfile
+# Loading work.imm_gen
+# Loading work.ID_EX_reg
+# Loading work.EX
+# Loading work.alu
+# Loading work.adder
+# Loading work.EX_M_reg
+# Loading work.M
+# Loading work.branch_cond
+# Loading work.M_WB_reg
+# Loading work.WB
+# 
+# add wave *
+# view structure
+# .main_pane.structure.interior.cs.body.struct
+# view signals
+# .main_pane.objects.interior.cs.body.tree
+# run -all
+# ~~~ Begin test case     rv32ui-p-sh ~~~
+# ~~~ OK:test case     rv32ui-p-sh finshed OK at cycle 518.
+# ** Note: $stop    : D:/HomeWork/ShuDianShiYan/12/exp12/hardware/modelsim/cpu_batch/cpu_batch.vt(278)
+#    Time: 10485 ns  Iteration: 0  Instance: /cpu_batch_vlg_tst
+# Break in NamedBeginStat TestBench at D:/HomeWork/ShuDianShiYan/12/exp12/hardware/modelsim/cpu_batch/cpu_batch.vt line 278
+do riscv_hardware_run_msim_rtl_verilog.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# Error 31: Unable to unlink file "D:/HomeWork/ShuDianShiYan/12/exp12/hardware/simulation/modelsim/rtl_work/_lib1_0.qpg".
+# Error 31: Unable to unlink file "D:/HomeWork/ShuDianShiYan/12/exp12/hardware/simulation/modelsim/rtl_work/_lib1_0.qtl".
+# Error 133: Unable to remove directory "D:/HomeWork/ShuDianShiYan/12/exp12/hardware/simulation/modelsim/rtl_work".
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 2020.1 Lib Mapping Utility 2020.02 Feb 28 2020
+# vmap work rtl_work 
+# Modifying modelsim.ini
+# 
+# vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/regfile.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:29:30 on Nov 29,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/regfile.v 
+# -- Compiling module regfile
+# 
+# Top level modules:
+# 	regfile
+# End time: 19:29:30 on Nov 29,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/immgen.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:29:30 on Nov 29,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/immgen.v 
+# -- Compiling module imm_gen
+# 
+# Top level modules:
+# 	imm_gen
+# End time: 19:29:30 on Nov 29,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/define.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:29:30 on Nov 29,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/define.v 
+# End time: 19:29:30 on Nov 29,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/contrgen.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:29:30 on Nov 29,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/contrgen.v 
+# -- Compiling module contr_gen
+# 
+# Top level modules:
+# 	contr_gen
+# End time: 19:29:30 on Nov 29,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/branch_cond.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:29:30 on Nov 29,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/branch_cond.v 
+# -- Compiling module branch_cond
+# 
+# Top level modules:
+# 	branch_cond
+# End time: 19:29:30 on Nov 29,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/alu.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:29:30 on Nov 29,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/alu.v 
+# -- Compiling module alu
+# -- Compiling module adder
+# 
+# Top level modules:
+# 	alu
+# End time: 19:29:30 on Nov 29,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:29:30 on Nov 29,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v 
+# -- Compiling module pipeline
+# -- Compiling module IF
+# -- Compiling module IF_ID_reg
+# -- Compiling module ID
+# -- Compiling module ID_EX_reg
+# -- Compiling module EX
+# -- Compiling module EX_M_reg
+# -- Compiling module M
+# -- Compiling module M_WB_reg
+# -- Compiling module WB
+# 
+# Top level modules:
+# 	pipeline
+# End time: 19:29:31 on Nov 29,2021, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/cpu_ctrl.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:29:31 on Nov 29,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/cpu_ctrl.v 
+# -- Compiling module forward_detecter
+# -- Compiling module load_store_detecter
+# -- Compiling module PC
+# -- Compiling module pipeline_status
+# 
+# Top level modules:
+# 	forward_detecter
+# 	load_store_detecter
+# 	PC
+# 	pipeline_status
+# End time: 19:29:31 on Nov 29,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/modelsim/cpu_batch {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/modelsim/cpu_batch/cpu_batch.vt}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:29:31 on Nov 29,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/modelsim/cpu_batch" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/modelsim/cpu_batch/cpu_batch.vt 
+# -- Compiling module cpu_batch_vlg_tst
+# -- Compiling module testdmem
+# -- Compiling module testmem
+# -- Compiling module dmem
+# 
+# Top level modules:
+# 	cpu_batch_vlg_tst
+# End time: 19:29:31 on Nov 29,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver -L rtl_work -L work -voptargs="+acc"  cpu_batch_vlg_tst
+# End time: 19:29:33 on Nov 29,2021, Elapsed time: 0:02:33
+# Errors: 3, Warnings: 0
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver -L rtl_work -L work -voptargs=""+acc"" cpu_batch_vlg_tst 
+# Start time: 19:29:33 on Nov 29,2021
+# Loading work.cpu_batch_vlg_tst
+# ** Error: (vsim-7) Failed to open data file "D:/HomeWork/ShuDianShiYan/12/exp12/hardware/simulation/modelsim/rtl_work/testdmem/_primary.dat" in read mode.
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-7) Failed to open data file "D:/HomeWork/ShuDianShiYan/12/exp12/hardware/simulation/modelsim/rtl_work/testmem/_primary.dat" in read mode.
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-7) Failed to open data file "D:/HomeWork/ShuDianShiYan/12/exp12/hardware/simulation/modelsim/rtl_work/dmem/_primary.dat" in read mode.
+# No such file or directory. (errno = ENOENT)
+# Loading work.pipeline
+# Loading work.forward_detecter
+# Loading work.load_store_detecter
+# Loading work.pipeline_status
+# Loading work.PC
+# Loading work.IF
+# Loading work.IF_ID_reg
+# Loading work.ID
+# Loading work.contr_gen
+# Loading work.regfile
+# Loading work.imm_gen
+# Loading work.ID_EX_reg
+# Loading work.EX
+# Loading work.alu
+# Loading work.adder
+# Loading work.EX_M_reg
+# Loading work.M
+# Loading work.branch_cond
+# Loading work.M_WB_reg
+# Loading work.WB
+# 
+# add wave *
+# view structure
+# .main_pane.structure.interior.cs.body.struct
+# view signals
+# .main_pane.objects.interior.cs.body.tree
+# run -all
+# ~~~ Begin test case     rv32ui-p-sb ~~~
+# ~~~ OK:test case     rv32ui-p-sb finshed OK at cycle 464.
+# ~~~ Begin test case     rv32ui-p-sh ~~~
+# ~~~ ERROR:test case     rv32ui-p-sh finshed with error in cycle  68.
+# 		regs[10]: deaddead
+# ** Note: $stop    : D:/HomeWork/ShuDianShiYan/12/exp12/hardware/modelsim/cpu_batch/cpu_batch.vt(278)
+#    Time: 10810 ns  Iteration: 0  Instance: /cpu_batch_vlg_tst
+# Break in NamedBeginStat TestBench at D:/HomeWork/ShuDianShiYan/12/exp12/hardware/modelsim/cpu_batch/cpu_batch.vt line 278
+# WARNING: No extended dataflow license exists
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+add wave -position insertpoint sim:/cpu_batch_vlg_tst/mycpu/EX_instance/alu_instance/*
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Error: (vsim-7) Failed to open data file "D:/HomeWork/ShuDianShiYan/12/exp12/hardware/simulation/modelsim/rtl_work/testdmem/_primary.dat" in read mode.
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-7) Failed to open data file "D:/HomeWork/ShuDianShiYan/12/exp12/hardware/simulation/modelsim/rtl_work/testmem/_primary.dat" in read mode.
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-7) Failed to open data file "D:/HomeWork/ShuDianShiYan/12/exp12/hardware/simulation/modelsim/rtl_work/dmem/_primary.dat" in read mode.
+# No such file or directory. (errno = ENOENT)
+run -all
+# ~~~ Begin test case     rv32ui-p-sb ~~~
+# ~~~ OK:test case     rv32ui-p-sb finshed OK at cycle 464.
+# ~~~ Begin test case     rv32ui-p-sh ~~~
+# ~~~ ERROR:test case     rv32ui-p-sh finshed with error in cycle  68.
+# 		regs[10]: deaddead
+# ** Note: $stop    : D:/HomeWork/ShuDianShiYan/12/exp12/hardware/modelsim/cpu_batch/cpu_batch.vt(278)
+#    Time: 10810 ns  Iteration: 0  Instance: /cpu_batch_vlg_tst
+# Break in NamedBeginStat TestBench at D:/HomeWork/ShuDianShiYan/12/exp12/hardware/modelsim/cpu_batch/cpu_batch.vt line 278
+add wave -position 9  sim:/cpu_batch_vlg_tst/dwe
+# WARNING: No extended dataflow license exists
+add wave -position 10  sim:/cpu_batch_vlg_tst/mycpu/dmemop
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+do riscv_hardware_run_msim_rtl_verilog.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# Error 31: Unable to unlink file "D:/HomeWork/ShuDianShiYan/12/exp12/hardware/simulation/modelsim/rtl_work/_lib.qdb".
+# Error 31: Unable to unlink file "D:/HomeWork/ShuDianShiYan/12/exp12/hardware/simulation/modelsim/rtl_work/_lib1_0.qdb".
+# Error 31: Unable to unlink file "D:/HomeWork/ShuDianShiYan/12/exp12/hardware/simulation/modelsim/rtl_work/_lib1_0.qpg".
+# Error 31: Unable to unlink file "D:/HomeWork/ShuDianShiYan/12/exp12/hardware/simulation/modelsim/rtl_work/_lib1_0.qtl".
+# Error 133: Unable to remove directory "D:/HomeWork/ShuDianShiYan/12/exp12/hardware/simulation/modelsim/rtl_work".
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 2020.1 Lib Mapping Utility 2020.02 Feb 28 2020
+# vmap work rtl_work 
+# Modifying modelsim.ini
+# 
+# vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/regfile.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 20:00:38 on Nov 29,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/regfile.v 
+# -- Compiling module regfile
+# 
+# Top level modules:
+# 	regfile
+# End time: 20:00:38 on Nov 29,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/immgen.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 20:00:38 on Nov 29,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/immgen.v 
+# -- Compiling module imm_gen
+# 
+# Top level modules:
+# 	imm_gen
+# End time: 20:00:38 on Nov 29,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/define.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 20:00:38 on Nov 29,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/define.v 
+# End time: 20:00:38 on Nov 29,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/contrgen.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 20:00:38 on Nov 29,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/contrgen.v 
+# -- Compiling module contr_gen
+# 
+# Top level modules:
+# 	contr_gen
+# End time: 20:00:39 on Nov 29,2021, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/branch_cond.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 20:00:39 on Nov 29,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/branch_cond.v 
+# -- Compiling module branch_cond
+# 
+# Top level modules:
+# 	branch_cond
+# End time: 20:00:39 on Nov 29,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/alu.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 20:00:39 on Nov 29,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/alu.v 
+# -- Compiling module alu
+# -- Compiling module adder
+# 
+# Top level modules:
+# 	alu
+# End time: 20:00:39 on Nov 29,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 20:00:39 on Nov 29,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v 
+# -- Compiling module pipeline
+# -- Compiling module IF
+# -- Compiling module IF_ID_reg
+# -- Compiling module ID
+# -- Compiling module ID_EX_reg
+# -- Compiling module EX
+# -- Compiling module EX_M_reg
+# -- Compiling module M
+# -- Compiling module M_WB_reg
+# -- Compiling module WB
+# 
+# Top level modules:
+# 	pipeline
+# End time: 20:00:39 on Nov 29,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/cpu_ctrl.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 20:00:39 on Nov 29,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/cpu_ctrl.v 
+# -- Compiling module forward_detecter
+# -- Compiling module load_store_detecter
+# -- Compiling module PC
+# -- Compiling module pipeline_status
+# 
+# Top level modules:
+# 	forward_detecter
+# 	load_store_detecter
+# 	PC
+# 	pipeline_status
+# End time: 20:00:39 on Nov 29,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vlog -vlog01compat -work work +incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/modelsim/cpu_batch {D:/HomeWork/ShuDianShiYan/12/exp12/hardware/modelsim/cpu_batch/cpu_batch.vt}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 20:00:39 on Nov 29,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/modelsim/cpu_batch" D:/HomeWork/ShuDianShiYan/12/exp12/hardware/modelsim/cpu_batch/cpu_batch.vt 
+# -- Compiling module cpu_batch_vlg_tst
+# -- Compiling module testdmem
+# -- Compiling module testmem
+# -- Compiling module dmem
+# 
+# Top level modules:
+# 	cpu_batch_vlg_tst
+# End time: 20:00:39 on Nov 29,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver -L rtl_work -L work -voptargs="+acc"  cpu_batch_vlg_tst
+# End time: 20:00:43 on Nov 29,2021, Elapsed time: 0:31:10
+# Errors: 3, Warnings: 0
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver -L rtl_work -L work -voptargs=""+acc"" cpu_batch_vlg_tst 
+# Start time: 20:00:43 on Nov 29,2021
+# Loading work.cpu_batch_vlg_tst
+# ** Error: (vsim-7) Failed to open data file "D:/HomeWork/ShuDianShiYan/12/exp12/hardware/simulation/modelsim/rtl_work/testdmem/_primary.dat" in read mode.
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-7) Failed to open data file "D:/HomeWork/ShuDianShiYan/12/exp12/hardware/simulation/modelsim/rtl_work/testmem/_primary.dat" in read mode.
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-7) Failed to open data file "D:/HomeWork/ShuDianShiYan/12/exp12/hardware/simulation/modelsim/rtl_work/dmem/_primary.dat" in read mode.
+# No such file or directory. (errno = ENOENT)
+# Loading work.pipeline
+# Loading work.forward_detecter
+# Loading work.load_store_detecter
+# Loading work.pipeline_status
+# Loading work.PC
+# Loading work.IF
+# Loading work.IF_ID_reg
+# Loading work.ID
+# Loading work.contr_gen
+# Loading work.regfile
+# Loading work.imm_gen
+# Loading work.ID_EX_reg
+# Loading work.EX
+# Loading work.alu
+# Loading work.adder
+# Loading work.EX_M_reg
+# Loading work.M
+# Loading work.branch_cond
+# Loading work.M_WB_reg
+# Loading work.WB
+# 
+# add wave *
+# view structure
+# .main_pane.structure.interior.cs.body.struct
+# view signals
+# .main_pane.objects.interior.cs.body.tree
+# run -all
+# ~~~ Begin test case     rv32ui-p-sh ~~~
+# ~~~ OK:test case     rv32ui-p-sh finshed OK at cycle 518.
+# ** Note: $stop    : D:/HomeWork/ShuDianShiYan/12/exp12/hardware/modelsim/cpu_batch/cpu_batch.vt(278)
+#    Time: 10485 ns  Iteration: 0  Instance: /cpu_batch_vlg_tst
+# Break in NamedBeginStat TestBench at D:/HomeWork/ShuDianShiYan/12/exp12/hardware/modelsim/cpu_batch/cpu_batch.vt line 278
+add wave -position insertpoint sim:/cpu_batch_vlg_tst/mycpu/EX_instance/alu_instance/*
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Error: (vsim-7) Failed to open data file "D:/HomeWork/ShuDianShiYan/12/exp12/hardware/simulation/modelsim/rtl_work/testdmem/_primary.dat" in read mode.
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-7) Failed to open data file "D:/HomeWork/ShuDianShiYan/12/exp12/hardware/simulation/modelsim/rtl_work/testmem/_primary.dat" in read mode.
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-7) Failed to open data file "D:/HomeWork/ShuDianShiYan/12/exp12/hardware/simulation/modelsim/rtl_work/dmem/_primary.dat" in read mode.
+# No such file or directory. (errno = ENOENT)
+run -all
+# ~~~ Begin test case     rv32ui-p-sh ~~~
+# ~~~ OK:test case     rv32ui-p-sh finshed OK at cycle 518.
+# ** Note: $stop    : D:/HomeWork/ShuDianShiYan/12/exp12/hardware/modelsim/cpu_batch/cpu_batch.vt(278)
+#    Time: 10485 ns  Iteration: 0  Instance: /cpu_batch_vlg_tst
+# Break in NamedBeginStat TestBench at D:/HomeWork/ShuDianShiYan/12/exp12/hardware/modelsim/cpu_batch/cpu_batch.vt line 278
+add wave -position insertpoint  \
+sim:/cpu_batch_vlg_tst/mycpu/M_instance/branch_cond_instance/branch
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Error: (vsim-7) Failed to open data file "D:/HomeWork/ShuDianShiYan/12/exp12/hardware/simulation/modelsim/rtl_work/testdmem/_primary.dat" in read mode.
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-7) Failed to open data file "D:/HomeWork/ShuDianShiYan/12/exp12/hardware/simulation/modelsim/rtl_work/testmem/_primary.dat" in read mode.
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-7) Failed to open data file "D:/HomeWork/ShuDianShiYan/12/exp12/hardware/simulation/modelsim/rtl_work/dmem/_primary.dat" in read mode.
+# No such file or directory. (errno = ENOENT)
+run -all
+# ~~~ Begin test case     rv32ui-p-sh ~~~
+# ~~~ OK:test case     rv32ui-p-sh finshed OK at cycle 518.
+# ** Note: $stop    : D:/HomeWork/ShuDianShiYan/12/exp12/hardware/modelsim/cpu_batch/cpu_batch.vt(278)
+#    Time: 10485 ns  Iteration: 0  Instance: /cpu_batch_vlg_tst
+# Break in NamedBeginStat TestBench at D:/HomeWork/ShuDianShiYan/12/exp12/hardware/modelsim/cpu_batch/cpu_batch.vt line 278
+add wave -position insertpoint  \
+sim:/cpu_batch_vlg_tst/mycpu/M_instance/pc_branch
+run
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Error: (vsim-7) Failed to open data file "D:/HomeWork/ShuDianShiYan/12/exp12/hardware/simulation/modelsim/rtl_work/testdmem/_primary.dat" in read mode.
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-7) Failed to open data file "D:/HomeWork/ShuDianShiYan/12/exp12/hardware/simulation/modelsim/rtl_work/testmem/_primary.dat" in read mode.
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-7) Failed to open data file "D:/HomeWork/ShuDianShiYan/12/exp12/hardware/simulation/modelsim/rtl_work/dmem/_primary.dat" in read mode.
+# No such file or directory. (errno = ENOENT)
+run -all
+# ~~~ Begin test case     rv32ui-p-sh ~~~
+# ~~~ OK:test case     rv32ui-p-sh finshed OK at cycle 518.
+# ** Note: $stop    : D:/HomeWork/ShuDianShiYan/12/exp12/hardware/modelsim/cpu_batch/cpu_batch.vt(278)
+#    Time: 10485 ns  Iteration: 0  Instance: /cpu_batch_vlg_tst
+# Break in NamedBeginStat TestBench at D:/HomeWork/ShuDianShiYan/12/exp12/hardware/modelsim/cpu_batch/cpu_batch.vt line 278
+# End time: 20:21:01 on Nov 29,2021, Elapsed time: 0:20:18
 # Errors: 3, Warnings: 0

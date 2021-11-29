@@ -17,7 +17,7 @@ module pipeline(
     output [31:0]   dbgdata
     );
 
-wire [31:0] nextpc_mem, pc, pc1, pc2, instr, instr1, busW, imm, imm2, rs1, rs12, rs2, rs22, rs23, nextpc_pc, nextpc_pc3,
+wire [31:0] nextpc_mem, pc, pc1, pc2, instr, instr1, busW, imm, imm2, rs1, rs12, rs2, rs22, rs23, rs2_forward, nextpc_pc, nextpc_pc3,
             nextpc_rs1, nextpc_rs13, aluresult, aluresult3, aluresult4, dmemdata, dmemdata4;
 wire [4:0] rs1_addr, rs2_addr, rs1_addr2, rs2_addr2, rw, rd, rd2, rd3;
 wire [3:0] ALUctr, ALUctr2;
@@ -44,8 +44,9 @@ ID_EX_reg ID_EX_reg_instance(pl_ctrl_EX, clk, pc1, imm, rs1, rs2, rs1_addr, rs2_
                                         pc2, imm2, rs12, rs22, rs1_addr2, rs2_addr2, rd2, extop2, regwr2, ALUAsrc2, ALUBsrc2, ALUctr2, branch2, MemtoReg2, memwr2, memop2);
 EX EX_instance(clr, clk, pc2, imm2, rs12, rs22, ALUAsrc2, ALUBsrc2, ALUctr2,
                         forward_rs1, forward_rs2, aluresult3, busW,
-                        nextpc_pc, nextpc_rs1, less, zero, aluresult);
-EX_M_reg EX_M_reg_instance(pl_ctrl_MEM, clk, nextpc_pc, nextpc_rs1, less, zero, rs22, aluresult, rd2, branch2, MemtoReg2, memwr2, memop2, regwr2,
+                        nextpc_pc, nextpc_rs1, less, zero, aluresult,
+                        rs2_forward);
+EX_M_reg EX_M_reg_instance(pl_ctrl_MEM, clk, nextpc_pc, nextpc_rs1, less, zero, rs2_forward, aluresult, rd2, branch2, MemtoReg2, memwr2, memop2, regwr2,
                                         nextpc_pc3, nextpc_rs13, less3, zero3, rs23, aluresult3, rd3, branch3, MemtoReg3, memwr3, memop3, regwr3);
 M M_instance(clr, clk, aluresult3, nextpc_pc3, nextpc_rs13, less3, zero3, branch3, memop3, memwr3, rs23, 
                         nextpc_mem, dmemdata, pc_branch,
@@ -253,7 +254,8 @@ module EX (
     output      [31:0]  nextpc_rs1,
     output              less,
     output              zero,
-    output      [31:0]  aluresult
+    output      [31:0]  aluresult,
+    output      [31:0]  rs2_forward
 );
 
 wire [31:0] dataa;
@@ -262,6 +264,7 @@ wire [31:0] datab;
 wire [31:0] rs1_proc = forward_rs1[0] ? aluresult_wb : (forward_rs1[1] ? aluresult_mem : rs1);
 wire [31:0] rs2_proc = forward_rs2[0] ? aluresult_wb : (forward_rs2[1] ? aluresult_mem : rs2);
 
+assign rs2_forward = rs2_proc;
 assign nextpc_pc = pc + imm;
 assign nextpc_rs1 = rs1_proc + imm;
 assign dataa = ALUAsrc?pc:rs1_proc;

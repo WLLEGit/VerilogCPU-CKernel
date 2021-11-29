@@ -1,5 +1,5 @@
 Analysis & Synthesis report for riscv_hardware
-Mon Nov 29 18:53:29 2021
+Mon Nov 29 19:24:28 2021
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -46,7 +46,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Mon Nov 29 18:53:28 2021       ;
+; Analysis & Synthesis Status     ; Successful - Mon Nov 29 19:24:28 2021       ;
 ; Quartus Prime Version           ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                   ; riscv_hardware                              ;
 ; Top-level Entity Name           ; pipeline                                    ;
@@ -166,7 +166,7 @@ https://fpgasoftware.intel.com/eula.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   0.1%      ;
+;     Processor 2            ;   0.0%      ;
 ;     Processor 3            ;   0.0%      ;
 ;     Processor 4            ;   0.0%      ;
 +----------------------------+-------------+
@@ -193,14 +193,14 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------+-----------+
 ; Resource                                    ; Usage     ;
 +---------------------------------------------+-----------+
-; Estimate of Logic utilization (ALMs needed) ; 1349      ;
+; Estimate of Logic utilization (ALMs needed) ; 1347      ;
 ;                                             ;           ;
-; Combinational ALUT usage for logic          ; 1470      ;
-;     -- 7 input functions                    ; 22        ;
-;     -- 6 input functions                    ; 938       ;
-;     -- 5 input functions                    ; 210       ;
-;     -- 4 input functions                    ; 94        ;
-;     -- <=3 input functions                  ; 206       ;
+; Combinational ALUT usage for logic          ; 1511      ;
+;     -- 7 input functions                    ; 15        ;
+;     -- 6 input functions                    ; 920       ;
+;     -- 5 input functions                    ; 244       ;
+;     -- 4 input functions                    ; 99        ;
+;     -- <=3 input functions                  ; 233       ;
 ;                                             ;           ;
 ; Dedicated logic registers                   ; 1465      ;
 ;                                             ;           ;
@@ -210,8 +210,8 @@ https://fpgasoftware.intel.com/eula.
 ;                                             ;           ;
 ; Maximum fan-out node                        ; clk~input ;
 ; Maximum fan-out                             ; 1468      ;
-; Total fan-out                               ; 12577     ;
-; Average fan-out                             ; 3.77      ;
+; Total fan-out                               ; 12689     ;
+; Average fan-out                             ; 3.76      ;
 +---------------------------------------------+-----------+
 
 
@@ -220,22 +220,22 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+----------------------------------------------------------+---------------------+--------------+
 ; Compilation Hierarchy Node                ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                      ; Entity Name         ; Library Name ;
 +-------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+----------------------------------------------------------+---------------------+--------------+
-; |pipeline                                 ; 1470 (0)            ; 1465 (0)                  ; 0                 ; 0          ; 201  ; 0            ; |pipeline                                                ; pipeline            ; work         ;
-;    |EX:EX_instance|                       ; 438 (219)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|EX:EX_instance                                 ; EX                  ; work         ;
-;       |alu:alu_instance|                  ; 219 (160)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|EX:EX_instance|alu:alu_instance                ; alu                 ; work         ;
-;          |adder:alu_addr|                 ; 59 (59)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|EX:EX_instance|alu:alu_instance|adder:alu_addr ; adder               ; work         ;
-;    |EX_M_reg:EX_M_reg_instance|           ; 140 (140)           ; 144 (144)                 ; 0                 ; 0          ; 0    ; 0            ; |pipeline|EX_M_reg:EX_M_reg_instance                     ; EX_M_reg            ; work         ;
-;    |ID:ID_instance|                       ; 47 (0)              ; 992 (0)                   ; 0                 ; 0          ; 0    ; 0            ; |pipeline|ID:ID_instance                                 ; ID                  ; work         ;
-;       |contr_gen:contr_gen_instance|      ; 16 (16)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|ID:ID_instance|contr_gen:contr_gen_instance    ; contr_gen           ; work         ;
+; |pipeline                                 ; 1511 (0)            ; 1465 (0)                  ; 0                 ; 0          ; 201  ; 0            ; |pipeline                                                ; pipeline            ; work         ;
+;    |EX:EX_instance|                       ; 454 (242)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|EX:EX_instance                                 ; EX                  ; work         ;
+;       |alu:alu_instance|                  ; 212 (164)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|EX:EX_instance|alu:alu_instance                ; alu                 ; work         ;
+;          |adder:alu_addr|                 ; 48 (48)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|EX:EX_instance|alu:alu_instance|adder:alu_addr ; adder               ; work         ;
+;    |EX_M_reg:EX_M_reg_instance|           ; 161 (161)           ; 144 (144)                 ; 0                 ; 0          ; 0    ; 0            ; |pipeline|EX_M_reg:EX_M_reg_instance                     ; EX_M_reg            ; work         ;
+;    |ID:ID_instance|                       ; 51 (0)              ; 992 (0)                   ; 0                 ; 0          ; 0    ; 0            ; |pipeline|ID:ID_instance                                 ; ID                  ; work         ;
+;       |contr_gen:contr_gen_instance|      ; 20 (20)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|ID:ID_instance|contr_gen:contr_gen_instance    ; contr_gen           ; work         ;
 ;       |regfile:myregfile|                 ; 31 (31)             ; 992 (992)                 ; 0                 ; 0          ; 0    ; 0            ; |pipeline|ID:ID_instance|regfile:myregfile               ; regfile             ; work         ;
-;    |ID_EX_reg:ID_EX_reg_instance|         ; 728 (728)           ; 159 (159)                 ; 0                 ; 0          ; 0    ; 0            ; |pipeline|ID_EX_reg:ID_EX_reg_instance                   ; ID_EX_reg           ; work         ;
+;    |ID_EX_reg:ID_EX_reg_instance|         ; 725 (725)           ; 159 (159)                 ; 0                 ; 0          ; 0    ; 0            ; |pipeline|ID_EX_reg:ID_EX_reg_instance                   ; ID_EX_reg           ; work         ;
 ;    |IF_ID_reg:IFIDreg_instance|           ; 2 (2)               ; 64 (64)                   ; 0                 ; 0          ; 0    ; 0            ; |pipeline|IF_ID_reg:IFIDreg_instance                     ; IF_ID_reg           ; work         ;
 ;    |M:M_instance|                         ; 2 (0)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|M:M_instance                                   ; M                   ; work         ;
 ;       |branch_cond:branch_cond_instance|  ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|M:M_instance|branch_cond:branch_cond_instance  ; branch_cond         ; work         ;
 ;    |M_WB_reg:M_WB_reg_instance|           ; 0 (0)               ; 71 (71)                   ; 0                 ; 0          ; 0    ; 0            ; |pipeline|M_WB_reg:M_WB_reg_instance                     ; M_WB_reg            ; work         ;
 ;    |PC:PC_instance|                       ; 64 (64)             ; 32 (32)                   ; 0                 ; 0          ; 0    ; 0            ; |pipeline|PC:PC_instance                                 ; PC                  ; work         ;
 ;    |WB:WB_instance|                       ; 32 (32)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|WB:WB_instance                                 ; WB                  ; work         ;
-;    |forward_detecter:f_d_i|               ; 11 (11)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|forward_detecter:f_d_i                         ; forward_detecter    ; work         ;
+;    |forward_detecter:f_d_i|               ; 14 (14)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|forward_detecter:f_d_i                         ; forward_detecter    ; work         ;
 ;    |load_store_detecter:l_s_d|            ; 4 (4)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|load_store_detecter:l_s_d                      ; load_store_detecter ; work         ;
 ;    |pipeline_status:pipeline_status_ctrl| ; 2 (2)               ; 3 (3)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|pipeline_status:pipeline_status_ctrl           ; pipeline_status     ; work         ;
 +-------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+----------------------------------------------------------+---------------------+--------------+
@@ -309,37 +309,38 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                     ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------+
-; 3:1                ; 5 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|MemtoReg_out            ;
-; 3:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |pipeline|IF_ID_reg:IFIDreg_instance|instr_out[19]             ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|ALUAsrc_out             ;
+; 3:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |pipeline|IF_ID_reg:IFIDreg_instance|pc_out[18]                ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |pipeline|PC:PC_instance|pc[0]                                 ;
-; 4:1                ; 6 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|imm_out[8]              ;
-; 4:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|imm_out[29]             ;
-; 5:1                ; 30 bits   ; 90 LEs        ; 60 LEs               ; 30 LEs                 ; Yes        ; |pipeline|PC:PC_instance|pc[19]                                ;
-; 5:1                ; 4 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|imm_out[4]              ;
-; 5:1                ; 4 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|imm_out[23]             ;
-; 6:1                ; 8 bits    ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|imm_out[14]             ;
-; 6:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|branch_out[2]           ;
-; 33:1               ; 32 bits   ; 704 LEs       ; 640 LEs              ; 64 LEs                 ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|rs1_out[0]              ;
-; 33:1               ; 32 bits   ; 704 LEs       ; 640 LEs              ; 64 LEs                 ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|rs2_out[26]             ;
-; 22:1               ; 8 bits    ; 112 LEs       ; 64 LEs               ; 48 LEs                 ; Yes        ; |pipeline|EX_M_reg:EX_M_reg_instance|aluresult_out[19]         ;
-; 21:1               ; 5 bits    ; 70 LEs        ; 50 LEs               ; 20 LEs                 ; Yes        ; |pipeline|EX_M_reg:EX_M_reg_instance|aluresult_out[6]          ;
-; 23:1               ; 2 bits    ; 30 LEs        ; 20 LEs               ; 10 LEs                 ; Yes        ; |pipeline|EX_M_reg:EX_M_reg_instance|aluresult_out[10]         ;
-; 21:1               ; 3 bits    ; 42 LEs        ; 30 LEs               ; 12 LEs                 ; Yes        ; |pipeline|EX_M_reg:EX_M_reg_instance|aluresult_out[14]         ;
-; 25:1               ; 3 bits    ; 48 LEs        ; 36 LEs               ; 12 LEs                 ; Yes        ; |pipeline|EX_M_reg:EX_M_reg_instance|aluresult_out[28]         ;
+; 4:1                ; 6 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|imm_out[5]              ;
+; 4:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|imm_out[30]             ;
+; 5:1                ; 30 bits   ; 90 LEs        ; 60 LEs               ; 30 LEs                 ; Yes        ; |pipeline|PC:PC_instance|pc[12]                                ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|imm_out[2]              ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|imm_out[24]             ;
+; 6:1                ; 8 bits    ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|imm_out[12]             ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|branch_out[1]           ;
+; 33:1               ; 32 bits   ; 704 LEs       ; 640 LEs              ; 64 LEs                 ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|rs1_out[6]              ;
+; 33:1               ; 32 bits   ; 704 LEs       ; 640 LEs              ; 64 LEs                 ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|rs2_out[17]             ;
+; 22:1               ; 8 bits    ; 112 LEs       ; 64 LEs               ; 48 LEs                 ; Yes        ; |pipeline|EX_M_reg:EX_M_reg_instance|aluresult_out[17]         ;
+; 21:1               ; 5 bits    ; 70 LEs        ; 50 LEs               ; 20 LEs                 ; Yes        ; |pipeline|EX_M_reg:EX_M_reg_instance|aluresult_out[4]          ;
+; 23:1               ; 2 bits    ; 30 LEs        ; 20 LEs               ; 10 LEs                 ; Yes        ; |pipeline|EX_M_reg:EX_M_reg_instance|aluresult_out[9]          ;
+; 21:1               ; 3 bits    ; 42 LEs        ; 30 LEs               ; 12 LEs                 ; Yes        ; |pipeline|EX_M_reg:EX_M_reg_instance|aluresult_out[12]         ;
+; 25:1               ; 3 bits    ; 48 LEs        ; 36 LEs               ; 12 LEs                 ; Yes        ; |pipeline|EX_M_reg:EX_M_reg_instance|aluresult_out[29]         ;
 ; 24:1               ; 2 bits    ; 32 LEs        ; 22 LEs               ; 10 LEs                 ; Yes        ; |pipeline|EX_M_reg:EX_M_reg_instance|aluresult_out[26]         ;
-; 24:1               ; 3 bits    ; 48 LEs        ; 36 LEs               ; 12 LEs                 ; Yes        ; |pipeline|EX_M_reg:EX_M_reg_instance|aluresult_out[1]          ;
-; 23:1               ; 2 bits    ; 30 LEs        ; 30 LEs               ; 0 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|ALUctr_out[0]           ;
-; 30:1               ; 2 bits    ; 40 LEs        ; 40 LEs               ; 0 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|ALUctr_out[1]           ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |pipeline|EX:EX_instance|rs1_proc[10]                          ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |pipeline|EX:EX_instance|alu:alu_instance|ShiftRight0          ;
+; 24:1               ; 3 bits    ; 48 LEs        ; 36 LEs               ; 12 LEs                 ; Yes        ; |pipeline|EX_M_reg:EX_M_reg_instance|aluresult_out[2]          ;
+; 23:1               ; 2 bits    ; 30 LEs        ; 30 LEs               ; 0 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|ALUctr_out[2]           ;
+; 30:1               ; 2 bits    ; 40 LEs        ; 40 LEs               ; 0 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|ALUctr_out[3]           ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |pipeline|EX:EX_instance|rs1_proc[21]                          ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |pipeline|EX:EX_instance|datab[17]                             ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |pipeline|EX:EX_instance|rs2_forward[24]                       ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |pipeline|EX:EX_instance|alu:alu_instance|ShiftLeft0           ;
 ; 4:1                ; 49 bits   ; 98 LEs        ; 98 LEs               ; 0 LEs                  ; No         ; |pipeline|EX:EX_instance|alu:alu_instance|ShiftLeft0           ;
 ; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |pipeline|EX:EX_instance|alu:alu_instance|ShiftLeft0           ;
 ; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |pipeline|EX:EX_instance|alu:alu_instance|ShiftLeft0           ;
 ; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |pipeline|EX:EX_instance|alu:alu_instance|ShiftLeft0           ;
 ; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |pipeline|EX:EX_instance|alu:alu_instance|ShiftRight0          ;
 ; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |pipeline|EX:EX_instance|alu:alu_instance|ShiftRight1          ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |pipeline|ID:ID_instance|contr_gen:contr_gen_instance|extop[0] ;
-; 5:1                ; 32 bits   ; 96 LEs        ; 96 LEs               ; 0 LEs                  ; No         ; |pipeline|EX:EX_instance|datab[6]                              ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |pipeline|ID:ID_instance|contr_gen:contr_gen_instance|extop[1] ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------+
 
 
@@ -362,27 +363,27 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ;     ENA SCLR          ; 96                          ;
 ;     SCLR              ; 327                         ;
 ;     plain             ; 50                          ;
-; arriav_lcell_comb     ; 1470                        ;
+; arriav_lcell_comb     ; 1511                        ;
 ;     arith             ; 94                          ;
 ;         1 data inputs ; 30                          ;
 ;         2 data inputs ; 32                          ;
 ;         4 data inputs ; 32                          ;
-;     extend            ; 22                          ;
-;         7 data inputs ; 22                          ;
-;     normal            ; 1321                        ;
-;         2 data inputs ; 38                          ;
-;         3 data inputs ; 89                          ;
-;         4 data inputs ; 46                          ;
-;         5 data inputs ; 210                         ;
-;         6 data inputs ; 938                         ;
+;     extend            ; 15                          ;
+;         7 data inputs ; 15                          ;
+;     normal            ; 1369                        ;
+;         2 data inputs ; 55                          ;
+;         3 data inputs ; 114                         ;
+;         4 data inputs ; 36                          ;
+;         5 data inputs ; 244                         ;
+;         6 data inputs ; 920                         ;
 ;     shared            ; 33                          ;
 ;         0 data inputs ; 1                           ;
-;         2 data inputs ; 16                          ;
-;         4 data inputs ; 16                          ;
+;         2 data inputs ; 1                           ;
+;         4 data inputs ; 31                          ;
 ; boundary_port         ; 201                         ;
 ;                       ;                             ;
-; Max LUT depth         ; 11.60                       ;
-; Average LUT depth     ; 4.44                        ;
+; Max LUT depth         ; 10.20                       ;
+; Average LUT depth     ; 4.24                        ;
 +-----------------------+-----------------------------+
 
 
@@ -391,7 +392,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:09     ;
+; Top            ; 00:00:04     ;
 +----------------+--------------+
 
 
@@ -401,21 +402,21 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
-    Info: Processing started: Mon Nov 29 18:53:05 2021
+    Info: Processing started: Mon Nov 29 19:24:12 2021
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off riscv_hardware -c riscv_hardware
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
 Info (12021): Found 10 design units, including 10 entities, in source file cpu/pipeline.v
     Info (12023): Found entity 1: pipeline File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 3
-    Info (12023): Found entity 2: IF File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 59
-    Info (12023): Found entity 3: IF_ID_reg File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 77
-    Info (12023): Found entity 4: ID File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 101
-    Info (12023): Found entity 5: ID_EX_reg File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 139
-    Info (12023): Found entity 6: EX File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 236
-    Info (12023): Found entity 7: EX_M_reg File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 273
-    Info (12023): Found entity 8: M File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 349
-    Info (12023): Found entity 9: M_WB_reg File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 392
-    Info (12023): Found entity 10: WB File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 432
+    Info (12023): Found entity 2: IF File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 60
+    Info (12023): Found entity 3: IF_ID_reg File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 78
+    Info (12023): Found entity 4: ID File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 102
+    Info (12023): Found entity 5: ID_EX_reg File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 140
+    Info (12023): Found entity 6: EX File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 237
+    Info (12023): Found entity 7: EX_M_reg File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 276
+    Info (12023): Found entity 8: M File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 352
+    Info (12023): Found entity 9: M_WB_reg File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 395
+    Info (12023): Found entity 10: WB File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 435
 Info (12021): Found 1 design units, including 1 entities, in source file cpu/regfile.v
     Info (12023): Found entity 1: regfile File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/regfile.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file cpu/immgen.v
@@ -449,29 +450,29 @@ Info (12128): Elaborating entity "PC" for hierarchy "PC:PC_instance" File: D:/Ho
 Info (12128): Elaborating entity "IF" for hierarchy "IF:IF_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 40
 Info (12128): Elaborating entity "IF_ID_reg" for hierarchy "IF_ID_reg:IFIDreg_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 41
 Info (12128): Elaborating entity "ID" for hierarchy "ID:ID_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 42
-Info (12128): Elaborating entity "contr_gen" for hierarchy "ID:ID_instance|contr_gen:contr_gen_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 133
-Info (12128): Elaborating entity "regfile" for hierarchy "ID:ID_instance|regfile:myregfile" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 134
-Info (12128): Elaborating entity "imm_gen" for hierarchy "ID:ID_instance|imm_gen:imm_gen_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 135
+Info (12128): Elaborating entity "contr_gen" for hierarchy "ID:ID_instance|contr_gen:contr_gen_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 134
+Info (12128): Elaborating entity "regfile" for hierarchy "ID:ID_instance|regfile:myregfile" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 135
+Info (12128): Elaborating entity "imm_gen" for hierarchy "ID:ID_instance|imm_gen:imm_gen_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 136
 Info (12128): Elaborating entity "ID_EX_reg" for hierarchy "ID_EX_reg:ID_EX_reg_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 44
-Info (12128): Elaborating entity "EX" for hierarchy "EX:EX_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 47
-Info (12128): Elaborating entity "alu" for hierarchy "EX:EX_instance|alu:alu_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 269
+Info (12128): Elaborating entity "EX" for hierarchy "EX:EX_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 48
+Info (12128): Elaborating entity "alu" for hierarchy "EX:EX_instance|alu:alu_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 272
 Info (12128): Elaborating entity "adder" for hierarchy "EX:EX_instance|alu:alu_instance|adder:alu_addr" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/alu.v Line: 14
-Info (12128): Elaborating entity "EX_M_reg" for hierarchy "EX_M_reg:EX_M_reg_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 49
-Info (12128): Elaborating entity "M" for hierarchy "M:M_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 52
-Info (12128): Elaborating entity "branch_cond" for hierarchy "M:M_instance|branch_cond:branch_cond_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 387
-Info (12128): Elaborating entity "M_WB_reg" for hierarchy "M_WB_reg:M_WB_reg_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 54
-Info (12128): Elaborating entity "WB" for hierarchy "WB:WB_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 55
+Info (12128): Elaborating entity "EX_M_reg" for hierarchy "EX_M_reg:EX_M_reg_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 50
+Info (12128): Elaborating entity "M" for hierarchy "M:M_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 53
+Info (12128): Elaborating entity "branch_cond" for hierarchy "M:M_instance|branch_cond:branch_cond_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 390
+Info (12128): Elaborating entity "M_WB_reg" for hierarchy "M_WB_reg:M_WB_reg_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 55
+Info (12128): Elaborating entity "WB" for hierarchy "WB:WB_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 56
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 2892 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 2907 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 66 input pins
     Info (21059): Implemented 135 output pins
-    Info (21061): Implemented 2691 logic cells
+    Info (21061): Implemented 2706 logic cells
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 1 warning
     Info: Peak virtual memory: 4840 megabytes
-    Info: Processing ended: Mon Nov 29 18:53:29 2021
-    Info: Elapsed time: 00:00:24
-    Info: Total CPU time (on all processors): 00:00:38
+    Info: Processing ended: Mon Nov 29 19:24:28 2021
+    Info: Elapsed time: 00:00:16
+    Info: Total CPU time (on all processors): 00:00:30
 
 
