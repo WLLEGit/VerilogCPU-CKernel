@@ -10,7 +10,7 @@ z2
 cModel Technology
 Z0 dD:/HomeWork/ShuDianShiYan/12/exp12/hardware/simulation/modelsim
 vadder
-Z1 !s110 1638171384
+Z1 !s110 1638183276
 !i10b 1
 !s100 VBW[9WYIYURD2k@>e>m[?3
 Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
@@ -20,13 +20,13 @@ R0
 Z4 w1635521392
 Z5 8D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/alu.v
 Z6 FD:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/alu.v
-!i122 5
+!i122 4
 L0 50 23
 Z7 OV;L;2020.1;71
 r1
 !s85 0
 31
-Z8 !s108 1638171384.000000
+Z8 !s108 1638183276.000000
 Z9 !s107 D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/alu.v|
 Z10 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu|D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/alu.v|
 !i113 1
@@ -44,7 +44,7 @@ R0
 R4
 R5
 R6
-!i122 5
+!i122 4
 L0 1 48
 R7
 r1
@@ -68,7 +68,7 @@ R0
 w1635521365
 8D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/branch_cond.v
 FD:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/branch_cond.v
-!i122 4
+!i122 3
 L0 1 31
 R7
 r1
@@ -92,7 +92,7 @@ R0
 w1638099864
 8D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/contrgen.v
 FD:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/contrgen.v
-!i122 3
+!i122 2
 L0 1 166
 R7
 r1
@@ -108,12 +108,12 @@ R13
 vcpu_batch_vlg_tst
 R1
 !i10b 1
-!s100 ]gmA5SX1_F@cfBAen@jo02
+!s100 <fLS4Sh6WLF=KV^k[[CNo1
 R2
-I`mTjPCR7c?=^E5k3n_HEa0
+InXf`<I23g6_:Eez2no^;_0
 R3
 R0
-w1638171380
+w1638183268
 8D:/HomeWork/ShuDianShiYan/12/exp12/hardware/modelsim/cpu_batch/cpu_batch.vt
 FD:/HomeWork/ShuDianShiYan/12/exp12/hardware/modelsim/cpu_batch/cpu_batch.vt
 !i122 7
@@ -132,16 +132,16 @@ R13
 vEX
 R1
 !i10b 1
-!s100 3A3R5Re=cEKbd1KnHi;W_1
+!s100 gnFTCcEF0NE6zK?YGI7J<0
 R2
-IRmOm`JjWOGA036DP:`7Na0
+IbFV1GF0LMARYUlG4U_L_`1
 R3
 R0
-Z14 w1638171222
+Z14 w1638182953
 Z15 8D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v
 Z16 FD:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v
-!i122 6
-L0 196 36
+!i122 5
+L0 236 36
 R7
 r1
 !s85 0
@@ -157,16 +157,16 @@ n@e@x
 vEX_M_reg
 R1
 !i10b 1
-!s100 M=Hf=@hRB3Pa8i@I?9nNV1
+!s100 85K0mFe`k7d>fke`:8b>=1
 R2
-I5fE>^agf]h5:MS?M@mWVn1
+IB[bUH3fgfj<07]fgkaAmZ3
 R3
 R0
 R14
 R15
 R16
-!i122 6
-L0 233 47
+!i122 5
+L0 273 75
 R7
 r1
 !s85 0
@@ -182,23 +182,23 @@ n@e@x_@m_reg
 vforward_detecter
 R1
 !i10b 1
-!s100 3NnifTQ=>dgb1EF00cDR91
+!s100 o@7ON7zS78z9JijUJFPnX1
 R2
-IQ2[IB_3@<SSF@6io[T9ER1
+Il06MOZ^P0SHIBd>a>=CT;2
 R3
 R0
-Z19 w1638165913
+Z19 w1638183184
 Z20 8D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/cpu_ctrl.v
 Z21 FD:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/cpu_ctrl.v
-!i122 2
-Z22 L0 1 24
+!i122 6
+L0 2 24
 R7
 r1
 !s85 0
 31
 R8
-Z23 !s107 D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/cpu_ctrl.v|
-Z24 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu|D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/cpu_ctrl.v|
+Z22 !s107 D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/define.v|D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/cpu_ctrl.v|
+Z23 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu|D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/cpu_ctrl.v|
 !i113 1
 R11
 R12
@@ -206,16 +206,16 @@ R13
 vID
 R1
 !i10b 1
-!s100 =:V13KD37@W0b7:I=f@C^0
+!s100 BTSnW9TbLj@RK:VM;Yi;]2
 R2
-IIZI]Yg:Kn5i>2Lg4EScP`0
+I?Rm9SP5Ef3;SKOAnS34AK1
 R3
 R0
 R14
 R15
 R16
-!i122 6
-L0 98 37
+!i122 5
+L0 101 37
 R7
 r1
 !s85 0
@@ -231,16 +231,16 @@ n@i@d
 vID_EX_reg
 R1
 !i10b 1
-!s100 i7FHD@0;4`9`@7=;6:@UC0
+!s100 jljg9?Y]Lz9DRzanHKeWG3
 R2
-IPF`=nf_DlEYj9LEXjm0gL0
+Il]STo<mdHR^R25VAiM0Vg2
 R3
 R0
 R14
 R15
 R16
-!i122 6
-L0 136 59
+!i122 5
+L0 139 96
 R7
 r1
 !s85 0
@@ -264,7 +264,7 @@ R0
 R14
 R15
 R16
-!i122 6
+!i122 5
 L0 59 17
 R7
 r1
@@ -281,16 +281,16 @@ n@i@f
 vIF_ID_reg
 R1
 !i10b 1
-!s100 1E4HWgZ>]U08a:eF1Vi7A2
+!s100 :PF>TM64QSEV2ja0XZVk21
 R2
-Im_X6bVT`j]T6YoR8llZ5T3
+Im]0=F0k412C_C3=7kEgnA2
 R3
 R0
 R14
 R15
 R16
-!i122 6
-L0 77 20
+!i122 5
+L0 77 23
 R7
 r1
 !s85 0
@@ -304,7 +304,7 @@ R12
 R13
 n@i@f_@i@d_reg
 vimm_gen
-Z25 !s110 1638171383
+R1
 !i10b 1
 !s100 emnoUF`FZbmFM0gz]gQUm2
 R2
@@ -315,12 +315,12 @@ w1635521374
 8D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/immgen.v
 FD:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/immgen.v
 !i122 1
-R22
+Z24 L0 1 24
 R7
 r1
 !s85 0
 31
-Z26 !s108 1638171383.000000
+Z25 !s108 1638183275.000000
 !s107 D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/immgen.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu|D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/immgen.v|
 !i113 1
@@ -330,23 +330,23 @@ R13
 vload_store_detecter
 R1
 !i10b 1
-!s100 g^1;_SKcSjA_WWb2fTHd_1
+!s100 jW:Td9jU;1fK]FKFz=a3N2
 R2
-IYAKJ6SQ4T9fEo0^@ifi4:2
+I8b4oN[dL7=FH[ZU1lOXVW3
 R3
 R0
 R19
 R20
 R21
-!i122 2
-L0 26 9
+!i122 6
+L0 27 9
 R7
 r1
 !s85 0
 31
 R8
+R22
 R23
-R24
 !i113 1
 R11
 R12
@@ -354,16 +354,16 @@ R13
 vM
 R1
 !i10b 1
-!s100 LDzb6Y;P3=gdZ42=1O@b[0
+!s100 ^NK0Bk8ga>JTnY0z?a_l@1
 R2
-IX0:RFG>>Dj?[coL[Rbg_32
+I?jgzhcY7HV^ec];93_0bB3
 R3
 R0
 R14
 R15
 R16
-!i122 6
-L0 281 42
+!i122 5
+L0 349 42
 R7
 r1
 !s85 0
@@ -379,16 +379,16 @@ n@m
 vM_WB_reg
 R1
 !i10b 1
-!s100 mLV^QK>@^k87WCRR0CUnz3
+!s100 i9DR=Z8k93VNORR`PU7I[3
 R2
-I?9ah9Zm;NRB[[h2Q`WZ932
+IR9W26fN0gfLVUVSYYSB:Q3
 R3
 R0
 R14
 R15
 R16
-!i122 6
-L0 324 25
+!i122 5
+L0 392 39
 R7
 r1
 !s85 0
@@ -404,23 +404,23 @@ n@m_@w@b_reg
 vPC
 R1
 !i10b 1
-!s100 ?NG_Yiec52lJ:>8CXB5Db0
+!s100 0bCNS=XXG_U>Ld6k0]FiL3
 R2
-IdheUz^NXNl4HFQNeQQHT`1
+IFmJzWSNWd9M]X1K>1eJDR1
 R3
 R0
 R19
 R20
 R21
-!i122 2
-L0 36 29
+!i122 6
+L0 37 27
 R7
 r1
 !s85 0
 31
 R8
+R22
 R23
-R24
 !i113 1
 R11
 R12
@@ -429,15 +429,15 @@ n@p@c
 vpipeline
 R1
 !i10b 1
-!s100 g]S6:_a`n>Vd]D:P3T3:02
+!s100 KCOe@=8nha>VH]49_MKW@2
 R2
-IGhVJkbo@W3kz:NgNFF=ze1
+IVOEA_`1H=6IS2AOmBH7j03
 R3
 R0
 R14
 R15
 R16
-!i122 6
+!i122 5
 L0 3 55
 R7
 r1
@@ -453,29 +453,29 @@ R13
 vpipeline_status
 R1
 !i10b 1
-!s100 FMVIfOP2NXAOZenhI66jO3
+!s100 GI>60B2kBjb1fnIoA8A7b3
 R2
-IojUKgh?Mo@K_o:LE^EAN33
+IGmOi6[^EJ7V]1[l6Ro4WU0
 R3
 R0
 R19
 R20
 R21
-!i122 2
-L0 66 16
+!i122 6
+L0 65 48
 R7
 r1
 !s85 0
 31
 R8
+R22
 R23
-R24
 !i113 1
 R11
 R12
 R13
 vregfile
-R25
+!s110 1638183275
 !i10b 1
 !s100 [j3IT@WZUDS=neFOD=d6N2
 R2
@@ -486,12 +486,12 @@ w1635521381
 8D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/regfile.v
 FD:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/regfile.v
 !i122 0
-R22
+R24
 R7
 r1
 !s85 0
 31
-R26
+R25
 !s107 D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/regfile.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu|D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/regfile.v|
 !i113 1
@@ -501,16 +501,16 @@ R13
 vWB
 R1
 !i10b 1
-!s100 AFeg4=0T3=Szc44ScJ3O`2
+!s100 mjN_j0LcoB;>hW[7g2DU22
 R2
-IHeYoV79MKIFhYEG:fBU3E2
+I^aB3nNik3W:iQgB_n7^iT2
 R3
 R0
 R14
 R15
 R16
-!i122 6
-L0 350 13
+!i122 5
+L0 432 13
 R7
 r1
 !s85 0

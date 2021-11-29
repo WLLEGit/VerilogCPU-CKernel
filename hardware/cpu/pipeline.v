@@ -28,29 +28,29 @@ wire regwr, regwr2, regwr3, regwr4, MemtoReg, MemtoReg2, MemtoReg3, MemtoReg4,
 
 wire [1:0] forward_rs1, forward_rs2;
 
-wire flush;
+wire [1:0] pl_ctrl_pc, pl_ctrl_ID, pl_ctrl_EX, pl_ctrl_MEM, pl_ctrl_WB;
 
 assign dbgdata = pc;
 // cpu ctrl
 forward_detecter f_d_i(/*regwr2,*/ regwr3, regwr4, rs1_addr2, rs2_addr2, rd3, rw, forward_rs1, forward_rs2);
 load_store_detecter l_s_d(MemtoReg2, rd2, instr1[19:15], instr1[24:20], stall);
 
-pipeline_status pipeline_status_ctrl(clr, clk, pc_branch, flush);
-PC PC_instance(clr, clk, nextpc_mem, pc_branch, stall, pc);
+pipeline_status pipeline_status_ctrl(clr, clk, pc_branch, stall, pl_ctrl_pc, pl_ctrl_ID, pl_ctrl_EX, pl_ctrl_MEM, pl_ctrl_WB);
+PC PC_instance(pl_ctrl_pc, clk, nextpc_mem, pc_branch, pc);
 IF IF_instance(clr, clk, pc, instr, imemdataout, imemaddr, imemclk);
-IF_ID_reg IFIDreg_instance(flush, clk, pc, instr, pc1, instr1);
+IF_ID_reg IFIDreg_instance(pl_ctrl_ID, clk, pc, instr, pc1, instr1);
 ID ID_instance(clr, clk, instr1, regwr4, rw, busW, imm, rs1_addr, rs2_addr, rs1, rs2, rd, extop, regwr, ALUAsrc, ALUBsrc, ALUctr, branch, MemtoReg, memwr, memop);
-ID_EX_reg ID_EX_reg_instance(flush, clk, pc1, imm, rs1, rs2, rs1_addr, rs2_addr, rd, extop, regwr, ALUAsrc, ALUBsrc, ALUctr, branch, MemtoReg, memwr, memop,
+ID_EX_reg ID_EX_reg_instance(pl_ctrl_EX, clk, pc1, imm, rs1, rs2, rs1_addr, rs2_addr, rd, extop, regwr, ALUAsrc, ALUBsrc, ALUctr, branch, MemtoReg, memwr, memop,
                                         pc2, imm2, rs12, rs22, rs1_addr2, rs2_addr2, rd2, extop2, regwr2, ALUAsrc2, ALUBsrc2, ALUctr2, branch2, MemtoReg2, memwr2, memop2);
 EX EX_instance(clr, clk, pc2, imm2, rs12, rs22, ALUAsrc2, ALUBsrc2, ALUctr2,
-                        forward_rs1, forward_rs2, aluresult3, aluresult4,
+                        forward_rs1, forward_rs2, aluresult3, busW,
                         nextpc_pc, nextpc_rs1, less, zero, aluresult);
-EX_M_reg EX_M_reg_instance(flush, clk, nextpc_pc, nextpc_rs1, less, zero, rs22, aluresult, rd2, branch2, MemtoReg2, memwr2, memop2, regwr2,
+EX_M_reg EX_M_reg_instance(pl_ctrl_MEM, clk, nextpc_pc, nextpc_rs1, less, zero, rs22, aluresult, rd2, branch2, MemtoReg2, memwr2, memop2, regwr2,
                                         nextpc_pc3, nextpc_rs13, less3, zero3, rs23, aluresult3, rd3, branch3, MemtoReg3, memwr3, memop3, regwr3);
 M M_instance(clr, clk, aluresult3, nextpc_pc3, nextpc_rs13, less3, zero3, branch3, memop3, memwr3, rs23, 
                         nextpc_mem, dmemdata, pc_branch,
                         dmemaddr, dmemdataout, dmemdatain, dmemrdclk, dmemwrclk, dmemop, dmemwe);
-M_WB_reg M_WB_reg_instance(clr, clk, dmemdata, aluresult3, rd3, MemtoReg3, regwr3,
+M_WB_reg M_WB_reg_instance(pl_ctrl_WB, clk, dmemdata, aluresult3, rd3, MemtoReg3, regwr3,
                                         dmemdata4, aluresult4, rw, MemtoReg4, regwr4);
 WB WB_instance(clr, clk, dmemdata4, aluresult4, MemtoReg4, busW);
     
@@ -75,7 +75,7 @@ assign imemclk = clk;
 endmodule
 
 module IF_ID_reg (
-    input               clr,
+    input       [1:0]   pl_ctrl_ID,
     input               clk,
     input       [31:0]  pc_in,
     input       [31:0]  instr_in,
@@ -84,9 +84,12 @@ module IF_ID_reg (
 );
 
 always @(negedge clk) begin
-    if(clr) begin
+    if(pl_ctrl_ID == `PL_FLUSH) begin
         pc_out <= 32'd0;
         instr_out <= 32'd0;
+    end else if(pl_ctrl_ID == `PL_PAUSE) begin
+        pc_out <= pc_out;
+        instr_out <= instr_out;
     end else begin
         pc_out <= pc_in;
         instr_out <= instr_in;
@@ -134,7 +137,7 @@ imm_gen imm_gen_instance(instr, extop, imm);
 endmodule
 
 module ID_EX_reg (
-    input               clr,
+    input      [1:0]    pl_ctrl_EX,
     input               clk,
     
     input      [31:0]   pc_in,
@@ -173,22 +176,59 @@ module ID_EX_reg (
 );
 
 always @(negedge clk) begin
-    pc_out <= clr ? 32'd0 : pc_in;
-    imm_out <= clr ? 32'd0 : imm_in;
-    rs1_out <= clr ? 32'd0 : rs1_in;
-    rs2_out <= clr ? 32'd0 : rs2_in;
-    rs1_addr_out <= clr ? 4'd0 : rs1_addr_in;
-    rs2_addr_out <= clr ? 4'd0 : rs2_addr_in;
-    rd_out <= clr ? 4'd0 : rd_in;
-    extop_out <= clr ? 2'd0 : extop_in;
-    regwr_out <= clr ? 1'b0 : regwr_in;
-    ALUAsrc_out <= clr ? 1'b0 : ALUAsrc_in;
-    ALUBsrc_out <= clr ? 2'd0 : ALUBsrc_in;
-    ALUctr_out <= clr ? 4'd0 : ALUctr_in;
-    branch_out <= clr ? 2'd0 : branch_in;
-    MemtoReg_out <= clr ? 1'b0 : MemtoReg_in;
-    memwr_out <= clr ? 1'b0 : memwr_in;
-    memop_out <= clr ? 2'd0 : memop_in;
+    if(pl_ctrl_EX == `PL_FLUSH) begin
+        pc_out <= 32'd0;
+        imm_out <= 32'd0;
+        rs1_out <= 32'd0;
+        rs2_out <= 32'd0;
+        rs1_addr_out <= 4'd0;
+        rs2_addr_out <= 4'd0;
+        rd_out <= 4'd0;
+        extop_out <= 2'd0;
+        regwr_out <= 1'b0;
+        ALUAsrc_out <= 1'b0;
+        ALUBsrc_out <= 2'd0;
+        ALUctr_out <= 3'd0;
+        branch_out <= 2'd0;
+        MemtoReg_out <= 1'b0;
+        memwr_out <= 1'b0;
+        memop_out <= 2'd0;
+    end else if(pl_ctrl_EX == `PL_PAUSE) begin
+        pc_out <= pc_out;
+        imm_out <= imm_out;
+        rs1_out <= rs1_out;
+        rs2_out <= rs2_out;
+        rs1_addr_out <= rs1_addr_out;
+        rs2_addr_out <= rs2_addr_out;
+        rd_out <= rd_out;
+        extop_out <= extop_out;
+        regwr_out <= regwr_out;
+        ALUAsrc_out <= ALUAsrc_out;
+        ALUBsrc_out <= ALUBsrc_out;
+        ALUctr_out <= ALUctr_out;
+        branch_out <= branch_out;
+        MemtoReg_out <= MemtoReg_out;
+        memwr_out <= memwr_out;
+        memop_out <= memop_out;
+    end else begin
+        pc_out <= pc_in;
+        imm_out <= imm_in;
+        rs1_out <= rs1_in;
+        rs2_out <= rs2_in;
+        rs1_addr_out <= rs1_addr_in;
+        rs2_addr_out <= rs2_addr_in;
+        rd_out <= rd_in;
+        extop_out <= extop_in;
+        regwr_out <= regwr_in;
+        ALUAsrc_out <= ALUAsrc_in;
+        ALUBsrc_out <= ALUBsrc_in;
+        ALUctr_out <= ALUctr_in;
+        branch_out <= branch_in;
+        MemtoReg_out <= MemtoReg_in;
+        memwr_out <= memwr_in;
+        memop_out <= memop_in;
+    end
+
 end
     
 endmodule
@@ -231,7 +271,7 @@ alu alu_instance(dataa, datab, ALUctr, less, zero, aluresult);
 endmodule
 
 module EX_M_reg (
-    input               clr,
+    input      [1:0]    pl_ctrl_MEM,
     input               clk,
 
     input      [31:0]   nextpc_pc,
@@ -262,18 +302,46 @@ module EX_M_reg (
 );
 
 always @(negedge clk) begin
-    nextpc_pc_out <= clr ? 32'd0 : nextpc_pc;
-    nextpc_rs1_out <= clr ? 32'd0 : nextpc_rs1;
-    less_out <= clr ? 1'b0 : less;
-    zero_out <= clr ? 1'b0 : zero;
-    rs2_out <= clr ? 32'd0 : rs2;
-    aluresult_out <= clr ? 32'd0 : aluresult;
-    rd_out <= clr ? 4'd0 : rd_in;
-    branch_out <= clr ? 2'd0 : branch_in;
-    MemtoReg_out <= clr ? 1'b0 : MemtoReg_in;
-    memwr_out <= clr ? 1'b0 : memwr_in;
-    memop_out <= clr ? 2'd0 : memop_in;
-    regwr_out <= clr ? 1'b0 : regwr_in;
+    if(pl_ctrl_MEM == `PL_FLUSH) begin
+        nextpc_pc_out <= 32'd0;
+        nextpc_rs1_out <= 32'd0;
+        less_out <= 1'b0;
+        zero_out <= 1'b0;
+        rs2_out <= 32'd0;
+        aluresult_out <= 32'd0;
+        rd_out <= 4'd0;
+        branch_out <= 2'd0;
+        MemtoReg_out <= 1'b0;
+        memwr_out <= 1'b0;
+        memop_out <= 2'd0;
+        regwr_out <= 1'b0;
+    end else if(pl_ctrl_MEM == `PL_PAUSE) begin
+        nextpc_pc_out <= nextpc_pc_out;
+        nextpc_rs1_out <= nextpc_rs1_out;
+        less_out <= less_out;
+        zero_out <= zero_out;
+        rs2_out <= rs2_out;
+        aluresult_out <= aluresult_out;
+        rd_out <= rd_out;
+        branch_out <= branch_out;
+        MemtoReg_out <= MemtoReg_out;
+        memwr_out <= memwr_out;
+        memop_out <= memop_out;
+        regwr_out <= regwr_out;
+    end else begin
+        nextpc_pc_out <= nextpc_pc;
+        nextpc_rs1_out <= nextpc_rs1;
+        less_out <= less;
+        zero_out <= zero;
+        rs2_out <= rs2;
+        aluresult_out <= aluresult;
+        rd_out <= rd_in;
+        branch_out <= branch_in;
+        MemtoReg_out <= MemtoReg_in;
+        memwr_out <= memwr_in;
+        memop_out <= memop_in;
+        regwr_out <= regwr_in;
+    end
 end
     
 endmodule
@@ -322,7 +390,7 @@ assign pc_branch = PCAsrc?1'b1:1'b0;
 endmodule
 
 module M_WB_reg (
-    input               clr,
+    input    [1:0]      pl_ctrl_WB,
     input               clk,
     input    [31:0]     dmemdata,
     input    [31:0]     aluresult,
@@ -338,11 +406,25 @@ module M_WB_reg (
 );
 
 always @(negedge clk) begin
-    dmemdata_out <= clr ? 32'd0 : dmemdata;
-    aluresult_out <= clr ? 32'd0 : aluresult;
-    rd_out <= clr ? 4'd0 : rd;
-    MemtoReg_out <= clr ? 1'b0 : MemtoReg;
-    regwr_out <= clr ? 1'b0 : regwr;
+    if(pl_ctrl_WB == `PL_FLUSH) begin
+        dmemdata_out <= 32'd0;
+        aluresult_out <= 32'd0;
+        rd_out <= 4'd0;
+        MemtoReg_out <= 1'b0;
+        regwr_out <= 1'b0;
+    end else if(pl_ctrl_WB == `PL_PAUSE) begin
+        dmemdata_out <= dmemdata_out;
+        aluresult_out <= aluresult_out;
+        rd_out <= rd_out;
+        MemtoReg_out <= MemtoReg_out;
+        regwr_out <= regwr_out;
+    end else begin
+        dmemdata_out <= dmemdata;
+        aluresult_out <= aluresult;
+        rd_out <= rd;
+        MemtoReg_out <= MemtoReg;
+        regwr_out <= regwr;
+    end
 end
     
 endmodule

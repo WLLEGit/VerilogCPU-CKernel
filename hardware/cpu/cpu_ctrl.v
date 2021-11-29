@@ -1,3 +1,4 @@
+`include "define.v"
 module forward_detecter(
    // input                regwr_ex,
    input                regwr_mem,
@@ -34,13 +35,11 @@ assign stall = mem2reg_ex && ((rd_addr_ex == rs1_addr_id) || (rd_addr_ex == rs2_
 endmodule
 
 module PC (
-   input clr,
+   input [1:0] PL_status,
    input clk,
 
    input [31:0] nextpc_mem,
    input pc_branch,
-
-   input stall,
 
    output [31:0] pc_out
 );
@@ -49,14 +48,14 @@ reg [31:0] pc;
 assign pc_out = pc;
 
 always @(negedge clk) begin
-   if(clr) 
+   if(PL_status == `PL_FLUSH) 
       pc <= 0;
    else begin
       if(pc_branch)
          pc <= nextpc_mem;
-      else if(stall)
+      else if(PL_status == `PL_PAUSE)
          pc <= pc;
-      else
+      else 
          pc <= pc + 4;
    end
 end
@@ -67,15 +66,47 @@ module pipeline_status (
    input clr,
    input clk,
    input branch,
+   input stall,
 
-   output flush
-);
-reg flush_branch;
+   output [1 : 0] pl_ctrl_pc_out,
+   output [1 : 0] pl_ctrl_ID_out,
+   output [1 : 0] pl_ctrl_EX_out,
+   output [1 : 0] pl_ctrl_MEM_out,
+   output [1 : 0] pl_ctrl_WB_out
+); 
 
-assign flush = clr || flush_branch;
+reg [1 : 0] pl_ctrl_pc;
+reg [1 : 0] pl_ctrl_ID;
+reg [1 : 0] pl_ctrl_EX;
+reg [1 : 0] pl_ctrl_MEM;
+reg [1 : 0] pl_ctrl_WB;
+
+assign pl_ctrl_pc_out = clr ? `PL_FLUSH : pl_ctrl_pc;
+assign pl_ctrl_ID_out = clr ? `PL_FLUSH : pl_ctrl_ID;
+assign pl_ctrl_EX_out = clr ? `PL_FLUSH : pl_ctrl_EX;
+assign pl_ctrl_MEM_out = clr ? `PL_FLUSH : pl_ctrl_MEM;
+assign pl_ctrl_WB_out = clr ? `PL_FLUSH : pl_ctrl_WB; 
 
 always @(posedge clk) begin
-   flush_branch <= branch;
+   if(branch) begin
+      pl_ctrl_pc <= `PL_NORMAL;
+      pl_ctrl_ID <= `PL_FLUSH;
+      pl_ctrl_EX <= `PL_FLUSH;
+      pl_ctrl_MEM <= `PL_FLUSH;
+      pl_ctrl_WB <= `PL_NORMAL;
+   end else if(stall) begin
+      pl_ctrl_pc <= `PL_PAUSE;
+      pl_ctrl_ID <= `PL_PAUSE;
+      pl_ctrl_EX <= `PL_FLUSH;
+      pl_ctrl_MEM <= `PL_NORMAL;
+      pl_ctrl_WB <= `PL_NORMAL;
+   end else begin
+      pl_ctrl_pc <= `PL_NORMAL;
+      pl_ctrl_ID <= `PL_NORMAL;
+      pl_ctrl_EX <= `PL_NORMAL;
+      pl_ctrl_MEM <= `PL_NORMAL;
+      pl_ctrl_WB <= `PL_NORMAL;
+   end
 end
    
 endmodule
