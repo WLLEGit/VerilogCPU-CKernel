@@ -52,6 +52,8 @@ task step;  //step for one cycle ends 1ns AFTER the posedge of the next cycle
 		#10 clk=1'b1;
 		numcycles = numcycles + 1;
 		#1 ;
+		if(datamem.mymem.ram[32'h801] & 0xFFFF0000 != 32'hbeaf0000)
+			$display("ram at 801 not correct, %x", datamem.mymem.ram[32'h801]);
 	end
 endtask
 
@@ -134,17 +136,25 @@ integer maxcycles =10000;
 
 task run;
    integer i;
+   integer cont;
 	begin
-	   i = 0;
-	   while( (idataout!=32'hdead10cc) && (i<maxcycles))
-		begin
-		   step();
-			i=i+1;
+	   	i = 0;
+		cont = 1;
+	   	while(cont != 0) begin
+		   	cont = 0;
+			while( (idataout!=32'hdead10cc) && (i<maxcycles))
+			begin
+				step();
+				i=i+1;
+			end
+			if(mycpu.pc_branch!=0) begin cont = 1; step(); end
+			else begin
+				if(cont != 1) begin step(); if(mycpu.pc_branch!=0) cont = 1; end
+				if(cont != 1) begin step(); if(mycpu.pc_branch!=0) cont = 1; end
+				if(cont != 1) begin step(); if(mycpu.pc_branch!=0) cont = 1; end
+				if(cont != 1) begin step(); if(mycpu.pc_branch!=0) cont = 1; end
+			end
 		end
-		step();
-		step();
-		step();
-		step();
 	end
 endtask
 
@@ -191,82 +201,82 @@ endtask
 initial begin:TestBench
       #80
     //   output the state of every instruction
-//		testcase = "rv32ui-p-simple";
-//		run_riscv_test();
+		testcase = "rv32ui-p-simple";
+		//run_riscv_test();
 		testcase = "rv32ui-p-add";
-//		run_riscv_test();
+		//run_riscv_test();
 		testcase = "rv32ui-p-addi";
-		run_riscv_test();
+		//run_riscv_test();
 		testcase = "rv32ui-p-and";
-		run_riscv_test();
+		//run_riscv_test();
 		testcase = "rv32ui-p-andi";
-		run_riscv_test();
+		//run_riscv_test();
 	   testcase = "rv32ui-p-auipc";
-		run_riscv_test();
+		//run_riscv_test();
 		testcase = "rv32ui-p-beq";
-		run_riscv_test();
+		//run_riscv_test();
 		testcase = "rv32ui-p-bge";
-		run_riscv_test();
+		//run_riscv_test();
 		testcase = "rv32ui-p-bgeu";
-		run_riscv_test();
+		//run_riscv_test();
 		testcase = "rv32ui-p-blt";
-		run_riscv_test();
+		//run_riscv_test();
 		testcase = "rv32ui-p-bltu";
-		run_riscv_test();
+		//run_riscv_test();
 		testcase = "rv32ui-p-bne";
-		run_riscv_test();
+		//run_riscv_test();
 		testcase = "rv32ui-p-jal";
-		run_riscv_test();
+		//run_riscv_test();
 		testcase = "rv32ui-p-jalr";
-		run_riscv_test();
+		//run_riscv_test();
 		testcase = "rv32ui-p-lb";
-		run_riscv_test();
+		//run_riscv_test();
 		testcase = "rv32ui-p-lbu";
-		run_riscv_test();
+		//run_riscv_test();
 		testcase = "rv32ui-p-lh";
-		run_riscv_test();
+		//run_riscv_test();
 		testcase = "rv32ui-p-lhu";
-		run_riscv_test();
+		//run_riscv_test();
 		testcase = "rv32ui-p-lui";
-		run_riscv_test();
+		//run_riscv_test();
 		testcase = "rv32ui-p-lw";
-		run_riscv_test();
+		//run_riscv_test();
 		testcase = "rv32ui-p-or";
-		run_riscv_test();
+		//run_riscv_test();
 		testcase = "rv32ui-p-ori";
-		run_riscv_test();
+		//run_riscv_test();
 		testcase = "rv32ui-p-sb";
-		run_riscv_test();
+		//run_riscv_test();
 		testcase = "rv32ui-p-sh";
 		run_riscv_test();
 		testcase = "rv32ui-p-sll";
-		run_riscv_test();
+		//run_riscv_test();
 		testcase = "rv32ui-p-slli";
-		run_riscv_test();
+		//run_riscv_test();
 		testcase = "rv32ui-p-slt";
-		run_riscv_test();
+		//run_riscv_test();
 		testcase = "rv32ui-p-slti";
-		run_riscv_test();
+		//run_riscv_test();
 		testcase = "rv32ui-p-sltiu";
-		run_riscv_test();
+		//run_riscv_test();
 		testcase = "rv32ui-p-sltu";
-		run_riscv_test();
+		//run_riscv_test();
 		testcase = "rv32ui-p-sra";
-		run_riscv_test();
+		//run_riscv_test();
 		testcase = "rv32ui-p-srai";
-		run_riscv_test();
+		//run_riscv_test();
 		testcase = "rv32ui-p-srl";
-		run_riscv_test();
+		//run_riscv_test();
 		testcase = "rv32ui-p-srli";
-		run_riscv_test();
+		//run_riscv_test();
 		testcase = "rv32ui-p-sub";
-		run_riscv_test();
+		//run_riscv_test();
 		testcase = "rv32ui-p-sw";
-		run_riscv_test();
+		//run_riscv_test();
 		testcase = "rv32ui-p-xor";
-		run_riscv_test();
+		//run_riscv_test();
 		testcase = "rv32ui-p-xori";
-		run_riscv_test();
+		//run_riscv_test();
 		$stop;
 
 end

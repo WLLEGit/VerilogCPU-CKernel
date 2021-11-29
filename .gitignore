@@ -1,1 +1,6 @@
 **.vscode/
+**simulation/
+**incremental_db/
+**db/
+**greybox*/
+*.bak
