@@ -38,7 +38,7 @@ module PC (
    input clk,
 
    input [31:0] nextpc_mem,
-   input pc_branch,
+   input [31:0] nextpc_int,
 
    output [31:0] pc_out
 );
@@ -49,14 +49,16 @@ assign pc_out = pc;
 always @(negedge clk) begin
    if(PL_status == `PL_FLUSH) 
       pc <= 0;
-   else begin
-      if(pc_branch)
-         pc <= nextpc_mem;
-      else if(PL_status == `PL_PAUSE)
-         pc <= pc;
-      else 
-         pc <= pc + 4;
-   end
+   else if(PL_status == `PL_PC_BRANCH)
+      pc <= nextpc_mem;
+   else if(PL_status == `PL_PAUSE)
+      pc <= pc;
+   else if(PL_status == `PL_PC_INT)
+      pc <= nextpc_int;
+   else if(PL_status == `PL_NORMAL)
+      pc <= pc + 4;
+   else
+      pc <= 0;
 end
    
 endmodule
@@ -66,19 +68,21 @@ module pipeline_status (
    input clk,
    input branch,
    input stall,
+   input int_set_pl_pause,
+   input int_flag,
 
-   output [1 : 0] pl_ctrl_pc_out,
-   output [1 : 0] pl_ctrl_ID_out,
-   output [1 : 0] pl_ctrl_EX_out,
-   output [1 : 0] pl_ctrl_MEM_out,
-   output [1 : 0] pl_ctrl_WB_out
+   output [`PL_STATUS_BUS_WIDTH] pl_ctrl_pc_out,
+   output [`PL_STATUS_BUS_WIDTH] pl_ctrl_ID_out,
+   output [`PL_STATUS_BUS_WIDTH] pl_ctrl_EX_out,
+   output [`PL_STATUS_BUS_WIDTH] pl_ctrl_MEM_out,
+   output [`PL_STATUS_BUS_WIDTH] pl_ctrl_WB_out
 ); 
 
-reg [1 : 0] pl_ctrl_pc;
-reg [1 : 0] pl_ctrl_ID;
-reg [1 : 0] pl_ctrl_EX;
-reg [1 : 0] pl_ctrl_MEM;
-reg [1 : 0] pl_ctrl_WB;
+reg [`PL_STATUS_BUS_WIDTH] pl_ctrl_pc;
+reg [`PL_STATUS_BUS_WIDTH] pl_ctrl_ID;
+reg [`PL_STATUS_BUS_WIDTH] pl_ctrl_EX;
+reg [`PL_STATUS_BUS_WIDTH] pl_ctrl_MEM;
+reg [`PL_STATUS_BUS_WIDTH] pl_ctrl_WB;
 
 assign pl_ctrl_pc_out = clr ? `PL_FLUSH : pl_ctrl_pc;
 assign pl_ctrl_ID_out = clr ? `PL_FLUSH : pl_ctrl_ID;
@@ -87,8 +91,20 @@ assign pl_ctrl_MEM_out = clr ? `PL_FLUSH : pl_ctrl_MEM;
 assign pl_ctrl_WB_out = clr ? `PL_FLUSH : pl_ctrl_WB; 
 
 always @(posedge clk) begin
-   if(branch) begin
-      pl_ctrl_pc <= `PL_NORMAL;
+   if(int_set_pl_pause) begin
+      pl_ctrl_pc <= `PL_PAUSE;
+      pl_ctrl_ID <= `PL_PAUSE;
+      pl_ctrl_EX <= `PL_PAUSE;
+      pl_ctrl_MEM <= `PL_PAUSE;
+      pl_ctrl_WB <= `PL_PAUSE;
+   end else if(int_flag) begin
+      pl_ctrl_pc <= `PL_PC_INT;
+      pl_ctrl_ID <= `PL_FLUSH;
+      pl_ctrl_EX <= `PL_FLUSH;
+      pl_ctrl_MEM <= `PL_FLUSH;
+      pl_ctrl_WB <= `PL_FLUSH;
+   end else if(branch) begin
+      pl_ctrl_pc <= `PL_PC_BRANCH;
       pl_ctrl_ID <= `PL_FLUSH;
       pl_ctrl_EX <= `PL_FLUSH;
       pl_ctrl_MEM <= `PL_FLUSH;

@@ -14,10 +14,12 @@ module pipeline(
 	output [2:0]    dmemop,
 	output	        dmemwe,
 
-    output [31:0]   dbgdata
+    output [31:0]   dbgdata, //debug pin for modelsim
+    
+    input  [`IRQ_PIN_BUS]    irq_pins    //device interrupt pins
     );
 
-wire [31:0] nextpc_mem, pc, pc1, pc2, instr, instr1, busW, imm, imm2, rs1, rs12, rs2, rs22, rs23, rs2_forward, nextpc_pc, nextpc_pc3,
+wire [31:0] nextpc_mem, pc, pc1, pc2, pc3, instr, instr1, instr2, instr3, busW, imm, imm2, rs1, rs12, rs2, rs22, rs23, rs2_forward, nextpc_pc, nextpc_pc3,
             nextpc_rs1, nextpc_rs13, aluresult, aluresult3, aluresult4, dmemdata, dmemdata4;
 wire [4:0] rs1_addr, rs2_addr, rs1_addr2, rs2_addr2, rw, rd, rd2, rd3;
 wire [3:0] ALUctr, ALUctr2;
@@ -28,26 +30,37 @@ wire regwr, regwr2, regwr3, regwr4, MemtoReg, MemtoReg2, MemtoReg3, MemtoReg4,
 
 wire [1:0] forward_rs1, forward_rs2;
 
-wire [1:0] pl_ctrl_pc, pl_ctrl_ID, pl_ctrl_EX, pl_ctrl_MEM, pl_ctrl_WB;
+wire [`PL_STATUS_BUS_WIDTH] pl_ctrl_pc, pl_ctrl_ID, pl_ctrl_EX, pl_ctrl_MEM, pl_ctrl_WB;
+
+//interrupt signals
+wire [3:0] irq_pins;
+wire we_en, we_client, global_int_en, int_set_pl_pause, int_flag;
+wire [31:0] waddr_ex, raddr_ex, wdata_ex, waddr_client, raddr_client, wdata_client, mtvec, mepc, mstatus, data_out_ex, data_out_client, int_pc;
 
 assign dbgdata = pc;
 // cpu ctrl
-forward_detecter f_d_i(/*regwr2,*/ regwr3, regwr4, rs1_addr2, rs2_addr2, rd3, rw, forward_rs1, forward_rs2);
+forward_detecter f_d_i(regwr3, regwr4, rs1_addr2, rs2_addr2, rd3, rw, forward_rs1, forward_rs2);
 load_store_detecter l_s_d(MemtoReg2, rd2, instr1[19:15], instr1[24:20], stall);
+pipeline_status pipeline_status_ctrl(clr, clk, pc_branch, stall, int_set_pl_pause, int_flag,
+                                             pl_ctrl_pc, pl_ctrl_ID, pl_ctrl_EX, pl_ctrl_MEM, pl_ctrl_WB);
 
-pipeline_status pipeline_status_ctrl(clr, clk, pc_branch, stall, pl_ctrl_pc, pl_ctrl_ID, pl_ctrl_EX, pl_ctrl_MEM, pl_ctrl_WB);
-PC PC_instance(pl_ctrl_pc, clk, nextpc_mem, pc_branch, pc);
+// interrupt support
+CSRs csrs(clr, clk, we_ex, waddr_ex, raddr_ex, wdata_ex, we_client, waddr_client, raddr_client, wdata_client, global_int_en, mtvec, mepc, mstatus, data_out_ex, data_out_client);
+client client_instance(clr, clk, irq_pins, instr3, pc3, pc_branch, nextpc_mem, mtvec, mepc, mstatus, global_int_en,
+                                int_set_pl_pause, we_client, waddr_client, raddr_client, wdata_client, int_pc, int_flag);
+
+PC PC_instance(pl_ctrl_pc, clk, nextpc_mem, int_pc, pc);
 IF IF_instance(clr, clk, pc, instr, imemdataout, imemaddr, imemclk);
 IF_ID_reg IFIDreg_instance(pl_ctrl_ID, clk, pc, instr, pc1, instr1);
 ID ID_instance(clr, clk, instr1, regwr4, rw, busW, imm, rs1_addr, rs2_addr, rs1, rs2, rd, extop, regwr, ALUAsrc, ALUBsrc, ALUctr, branch, MemtoReg, memwr, memop);
-ID_EX_reg ID_EX_reg_instance(pl_ctrl_EX, clk, pc1, imm, rs1, rs2, rs1_addr, rs2_addr, rd, extop, regwr, ALUAsrc, ALUBsrc, ALUctr, branch, MemtoReg, memwr, memop,
-                                        pc2, imm2, rs12, rs22, rs1_addr2, rs2_addr2, rd2, extop2, regwr2, ALUAsrc2, ALUBsrc2, ALUctr2, branch2, MemtoReg2, memwr2, memop2);
+ID_EX_reg ID_EX_reg_instance(pl_ctrl_EX, clk, instr1, pc1, imm, rs1, rs2, rs1_addr, rs2_addr, rd, extop, regwr, ALUAsrc, ALUBsrc, ALUctr, branch, MemtoReg, memwr, memop,
+                                        instr2, pc2, imm2, rs12, rs22, rs1_addr2, rs2_addr2, rd2, extop2, regwr2, ALUAsrc2, ALUBsrc2, ALUctr2, branch2, MemtoReg2, memwr2, memop2);
 EX EX_instance(clr, clk, pc2, imm2, rs12, rs22, ALUAsrc2, ALUBsrc2, ALUctr2,
                         forward_rs1, forward_rs2, aluresult3, busW,
                         nextpc_pc, nextpc_rs1, less, zero, aluresult,
                         rs2_forward);
-EX_M_reg EX_M_reg_instance(pl_ctrl_MEM, clk, nextpc_pc, nextpc_rs1, less, zero, rs2_forward, aluresult, rd2, branch2, MemtoReg2, memwr2, memop2, regwr2,
-                                        nextpc_pc3, nextpc_rs13, less3, zero3, rs23, aluresult3, rd3, branch3, MemtoReg3, memwr3, memop3, regwr3);
+EX_M_reg EX_M_reg_instance(pl_ctrl_MEM, clk, instr2, pc2, nextpc_pc, nextpc_rs1, less, zero, rs2_forward, aluresult, rd2, branch2, MemtoReg2, memwr2, memop2, regwr2,
+                                        instr3, pc3, nextpc_pc3, nextpc_rs13, less3, zero3, rs23, aluresult3, rd3, branch3, MemtoReg3, memwr3, memop3, regwr3);
 M M_instance(clr, clk, aluresult3, nextpc_pc3, nextpc_rs13, less3, zero3, branch3, memop3, memwr3, rs23, 
                         nextpc_mem, dmemdata, pc_branch,
                         dmemaddr, dmemdataout, dmemdatain, dmemrdclk, dmemwrclk, dmemop, dmemwe);
@@ -76,7 +89,7 @@ assign imemclk = clk;
 endmodule
 
 module IF_ID_reg (
-    input       [1:0]   pl_ctrl_ID,
+    input       [`PL_STATUS_BUS_WIDTH]   pl_ctrl_ID,
     input               clk,
     input       [31:0]  pc_in,
     input       [31:0]  instr_in,
@@ -138,9 +151,10 @@ imm_gen imm_gen_instance(instr, extop, imm);
 endmodule
 
 module ID_EX_reg (
-    input      [1:0]    pl_ctrl_EX,
+    input      [`PL_STATUS_BUS_WIDTH]    pl_ctrl_EX,
     input               clk,
     
+    input      [31:0]   instr_in,
     input      [31:0]   pc_in,
     input      [31:0]   imm_in,
     input      [31:0]   rs1_in,
@@ -158,6 +172,7 @@ module ID_EX_reg (
     input               memwr_in,
     input      [2:0]    memop_in,
     
+    output reg [31:0]   instr_out,
     output reg [31:0]   pc_out,
     output reg [31:0]   imm_out,
     output reg [31:0]   rs1_out,
@@ -274,9 +289,11 @@ alu alu_instance(dataa, datab, ALUctr, less, zero, aluresult);
 endmodule
 
 module EX_M_reg (
-    input      [1:0]    pl_ctrl_MEM,
+    input      [`PL_STATUS_BUS_WIDTH]    pl_ctrl_MEM,
     input               clk,
 
+    input      [31:0]   instr_in,
+    input      [31:0]   pc,
     input      [31:0]   nextpc_pc,
     input      [31:0]   nextpc_rs1,
     input               less,
@@ -290,6 +307,8 @@ module EX_M_reg (
     input      [2:0]    memop_in,
     input               regwr_in,
 
+    output reg  [31:0]  instr_out,
+    output reg  [31:0]  pc_out,
     output reg  [31:0]  nextpc_pc_out,
     output reg  [31:0]  nextpc_rs1_out,
     output reg          less_out,
@@ -306,6 +325,7 @@ module EX_M_reg (
 
 always @(negedge clk) begin
     if(pl_ctrl_MEM == `PL_FLUSH) begin
+        pc_out <= 32'd0;
         nextpc_pc_out <= 32'd0;
         nextpc_rs1_out <= 32'd0;
         less_out <= 1'b0;
@@ -319,6 +339,7 @@ always @(negedge clk) begin
         memop_out <= 2'd0;
         regwr_out <= 1'b0;
     end else if(pl_ctrl_MEM == `PL_PAUSE) begin
+        pc_out <= pc_out;
         nextpc_pc_out <= nextpc_pc_out;
         nextpc_rs1_out <= nextpc_rs1_out;
         less_out <= less_out;
@@ -332,6 +353,7 @@ always @(negedge clk) begin
         memop_out <= memop_out;
         regwr_out <= regwr_out;
     end else begin
+        pc_out <= pc;
         nextpc_pc_out <= nextpc_pc;
         nextpc_rs1_out <= nextpc_rs1;
         less_out <= less;
@@ -393,7 +415,7 @@ assign pc_branch = PCAsrc?1'b1:1'b0;
 endmodule
 
 module M_WB_reg (
-    input    [1:0]      pl_ctrl_WB,
+    input    [`PL_STATUS_BUS_WIDTH]      pl_ctrl_WB,
     input               clk,
     input    [31:0]     dmemdata,
     input    [31:0]     aluresult,

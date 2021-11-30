@@ -1,21 +1,18 @@
 `include "define.v"
 
-//interupt manager
+//interrupt manager
 module client (
     input clr,
     input clk,
 
-    input [3:0]     irq_pins,
+    input [IRQ_PIN_BUS]     irq_pins,
 
-    input [31:0]    instr_ID,
-    input [32:0]    instr_addr_ID,
+    input [31:0]    instr_MEM,
+    input [31:0]    instr_addr_MEM,
 
-    input           branch_EX,
-    input [31:0]    branch_addr_EX,
+    input           branch_MEM,
+    input [31:0]    branch_addr_MEM,
 
-    input [1:0]     pl_status,
-
-    input [31:0]    data_csr,
     input [31:0]    mtvec,
     input [31:0]    mepc,
     input [31:0]    mstatus,
@@ -43,9 +40,9 @@ always @(*) begin
     if(clr) begin
         int_state <= `INT_IDLE;
     end else begin
-        if(instr_ID == `INSTR_ECALL) begin
+        if(instr_MEM == `INSTR_ECALL) begin
             int_state <= `INT_M_SYNC;
-        end else if(instr_ID == `INSTR_MRET) begin
+        end else if(instr_MEM == `INSTR_MRET) begin
             int_state <= `INT_MRET;
         end else if(int_flag && global_int_en) begin
             int_state <= `INT_M_ASYNC;
@@ -65,12 +62,12 @@ always @(posedge clk) begin
         `CSR_STATE_IDLE:begin
             if(int_state == `INT_M_SYNC) begin
                 csr_state <= `CSR_STATE_MEPC;
-                if(branch_EX)
-                    instr_addr <= branch_addr_EX - 32'd4;
+                if(branch_MEM)
+                    instr_addr <= branch_addr_MEM - 32'd4;
                 else
                     instr_addr <= instr_addr;
 
-                case(instr_ID)
+                case(instr_MEM)
                 `INSTR_ECALL: begin
                     cause <= `ECALL_MCAUSE;
                 end default: begin
@@ -79,11 +76,11 @@ always @(posedge clk) begin
                 endcase
             end else if(int_state == `INT_M_ASYNC) begin
                 csr_state <= `CSR_STATE_MEPC;
-                if(irq_pins == 4'b0001) begin
+                if(irq_pins[`CLOCK_IRQ_PIN] == 1) begin
                     //clock irq
                     cause <= `CLOCK_INT_MCAUSE;
-                    if(branch_EX)
-                        instr_addr <= branch_addr_EX;
+                    if(branch_MEM)
+                        instr_addr <= branch_addr_MEM;
                     else
                         instr_addr <= instr_addr;                    
                 end else begin
