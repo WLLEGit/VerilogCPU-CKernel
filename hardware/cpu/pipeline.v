@@ -16,6 +16,7 @@ module pipeline(
 
     output [31:0]   dbgdata, //debug pin for modelsim
     
+    output          global_int_en_out,
     input  [`IRQ_PIN_BUS]    irq_pins    //device interrupt pins
     );
 
@@ -73,7 +74,8 @@ WB WB_instance(clr, clk, dmemdata4, aluresult4, MemtoReg4, busW, csr_aluresult4,
 assign we_ex = csr_we4;
 assign wdata_ex = csr_aluresult4;
 assign waddr_ex = csr_waddr4;
-    
+assign global_int_en_out = global_int_en;
+
 endmodule
 
 module IF (

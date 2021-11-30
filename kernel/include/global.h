@@ -43,7 +43,8 @@ typedef signed int int32_t;         /* Signed 32 bit quantity   */
 #define false 0
 #define NULL 0
 
-enum{COLOR_RED, COLOR_GREEN, COLOR_BLUE, COLOR_BLACK, COLOR_WHITE};
+enum{COLOR_RED, COLOR_GREEN, COLOR_BLUE, 
+        COLOR_BLACK, COLOR_WHITE,};
 
 extern uint32_t * const idt_mem;
 extern uint8_t * const ch_mem;

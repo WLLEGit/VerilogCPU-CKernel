@@ -42,3 +42,17 @@
 //special instrs
 `define INSTR_ECALL            32'h00000073
 `define INSTR_MRET             32'h30200073
+
+
+//vga color map
+`define COLOR_INDEX_RED   8'h0
+`define COLOR_INDEX_GREEN 8'h1
+`define COLOR_INDEX_BLUE  8'h2
+`define COLOR_INDEX_BLACK 8'h3
+`define COLOR_INDEX_WHITE 8'h4
+
+`define COLOR_RED   24'hff0000
+`define COLOR_GREEN 24'h00ff00
+`define COLOR_BLUE  24'h0000ff
+`define COLOR_BLACK 24'h000000
+`define COLOR_WHITE 24'hffffff

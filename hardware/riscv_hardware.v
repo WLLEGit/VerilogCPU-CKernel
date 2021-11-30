@@ -1,27 +1,28 @@
+`include "cpu/define.v"
 module riscv_hardware(
 
 	//////////// CLOCK //////////
-	input 		          		CLOCK2_50,
-	input 		          		CLOCK3_50,
-	input 		          		CLOCK4_50,
+//	input 		          		CLOCK2_50,
+//	input 		          		CLOCK3_50,
+//	input 		          		CLOCK4_50,
 	input 		          		CLOCK_50,
 
 	//////////// KEY //////////
-	input 		     [3:0]		KEY,
+//	input 		     [3:0]		KEY,
 
 	//////////// SW //////////
 	input 		     [9:0]		SW,
 
-	//////////// LED //////////
-	output		     [9:0]		LEDR,
-
-	//////////// Seg7 //////////
-	output		     [6:0]		HEX0,
-	output		     [6:0]		HEX1,
-	output		     [6:0]		HEX2,
-	output		     [6:0]		HEX3,
-	output		     [6:0]		HEX4,
-	output		     [6:0]		HEX5,
+//	//////////// LED //////////
+//	output		     [9:0]		LEDR,
+//
+//	//////////// Seg7 //////////
+//	output		     [6:0]		HEX0,
+//	output		     [6:0]		HEX1,
+//	output		     [6:0]		HEX2,
+//	output		     [6:0]		HEX3,
+//	output		     [6:0]		HEX4,
+//	output		     [6:0]		HEX5,
 
 	//////////// VGA //////////
 	output		          		VGA_BLANK_N,
@@ -33,28 +34,27 @@ module riscv_hardware(
 	output		          		VGA_SYNC_N,
 	output		          		VGA_VS,
 
-	//////////// Audio //////////
-	input 		          		AUD_ADCDAT,
-	inout 		          		AUD_ADrstCK,
-	inout 		          		AUD_BCLK,
-	output		          		AUD_DACDAT,
-	inout 		          		AUD_DArstCK,
-	output		          		AUD_XCK,
+//	//////////// Audio //////////
+//	input 		          		AUD_ADCDAT,
+//	inout 		          		AUD_ADrstCK,
+//	inout 		          		AUD_BCLK,
+//	output		          		AUD_DACDAT,
+//	inout 		          		AUD_DArstCK,
+//	output		          		AUD_XCK,
 
 	//////////// PS2 //////////
 	inout 		          		PS2_CLK,
-	inout 		          		PS2_CLK2,
-	inout 		          		PS2_DAT,
-	inout 		          		PS2_DAT2,
+//	inout 		          		PS2_CLK2,
+	inout 		          		PS2_DAT
+//	inout 		          		PS2_DAT2,
 
-	//////////// I2C for Audio and Video-In //////////
-	output		          		FPGA_I2C_SCLK,
-	inout 		          		FPGA_I2C_SDAT
+//	//////////// I2C for Audio and Video-In //////////
+//	output		          		FPGA_I2C_SCLK,
+//	inout 		          		FPGA_I2C_SDAT
 );
 parameter S0 = 3'b0001, S1=4'b0010, S2=4'b0100, S3=4'b1000;
 parameter MS500 = 25000000, MS250=12500000, MS1000=50000000;
 
-integer timer_ms;
 
 /*=====Pipeline=====*/
 wire [31:0] imemaddr;
@@ -81,7 +81,7 @@ wire [31:0] vga_addr, vga_extra_line_cnt, vga_char_data, vga_color_data;
 wire [23:0] vga_data, vga_color;	
 wire valid;  
 
-reg [9:0] cursor_x, cursor_y;
+wire [9:0] cursor_x, cursor_y;
 wire [6:0] x;
 wire [4:0] y;
 wire [7:0] x_remain, y_remain;
@@ -101,8 +101,8 @@ integer kb_timer;
 
 
 /*=====irq=====*/
-reg [1:0] irq_pins;
-wire irq_en;
+wire [`IRQ_PIN_BUS] irq_pins={3'b0, timer_irq};
+wire global_int_en, timer_irq;
 
 clkgen #(25200000) vgaclk_generator(CLOCK_50, rst, 1'b1, VGA_CLK);
 color_map color_gen(vga_color_data, vga_color);
@@ -117,35 +117,24 @@ font_rom font_rom_instance(vga_char_data, CLOCK_50, font_out);
 assign tmp_y = 12'd15 - y_remain;
 assign vga_data = (h_addr == cursor_x && v_addr >= cursor_y && v_addr <= cursor_y + 15 && cursor_cnt >= MS500) ? {24{1'b1}} : (h_addr >= 576 ? 24'd0 : (font_out[(mul12(tmp_y))+(x_remain)] ? vga_color : 32'd0));
 
-
-pipeline cpu(CLOCK_50, rst, imemaddr, imemdataout, imemclk, dmemaddr, dmemdataout, dmemdatain, dmemrdclk, dmemwrclk, dmemop, dmemwe, );
+timer_device timer_device_instance(rst, CLOCK_50, global_int_en, timer_irq);
+pipeline cpu(CLOCK_50, rst, imemaddr, imemdataout, imemclk, dmemaddr, dmemdataout, dmemdatain, dmemrdclk, dmemwrclk, dmemop, dmemwe, , global_int_en, irq_pins);
 
 kb_driver keyboard(CLOCK_50, rst, PS2_CLK, PS2_DAT, is_shift, is_ctrl, is_capital, is_error, is_special, ascii);
 
 memory_map mm_instance(CLOCK_50, imemaddr, imemdataout, dmemaddr, dmemdatain, dmemdataout, dmemop, dmemwe, 
 							vga_addr, vga_char_data, vga_addr, vga_color_data, 
 							vga_extra_line_cnt, cursor_x, cursor_y,
-							32'd0, {16'd0, 3'd0, is_error, is_special, is_capital, is_ctrl, is_shift, ascii}, 1'b1,
-							dmemaddr, dmemdataout);
+							32'd0, {16'd0, 3'd0, is_error, is_special, is_capital, is_ctrl, is_shift, ascii}, 1'b1);
 
 always @(posedge CLOCK_50) begin
 	if(cursor_cnt >= MS1000)
 		cursor_cnt <= 1;
 	else
 		cursor_cnt <= cursor_cnt + 1;
-
-	if(timer_ms >= MS1000) begin
-		timer_ms <= 1;
-		irq_pins[0] <= 1;
-	end
-	else begin
-		timer_ms <= timer_ms + 1;
-	end
 end
 
 always @(posedge CLOCK_50) begin
-	if(!irq_en)
-		irq_pins <= {1'b0, 1'b0};
 	if(rst) begin
 		kb_timer = 1;
 		kb_state <= S0;
@@ -163,10 +152,6 @@ always @(posedge CLOCK_50) begin
 				kb_timer <= 1;
 			else
 				kb_timer <= kb_timer + 1;
-
-			if(kb_timer == 1) begin
-				irq_pins[1] <= 1;
-			end
 		end S2: begin
 			kb_state <= S0;
 		end S3: begin

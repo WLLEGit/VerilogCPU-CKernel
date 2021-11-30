@@ -4,3 +4,10 @@
 **db/
 **greybox*/
 *.bak*
+hardware/riscv_hardware*
+!hardware/riscv_hardware.htm
+!hardware/riscv_hardware.qpf
+!hardware/riscv_hardware.qsf
+!hardware/riscv_hardware.sdc
+!hardware/riscv_hardware.v
+*.o
