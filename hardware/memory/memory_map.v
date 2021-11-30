@@ -107,6 +107,7 @@ assign kbinfo_rddata = data;
 always @(posedge clk) begin
 	if(wren) begin
 		data <= kbinfo_wrdata;
+	end
 end
 	
 endmodule
@@ -114,7 +115,7 @@ endmodule
 module idt (
 	input clk,
 	input [31:0] irq_no,
-	output [31:0] irq_handler_addr
+	output [31:0] irq_handler_addr,
 	input [31:0] wraddr,
 	input [31:0] wrdata,
 	input wren

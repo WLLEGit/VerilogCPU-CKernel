@@ -3,8 +3,8 @@
 #============================================================
 
 set_global_assignment -name FAMILY "Cyclone V"
-set_global_assignment -name DEVICE 5CSXFC6D6F31C6
-set_global_assignment -name TOP_LEVEL_ENTITY pipeline
+set_global_assignment -name DEVICE 5CEFA7F31C6
+set_global_assignment -name TOP_LEVEL_ENTITY riscv_hardware
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION "16.0.2"
 set_global_assignment -name LAST_QUARTUS_VERSION "20.1.1 Lite Edition"
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "17:35:24 NOVEMBER 26,2021"
@@ -168,6 +168,22 @@ set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (Verilog)"
+set_global_assignment -name EDA_TIME_SCALE "1 ps" -section_id eda_simulation
+set_global_assignment -name EDA_OUTPUT_DATA_FORMAT "VERILOG HDL" -section_id eda_simulation
+set_global_assignment -name EDA_TEST_BENCH_ENABLE_STATUS TEST_BENCH_MODE -section_id eda_simulation
+set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH cpu_batch_vlg_tst -section_id eda_simulation
+set_global_assignment -name EDA_TEST_BENCH_NAME cpu_batch_vlg_tst -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id cpu_batch_vlg_tst
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME cpu_batch_vlg_tst -section_id cpu_batch_vlg_tst
+set_global_assignment -name EDA_TEST_BENCH_NAME cpu_single_vlg_tst -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id cpu_single_vlg_tst
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME cpu_single_vlg_tst -section_id cpu_single_vlg_tst
+set_global_assignment -name EDA_TEST_BENCH_FILE modelsim/cpu_batch/cpu_batch.vt -section_id cpu_batch_vlg_tst
+set_global_assignment -name EDA_TEST_BENCH_FILE modelsim/cpu_singlestep/cpu_step.vt -section_id cpu_single_vlg_tst
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CLOCK2_50
 set_instance_assignment -name IO_STANDARD "2.5 V" -to CLOCK3_50
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CLOCK4_50
@@ -279,9 +295,20 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to PS2_DAT
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to PS2_DAT2
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FPGA_I2C_SCLK
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FPGA_I2C_SDAT
-set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
-set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
-set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name VERILOG_FILE helpers/display7seg.v
+set_global_assignment -name VERILOG_FILE helpers/clkgen.v
+set_global_assignment -name VERILOG_FILE keyboard/ps2_keyboard.v
+set_global_assignment -name VERILOG_FILE keyboard/kb2ascii_shift.v
+set_global_assignment -name VERILOG_FILE keyboard/kb2ascii_rom.v
+set_global_assignment -name VERILOG_FILE keyboard/kb2ascii.v
+set_global_assignment -name VERILOG_FILE keyboard/kb_driver.v
+set_global_assignment -name VERILOG_FILE memory/memory_map.v
+set_global_assignment -name VERILOG_FILE memory/dram.v
+set_global_assignment -name VERILOG_FILE vga/vga_ctrl.v
+set_global_assignment -name VERILOG_FILE vga/process_vaddr.v
+set_global_assignment -name VERILOG_FILE vga/process_haddr.v
+set_global_assignment -name VERILOG_FILE vga/font_rom.v
+set_global_assignment -name VERILOG_FILE vga/color.v
 set_global_assignment -name VERILOG_FILE cpu/pipeline.v
 set_global_assignment -name VERILOG_FILE cpu/regfile.v
 set_global_assignment -name VERILOG_FILE cpu/immgen.v
@@ -296,17 +323,4 @@ set_global_assignment -name QIP_FILE memory/instr_rom.qip
 set_global_assignment -name QIP_FILE memory/data_ram.qip
 set_global_assignment -name QIP_FILE memory/char_ram.qip
 set_global_assignment -name QIP_FILE memory/color_ram.qip
-set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (Verilog)"
-set_global_assignment -name EDA_TIME_SCALE "1 ps" -section_id eda_simulation
-set_global_assignment -name EDA_OUTPUT_DATA_FORMAT "VERILOG HDL" -section_id eda_simulation
-set_global_assignment -name EDA_TEST_BENCH_ENABLE_STATUS TEST_BENCH_MODE -section_id eda_simulation
-set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH cpu_batch_vlg_tst -section_id eda_simulation
-set_global_assignment -name EDA_TEST_BENCH_NAME cpu_batch_vlg_tst -section_id eda_simulation
-set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id cpu_batch_vlg_tst
-set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME cpu_batch_vlg_tst -section_id cpu_batch_vlg_tst
-set_global_assignment -name EDA_TEST_BENCH_NAME cpu_single_vlg_tst -section_id eda_simulation
-set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id cpu_single_vlg_tst
-set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME cpu_single_vlg_tst -section_id cpu_single_vlg_tst
-set_global_assignment -name EDA_TEST_BENCH_FILE modelsim/cpu_batch/cpu_batch.vt -section_id cpu_batch_vlg_tst
-set_global_assignment -name EDA_TEST_BENCH_FILE modelsim/cpu_singlestep/cpu_step.vt -section_id cpu_single_vlg_tst
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

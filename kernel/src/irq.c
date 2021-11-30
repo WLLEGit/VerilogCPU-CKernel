@@ -2,6 +2,8 @@
 #include "global.h"
 #include "io_mm.h"
 
+CSRS csrs;
+
 void add_all_irq_handlers()
 {
     idt_mem[1] = (uint32_t)irq_clock;

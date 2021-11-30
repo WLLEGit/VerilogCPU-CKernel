@@ -3,4 +3,4 @@
 **incremental_db/
 **db/
 **greybox*/
-*.bak
+*.bak*

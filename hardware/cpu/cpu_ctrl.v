@@ -1,6 +1,5 @@
 `include "define.v"
 module forward_detecter(
-   // input                regwr_ex,
    input                regwr_mem,
    input                regwr_wb,
    input      [4 : 0]   rs1,
@@ -14,13 +13,13 @@ module forward_detecter(
 
 // forward rs1, mem first
 wire tmp_rs1 = regwr_mem && (rs1 == rd_addr_mem);
-assign forward_rs1[1] = /*regwr_ex &&*/ rs1 != 5'h0 && tmp_rs1;
-assign forward_rs1[0] = /*regwr_ex &&*/ rs1 != 5'h0 && regwr_wb && !tmp_rs1 && (rs1 == rd_addr_wb);
+assign forward_rs1[1] = rs1 != 5'h0 && tmp_rs1;
+assign forward_rs1[0] = rs1 != 5'h0 && regwr_wb && !tmp_rs1 && (rs1 == rd_addr_wb);
 
 // forward rs2
 wire tmp_rs2 = regwr_mem && (rs2 == rd_addr_mem);
-assign forward_rs2[1] = /*regwr_ex &&*/ rs2 != 5'h0 && tmp_rs2;
-assign forward_rs2[0] = /*regwr_ex &&*/ rs2 != 5'h0 && regwr_wb && !tmp_rs2 && (rs2 == rd_addr_wb);
+assign forward_rs2[1] = rs2 != 5'h0 && tmp_rs2;
+assign forward_rs2[0] = rs2 != 5'h0 && regwr_wb && !tmp_rs2 && (rs2 == rd_addr_wb);
 
 endmodule
 

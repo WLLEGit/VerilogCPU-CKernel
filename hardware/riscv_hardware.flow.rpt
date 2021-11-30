@@ -1,5 +1,5 @@
 Flow report for riscv_hardware
-Mon Nov 29 21:01:02 2021
+Mon Nov 29 21:18:21 2021
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -38,29 +38,24 @@ https://fpgasoftware.intel.com/eula.
 
 
 
-+-------------------------------------------------------------------------------+
-; Flow Summary                                                                  ;
-+---------------------------------+---------------------------------------------+
-; Flow Status                     ; Successful - Mon Nov 29 21:01:02 2021       ;
-; Quartus Prime Version           ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
-; Revision Name                   ; riscv_hardware                              ;
-; Top-level Entity Name           ; pipeline                                    ;
-; Family                          ; Cyclone V                                   ;
-; Device                          ; 5CSXFC6D6F31C6                              ;
-; Timing Models                   ; Final                                       ;
-; Logic utilization (in ALMs)     ; N/A                                         ;
-; Total registers                 ; 1465                                        ;
-; Total pins                      ; 201                                         ;
-; Total virtual pins              ; 0                                           ;
-; Total block memory bits         ; 0                                           ;
-; Total DSP Blocks                ; 0                                           ;
-; Total HSSI RX PCSs              ; 0                                           ;
-; Total HSSI PMA RX Deserializers ; 0                                           ;
-; Total HSSI TX PCSs              ; 0                                           ;
-; Total HSSI PMA TX Serializers   ; 0                                           ;
-; Total PLLs                      ; 0                                           ;
-; Total DLLs                      ; 0                                           ;
-+---------------------------------+---------------------------------------------+
++---------------------------------------------------------------------------+
+; Flow Summary                                                              ;
++-----------------------------+---------------------------------------------+
+; Flow Status                 ; Flow Failed - Mon Nov 29 21:18:21 2021      ;
+; Quartus Prime Version       ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
+; Revision Name               ; riscv_hardware                              ;
+; Top-level Entity Name       ; riscv_hardware                              ;
+; Family                      ; Cyclone V                                   ;
+; Device                      ; 5CEFA7F31C6                                 ;
+; Timing Models               ; Final                                       ;
+; Logic utilization (in ALMs) ; N/A until Partition Merge                   ;
+; Total registers             ; N/A until Partition Merge                   ;
+; Total pins                  ; N/A until Partition Merge                   ;
+; Total virtual pins          ; N/A until Partition Merge                   ;
+; Total block memory bits     ; N/A until Partition Merge                   ;
+; Total PLLs                  ; N/A until Partition Merge                   ;
+; Total DLLs                  ; N/A until Partition Merge                   ;
++-----------------------------+---------------------------------------------+
 
 
 +-----------------------------------------+
@@ -68,44 +63,43 @@ https://fpgasoftware.intel.com/eula.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 11/29/2021 21:00:49 ;
+; Start date & time ; 11/29/2021 21:18:12 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; riscv_hardware      ;
 +-------------------+---------------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------+
-; Flow Non-Default Global Settings                                                                                                  ;
-+--------------------------------------+----------------------------------------+----------------+-------------+--------------------+
-; Assignment Name                      ; Value                                  ; Default Value  ; Entity Name ; Section Id         ;
-+--------------------------------------+----------------------------------------+----------------+-------------+--------------------+
-; COMPILER_SIGNATURE_ID                ; 91765748636.163819084907084            ; --             ; --          ; --                 ;
-; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --             ; --          ; cpu_single_vlg_tst ;
-; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --             ; --          ; cpu_batch_vlg_tst  ;
-; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; cpu_batch_vlg_tst                      ; --             ; --          ; eda_simulation     ;
-; EDA_OUTPUT_DATA_FORMAT               ; Verilog Hdl                            ; --             ; --          ; eda_simulation     ;
-; EDA_SIMULATION_TOOL                  ; ModelSim-Altera (Verilog)              ; <None>         ; --          ; --                 ;
-; EDA_TEST_BENCH_ENABLE_STATUS         ; TEST_BENCH_MODE                        ; --             ; --          ; eda_simulation     ;
-; EDA_TEST_BENCH_FILE                  ; modelsim/cpu_singlestep/cpu_step.vt    ; --             ; --          ; cpu_single_vlg_tst ;
-; EDA_TEST_BENCH_FILE                  ; modelsim/cpu_batch/cpu_batch.vt        ; --             ; --          ; cpu_batch_vlg_tst  ;
-; EDA_TEST_BENCH_MODULE_NAME           ; cpu_single_vlg_tst                     ; --             ; --          ; cpu_single_vlg_tst ;
-; EDA_TEST_BENCH_MODULE_NAME           ; cpu_batch_vlg_tst                      ; --             ; --          ; cpu_batch_vlg_tst  ;
-; EDA_TEST_BENCH_NAME                  ; cpu_batch_vlg_tst                      ; --             ; --          ; eda_simulation     ;
-; EDA_TEST_BENCH_NAME                  ; cpu_single_vlg_tst                     ; --             ; --          ; eda_simulation     ;
-; EDA_TIME_SCALE                       ; 1 ps                                   ; --             ; --          ; eda_simulation     ;
-; MAX_CORE_JUNCTION_TEMP               ; 85                                     ; --             ; --          ; --                 ;
-; MIN_CORE_JUNCTION_TEMP               ; 0                                      ; --             ; --          ; --                 ;
-; MISC_FILE                            ; memory/instr_rom_bb.v                  ; --             ; --          ; --                 ;
-; MISC_FILE                            ; memory/data_ram_bb.v                   ; --             ; --          ; --                 ;
-; MISC_FILE                            ; memory/char_ram_bb.v                   ; --             ; --          ; --                 ;
-; MISC_FILE                            ; memory/color_ram_bb.v                  ; --             ; --          ; --                 ;
-; PARTITION_COLOR                      ; -- (Not supported for targeted family) ; --             ; pipeline    ; Top                ;
-; PARTITION_FITTER_PRESERVATION_LEVEL  ; -- (Not supported for targeted family) ; --             ; pipeline    ; Top                ;
-; PARTITION_NETLIST_TYPE               ; -- (Not supported for targeted family) ; --             ; pipeline    ; Top                ;
-; POWER_BOARD_THERMAL_MODEL            ; None (CONSERVATIVE)                    ; --             ; --          ; --                 ;
-; POWER_PRESET_COOLING_SOLUTION        ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW  ; --             ; --          ; --                 ;
-; TOP_LEVEL_ENTITY                     ; pipeline                               ; riscv_hardware ; --          ; --                 ;
-+--------------------------------------+----------------------------------------+----------------+-------------+--------------------+
++----------------------------------------------------------------------------------------------------------------------------------+
+; Flow Non-Default Global Settings                                                                                                 ;
++--------------------------------------+----------------------------------------+---------------+-------------+--------------------+
+; Assignment Name                      ; Value                                  ; Default Value ; Entity Name ; Section Id         ;
++--------------------------------------+----------------------------------------+---------------+-------------+--------------------+
+; COMPILER_SIGNATURE_ID                ; 91765748636.163819189214192            ; --            ; --          ; --                 ;
+; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --            ; --          ; cpu_single_vlg_tst ;
+; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --            ; --          ; cpu_batch_vlg_tst  ;
+; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; cpu_batch_vlg_tst                      ; --            ; --          ; eda_simulation     ;
+; EDA_OUTPUT_DATA_FORMAT               ; Verilog Hdl                            ; --            ; --          ; eda_simulation     ;
+; EDA_SIMULATION_TOOL                  ; ModelSim-Altera (Verilog)              ; <None>        ; --          ; --                 ;
+; EDA_TEST_BENCH_ENABLE_STATUS         ; TEST_BENCH_MODE                        ; --            ; --          ; eda_simulation     ;
+; EDA_TEST_BENCH_FILE                  ; modelsim/cpu_singlestep/cpu_step.vt    ; --            ; --          ; cpu_single_vlg_tst ;
+; EDA_TEST_BENCH_FILE                  ; modelsim/cpu_batch/cpu_batch.vt        ; --            ; --          ; cpu_batch_vlg_tst  ;
+; EDA_TEST_BENCH_MODULE_NAME           ; cpu_single_vlg_tst                     ; --            ; --          ; cpu_single_vlg_tst ;
+; EDA_TEST_BENCH_MODULE_NAME           ; cpu_batch_vlg_tst                      ; --            ; --          ; cpu_batch_vlg_tst  ;
+; EDA_TEST_BENCH_NAME                  ; cpu_batch_vlg_tst                      ; --            ; --          ; eda_simulation     ;
+; EDA_TEST_BENCH_NAME                  ; cpu_single_vlg_tst                     ; --            ; --          ; eda_simulation     ;
+; EDA_TIME_SCALE                       ; 1 ps                                   ; --            ; --          ; eda_simulation     ;
+; MAX_CORE_JUNCTION_TEMP               ; 85                                     ; --            ; --          ; --                 ;
+; MIN_CORE_JUNCTION_TEMP               ; 0                                      ; --            ; --          ; --                 ;
+; MISC_FILE                            ; memory/instr_rom_bb.v                  ; --            ; --          ; --                 ;
+; MISC_FILE                            ; memory/data_ram_bb.v                   ; --            ; --          ; --                 ;
+; MISC_FILE                            ; memory/char_ram_bb.v                   ; --            ; --          ; --                 ;
+; MISC_FILE                            ; memory/color_ram_bb.v                  ; --            ; --          ; --                 ;
+; PARTITION_COLOR                      ; -- (Not supported for targeted family) ; --            ; --          ; Top                ;
+; PARTITION_FITTER_PRESERVATION_LEVEL  ; -- (Not supported for targeted family) ; --            ; --          ; Top                ;
+; PARTITION_NETLIST_TYPE               ; -- (Not supported for targeted family) ; --            ; --          ; Top                ;
+; POWER_BOARD_THERMAL_MODEL            ; None (CONSERVATIVE)                    ; --            ; --          ; --                 ;
+; POWER_PRESET_COOLING_SOLUTION        ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW  ; --            ; --          ; --                 ;
++--------------------------------------+----------------------------------------+---------------+-------------+--------------------+
 
 
 +--------------------------------------------------------------------------------------------------------------------------+
@@ -113,8 +107,8 @@ https://fpgasoftware.intel.com/eula.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:13     ; 1.0                     ; 4840 MB             ; 00:00:25                           ;
-; Total                ; 00:00:13     ; --                      ; --                  ; 00:00:25                           ;
+; Analysis & Synthesis ; 00:00:10     ; 1.0                     ; 4882 MB             ; 00:00:21                           ;
+; Total                ; 00:00:10     ; --                      ; --                  ; 00:00:21                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

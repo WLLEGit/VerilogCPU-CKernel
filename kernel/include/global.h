@@ -22,6 +22,15 @@
 
 #define KB_FIFO_SIZE 32
 
+
+#define MSTATUS 0x300
+#define MTVEC 0x305
+#define MSCRATCH 0x340
+#define MEPC 0x341
+#define MCAUSE 0x342
+#define CYCLE 0xc00
+#define CYCLEH 0xc80
+
 typedef unsigned char uint8_t;      /* Unsigned 8 bit quantity  */
 typedef signed char int8_t;         /* Signed 8 bit quantity    */
 typedef unsigned short uint16_t;    /* Unsigned 16 bit quantity */

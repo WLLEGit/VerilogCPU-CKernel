@@ -97,7 +97,7 @@ wire is_error;
 wire is_special;
 wire [7:0] ascii;
 reg [3:0] kb_state;
-integer timer_kb;
+integer kb_timer;
 
 
 /*=====irq=====*/
@@ -118,7 +118,7 @@ assign tmp_y = 12'd15 - y_remain;
 assign vga_data = (h_addr == cursor_x && v_addr >= cursor_y && v_addr <= cursor_y + 15 && cursor_cnt >= MS500) ? {24{1'b1}} : (h_addr >= 576 ? 24'd0 : (font_out[(mul12(tmp_y))+(x_remain)] ? vga_color : 32'd0));
 
 
-pipeline cpu(CLOCK_50, rst, imemaddr, imemdataout, imemclk, dmemaddr, dmemdataout, dmemdatain, dmemrdclk, dmemwrclk, dmemop, dmemwe, irq_pins, irq_en);,
+pipeline cpu(CLOCK_50, rst, imemaddr, imemdataout, imemclk, dmemaddr, dmemdataout, dmemdatain, dmemrdclk, dmemwrclk, dmemop, dmemwe, );
 
 kb_driver keyboard(CLOCK_50, rst, PS2_CLK, PS2_DAT, is_shift, is_ctrl, is_capital, is_error, is_special, ascii);
 
@@ -147,7 +147,7 @@ always @(posedge CLOCK_50) begin
 	if(!irq_en)
 		irq_pins <= {1'b0, 1'b0};
 	if(rst) begin
-		timer_kb = 1;
+		kb_timer = 1;
 		kb_state <= S0;
 	end else begin
 		case(kb_state)
@@ -172,6 +172,7 @@ always @(posedge CLOCK_50) begin
 		end S3: begin
 			kb_state <= S0;
 		end
+		endcase
 	end
 end
 

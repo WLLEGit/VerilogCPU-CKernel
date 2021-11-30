@@ -84,7 +84,7 @@ module kb2ascii_shift (
 		altsyncram_component.address_aclr_a = "NONE",
 		altsyncram_component.clock_enable_input_a = "BYPASS",
 		altsyncram_component.clock_enable_output_a = "BYPASS",
-		altsyncram_component.init_file = "./mif/kb2ascii_rom_shift.mif",
+		altsyncram_component.init_file = "kb2ascii_rom_shift.mif",
 		altsyncram_component.intended_device_family = "Cyclone V",
 		altsyncram_component.lpm_hint = "ENABLE_RUNTIME_MOD=YES,INSTANCE_NAME=SHIF",
 		altsyncram_component.lpm_type = "altsyncram",
@@ -119,7 +119,7 @@ endmodule
 // Retrieval info: PRIVATE: JTAG_ENABLED NUMERIC "1"
 // Retrieval info: PRIVATE: JTAG_ID STRING "SHIF"
 // Retrieval info: PRIVATE: MAXIMUM_DEPTH NUMERIC "0"
-// Retrieval info: PRIVATE: MIFfilename STRING "./mif/kb2ascii_rom_shift.mif"
+// Retrieval info: PRIVATE: MIFfilename STRING "kb2ascii_rom_shift.mif"
 // Retrieval info: PRIVATE: NUMWORDS_A NUMERIC "256"
 // Retrieval info: PRIVATE: RAM_BLOCK_TYPE NUMERIC "0"
 // Retrieval info: PRIVATE: RegAddr NUMERIC "1"
@@ -134,7 +134,7 @@ endmodule
 // Retrieval info: CONSTANT: ADDRESS_ACLR_A STRING "NONE"
 // Retrieval info: CONSTANT: CLOCK_ENABLE_INPUT_A STRING "BYPASS"
 // Retrieval info: CONSTANT: CLOCK_ENABLE_OUTPUT_A STRING "BYPASS"
-// Retrieval info: CONSTANT: INIT_FILE STRING "./mif/kb2ascii_rom_shift.mif"
+// Retrieval info: CONSTANT: INIT_FILE STRING "kb2ascii_rom_shift.mif"
 // Retrieval info: CONSTANT: INTENDED_DEVICE_FAMILY STRING "Cyclone V"
 // Retrieval info: CONSTANT: LPM_HINT STRING "ENABLE_RUNTIME_MOD=YES,INSTANCE_NAME=SHIF"
 // Retrieval info: CONSTANT: LPM_TYPE STRING "altsyncram"
