@@ -1,10 +1,10 @@
-Analysis & Synthesis Status : Successful - Tue Nov 30 16:21:15 2021
+Analysis & Synthesis Status : Successful - Tue Nov 30 18:46:17 2021
 Quartus Prime Version : 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 Revision Name : riscv_hardware
 Top-level Entity Name : pipeline
 Family : Cyclone V
 Logic utilization (in ALMs) : N/A
-Total registers : 1685
+Total registers : 2003
 Total pins : 205
 Total virtual pins : 0
 Total block memory bits : 0

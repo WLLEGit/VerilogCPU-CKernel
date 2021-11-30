@@ -35,7 +35,7 @@ wire [`PL_STATUS_BUS_WIDTH] pl_ctrl_pc, pl_ctrl_ID, pl_ctrl_EX, pl_ctrl_MEM, pl_
 //interrupt signals
 wire we_ex, we_client, global_int_en, int_set_pl_pause, int_flag, csr2reg, csr2reg2, csr2reg3, csr2reg4, csr_we, csr_we2, csr_we3, csr_we4;
 wire [31:0] waddr_ex, raddr_ex, wdata_ex, waddr_client, wdata_client, mtvec, mepc, mstatus, data_out_ex, int_pc, 
-            csr_data, csr_data2, csr_aluresult, csr_aluresult3, csr_aluresult4;
+            csr_data, csr_data2, csr_aluresult, csr_aluresult3, csr_aluresult4, csr_waddr3, csr_waddr4;
 wire [2:0] csr_aluctr, csr_aluctr2;
 
 assign dbgdata = pc;
@@ -212,7 +212,7 @@ module ID_EX_reg (
     output reg          memwr_out,
     output reg [2:0]    memop_out,
     output reg [31:0]   csr_data_out,
-    output reg [1:0]   csr_aluctr_out,
+    output reg [2:0]   csr_aluctr_out,
     output reg          csrwe_out,
     output reg          csr2reg_out
 );
@@ -331,7 +331,7 @@ assign nextpc_rs1 = rs1_proc + imm;
 assign dataa = ALUAsrc?pc:rs1_proc;
 assign datab = (ALUBsrc==2'b00 ? rs2_proc : (ALUBsrc==2'b01 ? imm : 32'd4));
 alu alu_instance(dataa, datab, ALUctr, less, zero, aluresult);
-CSRALU csr_alu_instance(csr_data, rs1, zimm, csr_aluctr, csr_aluresult);
+CSRALU csr_alu_instance(csr_data, rs1, {27'd0, zimm}, csr_aluctr, csr_aluresult);
     
 endmodule
 
@@ -554,7 +554,7 @@ module WB (
     output     [31:0]   busW,
 
     input      [31:0]   csr_aluresult,
-    input              csr2reg,
+    input              csr2reg
 );
 
 assign busW = csr2reg ? csr_aluresult : (MemtoReg?dmemdata:aluresult);

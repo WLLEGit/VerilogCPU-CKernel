@@ -74,7 +74,7 @@ endmodule
 module CSRALU (
 	input [31:0] csr,
 	input [31:0] rs1,
-	input [31:0] zimm;
+	input [31:0] zimm,
 	input [2:0] ALUctr,
 
 	output reg [31:0] aluresult
