@@ -1,10 +1,10 @@
-// megafunction wizard: %RAM: 2-PORT%
+// megafunction wizard: %RAM: 2-PORT%VBB%
 // GENERATION: STANDARD
 // VERSION: WM1.0
 // MODULE: altsyncram 
 
 // ============================================================
-// File Name: char_ram.v
+// File Name: tmp_stack_ram.v
 // Megafunction Name(s):
 // 			altsyncram
 //
@@ -16,7 +16,6 @@
 //
 // 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 // ************************************************************
-
 
 //Copyright (C) 2020  Intel Corporation. All rights reserved.
 //Your use of Intel Corporation's design tools, logic functions 
@@ -33,11 +32,8 @@
 //refer to the applicable agreement for further details, at
 //https://fpgasoftware.intel.com/eula.
 
-
-// synopsys translate_off
-`timescale 1 ps / 1 ps
-// synopsys translate_on
-module char_ram (
+module tmp_stack_ram (
+	byteena_a,
 	data,
 	rdaddress,
 	rdclock,
@@ -46,70 +42,23 @@ module char_ram (
 	wren,
 	q);
 
-	input	[7:0]  data;
-	input	[11:0]  rdaddress;
+	input	[3:0]  byteena_a;
+	input	[31:0]  data;
+	input	[7:0]  rdaddress;
 	input	  rdclock;
-	input	[11:0]  wraddress;
+	input	[7:0]  wraddress;
 	input	  wrclock;
 	input	  wren;
-	output	[7:0]  q;
+	output	[31:0]  q;
 `ifndef ALTERA_RESERVED_QIS
 // synopsys translate_off
 `endif
+	tri1	[3:0]  byteena_a;
 	tri1	  wrclock;
 	tri0	  wren;
 `ifndef ALTERA_RESERVED_QIS
 // synopsys translate_on
 `endif
-
-	wire [7:0] sub_wire0;
-	wire [7:0] q = sub_wire0[7:0];
-
-	altsyncram	altsyncram_component (
-				.address_a (wraddress),
-				.address_b (rdaddress),
-				.clock0 (wrclock),
-				.clock1 (rdclock),
-				.data_a (data),
-				.wren_a (wren),
-				.q_b (sub_wire0),
-				.aclr0 (1'b0),
-				.aclr1 (1'b0),
-				.addressstall_a (1'b0),
-				.addressstall_b (1'b0),
-				.byteena_a (1'b1),
-				.byteena_b (1'b1),
-				.clocken0 (1'b1),
-				.clocken1 (1'b1),
-				.clocken2 (1'b1),
-				.clocken3 (1'b1),
-				.data_b ({8{1'b1}}),
-				.eccstatus (),
-				.q_a (),
-				.rden_a (1'b1),
-				.rden_b (1'b1),
-				.wren_b (1'b0));
-	defparam
-		altsyncram_component.address_aclr_b = "NONE",
-		altsyncram_component.address_reg_b = "CLOCK1",
-		altsyncram_component.clock_enable_input_a = "BYPASS",
-		altsyncram_component.clock_enable_input_b = "BYPASS",
-		altsyncram_component.clock_enable_output_b = "BYPASS",
-		altsyncram_component.init_file = "char_ram_init.mif",
-		altsyncram_component.intended_device_family = "Cyclone V",
-		altsyncram_component.lpm_type = "altsyncram",
-		altsyncram_component.numwords_a = 4096,
-		altsyncram_component.numwords_b = 4096,
-		altsyncram_component.operation_mode = "DUAL_PORT",
-		altsyncram_component.outdata_aclr_b = "NONE",
-		altsyncram_component.outdata_reg_b = "UNREGISTERED",
-		altsyncram_component.power_up_uninitialized = "FALSE",
-		altsyncram_component.widthad_a = 12,
-		altsyncram_component.widthad_b = 12,
-		altsyncram_component.width_a = 8,
-		altsyncram_component.width_b = 8,
-		altsyncram_component.width_byteena_a = 1;
-
 
 endmodule
 
@@ -120,10 +69,10 @@ endmodule
 // Retrieval info: PRIVATE: ADDRESSSTALL_B NUMERIC "0"
 // Retrieval info: PRIVATE: BYTEENA_ACLR_A NUMERIC "0"
 // Retrieval info: PRIVATE: BYTEENA_ACLR_B NUMERIC "0"
-// Retrieval info: PRIVATE: BYTE_ENABLE_A NUMERIC "0"
+// Retrieval info: PRIVATE: BYTE_ENABLE_A NUMERIC "1"
 // Retrieval info: PRIVATE: BYTE_ENABLE_B NUMERIC "0"
 // Retrieval info: PRIVATE: BYTE_SIZE NUMERIC "8"
-// Retrieval info: PRIVATE: BlankMemory NUMERIC "0"
+// Retrieval info: PRIVATE: BlankMemory NUMERIC "1"
 // Retrieval info: PRIVATE: CLOCK_ENABLE_INPUT_A NUMERIC "0"
 // Retrieval info: PRIVATE: CLOCK_ENABLE_INPUT_B NUMERIC "0"
 // Retrieval info: PRIVATE: CLOCK_ENABLE_OUTPUT_A NUMERIC "0"
@@ -146,9 +95,9 @@ endmodule
 // Retrieval info: PRIVATE: JTAG_ENABLED NUMERIC "0"
 // Retrieval info: PRIVATE: JTAG_ID STRING "NONE"
 // Retrieval info: PRIVATE: MAXIMUM_DEPTH NUMERIC "0"
-// Retrieval info: PRIVATE: MEMSIZE NUMERIC "32768"
+// Retrieval info: PRIVATE: MEMSIZE NUMERIC "8192"
 // Retrieval info: PRIVATE: MEM_IN_BITS NUMERIC "0"
-// Retrieval info: PRIVATE: MIFfilename STRING "char_ram_init.mif"
+// Retrieval info: PRIVATE: MIFfilename STRING ""
 // Retrieval info: PRIVATE: OPERATION_MODE NUMERIC "2"
 // Retrieval info: PRIVATE: OUTDATA_ACLR_B NUMERIC "0"
 // Retrieval info: PRIVATE: OUTDATA_REG_B NUMERIC "0"
@@ -166,10 +115,10 @@ endmodule
 // Retrieval info: PRIVATE: USE_DIFF_CLKEN NUMERIC "0"
 // Retrieval info: PRIVATE: UseDPRAM NUMERIC "1"
 // Retrieval info: PRIVATE: VarWidth NUMERIC "0"
-// Retrieval info: PRIVATE: WIDTH_READ_A NUMERIC "8"
-// Retrieval info: PRIVATE: WIDTH_READ_B NUMERIC "8"
-// Retrieval info: PRIVATE: WIDTH_WRITE_A NUMERIC "8"
-// Retrieval info: PRIVATE: WIDTH_WRITE_B NUMERIC "8"
+// Retrieval info: PRIVATE: WIDTH_READ_A NUMERIC "32"
+// Retrieval info: PRIVATE: WIDTH_READ_B NUMERIC "32"
+// Retrieval info: PRIVATE: WIDTH_WRITE_A NUMERIC "32"
+// Retrieval info: PRIVATE: WIDTH_WRITE_B NUMERIC "32"
 // Retrieval info: PRIVATE: WRADDR_ACLR_B NUMERIC "0"
 // Retrieval info: PRIVATE: WRADDR_REG_B NUMERIC "0"
 // Retrieval info: PRIVATE: WRCTRL_ACLR_B NUMERIC "0"
@@ -178,41 +127,43 @@ endmodule
 // Retrieval info: LIBRARY: altera_mf altera_mf.altera_mf_components.all
 // Retrieval info: CONSTANT: ADDRESS_ACLR_B STRING "NONE"
 // Retrieval info: CONSTANT: ADDRESS_REG_B STRING "CLOCK1"
+// Retrieval info: CONSTANT: BYTE_SIZE NUMERIC "8"
 // Retrieval info: CONSTANT: CLOCK_ENABLE_INPUT_A STRING "BYPASS"
 // Retrieval info: CONSTANT: CLOCK_ENABLE_INPUT_B STRING "BYPASS"
 // Retrieval info: CONSTANT: CLOCK_ENABLE_OUTPUT_B STRING "BYPASS"
-// Retrieval info: CONSTANT: INIT_FILE STRING "char_ram_init.mif"
 // Retrieval info: CONSTANT: INTENDED_DEVICE_FAMILY STRING "Cyclone V"
 // Retrieval info: CONSTANT: LPM_TYPE STRING "altsyncram"
-// Retrieval info: CONSTANT: NUMWORDS_A NUMERIC "4096"
-// Retrieval info: CONSTANT: NUMWORDS_B NUMERIC "4096"
+// Retrieval info: CONSTANT: NUMWORDS_A NUMERIC "256"
+// Retrieval info: CONSTANT: NUMWORDS_B NUMERIC "256"
 // Retrieval info: CONSTANT: OPERATION_MODE STRING "DUAL_PORT"
 // Retrieval info: CONSTANT: OUTDATA_ACLR_B STRING "NONE"
 // Retrieval info: CONSTANT: OUTDATA_REG_B STRING "UNREGISTERED"
 // Retrieval info: CONSTANT: POWER_UP_UNINITIALIZED STRING "FALSE"
-// Retrieval info: CONSTANT: WIDTHAD_A NUMERIC "12"
-// Retrieval info: CONSTANT: WIDTHAD_B NUMERIC "12"
-// Retrieval info: CONSTANT: WIDTH_A NUMERIC "8"
-// Retrieval info: CONSTANT: WIDTH_B NUMERIC "8"
-// Retrieval info: CONSTANT: WIDTH_BYTEENA_A NUMERIC "1"
-// Retrieval info: USED_PORT: data 0 0 8 0 INPUT NODEFVAL "data[7..0]"
-// Retrieval info: USED_PORT: q 0 0 8 0 OUTPUT NODEFVAL "q[7..0]"
-// Retrieval info: USED_PORT: rdaddress 0 0 12 0 INPUT NODEFVAL "rdaddress[11..0]"
+// Retrieval info: CONSTANT: WIDTHAD_A NUMERIC "8"
+// Retrieval info: CONSTANT: WIDTHAD_B NUMERIC "8"
+// Retrieval info: CONSTANT: WIDTH_A NUMERIC "32"
+// Retrieval info: CONSTANT: WIDTH_B NUMERIC "32"
+// Retrieval info: CONSTANT: WIDTH_BYTEENA_A NUMERIC "4"
+// Retrieval info: USED_PORT: byteena_a 0 0 4 0 INPUT VCC "byteena_a[3..0]"
+// Retrieval info: USED_PORT: data 0 0 32 0 INPUT NODEFVAL "data[31..0]"
+// Retrieval info: USED_PORT: q 0 0 32 0 OUTPUT NODEFVAL "q[31..0]"
+// Retrieval info: USED_PORT: rdaddress 0 0 8 0 INPUT NODEFVAL "rdaddress[7..0]"
 // Retrieval info: USED_PORT: rdclock 0 0 0 0 INPUT NODEFVAL "rdclock"
-// Retrieval info: USED_PORT: wraddress 0 0 12 0 INPUT NODEFVAL "wraddress[11..0]"
+// Retrieval info: USED_PORT: wraddress 0 0 8 0 INPUT NODEFVAL "wraddress[7..0]"
 // Retrieval info: USED_PORT: wrclock 0 0 0 0 INPUT VCC "wrclock"
 // Retrieval info: USED_PORT: wren 0 0 0 0 INPUT GND "wren"
-// Retrieval info: CONNECT: @address_a 0 0 12 0 wraddress 0 0 12 0
-// Retrieval info: CONNECT: @address_b 0 0 12 0 rdaddress 0 0 12 0
+// Retrieval info: CONNECT: @address_a 0 0 8 0 wraddress 0 0 8 0
+// Retrieval info: CONNECT: @address_b 0 0 8 0 rdaddress 0 0 8 0
+// Retrieval info: CONNECT: @byteena_a 0 0 4 0 byteena_a 0 0 4 0
 // Retrieval info: CONNECT: @clock0 0 0 0 0 wrclock 0 0 0 0
 // Retrieval info: CONNECT: @clock1 0 0 0 0 rdclock 0 0 0 0
-// Retrieval info: CONNECT: @data_a 0 0 8 0 data 0 0 8 0
+// Retrieval info: CONNECT: @data_a 0 0 32 0 data 0 0 32 0
 // Retrieval info: CONNECT: @wren_a 0 0 0 0 wren 0 0 0 0
-// Retrieval info: CONNECT: q 0 0 8 0 @q_b 0 0 8 0
-// Retrieval info: GEN_FILE: TYPE_NORMAL char_ram.v TRUE
-// Retrieval info: GEN_FILE: TYPE_NORMAL char_ram.inc FALSE
-// Retrieval info: GEN_FILE: TYPE_NORMAL char_ram.cmp FALSE
-// Retrieval info: GEN_FILE: TYPE_NORMAL char_ram.bsf FALSE
-// Retrieval info: GEN_FILE: TYPE_NORMAL char_ram_inst.v FALSE
-// Retrieval info: GEN_FILE: TYPE_NORMAL char_ram_bb.v TRUE
+// Retrieval info: CONNECT: q 0 0 32 0 @q_b 0 0 32 0
+// Retrieval info: GEN_FILE: TYPE_NORMAL tmp_stack_ram.v TRUE
+// Retrieval info: GEN_FILE: TYPE_NORMAL tmp_stack_ram.inc FALSE
+// Retrieval info: GEN_FILE: TYPE_NORMAL tmp_stack_ram.cmp FALSE
+// Retrieval info: GEN_FILE: TYPE_NORMAL tmp_stack_ram.bsf FALSE
+// Retrieval info: GEN_FILE: TYPE_NORMAL tmp_stack_ram_inst.v FALSE
+// Retrieval info: GEN_FILE: TYPE_NORMAL tmp_stack_ram_bb.v TRUE
 // Retrieval info: LIB_FILE: altera_mf

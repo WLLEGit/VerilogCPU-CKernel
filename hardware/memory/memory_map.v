@@ -31,22 +31,26 @@ parameter VGA_CHAR_OFFSET     = 32'h00300000;
 parameter VGA_COLOR_OFFSET    = 32'h00400000;
 parameter KB_INFO_OFFSET      = 32'h00500000;
 parameter IDT_OFFSET          = 32'h00600000;
+parameter TMP_STACK_OFFSET    = 32'h00700000;
 parameter PREFIX_MASK 		  =	32'hfff00000;	
 parameter ADDR_MASK 		  =	32'h000fffff;
 
-wire [31:0] dram_dataout, kb_info_dataout;
-wire dram_we, vga_we, char_we, color_we;
+wire [31:0] dram_dataout, kb_info_dataout, tmp_stack_dataout;
+wire dram_we, vga_we, char_we, color_we, tmp_stack_we;
 
 assign dram_we = cpu_we && ((cpu_addr & PREFIX_MASK) == DATA_OFFSET);
 assign vga_we = cpu_we && ((cpu_addr & PREFIX_MASK) == VGA_INFO_OFFSET);
 assign char_we = cpu_we && ((cpu_addr & PREFIX_MASK) == VGA_CHAR_OFFSET);
 assign color_we = cpu_we && ((cpu_addr & PREFIX_MASK) == VGA_COLOR_OFFSET);
+assign tmp_stack_we = cpu_we && ((cpu_addr & PREFIX_MASK) == TMP_STACK_OFFSET);
 
 always @(*) begin
-	if(cpu_addr & PREFIX_MASK == DATA_OFFSET)
+	if((cpu_addr & PREFIX_MASK) == DATA_OFFSET)
 		cpu_rddata <= dram_dataout;
-	else if(cpu_addr & PREFIX_MASK == KB_INFO_OFFSET)
+	else if((cpu_addr & PREFIX_MASK) == KB_INFO_OFFSET)
 		cpu_rddata <= kb_info_dataout;
+	else if((cpu_addr & PREFIX_MASK) == TMP_STACK_OFFSET)
+		cpu_rddata <= tmp_stack_dataout;
 	else
 		cpu_rddata <= 0;
 end
@@ -57,6 +61,7 @@ vga_info vga_info_instance(clk, cpu_addr&ADDR_MASK, cpu_wrdata, vga_we, vga_extr
 char_ram vga_ram_instance(cpu_wrdata, vga_char_addr&ADDR_MASK, clk, cpu_addr&ADDR_MASK, clk, char_we, vga_char_data);		//	read: vga, 	write: cpu
 color_ram color_ram_instance(cpu_wrdata, vga_color_addr&ADDR_MASK, clk, cpu_addr&ADDR_MASK, clk, color_we, vga_color_data);	//	read: vga, 	write: cpu
 kb_info kb_info_instance(clk, cpu_addr&ADDR_MASK, kb_info_dataout, kb_wraddr&ADDR_MASK, kb_wrdata, kb_we);					//	read: cpu, 	write: kb
+tmp_stack tmp_stack_ram_instance(cpu_addr&ADDR_MASK, tmp_stack_dataout, cpu_wrdata, clk, clk, cpu_memop, tmp_stack_we);		//	read: cpu, 	write: cpu
 
 endmodule
 

@@ -27,6 +27,7 @@ void irq_handler(uint32_t mcause)
     {
         //clock interrupt
         sys_time++;
+        kb_info = *p_kb_info;
     }
     else if(mcause == ECALL_MCAUSE)
     {

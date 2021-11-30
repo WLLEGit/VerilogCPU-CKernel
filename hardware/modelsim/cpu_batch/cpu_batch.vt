@@ -75,7 +75,7 @@ endtask
 
 task loadtestcase;  //load intstructions to instruction mem
 	begin
-		$readmemh({"D:/HomeWork/ShuDianShiYan/11/exp11/simulation/modelsim/cpu_batch/", testcase, ".hex"},instructions.ram);
+		$readmemh({"D:/HomeWork/ShuDianShiYan/12/exp12/hardware/modelsim/cpu_batch/", testcase, ".hex"},instructions.ram);
 		$display("~~~ Begin test case %s ~~~", testcase);
 	end
 endtask
@@ -182,7 +182,7 @@ endtask
 
 task loaddatamem;
     begin
-	     $readmemh({"D:/HomeWork/ShuDianShiYan/11/exp11/simulation/modelsim/cpu_batch/", testcase, "_d.hex"},datamem.mymem.ram);
+	     $readmemh({"D:/HomeWork/ShuDianShiYan/12/exp12/hardware/modelsim/cpu_batch/", testcase, "_d.hex"},datamem.mymem.ram);
 	 end
 endtask
 
@@ -199,6 +199,9 @@ endtask
 initial begin:TestBench
       #80
     //   output the state of every instruction
+		testcase = "main";
+		run_riscv_test();
+		$stop;
 		testcase = "rv32ui-p-simple";
 		run_riscv_test();
 		testcase = "rv32ui-p-add";

@@ -45,7 +45,6 @@ char getc()
 {
     while(!kb_info.c);  //wait input
     char c = kb_info.c;
-    kb_info.c = '\0';
     putc(c, COLOR_WHITE);
     return c;
 }
