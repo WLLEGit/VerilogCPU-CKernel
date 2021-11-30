@@ -20,9 +20,13 @@ RISCV_MIFGEN ?= 'BEGIN{printf "WIDTH=32;\nDEPTH=%d;\n\nADDRESS_RADIX=HEX;\
 				addr=strtonum($$1);} else {printf "%04X : %s;\n", addr, $$1;\
 				addr=addr+1;}} END{print "END\n";}'
 
+CSRCS = $(wildcard ./src/*.S)
 SRCS := $(wildcard ./src/*.c)
-OBJS := $(SRCS:%.c=%.o)
+OBJS := $(SRCS:%.c=%.o) $(CSRCS:%.S=%.o)
 EXEC := main
+
+./src/do_irq.o: ./src/do_irq.S
+	$(RISCV_GCC) $(RISCV_GCC_OPTS) -c -o $@ $<
 
 .c.o:
 	$(RISCV_GCC) -c $(RISCV_GCC_OPTS) $< -o $@

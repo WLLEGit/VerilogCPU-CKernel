@@ -8,6 +8,7 @@
 #define VGA_COLOR_OFFSET    0x00400000
 #define KB_INFO_OFFSET      0x00500000
 #define IDT_OFFSET          0x00600000
+#define TMP_STACK_OFFSET    0x00700000
 
 #define VGA_WIDTH 640
 #define VGA_HEIGHT 480
@@ -50,5 +51,8 @@ extern uint32_t * const idt_mem;
 extern uint8_t * const ch_mem;
 extern uint8_t * const color_mem;
 extern volatile uint32_t sys_time;
+
+#define CLOCK_INT_MCAUSE  0x80000007
+#define ECALL_MCAUSE  0x0000000b
 
 #endif

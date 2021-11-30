@@ -12,7 +12,7 @@ void entry()
 
 int main()
 {
-    add_all_irq_handlers();
+    init_CSR();
     ui_mainloop();
     return 0;
 }

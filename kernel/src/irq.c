@@ -1,22 +1,35 @@
 #include "irq.h"
-#include "global.h"
 #include "io_mm.h"
 
-CSRS csrs;
+void int_handler_entrance();
 
-void add_all_irq_handlers()
+void init_CSR()
 {
-    idt_mem[1] = (uint32_t)irq_clock;
-    idt_mem[2] = (uint32_t)irq_keyboard;
-    idt_mem[0] = 0xFFFFFFFF; //enable irqs
+    uint32_t addr = (uint32_t)(int_handler_entrance);
+    uint32_t tmp;
+    // set the address of the interrupt handler
+    asm volatile("mv %[tmp], %[src];"
+                "csrw mtvec, %[tmp];"
+                    :
+                    : [src]"r"(addr), [tmp]"r"(tmp));
+    asm volatile("csrw mscratch, %[tmp];"
+                    :
+                    : [tmp]"r"(TMP_STACK_OFFSET));
+    // enable global interrupt
+    asm volatile("csrw mstatus, %[tmp];"
+                    :
+                    : [tmp]"r"(0x00000008));
 }
 
-void irq_clock()
+void irq_handler(uint32_t mcause)
 {
-    sys_time++;
-}
-
-void irq_keyboard()
-{
-    kb_info = *p_kb_info;
+    if(mcause == CLOCK_INT_MCAUSE)
+    {
+        //clock interrupt
+        sys_time++;
+    }
+    else if(mcause == ECALL_MCAUSE)
+    {
+        
+    }
 }
