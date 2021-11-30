@@ -70,3 +70,26 @@ assign cf = cout ^ addsub;
 
 
 endmodule
+
+module CSRALU (
+	input [31:0] csr,
+	input [31:0] rs1,
+	input [31:0] zimm;
+	input [2:0] ALUctr,
+
+	output reg [31:0] aluresult
+);
+
+always @(*) begin
+	case(ALUctr)
+	3'b000: aluresult <= rs1;
+	3'b001: aluresult <= zimm;
+	3'b010: aluresult <= rs1|csr;
+	3'b011: aluresult <= zimm|csr;
+	3'b100: aluresult <= ~rs1|csr;
+	3'b101: aluresult <= ~zimm|csr;
+	default: aluresult <= 32'd0;
+	endcase
+end
+	
+endmodule

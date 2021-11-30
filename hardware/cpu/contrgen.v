@@ -8,7 +8,11 @@ module contr_gen (
     output reg [2:0] branch,
     output reg MemtoReg,
     output reg memwr,
-    output reg [2:0] memop
+    output reg [2:0] memop,
+
+    output reg [2:0] csr_alu_ctr,
+    output reg csr_we,
+    output reg csr2reg
 );
 
 wire [6:0]op_ = instr[6:0];
@@ -36,7 +40,7 @@ end
 always @(*) begin
     if(instr == 32'd0)
         regwr <= 0;
-    else if(op==5'b11000 || op==5'b01000)
+    else if(op==5'b11000 || op==5'b01000 || (op==5'b11100&&func3==3'b111))
         regwr<=1'b0;
     else
         regwr<=1'b1;
@@ -162,5 +166,32 @@ always @(*) begin
     else if(op==5'b01000 && func3==3'b010) ALUctr <= 4'b0000;
     else ALUctr<=4'b0000;
 end
-    
+
+always @(*) begin
+    if(op==5'b11100 && func3!=3'b111)
+        csr_we <= 1'b1;
+    else
+        csr_we <= 1'b0;
+end
+
+always @(*) begin
+    if(op==5'b11100)begin
+        case(func3)
+        3'b000: csr_alu_ctr <=3'b000;
+        3'b001: csr_alu_ctr <=3'b010;
+        3'b010: csr_alu_ctr <=3'b100;
+        3'b011: csr_alu_ctr <=3'b001;
+        3'b101: csr_alu_ctr <=3'b011;
+        3'b110: csr_alu_ctr <=3'b101;
+        default: csr_alu_ctr <=3'b000;
+        endcase
+    end else begin
+        csr_alu_ctr <=3'b000;
+    end
+end
+
+always @(*) begin
+    csr2reg <= (op==5'b11100&&func3!=3'b111) ? 1'b1 : 1'b0;
+end
+
 endmodule
