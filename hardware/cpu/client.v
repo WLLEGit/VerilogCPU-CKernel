@@ -5,7 +5,7 @@ module client (
     input clr,
     input clk,
 
-    input [IRQ_PIN_BUS]     irq_pins,
+    input [`IRQ_PIN_BUS]     irq_pins,
 
     input [31:0]    instr_MEM,
     input [31:0]    instr_addr_MEM,
@@ -22,7 +22,6 @@ module client (
 
     output reg          csr_we,
     output reg [31:0]   csr_waddr,
-    output reg [31:0]   csr_raddr,
     output reg [31:0]   csr_wdata,
 
     output reg [31:0]   int_addr,
@@ -34,7 +33,7 @@ reg [`CSR_STATE_BUS_WIDTH] csr_state;
 reg [31:0] instr_addr;
 reg [31:0] cause;
 
-assign set_pl_pause = (int_state != `INT_IDLE) | (csr_state != `CSR_STATE_IDLE);
+assign set_pl_pause = ((int_state != `INT_IDLE) | (csr_state != `CSR_STATE_IDLE));
 
 always @(*) begin
     if(clr) begin
@@ -67,13 +66,10 @@ always @(posedge clk) begin
                 else
                     instr_addr <= instr_addr;
 
-                case(instr_MEM)
-                `INSTR_ECALL: begin
+                if(instr_MEM == `INSTR_ECALL) 
                     cause <= `ECALL_MCAUSE;
-                end default: begin
+                else
                     cause <= 0;
-                end
-                endcase
             end else if(int_state == `INT_M_ASYNC) begin
                 csr_state <= `CSR_STATE_MEPC;
                 if(irq_pins[`CLOCK_IRQ_PIN] == 1) begin
@@ -170,7 +166,6 @@ module CSRs (
 
     input           we_client,
     input [31:0]    waddr_client,
-    input [31:0]    raddr_client,
     input [31:0]    wdata_client,
 
     output global_int_en,
@@ -179,8 +174,7 @@ module CSRs (
     output [31:0]   mepc_out,
     output [31:0]   mstatus_out,
 
-    output [31:0]   data_out_ex,
-    output [31:0]   data_out_client
+    output reg [31:0]   data_out_ex
 );
 
 reg [63:0] cycle;   //inner clk timer
@@ -205,10 +199,10 @@ end
 
 //read
 always @ (*) begin
-    if ((waddr_ex[11:0] == raddr_ex[11:0]) && we_e) begin
-        data_out_ex <= data_i;
+    if ((waddr_ex[11:0] == raddr_ex[11:0]) && we_ex) begin
+        data_out_ex <= wdata_ex;
     end else begin
-        case (raddr_i[11:0])
+        case (raddr_ex[11:0])
             `CSR_CYCLE:
                 data_out_ex <= cycle[31:0];
             `CSR_CYCLEH:
@@ -231,33 +225,33 @@ always @ (*) begin
     end
 end
 
-always @ (*) begin
-    if ((waddr_client[11:0] == raddr_client[11:0]) && we_client) begin
-        data_out_client <= clint_data_i;
-    end else begin
-        case (clint_raddr_i[11:0])
-            `CSR_CYCLE: 
-                data_out_client <= cycle[31:0];
-            `CSR_CYCLEH: 
-                data_out_client <= cycle[63:32];
-            `CSR_MTVEC: 
-                data_out_client <= mtvec;
-            `CSR_MCAUSE: 
-                data_out_client <= mcause;
-            `CSR_MEPC: 
-                data_out_client <= mepc;
-            `CSR_MIE: 
-                data_out_client <= mie;
-            `CSR_MSTATUS: 
-                data_out_client <= mstatus;
-            `CSR_MSCRATCH: 
-                data_out_client <= mscratch;
-            default: 
-                data_out_client <= 32'd0;
-            end
-        endcase
-    end
-end
+// always @ (*) begin
+//     if ((waddr_client[11:0] == raddr_client[11:0]) && we_client) begin
+//         data_out_client <= clint_data_i;
+//     end else begin
+//         case (clint_raddr_i[11:0])
+//             `CSR_CYCLE: 
+//                 data_out_client <= cycle[31:0];
+//             `CSR_CYCLEH: 
+//                 data_out_client <= cycle[63:32];
+//             `CSR_MTVEC: 
+//                 data_out_client <= mtvec;
+//             `CSR_MCAUSE: 
+//                 data_out_client <= mcause;
+//             `CSR_MEPC: 
+//                 data_out_client <= mepc;
+//             `CSR_MIE: 
+//                 data_out_client <= mie;
+//             `CSR_MSTATUS: 
+//                 data_out_client <= mstatus;
+//             `CSR_MSCRATCH: 
+//                 data_out_client <= mscratch;
+//             default: 
+//                 data_out_client <= 32'd0;
+//             end
+//         endcase
+//     end
+// end
 
 
 //write
@@ -272,10 +266,6 @@ always @(posedge clk) begin
     end else begin
         if(we_ex) begin
             case (waddr_ex[11:0])
-                `CSR_CYCLE: 
-                    cycle <= wdata_ex;
-                `CSR_CYCLEH: 
-                    cycle <= {wdata_ex[31:0], cycle[63:32]};
                 `CSR_MTVEC: 
                     mtvec <= wdata_ex;
                 `CSR_MCAUSE: 
@@ -294,10 +284,6 @@ always @(posedge clk) begin
         end
         else if(we_client) begin
             case (waddr_client[11:0])
-                `CSR_CYCLE: 
-                    cycle <= wdata_client;
-                `CSR_CYCLEH: 
-                    cycle <= {wdata_client[31:0], cycle[63:32]};
                 `CSR_MTVEC: 
                     mtvec <= wdata_client;
                 `CSR_MCAUSE: 
@@ -315,4 +301,5 @@ always @(posedge clk) begin
             endcase
         end
     end
+end
 endmodule

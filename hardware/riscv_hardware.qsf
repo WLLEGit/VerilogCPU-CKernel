@@ -4,7 +4,7 @@
 
 set_global_assignment -name FAMILY "Cyclone V"
 set_global_assignment -name DEVICE 5CEFA7F31C6
-set_global_assignment -name TOP_LEVEL_ENTITY riscv_hardware
+set_global_assignment -name TOP_LEVEL_ENTITY pipeline
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION "16.0.2"
 set_global_assignment -name LAST_QUARTUS_VERSION "20.1.1 Lite Edition"
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "17:35:24 NOVEMBER 26,2021"
@@ -295,6 +295,7 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to PS2_DAT
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to PS2_DAT2
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FPGA_I2C_SCLK
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FPGA_I2C_SDAT
+set_global_assignment -name VERILOG_FILE cpu/client.v
 set_global_assignment -name VERILOG_FILE helpers/display7seg.v
 set_global_assignment -name VERILOG_FILE helpers/clkgen.v
 set_global_assignment -name VERILOG_FILE keyboard/ps2_keyboard.v

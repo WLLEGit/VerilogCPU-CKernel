@@ -33,11 +33,11 @@
 
 //csr process status
 `define CSR_STATE_BUS_WIDTH    4:0
-`define CSR_STATE_IDLE                5'b00001;
-`define CSR_STATE_MSTATUS             5'b00010;
-`define CSR_STATE_MEPC                5'b00100;
-`define CSR_STATE_MRET                5'b01000;
-`define CSR_STATE_MCAUSE              5'b10000;
+`define CSR_STATE_IDLE                5'b00001
+`define CSR_STATE_MSTATUS             5'b00010
+`define CSR_STATE_MEPC                5'b00100
+`define CSR_STATE_MRET                5'b01000
+`define CSR_STATE_MCAUSE              5'b10000
 
 //special instrs
 `define INSTR_ECALL            32'h00000073

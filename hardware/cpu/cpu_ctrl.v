@@ -34,7 +34,7 @@ assign stall = mem2reg_ex && ((rd_addr_ex == rs1_addr_id) || (rd_addr_ex == rs2_
 endmodule
 
 module PC (
-   input [1:0] PL_status,
+   input [`PL_STATUS_BUS_WIDTH] PL_status,
    input clk,
 
    input [31:0] nextpc_mem,

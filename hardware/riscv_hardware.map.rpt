@@ -1,5 +1,5 @@
 Analysis & Synthesis report for riscv_hardware
-Mon Nov 29 21:18:21 2021
+Tue Nov 30 16:21:15 2021
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -10,8 +10,20 @@ Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
   2. Analysis & Synthesis Summary
   3. Analysis & Synthesis Settings
   4. Parallel Compilation
-  5. Analysis & Synthesis Messages
-  6. Analysis & Synthesis Suppressed Messages
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. State Machine - |pipeline|client:client_instance|csr_state
+  9. Registers Removed During Synthesis
+ 10. Removed Registers Triggering Further Register Optimizations
+ 11. General Register Statistics
+ 12. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 13. Port Connectivity Checks: "ID_EX_reg:ID_EX_reg_instance"
+ 14. Port Connectivity Checks: "CSRs:csrs"
+ 15. Post-Synthesis Netlist Statistics for Top Partition
+ 16. Elapsed Time Per Partition
+ 17. Analysis & Synthesis Messages
+ 18. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -35,22 +47,27 @@ https://fpgasoftware.intel.com/eula.
 
 
 
-+---------------------------------------------------------------------------+
-; Analysis & Synthesis Summary                                              ;
-+-----------------------------+---------------------------------------------+
-; Analysis & Synthesis Status ; Failed - Mon Nov 29 21:18:21 2021           ;
-; Quartus Prime Version       ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
-; Revision Name               ; riscv_hardware                              ;
-; Top-level Entity Name       ; riscv_hardware                              ;
-; Family                      ; Cyclone V                                   ;
-; Logic utilization (in ALMs) ; N/A until Partition Merge                   ;
-; Total registers             ; N/A until Partition Merge                   ;
-; Total pins                  ; N/A until Partition Merge                   ;
-; Total virtual pins          ; N/A until Partition Merge                   ;
-; Total block memory bits     ; N/A until Partition Merge                   ;
-; Total PLLs                  ; N/A until Partition Merge                   ;
-; Total DLLs                  ; N/A until Partition Merge                   ;
-+-----------------------------+---------------------------------------------+
++-------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                  ;
++---------------------------------+---------------------------------------------+
+; Analysis & Synthesis Status     ; Successful - Tue Nov 30 16:21:15 2021       ;
+; Quartus Prime Version           ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
+; Revision Name                   ; riscv_hardware                              ;
+; Top-level Entity Name           ; pipeline                                    ;
+; Family                          ; Cyclone V                                   ;
+; Logic utilization (in ALMs)     ; N/A                                         ;
+; Total registers                 ; 1685                                        ;
+; Total pins                      ; 205                                         ;
+; Total virtual pins              ; 0                                           ;
+; Total block memory bits         ; 0                                           ;
+; Total DSP Blocks                ; 0                                           ;
+; Total HSSI RX PCSs              ; 0                                           ;
+; Total HSSI PMA RX Deserializers ; 0                                           ;
+; Total HSSI TX PCSs              ; 0                                           ;
+; Total HSSI PMA TX Serializers   ; 0                                           ;
+; Total PLLs                      ; 0                                           ;
+; Total DLLs                      ; 0                                           ;
++---------------------------------+---------------------------------------------+
 
 
 +---------------------------------------------------------------------------------------------------------------------------+
@@ -59,7 +76,7 @@ https://fpgasoftware.intel.com/eula.
 ; Option                                                                          ; Setting            ; Default Value      ;
 +---------------------------------------------------------------------------------+--------------------+--------------------+
 ; Device                                                                          ; 5CEFA7F31C6        ;                    ;
-; Top-level entity name                                                           ; riscv_hardware     ; riscv_hardware     ;
+; Top-level entity name                                                           ; pipeline           ; riscv_hardware     ;
 ; Family name                                                                     ; Cyclone V          ; Cyclone V          ;
 ; Use smart compilation                                                           ; Off                ; Off                ;
 ; Enable parallel Assembler and Timing Analyzer during compilation                ; On                 ; On                 ;
@@ -149,11 +166,325 @@ https://fpgasoftware.intel.com/eula.
 ; Maximum allowed            ; 4           ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
-; Maximum used               ; 1           ;
+; Maximum used               ; 4           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;   0.1%      ;
+;     Processor 3            ;   0.1%      ;
+;     Processor 4            ;   0.1%      ;
 +----------------------------+-------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                ;
++----------------------------------+-----------------+------------------------+---------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path                                  ; Library ;
++----------------------------------+-----------------+------------------------+---------------------------------------------------------------+---------+
+; cpu/client.v                     ; yes             ; User Verilog HDL File  ; D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/client.v      ;         ;
+; cpu/pipeline.v                   ; yes             ; User Verilog HDL File  ; D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v    ;         ;
+; cpu/regfile.v                    ; yes             ; User Verilog HDL File  ; D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/regfile.v     ;         ;
+; cpu/immgen.v                     ; yes             ; User Verilog HDL File  ; D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/immgen.v      ;         ;
+; cpu/define.v                     ; yes             ; User Verilog HDL File  ; D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/define.v      ;         ;
+; cpu/cpu_ctrl.v                   ; yes             ; User Verilog HDL File  ; D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/cpu_ctrl.v    ;         ;
+; cpu/contrgen.v                   ; yes             ; User Verilog HDL File  ; D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/contrgen.v    ;         ;
+; cpu/branch_cond.v                ; yes             ; User Verilog HDL File  ; D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/branch_cond.v ;         ;
+; cpu/alu.v                        ; yes             ; User Verilog HDL File  ; D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/alu.v         ;         ;
++----------------------------------+-----------------+------------------------+---------------------------------------------------------------+---------+
+
+
++---------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary             ;
++---------------------------------------------+-----------+
+; Resource                                    ; Usage     ;
++---------------------------------------------+-----------+
+; Estimate of Logic utilization (ALMs needed) ; 1462      ;
+;                                             ;           ;
+; Combinational ALUT usage for logic          ; 1699      ;
+;     -- 7 input functions                    ; 17        ;
+;     -- 6 input functions                    ; 961       ;
+;     -- 5 input functions                    ; 266       ;
+;     -- 4 input functions                    ; 175       ;
+;     -- <=3 input functions                  ; 280       ;
+;                                             ;           ;
+; Dedicated logic registers                   ; 1685      ;
+;                                             ;           ;
+; I/O pins                                    ; 205       ;
+;                                             ;           ;
+; Total DSP Blocks                            ; 0         ;
+;                                             ;           ;
+; Maximum fan-out node                        ; clk~input ;
+; Maximum fan-out                             ; 1688      ;
+; Total fan-out                               ; 14711     ;
+; Average fan-out                             ; 3.88      ;
++---------------------------------------------+-----------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                ;
++-------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+----------------------------------------------------------+---------------------+--------------+
+; Compilation Hierarchy Node                ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                      ; Entity Name         ; Library Name ;
++-------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+----------------------------------------------------------+---------------------+--------------+
+; |pipeline                                 ; 1699 (0)            ; 1685 (0)                  ; 0                 ; 0          ; 205  ; 0            ; |pipeline                                                ; pipeline            ; work         ;
+;    |CSRs:csrs|                            ; 2 (2)               ; 64 (64)                   ; 0                 ; 0          ; 0    ; 0            ; |pipeline|CSRs:csrs                                      ; CSRs                ; work         ;
+;    |EX:EX_instance|                       ; 457 (243)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|EX:EX_instance                                 ; EX                  ; work         ;
+;       |alu:alu_instance|                  ; 214 (166)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|EX:EX_instance|alu:alu_instance                ; alu                 ; work         ;
+;          |adder:alu_addr|                 ; 48 (48)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|EX:EX_instance|alu:alu_instance|adder:alu_addr ; adder               ; work         ;
+;    |EX_M_reg:EX_M_reg_instance|           ; 173 (173)           ; 171 (171)                 ; 0                 ; 0          ; 0    ; 0            ; |pipeline|EX_M_reg:EX_M_reg_instance                     ; EX_M_reg            ; work         ;
+;    |ID:ID_instance|                       ; 54 (0)              ; 992 (0)                   ; 0                 ; 0          ; 0    ; 0            ; |pipeline|ID:ID_instance                                 ; ID                  ; work         ;
+;       |contr_gen:contr_gen_instance|      ; 21 (21)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|ID:ID_instance|contr_gen:contr_gen_instance    ; contr_gen           ; work         ;
+;       |imm_gen:imm_gen_instance|          ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|ID:ID_instance|imm_gen:imm_gen_instance        ; imm_gen             ; work         ;
+;       |regfile:myregfile|                 ; 31 (31)             ; 992 (992)                 ; 0                 ; 0          ; 0    ; 0            ; |pipeline|ID:ID_instance|regfile:myregfile               ; regfile             ; work         ;
+;    |ID_EX_reg:ID_EX_reg_instance|         ; 724 (724)           ; 176 (176)                 ; 0                 ; 0          ; 0    ; 0            ; |pipeline|ID_EX_reg:ID_EX_reg_instance                   ; ID_EX_reg           ; work         ;
+;    |IF_ID_reg:IFIDreg_instance|           ; 2 (2)               ; 64 (64)                   ; 0                 ; 0          ; 0    ; 0            ; |pipeline|IF_ID_reg:IFIDreg_instance                     ; IF_ID_reg           ; work         ;
+;    |M:M_instance|                         ; 31 (30)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|M:M_instance                                   ; M                   ; work         ;
+;       |branch_cond:branch_cond_instance|  ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|M:M_instance|branch_cond:branch_cond_instance  ; branch_cond         ; work         ;
+;    |M_WB_reg:M_WB_reg_instance|           ; 2 (2)               ; 71 (71)                   ; 0                 ; 0          ; 0    ; 0            ; |pipeline|M_WB_reg:M_WB_reg_instance                     ; M_WB_reg            ; work         ;
+;    |PC:PC_instance|                       ; 67 (67)             ; 32 (32)                   ; 0                 ; 0          ; 0    ; 0            ; |pipeline|PC:PC_instance                                 ; PC                  ; work         ;
+;    |WB:WB_instance|                       ; 32 (32)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|WB:WB_instance                                 ; WB                  ; work         ;
+;    |client:client_instance|               ; 127 (127)           ; 108 (108)                 ; 0                 ; 0          ; 0    ; 0            ; |pipeline|client:client_instance                         ; client              ; work         ;
+;    |forward_detecter:f_d_i|               ; 14 (14)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|forward_detecter:f_d_i                         ; forward_detecter    ; work         ;
+;    |load_store_detecter:l_s_d|            ; 5 (5)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|load_store_detecter:l_s_d                      ; load_store_detecter ; work         ;
+;    |pipeline_status:pipeline_status_ctrl| ; 9 (9)               ; 7 (7)                     ; 0                 ; 0          ; 0    ; 0            ; |pipeline|pipeline_status:pipeline_status_ctrl           ; pipeline_status     ; work         ;
++-------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+----------------------------------------------------------+---------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
+Encoding Type:  One-Hot
++-----------------------------------------------------------------------------------------------------------+
+; State Machine - |pipeline|client:client_instance|csr_state                                                ;
++-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+
+; Name            ; csr_state.10000 ; csr_state.01000 ; csr_state.00100 ; csr_state.00010 ; csr_state.00001 ;
++-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+
+; csr_state.00001 ; 0               ; 0               ; 0               ; 0               ; 0               ;
+; csr_state.00010 ; 0               ; 0               ; 0               ; 1               ; 1               ;
+; csr_state.00100 ; 0               ; 0               ; 1               ; 0               ; 1               ;
+; csr_state.01000 ; 0               ; 1               ; 0               ; 0               ; 1               ;
+; csr_state.10000 ; 1               ; 0               ; 0               ; 0               ; 1               ;
++-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                   ;
++-----------------------------------------------------+----------------------------------------------------------------+
+; Register name                                       ; Reason for Removal                                             ;
++-----------------------------------------------------+----------------------------------------------------------------+
+; ID:ID_instance|regfile:myregfile|regs[0][31]        ; Stuck at GND due to stuck port data_in                         ;
+; ID:ID_instance|regfile:myregfile|regs[0][30]        ; Stuck at GND due to stuck port data_in                         ;
+; ID:ID_instance|regfile:myregfile|regs[0][29]        ; Stuck at GND due to stuck port data_in                         ;
+; ID:ID_instance|regfile:myregfile|regs[0][28]        ; Stuck at GND due to stuck port data_in                         ;
+; ID:ID_instance|regfile:myregfile|regs[0][27]        ; Stuck at GND due to stuck port data_in                         ;
+; ID:ID_instance|regfile:myregfile|regs[0][26]        ; Stuck at GND due to stuck port data_in                         ;
+; ID:ID_instance|regfile:myregfile|regs[0][25]        ; Stuck at GND due to stuck port data_in                         ;
+; ID:ID_instance|regfile:myregfile|regs[0][24]        ; Stuck at GND due to stuck port data_in                         ;
+; ID:ID_instance|regfile:myregfile|regs[0][23]        ; Stuck at GND due to stuck port data_in                         ;
+; ID:ID_instance|regfile:myregfile|regs[0][22]        ; Stuck at GND due to stuck port data_in                         ;
+; ID:ID_instance|regfile:myregfile|regs[0][21]        ; Stuck at GND due to stuck port data_in                         ;
+; ID:ID_instance|regfile:myregfile|regs[0][20]        ; Stuck at GND due to stuck port data_in                         ;
+; ID:ID_instance|regfile:myregfile|regs[0][19]        ; Stuck at GND due to stuck port data_in                         ;
+; ID:ID_instance|regfile:myregfile|regs[0][18]        ; Stuck at GND due to stuck port data_in                         ;
+; ID:ID_instance|regfile:myregfile|regs[0][17]        ; Stuck at GND due to stuck port data_in                         ;
+; ID:ID_instance|regfile:myregfile|regs[0][16]        ; Stuck at GND due to stuck port data_in                         ;
+; ID:ID_instance|regfile:myregfile|regs[0][15]        ; Stuck at GND due to stuck port data_in                         ;
+; ID:ID_instance|regfile:myregfile|regs[0][14]        ; Stuck at GND due to stuck port data_in                         ;
+; ID:ID_instance|regfile:myregfile|regs[0][13]        ; Stuck at GND due to stuck port data_in                         ;
+; ID:ID_instance|regfile:myregfile|regs[0][12]        ; Stuck at GND due to stuck port data_in                         ;
+; ID:ID_instance|regfile:myregfile|regs[0][11]        ; Stuck at GND due to stuck port data_in                         ;
+; ID:ID_instance|regfile:myregfile|regs[0][10]        ; Stuck at GND due to stuck port data_in                         ;
+; ID:ID_instance|regfile:myregfile|regs[0][9]         ; Stuck at GND due to stuck port data_in                         ;
+; ID:ID_instance|regfile:myregfile|regs[0][8]         ; Stuck at GND due to stuck port data_in                         ;
+; ID:ID_instance|regfile:myregfile|regs[0][7]         ; Stuck at GND due to stuck port data_in                         ;
+; ID:ID_instance|regfile:myregfile|regs[0][6]         ; Stuck at GND due to stuck port data_in                         ;
+; ID:ID_instance|regfile:myregfile|regs[0][5]         ; Stuck at GND due to stuck port data_in                         ;
+; ID:ID_instance|regfile:myregfile|regs[0][4]         ; Stuck at GND due to stuck port data_in                         ;
+; ID:ID_instance|regfile:myregfile|regs[0][3]         ; Stuck at GND due to stuck port data_in                         ;
+; ID:ID_instance|regfile:myregfile|regs[0][2]         ; Stuck at GND due to stuck port data_in                         ;
+; ID:ID_instance|regfile:myregfile|regs[0][1]         ; Stuck at GND due to stuck port data_in                         ;
+; ID:ID_instance|regfile:myregfile|regs[0][0]         ; Stuck at GND due to stuck port data_in                         ;
+; client:client_instance|csr_waddr[2..5,7,10,11]      ; Stuck at GND due to stuck port data_in                         ;
+; pipeline_status:pipeline_status_ctrl|pl_ctrl_WB[2]  ; Stuck at GND due to stuck port data_in                         ;
+; pipeline_status:pipeline_status_ctrl|pl_ctrl_MEM[2] ; Stuck at GND due to stuck port data_in                         ;
+; pipeline_status:pipeline_status_ctrl|pl_ctrl_EX[2]  ; Stuck at GND due to stuck port data_in                         ;
+; pipeline_status:pipeline_status_ctrl|pl_ctrl_ID[2]  ; Stuck at GND due to stuck port data_in                         ;
+; CSRs:csrs|mtvec[0..31]                              ; Stuck at GND due to stuck port data_in                         ;
+; EX_M_reg:EX_M_reg_instance|rd_out[4]                ; Merged with EX_M_reg:EX_M_reg_instance|instr_out[11]           ;
+; EX_M_reg:EX_M_reg_instance|rd_out[3]                ; Merged with EX_M_reg:EX_M_reg_instance|instr_out[10]           ;
+; EX_M_reg:EX_M_reg_instance|rd_out[2]                ; Merged with EX_M_reg:EX_M_reg_instance|instr_out[9]            ;
+; EX_M_reg:EX_M_reg_instance|rd_out[1]                ; Merged with EX_M_reg:EX_M_reg_instance|instr_out[8]            ;
+; EX_M_reg:EX_M_reg_instance|rd_out[0]                ; Merged with EX_M_reg:EX_M_reg_instance|instr_out[7]            ;
+; pipeline_status:pipeline_status_ctrl|pl_ctrl_pc[2]  ; Merged with pipeline_status:pipeline_status_ctrl|pl_ctrl_WB[1] ;
+; ID_EX_reg:ID_EX_reg_instance|rs1_addr_out[4]        ; Merged with ID_EX_reg:ID_EX_reg_instance|instr_out[19]         ;
+; ID_EX_reg:ID_EX_reg_instance|rs1_addr_out[3]        ; Merged with ID_EX_reg:ID_EX_reg_instance|instr_out[18]         ;
+; ID_EX_reg:ID_EX_reg_instance|rs1_addr_out[2]        ; Merged with ID_EX_reg:ID_EX_reg_instance|instr_out[17]         ;
+; ID_EX_reg:ID_EX_reg_instance|rs1_addr_out[1]        ; Merged with ID_EX_reg:ID_EX_reg_instance|instr_out[16]         ;
+; ID_EX_reg:ID_EX_reg_instance|rs1_addr_out[0]        ; Merged with ID_EX_reg:ID_EX_reg_instance|instr_out[15]         ;
+; ID_EX_reg:ID_EX_reg_instance|rs2_addr_out[4]        ; Merged with ID_EX_reg:ID_EX_reg_instance|instr_out[24]         ;
+; ID_EX_reg:ID_EX_reg_instance|rs2_addr_out[3]        ; Merged with ID_EX_reg:ID_EX_reg_instance|instr_out[23]         ;
+; ID_EX_reg:ID_EX_reg_instance|rs2_addr_out[2]        ; Merged with ID_EX_reg:ID_EX_reg_instance|instr_out[22]         ;
+; ID_EX_reg:ID_EX_reg_instance|rs2_addr_out[1]        ; Merged with ID_EX_reg:ID_EX_reg_instance|instr_out[21]         ;
+; ID_EX_reg:ID_EX_reg_instance|rs2_addr_out[0]        ; Merged with ID_EX_reg:ID_EX_reg_instance|instr_out[20]         ;
+; pipeline_status:pipeline_status_ctrl|pl_ctrl_MEM[0] ; Merged with pipeline_status:pipeline_status_ctrl|pl_ctrl_EX[0] ;
+; pipeline_status:pipeline_status_ctrl|pl_ctrl_WB[0]  ; Merged with pipeline_status:pipeline_status_ctrl|pl_ctrl_EX[0] ;
+; pipeline_status:pipeline_status_ctrl|pl_ctrl_MEM[1] ; Merged with pipeline_status:pipeline_status_ctrl|pl_ctrl_ID[1] ;
+; ID_EX_reg:ID_EX_reg_instance|rd_out[4]              ; Merged with ID_EX_reg:ID_EX_reg_instance|instr_out[11]         ;
+; ID_EX_reg:ID_EX_reg_instance|rd_out[3]              ; Merged with ID_EX_reg:ID_EX_reg_instance|instr_out[10]         ;
+; ID_EX_reg:ID_EX_reg_instance|rd_out[2]              ; Merged with ID_EX_reg:ID_EX_reg_instance|instr_out[9]          ;
+; ID_EX_reg:ID_EX_reg_instance|rd_out[1]              ; Merged with ID_EX_reg:ID_EX_reg_instance|instr_out[8]          ;
+; ID_EX_reg:ID_EX_reg_instance|rd_out[0]              ; Merged with ID_EX_reg:ID_EX_reg_instance|instr_out[7]          ;
+; client:client_instance|csr_waddr[9]                 ; Merged with client:client_instance|csr_waddr[8]                ;
+; client:client_instance|csr_we                       ; Merged with client:client_instance|csr_waddr[8]                ;
+; client:client_instance|cause[1]                     ; Merged with client:client_instance|cause[0]                    ;
+; client:client_instance|cause[31]                    ; Merged with client:client_instance|cause[2]                    ;
+; client:client_instance|cause[4..9,11..30]           ; Merged with client:client_instance|cause[10]                   ;
+; client:client_instance|cause[10]                    ; Stuck at GND due to stuck port data_in                         ;
+; client:client_instance|csr_waddr[0]                 ; Merged with client:client_instance|csr_state.00010             ;
+; Total Number of Removed Registers = 131             ;                                                                ;
++-----------------------------------------------------+----------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                                            ;
++--------------------------------------+---------------------------+-------------------------------------------------------------------------------------+
+; Register name                        ; Reason for Removal        ; Registers Removed due to This Register                                              ;
++--------------------------------------+---------------------------+-------------------------------------------------------------------------------------+
+; client:client_instance|csr_waddr[11] ; Stuck at GND              ; CSRs:csrs|mtvec[0], CSRs:csrs|mtvec[1], CSRs:csrs|mtvec[2], CSRs:csrs|mtvec[3],     ;
+;                                      ; due to stuck port data_in ; CSRs:csrs|mtvec[4], CSRs:csrs|mtvec[5], CSRs:csrs|mtvec[6], CSRs:csrs|mtvec[7],     ;
+;                                      ;                           ; CSRs:csrs|mtvec[8], CSRs:csrs|mtvec[9], CSRs:csrs|mtvec[10], CSRs:csrs|mtvec[11],   ;
+;                                      ;                           ; CSRs:csrs|mtvec[12], CSRs:csrs|mtvec[13], CSRs:csrs|mtvec[14], CSRs:csrs|mtvec[15], ;
+;                                      ;                           ; CSRs:csrs|mtvec[16], CSRs:csrs|mtvec[17], CSRs:csrs|mtvec[18], CSRs:csrs|mtvec[19], ;
+;                                      ;                           ; CSRs:csrs|mtvec[20], CSRs:csrs|mtvec[21], CSRs:csrs|mtvec[22], CSRs:csrs|mtvec[23], ;
+;                                      ;                           ; CSRs:csrs|mtvec[24], CSRs:csrs|mtvec[25], CSRs:csrs|mtvec[26], CSRs:csrs|mtvec[27], ;
+;                                      ;                           ; CSRs:csrs|mtvec[28], CSRs:csrs|mtvec[29], CSRs:csrs|mtvec[30], CSRs:csrs|mtvec[31]  ;
++--------------------------------------+---------------------------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 1685  ;
+; Number of registers using Synchronous Clear  ; 628   ;
+; Number of registers using Synchronous Load   ; 30    ;
+; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 1597  ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                               ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                     ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------+
+; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; Yes        ; |pipeline|pipeline_status:pipeline_status_ctrl|pl_ctrl_pc[1]   ;
+; 3:1                ; 138 bits  ; 276 LEs       ; 0 LEs                ; 276 LEs                ; Yes        ; |pipeline|EX_M_reg:EX_M_reg_instance|nextpc_pc_out[27]         ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 0 LEs                ; 64 LEs                 ; Yes        ; |pipeline|CSRs:csrs|mstatus[23]                                ;
+; 3:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|pc_out[15]              ;
+; 3:1                ; 71 bits   ; 142 LEs       ; 0 LEs                ; 142 LEs                ; Yes        ; |pipeline|M_WB_reg:M_WB_reg_instance|aluresult_out[17]         ;
+; 3:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |pipeline|IF_ID_reg:IFIDreg_instance|pc_out[26]                ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 0 LEs                ; 64 LEs                 ; Yes        ; |pipeline|CSRs:csrs|mepc[27]                                   ;
+; 4:1                ; 30 bits   ; 60 LEs        ; 0 LEs                ; 60 LEs                 ; Yes        ; |pipeline|client:client_instance|instr_addr[10]                ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |pipeline|client:client_instance|instr_addr[0]                 ;
+; 4:1                ; 5 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|ALUBsrc_out[0]          ;
+; 5:1                ; 6 bits    ; 18 LEs        ; 12 LEs               ; 6 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|imm_out[5]              ;
+; 5:1                ; 7 bits    ; 21 LEs        ; 14 LEs               ; 7 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|imm_out[27]             ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 4 LEs                ; 2 LEs                  ; Yes        ; |pipeline|client:client_instance|cause[0]                      ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; Yes        ; |pipeline|client:client_instance|csr_wdata[0]                  ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |pipeline|PC:PC_instance|pc[1]                                 ;
+; 6:1                ; 30 bits   ; 120 LEs       ; 60 LEs               ; 60 LEs                 ; Yes        ; |pipeline|PC:PC_instance|pc[23]                                ;
+; 6:1                ; 4 bits    ; 16 LEs        ; 12 LEs               ; 4 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|imm_out[2]              ;
+; 6:1                ; 4 bits    ; 16 LEs        ; 12 LEs               ; 4 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|imm_out[23]             ;
+; 7:1                ; 8 bits    ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|imm_out[17]             ;
+; 7:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|branch_out[1]           ;
+; 34:1               ; 32 bits   ; 704 LEs       ; 640 LEs              ; 64 LEs                 ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|rs1_out[3]              ;
+; 34:1               ; 32 bits   ; 704 LEs       ; 640 LEs              ; 64 LEs                 ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|rs2_out[26]             ;
+; 23:1               ; 8 bits    ; 120 LEs       ; 64 LEs               ; 56 LEs                 ; Yes        ; |pipeline|EX_M_reg:EX_M_reg_instance|aluresult_out[24]         ;
+; 22:1               ; 5 bits    ; 70 LEs        ; 50 LEs               ; 20 LEs                 ; Yes        ; |pipeline|EX_M_reg:EX_M_reg_instance|aluresult_out[7]          ;
+; 24:1               ; 2 bits    ; 32 LEs        ; 20 LEs               ; 12 LEs                 ; Yes        ; |pipeline|EX_M_reg:EX_M_reg_instance|aluresult_out[10]         ;
+; 22:1               ; 3 bits    ; 42 LEs        ; 30 LEs               ; 12 LEs                 ; Yes        ; |pipeline|EX_M_reg:EX_M_reg_instance|aluresult_out[14]         ;
+; 26:1               ; 3 bits    ; 51 LEs        ; 36 LEs               ; 15 LEs                 ; Yes        ; |pipeline|EX_M_reg:EX_M_reg_instance|aluresult_out[29]         ;
+; 25:1               ; 2 bits    ; 32 LEs        ; 22 LEs               ; 10 LEs                 ; Yes        ; |pipeline|EX_M_reg:EX_M_reg_instance|aluresult_out[26]         ;
+; 25:1               ; 3 bits    ; 48 LEs        ; 36 LEs               ; 12 LEs                 ; Yes        ; |pipeline|EX_M_reg:EX_M_reg_instance|aluresult_out[3]          ;
+; 24:1               ; 2 bits    ; 32 LEs        ; 30 LEs               ; 2 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|ALUctr_out[0]           ;
+; 31:1               ; 2 bits    ; 40 LEs        ; 40 LEs               ; 0 LEs                  ; Yes        ; |pipeline|ID_EX_reg:ID_EX_reg_instance|ALUctr_out[1]           ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |pipeline|EX:EX_instance|rs1_proc[10]                          ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |pipeline|EX:EX_instance|datab[26]                             ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |pipeline|EX:EX_instance|rs2_forward[13]                       ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |pipeline|EX:EX_instance|alu:alu_instance|ShiftLeft0           ;
+; 4:1                ; 49 bits   ; 98 LEs        ; 98 LEs               ; 0 LEs                  ; No         ; |pipeline|EX:EX_instance|alu:alu_instance|ShiftRight1          ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |pipeline|EX:EX_instance|alu:alu_instance|ShiftLeft0           ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |pipeline|EX:EX_instance|alu:alu_instance|ShiftLeft0           ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |pipeline|EX:EX_instance|alu:alu_instance|ShiftLeft0           ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |pipeline|EX:EX_instance|alu:alu_instance|ShiftRight0          ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |pipeline|EX:EX_instance|alu:alu_instance|ShiftRight1          ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |pipeline|client:client_instance|int_state.0100                ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |pipeline|ID:ID_instance|contr_gen:contr_gen_instance|extop[1] ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "ID_EX_reg:ID_EX_reg_instance"                                                            ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port      ; Type   ; Severity ; Details                                                                             ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+; extop_out ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "CSRs:csrs"                                                                                 ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port        ; Type   ; Severity ; Details                                                                             ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; data_out_ex ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; arriav_ff             ; 1685                        ;
+;     ENA               ; 1041                        ;
+;     ENA SCLR          ; 526                         ;
+;     ENA SCLR SLD      ; 30                          ;
+;     SCLR              ; 72                          ;
+;     plain             ; 16                          ;
+; arriav_lcell_comb     ; 1699                        ;
+;     arith             ; 124                         ;
+;         1 data inputs ; 30                          ;
+;         2 data inputs ; 32                          ;
+;         4 data inputs ; 62                          ;
+;     extend            ; 17                          ;
+;         7 data inputs ; 17                          ;
+;     normal            ; 1525                        ;
+;         1 data inputs ; 2                           ;
+;         2 data inputs ; 91                          ;
+;         3 data inputs ; 123                         ;
+;         4 data inputs ; 82                          ;
+;         5 data inputs ; 266                         ;
+;         6 data inputs ; 961                         ;
+;     shared            ; 33                          ;
+;         0 data inputs ; 1                           ;
+;         2 data inputs ; 1                           ;
+;         4 data inputs ; 31                          ;
+; boundary_port         ; 205                         ;
+;                       ;                             ;
+; Max LUT depth         ; 11.20                       ;
+; Average LUT depth     ; 4.14                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:10     ;
++----------------+--------------+
 
 
 +-------------------------------+
@@ -162,10 +493,13 @@ https://fpgasoftware.intel.com/eula.
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
-    Info: Processing started: Mon Nov 29 21:18:11 2021
+    Info: Processing started: Tue Nov 30 16:20:50 2021
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off riscv_hardware -c riscv_hardware
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
+Info (12021): Found 2 design units, including 2 entities, in source file cpu/client.v
+    Info (12023): Found entity 1: client File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/client.v Line: 4
+    Info (12023): Found entity 2: CSRs File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/client.v Line: 158
 Info (12021): Found 1 design units, including 1 entities, in source file helpers/display7seg.v
     Info (12023): Found entity 1: display7seg File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/helpers/display7seg.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file helpers/clkgen.v
@@ -199,15 +533,15 @@ Info (12021): Found 1 design units, including 1 entities, in source file vga/col
     Info (12023): Found entity 1: color_map File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/vga/color.v Line: 1
 Info (12021): Found 10 design units, including 10 entities, in source file cpu/pipeline.v
     Info (12023): Found entity 1: pipeline File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 3
-    Info (12023): Found entity 2: IF File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 60
-    Info (12023): Found entity 3: IF_ID_reg File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 78
-    Info (12023): Found entity 4: ID File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 102
-    Info (12023): Found entity 5: ID_EX_reg File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 140
-    Info (12023): Found entity 6: EX File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 237
-    Info (12023): Found entity 7: EX_M_reg File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 276
-    Info (12023): Found entity 8: M File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 352
-    Info (12023): Found entity 9: M_WB_reg File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 395
-    Info (12023): Found entity 10: WB File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 435
+    Info (12023): Found entity 2: IF File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 72
+    Info (12023): Found entity 3: IF_ID_reg File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 90
+    Info (12023): Found entity 4: ID File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 114
+    Info (12023): Found entity 5: ID_EX_reg File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 152
+    Info (12023): Found entity 6: EX File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 254
+    Info (12023): Found entity 7: EX_M_reg File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 293
+    Info (12023): Found entity 8: M File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 379
+    Info (12023): Found entity 9: M_WB_reg File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 422
+    Info (12023): Found entity 10: WB File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 462
 Info (12021): Found 1 design units, including 1 entities, in source file cpu/regfile.v
     Info (12023): Found entity 1: regfile File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/regfile.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file cpu/immgen.v
@@ -215,9 +549,9 @@ Info (12021): Found 1 design units, including 1 entities, in source file cpu/imm
 Info (12021): Found 0 design units, including 0 entities, in source file cpu/define.v
 Info (12021): Found 4 design units, including 4 entities, in source file cpu/cpu_ctrl.v
     Info (12023): Found entity 1: forward_detecter File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/cpu_ctrl.v Line: 2
-    Info (12023): Found entity 2: load_store_detecter File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/cpu_ctrl.v Line: 27
-    Info (12023): Found entity 3: PC File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/cpu_ctrl.v Line: 37
-    Info (12023): Found entity 4: pipeline_status File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/cpu_ctrl.v Line: 65
+    Info (12023): Found entity 2: load_store_detecter File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/cpu_ctrl.v Line: 26
+    Info (12023): Found entity 3: PC File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/cpu_ctrl.v Line: 36
+    Info (12023): Found entity 4: pipeline_status File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/cpu_ctrl.v Line: 66
 Info (12021): Found 1 design units, including 1 entities, in source file cpu/contrgen.v
     Info (12023): Found entity 1: contr_gen File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/contrgen.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file cpu/branch_cond.v
@@ -233,163 +567,47 @@ Info (12021): Found 1 design units, including 1 entities, in source file memory/
     Info (12023): Found entity 1: char_ram File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/memory/char_ram.v Line: 40
 Info (12021): Found 1 design units, including 1 entities, in source file memory/color_ram.v
     Info (12023): Found entity 1: color_ram File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/memory/color_ram.v Line: 40
-Warning (10275): Verilog HDL Module Instantiation warning at riscv_hardware.v(121): ignored dangling comma in List of Port Connections File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/riscv_hardware.v Line: 121
-Warning (12125): Using design file riscv_hardware.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
-    Info (12023): Found entity 1: riscv_hardware File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/riscv_hardware.v Line: 1
-Info (12127): Elaborating entity "riscv_hardware" for the top level hierarchy
-Warning (10036): Verilog HDL or VHDL warning at riscv_hardware.v(104): object "irq_pins" assigned a value but never read File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/riscv_hardware.v Line: 104
-Warning (10858): Verilog HDL warning at riscv_hardware.v(105): object irq_en used but never assigned File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/riscv_hardware.v Line: 105
-Warning (10230): Verilog HDL assignment warning at riscv_hardware.v(118): truncated value with size 32 to match size of target (24) File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/riscv_hardware.v Line: 118
-Warning (10030): Net "x_remain[7..4]" at riscv_hardware.v(87) has no driver or initial value, using a default initial value '0' File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/riscv_hardware.v Line: 87
-Warning (10030): Net "y_remain[7..4]" at riscv_hardware.v(87) has no driver or initial value, using a default initial value '0' File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/riscv_hardware.v Line: 87
-Warning (10034): Output port "LEDR" at riscv_hardware.v(16) has no driver File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/riscv_hardware.v Line: 16
-Warning (10034): Output port "HEX0" at riscv_hardware.v(19) has no driver File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/riscv_hardware.v Line: 19
-Warning (10034): Output port "HEX1" at riscv_hardware.v(20) has no driver File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/riscv_hardware.v Line: 20
-Warning (10034): Output port "HEX2" at riscv_hardware.v(21) has no driver File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/riscv_hardware.v Line: 21
-Warning (10034): Output port "HEX3" at riscv_hardware.v(22) has no driver File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/riscv_hardware.v Line: 22
-Warning (10034): Output port "HEX4" at riscv_hardware.v(23) has no driver File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/riscv_hardware.v Line: 23
-Warning (10034): Output port "HEX5" at riscv_hardware.v(24) has no driver File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/riscv_hardware.v Line: 24
-Warning (10034): Output port "AUD_DACDAT" at riscv_hardware.v(40) has no driver File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/riscv_hardware.v Line: 40
-Warning (10034): Output port "AUD_XCK" at riscv_hardware.v(42) has no driver File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/riscv_hardware.v Line: 42
-Warning (10034): Output port "FPGA_I2C_SCLK" at riscv_hardware.v(51) has no driver File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/riscv_hardware.v Line: 51
-Info (12128): Elaborating entity "clkgen" for hierarchy "clkgen:vgaclk_generator" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/riscv_hardware.v Line: 107
-Info (12128): Elaborating entity "color_map" for hierarchy "color_map:color_gen" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/riscv_hardware.v Line: 108
-Warning (10034): Output port "rgb" at color.v(4) has no driver File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/vga/color.v Line: 4
-Info (12128): Elaborating entity "vga_ctrl" for hierarchy "vga_ctrl:vga" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/riscv_hardware.v Line: 109
-Info (12128): Elaborating entity "process_haddr" for hierarchy "process_haddr:haddr_pro" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/riscv_hardware.v Line: 114
-Info (12128): Elaborating entity "process_vaddr" for hierarchy "process_vaddr:vaddr_pro" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/riscv_hardware.v Line: 115
-Info (12128): Elaborating entity "font_rom" for hierarchy "font_rom:font_rom_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/riscv_hardware.v Line: 116
-Info (12128): Elaborating entity "altsyncram" for hierarchy "font_rom:font_rom_instance|altsyncram:altsyncram_component" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/vga/font_rom.v Line: 82
-Info (12130): Elaborated megafunction instantiation "font_rom:font_rom_instance|altsyncram:altsyncram_component" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/vga/font_rom.v Line: 82
-Info (12133): Instantiated megafunction "font_rom:font_rom_instance|altsyncram:altsyncram_component" with the following parameter: File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/vga/font_rom.v Line: 82
-    Info (12134): Parameter "address_aclr_a" = "NONE"
-    Info (12134): Parameter "clock_enable_input_a" = "BYPASS"
-    Info (12134): Parameter "clock_enable_output_a" = "BYPASS"
-    Info (12134): Parameter "init_file" = "./mif/vga_font.mif"
-    Info (12134): Parameter "intended_device_family" = "Cyclone V"
-    Info (12134): Parameter "lpm_hint" = "ENABLE_RUNTIME_MOD=YES,INSTANCE_NAME=FONT"
-    Info (12134): Parameter "lpm_type" = "altsyncram"
-    Info (12134): Parameter "numwords_a" = "256"
-    Info (12134): Parameter "operation_mode" = "ROM"
-    Info (12134): Parameter "outdata_aclr_a" = "NONE"
-    Info (12134): Parameter "outdata_reg_a" = "UNREGISTERED"
-    Info (12134): Parameter "widthad_a" = "8"
-    Info (12134): Parameter "width_a" = "192"
-    Info (12134): Parameter "width_byteena_a" = "1"
-Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_6ui1.tdf
-    Info (12023): Found entity 1: altsyncram_6ui1 File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/db/altsyncram_6ui1.tdf Line: 28
-Info (12128): Elaborating entity "altsyncram_6ui1" for hierarchy "font_rom:font_rom_instance|altsyncram:altsyncram_component|altsyncram_6ui1:auto_generated" File: d:/programfiles/intelfpga_lite/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
-Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_vdk2.tdf
-    Info (12023): Found entity 1: altsyncram_vdk2 File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/db/altsyncram_vdk2.tdf Line: 28
-Info (12128): Elaborating entity "altsyncram_vdk2" for hierarchy "font_rom:font_rom_instance|altsyncram:altsyncram_component|altsyncram_6ui1:auto_generated|altsyncram_vdk2:altsyncram1" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/db/altsyncram_6ui1.tdf Line: 35
-Info (12128): Elaborating entity "sld_mod_ram_rom" for hierarchy "font_rom:font_rom_instance|altsyncram:altsyncram_component|altsyncram_6ui1:auto_generated|sld_mod_ram_rom:mgl_prim2" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/db/altsyncram_6ui1.tdf Line: 36
-Info (12130): Elaborated megafunction instantiation "font_rom:font_rom_instance|altsyncram:altsyncram_component|altsyncram_6ui1:auto_generated|sld_mod_ram_rom:mgl_prim2" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/db/altsyncram_6ui1.tdf Line: 36
-Info (12133): Instantiated megafunction "font_rom:font_rom_instance|altsyncram:altsyncram_component|altsyncram_6ui1:auto_generated|sld_mod_ram_rom:mgl_prim2" with the following parameter: File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/db/altsyncram_6ui1.tdf Line: 36
-    Info (12134): Parameter "CVALUE" = "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
-    Info (12134): Parameter "IS_DATA_IN_RAM" = "1"
-    Info (12134): Parameter "IS_READABLE" = "1"
-    Info (12134): Parameter "NODE_NAME" = "1179602516"
-    Info (12134): Parameter "NUMWORDS" = "256"
-    Info (12134): Parameter "SHIFT_COUNT_BITS" = "8"
-    Info (12134): Parameter "WIDTH_WORD" = "192"
-    Info (12134): Parameter "WIDTHAD" = "8"
-Info (12128): Elaborating entity "sld_jtag_endpoint_adapter" for hierarchy "font_rom:font_rom_instance|altsyncram:altsyncram_component|altsyncram_6ui1:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_jtag_endpoint_adapter:jtag_signal_adapter" File: d:/programfiles/intelfpga_lite/quartus/libraries/megafunctions/sld_mod_ram_rom.vhd Line: 302
-Info (12128): Elaborating entity "sld_jtag_endpoint_adapter_impl" for hierarchy "font_rom:font_rom_instance|altsyncram:altsyncram_component|altsyncram_6ui1:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_jtag_endpoint_adapter:jtag_signal_adapter|sld_jtag_endpoint_adapter_impl:sld_jtag_endpoint_adapter_impl_inst" File: d:/programfiles/intelfpga_lite/quartus/libraries/megafunctions/sld_jtag_endpoint_adapter.vhd Line: 232
-Info (12128): Elaborating entity "sld_rom_sr" for hierarchy "font_rom:font_rom_instance|altsyncram:altsyncram_component|altsyncram_6ui1:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr" File: d:/programfiles/intelfpga_lite/quartus/libraries/megafunctions/sld_mod_ram_rom.vhd Line: 828
-Info (12128): Elaborating entity "pipeline" for hierarchy "pipeline:cpu" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/riscv_hardware.v Line: 121
-Info (12128): Elaborating entity "forward_detecter" for hierarchy "pipeline:cpu|forward_detecter:f_d_i" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 35
-Info (12128): Elaborating entity "load_store_detecter" for hierarchy "pipeline:cpu|load_store_detecter:l_s_d" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 36
-Info (12128): Elaborating entity "pipeline_status" for hierarchy "pipeline:cpu|pipeline_status:pipeline_status_ctrl" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 38
-Info (12128): Elaborating entity "PC" for hierarchy "pipeline:cpu|PC:PC_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 39
-Info (12128): Elaborating entity "IF" for hierarchy "pipeline:cpu|IF:IF_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 40
-Info (12128): Elaborating entity "IF_ID_reg" for hierarchy "pipeline:cpu|IF_ID_reg:IFIDreg_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 41
-Info (12128): Elaborating entity "ID" for hierarchy "pipeline:cpu|ID:ID_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 42
-Info (12128): Elaborating entity "contr_gen" for hierarchy "pipeline:cpu|ID:ID_instance|contr_gen:contr_gen_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 134
-Info (12128): Elaborating entity "regfile" for hierarchy "pipeline:cpu|ID:ID_instance|regfile:myregfile" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 135
-Info (12128): Elaborating entity "imm_gen" for hierarchy "pipeline:cpu|ID:ID_instance|imm_gen:imm_gen_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 136
-Info (12128): Elaborating entity "ID_EX_reg" for hierarchy "pipeline:cpu|ID_EX_reg:ID_EX_reg_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 44
-Info (12128): Elaborating entity "EX" for hierarchy "pipeline:cpu|EX:EX_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 48
-Info (12128): Elaborating entity "alu" for hierarchy "pipeline:cpu|EX:EX_instance|alu:alu_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 272
-Info (12128): Elaborating entity "adder" for hierarchy "pipeline:cpu|EX:EX_instance|alu:alu_instance|adder:alu_addr" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/alu.v Line: 14
-Info (12128): Elaborating entity "EX_M_reg" for hierarchy "pipeline:cpu|EX_M_reg:EX_M_reg_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 50
-Info (12128): Elaborating entity "M" for hierarchy "pipeline:cpu|M:M_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 53
-Info (12128): Elaborating entity "branch_cond" for hierarchy "pipeline:cpu|M:M_instance|branch_cond:branch_cond_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 390
-Info (12128): Elaborating entity "M_WB_reg" for hierarchy "pipeline:cpu|M_WB_reg:M_WB_reg_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 55
-Info (12128): Elaborating entity "WB" for hierarchy "pipeline:cpu|WB:WB_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 56
-Info (12128): Elaborating entity "kb_driver" for hierarchy "kb_driver:keyboard" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/riscv_hardware.v Line: 123
-Warning (10036): Verilog HDL or VHDL warning at kb_driver.v(21): object "empty" assigned a value but never read File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/keyboard/kb_driver.v Line: 21
-Info (12128): Elaborating entity "ps2_keyboard" for hierarchy "kb_driver:keyboard|ps2_keyboard:keyboard" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/keyboard/kb_driver.v Line: 47
-Info (12128): Elaborating entity "kb2ascii" for hierarchy "kb_driver:keyboard|kb2ascii:data2ascii" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/keyboard/kb_driver.v Line: 48
-Info (12128): Elaborating entity "kb2ascii_rom" for hierarchy "kb_driver:keyboard|kb2ascii:data2ascii|kb2ascii_rom:rom_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/keyboard/kb2ascii.v Line: 11
-Info (12128): Elaborating entity "altsyncram" for hierarchy "kb_driver:keyboard|kb2ascii:data2ascii|kb2ascii_rom:rom_instance|altsyncram:altsyncram_component" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/keyboard/kb2ascii_rom.v Line: 82
-Info (12130): Elaborated megafunction instantiation "kb_driver:keyboard|kb2ascii:data2ascii|kb2ascii_rom:rom_instance|altsyncram:altsyncram_component" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/keyboard/kb2ascii_rom.v Line: 82
-Info (12133): Instantiated megafunction "kb_driver:keyboard|kb2ascii:data2ascii|kb2ascii_rom:rom_instance|altsyncram:altsyncram_component" with the following parameter: File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/keyboard/kb2ascii_rom.v Line: 82
-    Info (12134): Parameter "address_aclr_a" = "NONE"
-    Info (12134): Parameter "clock_enable_input_a" = "BYPASS"
-    Info (12134): Parameter "clock_enable_output_a" = "BYPASS"
-    Info (12134): Parameter "init_file" = "kb2ascii_rom.mif"
-    Info (12134): Parameter "intended_device_family" = "Cyclone V"
-    Info (12134): Parameter "lpm_hint" = "ENABLE_RUNTIME_MOD=NO"
-    Info (12134): Parameter "lpm_type" = "altsyncram"
-    Info (12134): Parameter "numwords_a" = "256"
-    Info (12134): Parameter "operation_mode" = "ROM"
-    Info (12134): Parameter "outdata_aclr_a" = "NONE"
-    Info (12134): Parameter "outdata_reg_a" = "UNREGISTERED"
-    Info (12134): Parameter "widthad_a" = "8"
-    Info (12134): Parameter "width_a" = "8"
-    Info (12134): Parameter "width_byteena_a" = "1"
-Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_qmg1.tdf
-    Info (12023): Found entity 1: altsyncram_qmg1 File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/db/altsyncram_qmg1.tdf Line: 28
-Info (12128): Elaborating entity "altsyncram_qmg1" for hierarchy "kb_driver:keyboard|kb2ascii:data2ascii|kb2ascii_rom:rom_instance|altsyncram:altsyncram_component|altsyncram_qmg1:auto_generated" File: d:/programfiles/intelfpga_lite/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
-Info (12128): Elaborating entity "kb2ascii_shift" for hierarchy "kb_driver:keyboard|kb2ascii:data2ascii|kb2ascii_shift:rom_shift" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/keyboard/kb2ascii.v Line: 12
-Info (12128): Elaborating entity "altsyncram" for hierarchy "kb_driver:keyboard|kb2ascii:data2ascii|kb2ascii_shift:rom_shift|altsyncram:altsyncram_component" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/keyboard/kb2ascii_shift.v Line: 82
-Info (12130): Elaborated megafunction instantiation "kb_driver:keyboard|kb2ascii:data2ascii|kb2ascii_shift:rom_shift|altsyncram:altsyncram_component" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/keyboard/kb2ascii_shift.v Line: 82
-Info (12133): Instantiated megafunction "kb_driver:keyboard|kb2ascii:data2ascii|kb2ascii_shift:rom_shift|altsyncram:altsyncram_component" with the following parameter: File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/keyboard/kb2ascii_shift.v Line: 82
-    Info (12134): Parameter "address_aclr_a" = "NONE"
-    Info (12134): Parameter "clock_enable_input_a" = "BYPASS"
-    Info (12134): Parameter "clock_enable_output_a" = "BYPASS"
-    Info (12134): Parameter "init_file" = "kb2ascii_rom_shift.mif"
-    Info (12134): Parameter "intended_device_family" = "Cyclone V"
-    Info (12134): Parameter "lpm_hint" = "ENABLE_RUNTIME_MOD=YES,INSTANCE_NAME=SHIF"
-    Info (12134): Parameter "lpm_type" = "altsyncram"
-    Info (12134): Parameter "numwords_a" = "256"
-    Info (12134): Parameter "operation_mode" = "ROM"
-    Info (12134): Parameter "outdata_aclr_a" = "NONE"
-    Info (12134): Parameter "outdata_reg_a" = "UNREGISTERED"
-    Info (12134): Parameter "widthad_a" = "8"
-    Info (12134): Parameter "width_a" = "8"
-    Info (12134): Parameter "width_byteena_a" = "1"
-Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_bbj1.tdf
-    Info (12023): Found entity 1: altsyncram_bbj1 File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/db/altsyncram_bbj1.tdf Line: 28
-Info (12128): Elaborating entity "altsyncram_bbj1" for hierarchy "kb_driver:keyboard|kb2ascii:data2ascii|kb2ascii_shift:rom_shift|altsyncram:altsyncram_component|altsyncram_bbj1:auto_generated" File: d:/programfiles/intelfpga_lite/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
-Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_dok2.tdf
-    Info (12023): Found entity 1: altsyncram_dok2 File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/db/altsyncram_dok2.tdf Line: 28
-Info (12128): Elaborating entity "altsyncram_dok2" for hierarchy "kb_driver:keyboard|kb2ascii:data2ascii|kb2ascii_shift:rom_shift|altsyncram:altsyncram_component|altsyncram_bbj1:auto_generated|altsyncram_dok2:altsyncram1" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/db/altsyncram_bbj1.tdf Line: 35
-Info (12128): Elaborating entity "sld_mod_ram_rom" for hierarchy "kb_driver:keyboard|kb2ascii:data2ascii|kb2ascii_shift:rom_shift|altsyncram:altsyncram_component|altsyncram_bbj1:auto_generated|sld_mod_ram_rom:mgl_prim2" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/db/altsyncram_bbj1.tdf Line: 36
-Info (12130): Elaborated megafunction instantiation "kb_driver:keyboard|kb2ascii:data2ascii|kb2ascii_shift:rom_shift|altsyncram:altsyncram_component|altsyncram_bbj1:auto_generated|sld_mod_ram_rom:mgl_prim2" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/db/altsyncram_bbj1.tdf Line: 36
-Info (12133): Instantiated megafunction "kb_driver:keyboard|kb2ascii:data2ascii|kb2ascii_shift:rom_shift|altsyncram:altsyncram_component|altsyncram_bbj1:auto_generated|sld_mod_ram_rom:mgl_prim2" with the following parameter: File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/db/altsyncram_bbj1.tdf Line: 36
-    Info (12134): Parameter "CVALUE" = "00000000"
-    Info (12134): Parameter "IS_DATA_IN_RAM" = "1"
-    Info (12134): Parameter "IS_READABLE" = "1"
-    Info (12134): Parameter "NODE_NAME" = "1397246278"
-    Info (12134): Parameter "NUMWORDS" = "256"
-    Info (12134): Parameter "SHIFT_COUNT_BITS" = "4"
-    Info (12134): Parameter "WIDTH_WORD" = "8"
-    Info (12134): Parameter "WIDTHAD" = "8"
-Info (12128): Elaborating entity "memory_map" for hierarchy "memory_map:mm_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/riscv_hardware.v Line: 129
-Warning (10230): Verilog HDL assignment warning at memory_map.v(43): truncated value with size 32 to match size of target (1) File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/memory/memory_map.v Line: 43
-Warning (10230): Verilog HDL assignment warning at memory_map.v(44): truncated value with size 32 to match size of target (1) File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/memory/memory_map.v Line: 44
-Warning (10230): Verilog HDL assignment warning at memory_map.v(45): truncated value with size 32 to match size of target (1) File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/memory/memory_map.v Line: 45
-Warning (10230): Verilog HDL assignment warning at memory_map.v(46): truncated value with size 32 to match size of target (1) File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/memory/memory_map.v Line: 46
-Warning (10230): Verilog HDL assignment warning at memory_map.v(47): truncated value with size 32 to match size of target (1) File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/memory/memory_map.v Line: 47
-Error (10663): Verilog HDL Port Connection error at memory_map.v(64): output or inout port "irq_handler_addr" must be connected to a structural net expression File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/memory/memory_map.v Line: 64
-Error (12152): Can't elaborate user hierarchy "memory_map:mm_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/riscv_hardware.v Line: 129
+Info (12127): Elaborating entity "pipeline" for the top level hierarchy
+Info (12128): Elaborating entity "forward_detecter" for hierarchy "forward_detecter:f_d_i" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 41
+Info (12128): Elaborating entity "load_store_detecter" for hierarchy "load_store_detecter:l_s_d" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 42
+Info (12128): Elaborating entity "pipeline_status" for hierarchy "pipeline_status:pipeline_status_ctrl" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 44
+Info (12128): Elaborating entity "CSRs" for hierarchy "CSRs:csrs" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 47
+Info (12128): Elaborating entity "client" for hierarchy "client:client_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 49
+Info (10264): Verilog HDL Case Statement information at client.v(112): all case item expressions in this case statement are onehot File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/client.v Line: 112
+Info (10264): Verilog HDL Case Statement information at client.v(139): all case item expressions in this case statement are onehot File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/client.v Line: 139
+Info (12128): Elaborating entity "PC" for hierarchy "PC:PC_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 51
+Info (12128): Elaborating entity "IF" for hierarchy "IF:IF_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 52
+Info (12128): Elaborating entity "IF_ID_reg" for hierarchy "IF_ID_reg:IFIDreg_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 53
+Info (12128): Elaborating entity "ID" for hierarchy "ID:ID_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 54
+Info (12128): Elaborating entity "contr_gen" for hierarchy "ID:ID_instance|contr_gen:contr_gen_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 146
+Info (12128): Elaborating entity "regfile" for hierarchy "ID:ID_instance|regfile:myregfile" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 147
+Info (12128): Elaborating entity "imm_gen" for hierarchy "ID:ID_instance|imm_gen:imm_gen_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 148
+Info (12128): Elaborating entity "ID_EX_reg" for hierarchy "ID_EX_reg:ID_EX_reg_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 56
+Info (12128): Elaborating entity "EX" for hierarchy "EX:EX_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 60
+Info (12128): Elaborating entity "alu" for hierarchy "EX:EX_instance|alu:alu_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 289
+Info (12128): Elaborating entity "adder" for hierarchy "EX:EX_instance|alu:alu_instance|adder:alu_addr" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/alu.v Line: 14
+Info (12128): Elaborating entity "EX_M_reg" for hierarchy "EX_M_reg:EX_M_reg_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 62
+Info (12128): Elaborating entity "M" for hierarchy "M:M_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 65
+Info (12128): Elaborating entity "branch_cond" for hierarchy "M:M_instance|branch_cond:branch_cond_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 417
+Info (12128): Elaborating entity "M_WB_reg" for hierarchy "M_WB_reg:M_WB_reg_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 67
+Info (12128): Elaborating entity "WB" for hierarchy "WB:WB_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 68
+Info (286030): Timing-Driven Synthesis is running
 Info (144001): Generated suppressed messages file D:/HomeWork/ShuDianShiYan/12/exp12/hardware/riscv_hardware.map.smsg
-Error: Quartus Prime Analysis & Synthesis was unsuccessful. 2 errors, 25 warnings
-    Error: Peak virtual memory: 4882 megabytes
-    Error: Processing ended: Mon Nov 29 21:18:21 2021
-    Error: Elapsed time: 00:00:10
-    Error: Total CPU time (on all processors): 00:00:21
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 3 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "irq_pins[1]" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 20
+    Warning (15610): No output dependent on input pin "irq_pins[2]" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 20
+    Warning (15610): No output dependent on input pin "irq_pins[3]" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 20
+Info (21057): Implemented 3207 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 70 input pins
+    Info (21059): Implemented 135 output pins
+    Info (21061): Implemented 3002 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 5 warnings
+    Info: Peak virtual memory: 4844 megabytes
+    Info: Processing ended: Tue Nov 30 16:21:15 2021
+    Info: Elapsed time: 00:00:25
+    Info: Total CPU time (on all processors): 00:00:43
 
 
 +------------------------------------------+

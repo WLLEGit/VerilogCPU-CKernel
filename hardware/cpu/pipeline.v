@@ -33,9 +33,8 @@ wire [1:0] forward_rs1, forward_rs2;
 wire [`PL_STATUS_BUS_WIDTH] pl_ctrl_pc, pl_ctrl_ID, pl_ctrl_EX, pl_ctrl_MEM, pl_ctrl_WB;
 
 //interrupt signals
-wire [3:0] irq_pins;
-wire we_en, we_client, global_int_en, int_set_pl_pause, int_flag;
-wire [31:0] waddr_ex, raddr_ex, wdata_ex, waddr_client, raddr_client, wdata_client, mtvec, mepc, mstatus, data_out_ex, data_out_client, int_pc;
+wire we_ex, we_client, global_int_en, int_set_pl_pause, int_flag;
+wire [31:0] waddr_ex, raddr_ex, wdata_ex, waddr_client, wdata_client, mtvec, mepc, mstatus, data_out_ex, int_pc;
 
 assign dbgdata = pc;
 // cpu ctrl
@@ -45,9 +44,9 @@ pipeline_status pipeline_status_ctrl(clr, clk, pc_branch, stall, int_set_pl_paus
                                              pl_ctrl_pc, pl_ctrl_ID, pl_ctrl_EX, pl_ctrl_MEM, pl_ctrl_WB);
 
 // interrupt support
-CSRs csrs(clr, clk, we_ex, waddr_ex, raddr_ex, wdata_ex, we_client, waddr_client, raddr_client, wdata_client, global_int_en, mtvec, mepc, mstatus, data_out_ex, data_out_client);
+CSRs csrs(clr, clk, we_ex, waddr_ex, raddr_ex, wdata_ex, we_client, waddr_client, wdata_client, global_int_en, mtvec, mepc, mstatus, data_out_ex);
 client client_instance(clr, clk, irq_pins, instr3, pc3, pc_branch, nextpc_mem, mtvec, mepc, mstatus, global_int_en,
-                                int_set_pl_pause, we_client, waddr_client, raddr_client, wdata_client, int_pc, int_flag);
+                                int_set_pl_pause, we_client, waddr_client, wdata_client, int_pc, int_flag);
 
 PC PC_instance(pl_ctrl_pc, clk, nextpc_mem, int_pc, pc);
 IF IF_instance(clr, clk, pc, instr, imemdataout, imemaddr, imemclk);
@@ -193,6 +192,7 @@ module ID_EX_reg (
 
 always @(negedge clk) begin
     if(pl_ctrl_EX == `PL_FLUSH) begin
+        instr_out <= 32'd0;
         pc_out <= 32'd0;
         imm_out <= 32'd0;
         rs1_out <= 32'd0;
@@ -210,6 +210,7 @@ always @(negedge clk) begin
         memwr_out <= 1'b0;
         memop_out <= 2'd0;
     end else if(pl_ctrl_EX == `PL_PAUSE) begin
+        instr_out <= instr_out;
         pc_out <= pc_out;
         imm_out <= imm_out;
         rs1_out <= rs1_out;
@@ -227,6 +228,7 @@ always @(negedge clk) begin
         memwr_out <= memwr_out;
         memop_out <= memop_out;
     end else begin
+        instr_out <= instr_in;
         pc_out <= pc_in;
         imm_out <= imm_in;
         rs1_out <= rs1_in;
@@ -325,6 +327,7 @@ module EX_M_reg (
 
 always @(negedge clk) begin
     if(pl_ctrl_MEM == `PL_FLUSH) begin
+        instr_out <= 32'd0;
         pc_out <= 32'd0;
         nextpc_pc_out <= 32'd0;
         nextpc_rs1_out <= 32'd0;
@@ -339,6 +342,7 @@ always @(negedge clk) begin
         memop_out <= 2'd0;
         regwr_out <= 1'b0;
     end else if(pl_ctrl_MEM == `PL_PAUSE) begin
+        instr_out <= instr_out;
         pc_out <= pc_out;
         nextpc_pc_out <= nextpc_pc_out;
         nextpc_rs1_out <= nextpc_rs1_out;
@@ -353,6 +357,7 @@ always @(negedge clk) begin
         memop_out <= memop_out;
         regwr_out <= regwr_out;
     end else begin
+        instr_out <= instr_in;
         pc_out <= pc;
         nextpc_pc_out <= nextpc_pc;
         nextpc_rs1_out <= nextpc_rs1;
