@@ -7,12 +7,13 @@ void entry()
 {
     asm("lui sp, 0x00120");
     asm("addi sp, sp, -4");
+    init_io_mm();
+    init_CSR();
     main();
 }
 
 int main()
 {
-    init_CSR();
     ui_mainloop();
     return 0;
 }

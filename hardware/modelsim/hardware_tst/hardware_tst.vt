@@ -1,0 +1,84 @@
+`timescale 1ns/10ps
+module hardware_tst ();
+reg CLOCK_50;
+reg [9:0] SW;
+// wires                                               
+wire PS2_CLK;
+wire PS2_DAT;
+
+parameter INIT_IO_ADDR = 32'h000006d0,
+		  INIT_CSR_ADDR = 32'h00000e90,
+		  UI_MAIN_LOOP_ADDR = 32'h00000734;
+
+integer cycle = 0;
+riscv_hardware i1 (
+// port map - connection between master ports and signals/registers   
+	.CLOCK_50(CLOCK_50),
+	.PS2_CLK(PS2_CLK),
+	.PS2_DAT(PS2_DAT),
+	.SW(SW)
+);
+
+ps2_keyboard_model model(
+	.ps2_clk(PS2_CLK),
+	.ps2_data(PS2_DAT)
+	);
+
+initial begin
+	CLOCK_50 = 1;
+	forever begin
+		cycle = cycle+1;
+		CLOCK_50 = ~CLOCK_50;
+		#10;
+		if(i1.cpu.pc == INIT_IO_ADDR)
+			$display("enter func init_io, cycle: %x", cycle);
+		else if(i1.cpu.pc == INIT_CSR_ADDR)
+			$display("enter func init_csr, cycle: %x", cycle);
+		else if(i1.cpu.pc == UI_MAIN_LOOP_ADDR)
+			$display("enter func ui_main_loop, cycle: %x", cycle);
+	end
+end
+
+initial begin
+	SW[9:0] = 0;
+	SW[0] = 1; #20; SW[0] = 0; #20;
+	#20 model.kbd_sendcode(8'h1C);
+	#20 model.kbd_sendcode(8'h1C);
+	#20 model.kbd_sendcode(8'h1C);
+	#20 model.kbd_sendcode(8'hF0);
+	#20 model.kbd_sendcode(8'h1C);
+	#10000; $stop;
+end
+endmodule
+
+
+`timescale 1ns / 1ps
+module ps2_keyboard_model(
+    output reg ps2_clk,
+    output reg ps2_data
+    );
+parameter [31:0] kbd_clk_period = 60;
+initial ps2_clk = 1'b1;
+
+task kbd_sendcode;
+    input [7:0] code; // key to be sent
+    integer i;
+
+    reg[10:0] send_buffer;
+    begin
+        send_buffer[0] = 1'b0; // start bit
+        send_buffer[8:1] = code; // code
+        send_buffer[9] = ~(^code); // odd parity bit
+        send_buffer[10] = 1'b1; // stop bit
+        i = 0;
+        while( i < 11) begin
+            // set kbd_data
+            ps2_data = send_buffer[i];
+            #(kbd_clk_period/2) ps2_clk = 1'b0;
+            #(kbd_clk_period/2) ps2_clk = 1'b1;
+            i = i + 1;
+        end
+    end
+endtask
+
+endmodule

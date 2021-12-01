@@ -52,10 +52,11 @@ module riscv_hardware(
 //	output		          		FPGA_I2C_SCLK,
 //	inout 		          		FPGA_I2C_SDAT
 );
-parameter S0 = 3'b0001, S1=4'b0010, S2=4'b0100, S3=4'b1000;
+parameter S0 = 4'b0001, S1=4'b0010, S2=4'b0100, S3=4'b1000;
 parameter MS500 = 25000000, MS250=12500000, MS1000=50000000;
 
-wire tmp_clk = ~KEY[0];
+//Debug
+wire [31:0] pc;
 
 /*=====Pipeline=====*/
 wire [31:0] imemaddr;
@@ -102,8 +103,8 @@ integer kb_timer;
 
 
 /*=====irq=====*/
-wire [`IRQ_PIN_BUS] irq_pins={3'b0, timer_irq};
 wire global_int_en, timer_irq;
+wire [`IRQ_PIN_BUS] irq_pins={3'b0, timer_irq};
 
 clkgen #(25200000) vgaclk_generator(CLOCK_50, rst, 1'b1, VGA_CLK);
 color_map color_gen(vga_color_data, vga_color);
@@ -118,8 +119,8 @@ font_rom font_rom_instance(vga_char_data, CLOCK_50, font_out);
 assign tmp_y = 12'd15 - y_remain;
 assign vga_data = (h_addr == cursor_x && v_addr >= cursor_y && v_addr <= cursor_y + 15 && cursor_cnt >= MS500) ? {24{1'b1}} : (h_addr >= 576 ? 24'd0 : (font_out[(mul12(tmp_y))+(x_remain)] ? vga_color : 32'd0));
 
-timer_device timer_device_instance(rst, tmp_clk, global_int_en, timer_irq);
-pipeline cpu(tmp_clk, rst, imemaddr, imemdataout, imemclk, dmemaddr, dmemdataout, dmemdatain, dmemrdclk, dmemwrclk, dmemop, dmemwe, pc, global_int_en, irq_pins);
+timer_device timer_device_instance(rst, CLOCK_50, global_int_en, timer_irq);
+pipeline cpu(CLOCK_50, rst, imemaddr, imemdataout, imemclk, dmemaddr, dmemdataout, dmemdatain, dmemrdclk, dmemwrclk, dmemop, dmemwe, pc, global_int_en, irq_pins);
 
 kb_driver keyboard(CLOCK_50, rst, PS2_CLK, PS2_DAT, is_shift, is_ctrl, is_capital, is_error, is_special, ascii);
 
@@ -162,7 +163,6 @@ always @(posedge CLOCK_50) begin
 	end
 end
 
-wire [31:0] pc;
 assign LEDR[0] = global_int_en;
 assign LEDR[9] = is_error;
 display7seg seg0(pc[3:0], HEX0, 1'b0);

@@ -1,2 +1,2 @@
 Warning (10268): Verilog HDL information at kb_driver.v(52): always construct contains both blocking and non-blocking assignments File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/keyboard/kb_driver.v Line: 52
-Warning (10268): Verilog HDL information at riscv_hardware.v(138): always construct contains both blocking and non-blocking assignments File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/riscv_hardware.v Line: 138
+Warning (10268): Verilog HDL information at riscv_hardware.v(139): always construct contains both blocking and non-blocking assignments File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/riscv_hardware.v Line: 139

@@ -55,7 +55,7 @@ always @(*) begin
 		cpu_rddata <= 0;
 end
 
-instr_rom instr_rom_instance(instr_addr&ADDR_MASK, clk, instr_data);														// 	read: cpu, 	write: none
+instr_rom instr_rom_instance((instr_addr&ADDR_MASK)>>2, clk, instr_data);														// 	read: cpu, 	write: none
 dram dram_instance(cpu_addr&ADDR_MASK, dram_dataout, cpu_wrdata, clk, clk, cpu_memop, dram_we);								//	read: cpu, 	write: cpu
 vga_info vga_info_instance(clk, cpu_addr&ADDR_MASK, cpu_wrdata, vga_we, vga_extra_line_cnt, vga_cursor_x, vga_cursor_y);	// 	read: vga, 	write: cpu
 char_ram vga_ram_instance(cpu_wrdata, vga_char_addr&ADDR_MASK, clk, cpu_addr&ADDR_MASK, clk, char_we, vga_char_data);		//	read: vga, 	write: cpu

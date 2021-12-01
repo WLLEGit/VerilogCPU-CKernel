@@ -333,7 +333,7 @@ assign nextpc_rs1 = rs1_proc + imm;
 assign dataa = ALUAsrc?pc:rs1_proc;
 assign datab = (ALUBsrc==2'b00 ? rs2_proc : (ALUBsrc==2'b01 ? imm : 32'd4));
 alu alu_instance(dataa, datab, ALUctr, less, zero, aluresult);
-CSRALU csr_alu_instance(csr_data, rs1, {27'd0, zimm}, csr_aluctr, csr_aluresult);
+CSRALU csr_alu_instance(csr_data, rs1_proc, {27'd0, zimm}, csr_aluctr, csr_aluresult);
     
 endmodule
 
