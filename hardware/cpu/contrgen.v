@@ -1,3 +1,4 @@
+`include "define.v"
 module contr_gen (
     input [31:0]instr,
     output reg [2:0] extop,
@@ -168,7 +169,7 @@ always @(*) begin
 end
 
 always @(*) begin
-    if(op==5'b11100 && func3!=3'b111)
+    if(op==5'b11100 && func3!=3'b111 && instr != `INSTR_MRET)
         csr_we <= 1'b1;
     else
         csr_we <= 1'b0;
@@ -191,7 +192,7 @@ always @(*) begin
 end
 
 always @(*) begin
-    csr2reg <= (op==5'b11100&&func3!=3'b111) ? 1'b1 : 1'b0;
+    csr2reg <= (op==5'b11100&&func3!=3'b111&&instr != `INSTR_MRET) ? 1'b1 : 1'b0;
 end
 
 endmodule

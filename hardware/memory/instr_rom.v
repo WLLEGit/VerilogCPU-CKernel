@@ -1,7 +1,7 @@
 // megafunction wizard: %ROM: 1-PORT%
 // GENERATION: STANDARD
 // VERSION: WM1.0
-// MODULE: altsyncram 
+// MODULE: altsyncram
 
 // ============================================================
 // File Name: instr_rom.v
@@ -19,12 +19,12 @@
 
 
 //Copyright (C) 2020  Intel Corporation. All rights reserved.
-//Your use of Intel Corporation's design tools, logic functions 
-//and other software and tools, and any partner logic 
-//functions, and any output files from any of the foregoing 
-//(including device programming or simulation files), and any 
-//associated documentation or information are expressly subject 
-//to the terms and conditions of the Intel Program License 
+//Your use of Intel Corporation's design tools, logic functions
+//and other software and tools, and any partner logic
+//functions, and any output files from any of the foregoing
+//(including device programming or simulation files), and any
+//associated documentation or information are expressly subject
+//to the terms and conditions of the Intel Program License
 //Subscription Agreement, the Intel Quartus Prime License Agreement,
 //the Intel FPGA IP License Agreement, or other applicable license
 //agreement, including, without limitation, that your use is for
@@ -84,7 +84,7 @@ module instr_rom (
 		altsyncram_component.address_aclr_a = "NONE",
 		altsyncram_component.clock_enable_input_a = "BYPASS",
 		altsyncram_component.clock_enable_output_a = "BYPASS",
-		altsyncram_component.init_file = "./memory/main.mif",
+		altsyncram_component.init_file = "main.mif",
 		altsyncram_component.intended_device_family = "Cyclone V",
 		altsyncram_component.lpm_hint = "ENABLE_RUNTIME_MOD=YES,INSTANCE_NAME=INST",
 		altsyncram_component.lpm_type = "altsyncram",

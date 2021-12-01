@@ -52,7 +52,7 @@ assign out = is_special ? special_out : ascii;
 always @(negedge CLOCK_50) begin
 	if(clrn) begin
 		state <= S0; cnt <= 0; nextdata_n <= 1'b1; empty <= 1'b1; is_shift <= 1'b0;  is_ctrl = 1'b0;
-		data <= 8'd0; is_capital <= 1'b0; is_error = 1'b0;
+		data <= 8'd0; is_capital <= 1'b0; is_error = 1'b0; is_special <= 1'b0;
 	end else begin
 		if(nextdata_n == 0)
 			nextdata_n <= 1;

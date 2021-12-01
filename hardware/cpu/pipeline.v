@@ -35,7 +35,7 @@ wire [`PL_STATUS_BUS_WIDTH] pl_ctrl_pc, pl_ctrl_ID, pl_ctrl_EX, pl_ctrl_MEM, pl_
 
 //interrupt signals
 wire we_ex, we_client, global_int_en, int_set_pl_pause, int_flag, csr2reg, csr2reg2, csr2reg3, csr2reg4, csr_we, csr_we2, csr_we3, csr_we4;
-wire [31:0] waddr_ex, raddr_ex, wdata_ex, waddr_client, wdata_client, mtvec, mepc, mstatus, data_out_ex, int_pc, 
+wire [31:0] waddr_ex, raddr_ex, wdata_ex, waddr_client, wdata_client, mtvec, mepc, mstatus, data_out_ex, int_pc_posedge, int_pc_negedge,
             csr_data, csr_data2, csr_aluresult, csr_aluresult3, csr_aluresult4, csr_waddr3, csr_waddr4;
 wire [2:0] csr_aluctr, csr_aluctr2;
 
@@ -43,15 +43,15 @@ assign dbgdata = pc;
 // cpu ctrl
 forward_detecter f_d_i(regwr3, regwr4, rs1_addr2, rs2_addr2, rd3, rw, forward_rs1, forward_rs2);
 load_store_detecter l_s_d(MemtoReg2, rd2, instr1[19:15], instr1[24:20], stall);
-pipeline_status pipeline_status_ctrl(clr, clk, pc_branch, stall, int_set_pl_pause, int_flag,
-                                             pl_ctrl_pc, pl_ctrl_ID, pl_ctrl_EX, pl_ctrl_MEM, pl_ctrl_WB);
+pipeline_status pipeline_status_ctrl(clr, clk, pc_branch, stall, int_set_pl_pause, int_flag, int_pc_posedge,
+                                             pl_ctrl_pc, pl_ctrl_ID, pl_ctrl_EX, pl_ctrl_MEM, pl_ctrl_WB, int_pc_negedge);
 
 // interrupt support
 CSRs csrs(clr, clk, we_ex, waddr_ex, raddr_ex, wdata_ex, we_client, waddr_client, wdata_client, global_int_en, mtvec, mepc, mstatus, data_out_ex);
 client client_instance(clr, clk, irq_pins, instr3, pc3, pc_branch, nextpc_mem, mtvec, mepc, mstatus, global_int_en,
-                                int_set_pl_pause, we_client, waddr_client, wdata_client, int_pc, int_flag);
+                                int_set_pl_pause, we_client, waddr_client, wdata_client, int_pc_posedge, int_flag);
 
-PC PC_instance(pl_ctrl_pc, clk, nextpc_mem, int_pc, pc);
+PC PC_instance(pl_ctrl_pc, clk, nextpc_mem, int_pc_negedge, pc);
 IF IF_instance(clr, clk, pc, instr, imemdataout, imemaddr, imemclk);
 IF_ID_reg IFIDreg_instance(pl_ctrl_ID, clk, pc, instr, pc1, instr1);
 ID ID_instance(clr, clk, instr1, regwr4, rw, busW, imm, rs1_addr, rs2_addr, rs1, rs2, rd, extop, regwr, ALUAsrc, ALUBsrc, ALUctr, branch, MemtoReg, memwr, memop, raddr_ex, data_out_ex, csr_data, csr_aluctr, csr_we, csr2reg);

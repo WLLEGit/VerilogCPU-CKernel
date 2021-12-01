@@ -58,3 +58,4 @@ clean:
 	rm -f *.elf
 	rm -f *.hex
 	rm -f *.mif
+	rm -f src/*.o

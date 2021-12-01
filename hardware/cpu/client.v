@@ -43,7 +43,7 @@ always @(*) begin
             int_state <= `INT_M_SYNC;
         end else if(instr_MEM == `INSTR_MRET) begin
             int_state <= `INT_MRET;
-        end else if(int_flag && global_int_en) begin
+        end else if(|(irq_pins) && global_int_en) begin
             int_state <= `INT_M_ASYNC;
         end else
             int_state <= `INT_IDLE;
@@ -64,7 +64,7 @@ always @(posedge clk) begin
                 if(branch_MEM)
                     instr_addr <= branch_addr_MEM - 32'd4;
                 else
-                    instr_addr <= instr_addr;
+                    instr_addr <= instr_addr_MEM;
 
                 if(instr_MEM == `INSTR_ECALL) 
                     cause <= `ECALL_MCAUSE;
@@ -78,7 +78,7 @@ always @(posedge clk) begin
                     if(branch_MEM)
                         instr_addr <= branch_addr_MEM;
                     else
-                        instr_addr <= instr_addr;                    
+                        instr_addr <= instr_addr_MEM;                    
                 end else begin
                     csr_state <= `CSR_STATE_IDLE;
                 end
@@ -102,7 +102,7 @@ always @(posedge clk) begin
 end
 
 //write CSRs 
-always @(posedge clk) begin
+always @(negedge clk) begin
     if(clr) begin
         csr_we <= 0;
         csr_waddr <= 0;
@@ -131,7 +131,7 @@ always @(posedge clk) begin
     end
 end
 
-always @(posedge clk) begin
+always @(negedge clk) begin
     if(clr) begin
         int_flag <= 1'b0;
         int_addr <= 32'b0;
@@ -225,34 +225,6 @@ always @ (*) begin
     end
 end
 
-// always @ (*) begin
-//     if ((waddr_client[11:0] == raddr_client[11:0]) && we_client) begin
-//         data_out_client <= clint_data_i;
-//     end else begin
-//         case (clint_raddr_i[11:0])
-//             `CSR_CYCLE: 
-//                 data_out_client <= cycle[31:0];
-//             `CSR_CYCLEH: 
-//                 data_out_client <= cycle[63:32];
-//             `CSR_MTVEC: 
-//                 data_out_client <= mtvec;
-//             `CSR_MCAUSE: 
-//                 data_out_client <= mcause;
-//             `CSR_MEPC: 
-//                 data_out_client <= mepc;
-//             `CSR_MIE: 
-//                 data_out_client <= mie;
-//             `CSR_MSTATUS: 
-//                 data_out_client <= mstatus;
-//             `CSR_MSCRATCH: 
-//                 data_out_client <= mscratch;
-//             default: 
-//                 data_out_client <= 32'd0;
-//             end
-//         endcase
-//     end
-// end
-
 
 //write
 always @(posedge clk) begin
@@ -264,42 +236,12 @@ always @(posedge clk) begin
         mstatus <= 0;
         mscratch <= 0;        
     end else begin
-        if(we_ex) begin
-            case (waddr_ex[11:0])
-                `CSR_MTVEC: 
-                    mtvec <= wdata_ex;
-                `CSR_MCAUSE: 
-                    mcause <= wdata_ex;
-                `CSR_MEPC: 
-                    mepc <= wdata_ex;
-                `CSR_MIE: 
-                    mie <= wdata_ex;
-                `CSR_MSTATUS: 
-                    mstatus <= wdata_ex;
-                `CSR_MSCRATCH: 
-                    mscratch <= wdata_ex;
-                default: 
-                    ;
-            endcase
-        end
-        else if(we_client) begin
-            case (waddr_client[11:0])
-                `CSR_MTVEC: 
-                    mtvec <= wdata_client;
-                `CSR_MCAUSE: 
-                    mcause <= wdata_client;
-                `CSR_MEPC: 
-                    mepc <= wdata_client;
-                `CSR_MIE: 
-                    mie <= wdata_client;
-                `CSR_MSTATUS: 
-                    mstatus <= wdata_client;
-                `CSR_MSCRATCH: 
-                    mscratch <= wdata_client;
-                default: 
-                    ;
-            endcase
-        end
+        mtvec <= (waddr_ex[11:0]==`CSR_MTVEC&&we_ex==1) ? wdata_ex : ((waddr_client[11:0]==`CSR_MTVEC&&we_client==1) ? wdata_client : mtvec);
+        mcause <= (waddr_ex[11:0]==`CSR_MCAUSE&&we_ex==1) ? wdata_ex : ((waddr_client[11:0]==`CSR_MCAUSE&&we_client==1) ? wdata_client : mcause);
+        mepc <= (waddr_ex[11:0]==`CSR_MEPC&&we_ex==1) ? wdata_ex : ((waddr_client[11:0]==`CSR_MEPC&&we_client==1) ? wdata_client : mepc);
+        mie <= (waddr_ex[11:0]==`CSR_MIE&&we_ex==1) ? wdata_ex : ((waddr_client[11:0]==`CSR_MIE&&we_client==1) ? wdata_client : mie);
+        mstatus <= (waddr_ex[11:0]==`CSR_MSTATUS&&we_ex==1) ? wdata_ex : ((waddr_client[11:0]==`CSR_MSTATUS&&we_client==1) ? wdata_client : mstatus);
+        mscratch <= (waddr_ex[11:0]==`CSR_MSCRATCH&&we_ex==1) ? wdata_ex : ((waddr_client[11:0]==`CSR_MSCRATCH&&we_client==1) ? wdata_client : mscratch);
     end
 end
 endmodule

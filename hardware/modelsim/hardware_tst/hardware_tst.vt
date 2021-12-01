@@ -1,4 +1,4 @@
-`timescale 1ns/10ps
+`timescale 10ns/1ps
 module hardware_tst ();
 reg CLOCK_50;
 reg [9:0] SW;
@@ -29,7 +29,7 @@ initial begin
 	forever begin
 		cycle = cycle+1;
 		CLOCK_50 = ~CLOCK_50;
-		#10;
+		#1;
 		if(i1.cpu.pc == INIT_IO_ADDR)
 			$display("enter func init_io, cycle: %x", cycle);
 		else if(i1.cpu.pc == INIT_CSR_ADDR)
@@ -42,17 +42,17 @@ end
 initial begin
 	SW[9:0] = 0;
 	SW[0] = 1; #20; SW[0] = 0; #20;
-	#20 model.kbd_sendcode(8'h1C);
-	#20 model.kbd_sendcode(8'h1C);
-	#20 model.kbd_sendcode(8'h1C);
-	#20 model.kbd_sendcode(8'hF0);
-	#20 model.kbd_sendcode(8'h1C);
+	#100 model.kbd_sendcode(8'h1C);
+	#100 model.kbd_sendcode(8'h1C);
+	#100 model.kbd_sendcode(8'h1C);
+	#100 model.kbd_sendcode(8'hF0);
+	#100 model.kbd_sendcode(8'h1C);
 	#10000; $stop;
 end
 endmodule
 
 
-`timescale 1ns / 1ps
+`timescale 10ns/1ps
 module ps2_keyboard_model(
     output reg ps2_clk,
     output reg ps2_data

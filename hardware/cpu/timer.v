@@ -8,8 +8,8 @@ module timer_device (
 );
 
 integer i;
-parameter MS500 = 25000000, MS250=12500000, MS1000=50000000;
-assign irq_pin = global_int_en && |(i&32'h7);
+parameter MS500 = 25000000, MS250=12500000, MS1000=500;
+assign irq_pin = global_int_en && ((i&32'hfffffff8)==32'h0);
 always @(posedge clk) begin
     if(clr) begin
         i <= 0;
