@@ -19,6 +19,8 @@ void ui_mainloop()
             time();
         else if (strcmp(cmd, "fib") == 0)
             fib();
+        else if (strcmp(cmd, "calc") == 0)
+            calc();
         else
             error("Command not found\n");
             
@@ -44,7 +46,7 @@ void fib()
 
     int n = atoi(param);
     if(n < 0)
-        error("n can't be less than zero\n");
+        error("n shouldn't be less than zero\n");
     else
     {
         int res = 1;
@@ -58,4 +60,19 @@ void fib()
         itoa(res, res_str);
         print(res_str, COLOR_WHITE);
     }
+}
+
+void calc()
+{
+    char* expr = strtok(NULL, "");
+    bool* success;
+    int res = calc_expr(expr, success);
+    if(*success)
+    {
+        char res_str[10];
+        itoa(res, res_str);
+        print(res_str, COLOR_WHITE);
+    }
+    else
+        error("Invalid expression\n");
 }

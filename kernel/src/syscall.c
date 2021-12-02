@@ -8,6 +8,7 @@ volatile uint32_t sys_time = 0;
 uint32_t monitor_write_cursor = 0;
 uint32_t output_front_cursor = 0;
 
+InputController input_controller;
 
 void putc(const char c, const uint8_t color)
 {
@@ -44,8 +45,10 @@ void print(const char* str, const uint8_t color)
 
 char getc()
 {
-    while(!kb_info.c);  //wait input
+    while(!_next_key_arrived());  //wait input
     char c = kb_info.c;
+    input_controller.pre_c = c;
+    input_controller.pre_time = sys_time;
     putc(c, COLOR_WHITE);
     return c;
 }
@@ -78,7 +81,7 @@ void clear_screen()
         _setc(' ', COLOR_WHITE, i);
 }
 
-void _update_cursor()
+static void _update_cursor()
 {
     int r = monitor_write_cursor / COL_CNT;
     int c = monitor_write_cursor % COL_CNT;
@@ -89,7 +92,21 @@ void _update_cursor()
         vga_info.cursor_x = 1;
 }
 
+
 inline void lock_output_front() {output_front_cursor = monitor_write_cursor;}
-inline void _setc(const char c, const uint8_t color, const uint32_t addr){ch_mem[addr]=c; color_mem[addr]=color;}
-inline void _erasec(const uint32_t addr){ch_mem[addr]=0; color_mem[addr]=0;}
+inline static void _setc(const char c, const uint8_t color, const uint32_t addr){ch_mem[addr]=c; color_mem[addr]=color;}
+inline static void _erasec(const uint32_t addr){ch_mem[addr]=0; color_mem[addr]=0;}
 inline void error(const char* msg) {print("Error: ", COLOR_RED); print(msg, COLOR_WHITE);}
+
+static inline bool _next_key_arrived()
+{
+    if(kb_info.c)
+    {
+        if(kb_info.c == input_controller.pre_c)
+            return sys_time - input_controller.pre_time > KEY_REPEAT_INTERVAL;
+        else
+            return true;
+    }
+    else
+        return false;
+}

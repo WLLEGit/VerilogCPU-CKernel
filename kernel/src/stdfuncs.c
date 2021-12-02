@@ -16,7 +16,7 @@ int strcmp(const char* src, const char* dst)
 }
 
 char * strtok ( char * str, const char * delimiters ){
-	if( delimiters == NULL) return NULL;
+	if(!delimiters) return NULL;
 	static char * s_mem = NULL;
 	if( str == NULL && s_mem == NULL) return NULL;
 	

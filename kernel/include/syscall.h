@@ -10,9 +10,6 @@ extern uint32_t output_front_cursor; //can't backspace when monitor_write_cursor
 
 /* std IO */
 void lock_output_front();
-void _setc(const char c, const uint8_t color, const uint32_t addr);
-void _erasec(const uint32_t addr);
-void _update_cursor();
 void putc(const char c, const uint8_t color);
 void print(const char* str, const uint8_t color);
 
@@ -30,6 +27,9 @@ void clear_screen();
 // /* video support end */
 
 void error(const char* msg);
-
+static bool _next_key_arrived();
+static void _setc(const char c, const uint8_t color, const uint32_t addr);
+static void _erasec(const uint32_t addr);
+static void _update_cursor();
 
 #endif

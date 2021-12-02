@@ -21,9 +21,7 @@
 #define CHAR_WIDTH 9
 #define CHAR_HEIGHT 16
 
-#define KB_FIFO_SIZE 32
-
-
+// CSRs internal index
 #define MSTATUS 0x300
 #define MTVEC 0x305
 #define MSCRATCH 0x340
@@ -43,6 +41,8 @@ typedef signed int int32_t;         /* Signed 32 bit quantity   */
 #define true 1
 #define false 0
 #define NULL 0
+
+#define KEY_REPEAT_INTERVAL 250  // input interval if one key keep pressed
 
 enum{COLOR_RED, COLOR_GREEN, COLOR_BLUE, 
         COLOR_BLACK, COLOR_WHITE,};
