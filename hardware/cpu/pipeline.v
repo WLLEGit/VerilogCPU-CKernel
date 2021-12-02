@@ -36,7 +36,7 @@ wire [`PL_STATUS_BUS_WIDTH] pl_ctrl_pc, pl_ctrl_ID, pl_ctrl_EX, pl_ctrl_MEM, pl_
 //interrupt signals
 wire we_ex, we_client, global_int_en, int_set_pl_pause, int_flag, csr2reg, csr2reg2, csr2reg3, csr2reg4, csr_we, csr_we2, csr_we3, csr_we4;
 wire [31:0] waddr_ex, raddr_ex, wdata_ex, waddr_client, wdata_client, mtvec, mepc, mstatus, data_out_ex, int_pc_posedge, int_pc_negedge,
-            csr_data, csr_data2, csr_aluresult, csr_aluresult3, csr_aluresult4, csr_waddr3, csr_waddr4;
+            csr_data, csr_data2, csr_aluresult, csr_aluresult3, csr_aluresult4, csr_waddr3, csr_waddr4, pc_intr_ret;
 wire [2:0] csr_aluctr, csr_aluctr2;
 
 assign dbgdata = pc;
@@ -48,7 +48,8 @@ pipeline_status pipeline_status_ctrl(clr, clk, pc_branch, stall, int_set_pl_paus
 
 // interrupt support
 CSRs csrs(clr, clk, we_ex, waddr_ex, raddr_ex, wdata_ex, we_client, waddr_client, wdata_client, global_int_en, mtvec, mepc, mstatus, data_out_ex);
-client client_instance(clr, clk, irq_pins, instr3, pc3, pc_branch, nextpc_mem, mtvec, mepc, mstatus, global_int_en,
+last_valid_pc last_valid_pc_instance(pc, pc1, pc2, pc3, pc_intr_ret);
+client client_instance(clr, clk, irq_pins, instr3, pc_intr_ret, pc_branch, nextpc_mem, mtvec, mepc, mstatus, global_int_en,
                                 int_set_pl_pause, we_client, waddr_client, wdata_client, int_pc_posedge, int_flag);
 
 PC PC_instance(pl_ctrl_pc, clk, nextpc_mem, int_pc_negedge, pc);

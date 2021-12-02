@@ -1,25 +1,29 @@
 .global int_handler_entrance
 .extern irq_handler
 int_handler_entrance: 
-    csrrw a1, mscratch, a1
-    sw a0, 0(a1)
-    sw a2, 4(a1)
-    sw a3, 8(a1)
-    sw a4, 12(a1)
-    sw a5, 16(a1)
-    sw a6, 20(a1)
-    sw a7, 24(a1)
+    csrrw t6, mscratch, t6
+    sw a0, 0(t6)
+    sw a1, 4(t6)
+    sw a2, 8(t6)
+    sw a3, 12(t6)
+    sw a4, 16(t6)
+    sw a5, 20(t6)
+    sw a6, 24(t6)
+    sw a7, 28(t6)
+    sw x1, 32(t6)
     
     csrr a0, mcause //load parameter
     call irq_handler
 
-    lw a0, 0(a1)
-    lw a2, 4(a1)
-    lw a3, 8(a1)
-    lw a4, 12(a1)
-    lw a5, 16(a1)
-    lw a6, 20(a1)
-    lw a7, 24(a1)
-    csrrw a1, mscratch, a1
+    lw a0, 0(t6)
+    lw a1, 4(t6)
+    lw a2, 8(t6)
+    lw a3, 12(t6)
+    lw a4, 16(t6)
+    lw a5, 20(t6)
+    lw a6, 24(t6)
+    lw a7, 28(t6)
+    lw x1, 32(t6)
+    csrrw t6, mscratch, t6
     mret
     

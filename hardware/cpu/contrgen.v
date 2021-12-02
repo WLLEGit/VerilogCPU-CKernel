@@ -41,7 +41,7 @@ end
 always @(*) begin
     if(instr == 32'd0)
         regwr <= 0;
-    else if(op==5'b11000 || op==5'b01000 || (op==5'b11100&&func3==3'b111))
+    else if(op==5'b11000 || op==5'b01000 || (op==5'b11100&&func3==3'b000))
         regwr<=1'b0;
     else
         regwr<=1'b1;
@@ -169,7 +169,7 @@ always @(*) begin
 end
 
 always @(*) begin
-    if(op==5'b11100 && func3!=3'b111 && instr != `INSTR_MRET)
+    if(op==5'b11100 && func3!=3'b000 && instr != `INSTR_MRET)
         csr_we <= 1'b1;
     else
         csr_we <= 1'b0;
@@ -178,12 +178,12 @@ end
 always @(*) begin
     if(op==5'b11100)begin
         case(func3)
-        3'b000: csr_alu_ctr <=3'b000;
-        3'b001: csr_alu_ctr <=3'b010;
-        3'b010: csr_alu_ctr <=3'b100;
-        3'b011: csr_alu_ctr <=3'b001;
-        3'b101: csr_alu_ctr <=3'b011;
-        3'b110: csr_alu_ctr <=3'b101;
+        3'b001: csr_alu_ctr <= 3'b000;
+        3'b010: csr_alu_ctr <= 3'b010;
+        3'b011: csr_alu_ctr <= 3'b100;
+        3'b101: csr_alu_ctr <= 3'b001;
+        3'b110: csr_alu_ctr <= 3'b011;
+        3'b111: csr_alu_ctr <= 3'b101;
         default: csr_alu_ctr <=3'b000;
         endcase
     end else begin
@@ -192,7 +192,7 @@ always @(*) begin
 end
 
 always @(*) begin
-    csr2reg <= (op==5'b11100&&func3!=3'b111&&instr != `INSTR_MRET) ? 1'b1 : 1'b0;
+    csr2reg <= (op==5'b11100&&func3!=3'b000&&instr != `INSTR_MRET) ? 1'b1 : 1'b0;
 end
 
 endmodule

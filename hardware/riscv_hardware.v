@@ -164,6 +164,7 @@ always @(posedge CLOCK_50) begin
 end
 
 assign LEDR[0] = global_int_en;
+assign LEDR[1] = timer_irq;
 assign LEDR[9] = is_error;
 display7seg seg0(pc[3:0], HEX0, 1'b0);
 display7seg seg1(pc[7:4], HEX1, 1'b0);

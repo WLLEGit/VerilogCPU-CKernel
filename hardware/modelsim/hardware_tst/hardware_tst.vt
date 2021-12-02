@@ -6,9 +6,8 @@ reg [9:0] SW;
 wire PS2_CLK;
 wire PS2_DAT;
 
-parameter INIT_IO_ADDR = 32'h000006d0,
-		  INIT_CSR_ADDR = 32'h00000e90,
-		  UI_MAIN_LOOP_ADDR = 32'h00000734;
+parameter INT_HANDLER = 32'h00000ea4,
+		  UI_MAIN_LOOP_ADDR = 32'h00000748;
 
 integer cycle = 0;
 riscv_hardware i1 (
@@ -30,12 +29,12 @@ initial begin
 		cycle = cycle+1;
 		CLOCK_50 = ~CLOCK_50;
 		#1;
-		if(i1.cpu.pc == INIT_IO_ADDR)
-			$display("enter func init_io, cycle: %x", cycle);
-		else if(i1.cpu.pc == INIT_CSR_ADDR)
-			$display("enter func init_csr, cycle: %x", cycle);
+		if(i1.cpu.pc == INT_HANDLER)
+			$display("enter func int_handler, cycle: %x", cycle);
 		else if(i1.cpu.pc == UI_MAIN_LOOP_ADDR)
 			$display("enter func ui_main_loop, cycle: %x", cycle);
+		else if(i1.cpu.pc == 0)
+			$display("pc reset, cycle: %x", cycle);
 	end
 end
 

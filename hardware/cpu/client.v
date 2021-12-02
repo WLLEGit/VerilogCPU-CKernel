@@ -153,7 +153,28 @@ end
     
 endmodule
 
+module last_valid_pc (
+    input [31:0] pc_IF,
+    input [31:0] pc_ID,
+    input [31:0] pc_EX,
+    input [31:0] pc_MEM,
 
+    output reg [31:0] valid_pc
+);
+
+always @(*) begin
+    if(pc_MEM != 32'h0)
+        valid_pc <= pc_MEM;
+    else if(pc_EX != 32'h0)
+        valid_pc <= pc_EX;
+    else if(pc_ID != 32'h0)
+        valid_pc <= pc_ID;
+    else
+        valid_pc <= pc_IF;
+end
+    
+endmodule
+    
 
 module CSRs (
     input clr,

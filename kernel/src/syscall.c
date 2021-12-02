@@ -34,10 +34,11 @@ void putc(const char c, const uint8_t color)
 
 void print(const char* str, const uint8_t color)
 {
-    while(str)
+    char c = *str;
+    while(c)
     {
-        putc(*str, color);
-        ++str;
+        putc(c, color);
+        ++str; c= *str;
     }
 }
 

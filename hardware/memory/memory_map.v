@@ -77,9 +77,9 @@ module vga_info (
 
 reg [7:0] data[7:0];
 
-assign extra_line_cnt = {data[0], data[1], data[2], data[3]};
-assign cursor_x = {data[4], data[5]};
-assign cursor_y = {data[6], data[7]};
+assign extra_line_cnt = {data[3], data[2], data[1], data[0]};
+assign cursor_x = {data[5], data[4]};
+assign cursor_y = {data[7], data[6]};
 
 always @(posedge clk) begin
 	if(wren) begin
