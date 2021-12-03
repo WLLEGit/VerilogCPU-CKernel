@@ -1,5 +1,5 @@
 Flow report for riscv_hardware
-Thu Dec 02 16:47:12 2021
+Fri Dec 03 09:16:13 2021
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -41,25 +41,25 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------------------+
 ; Flow Summary                                                                  ;
 +---------------------------------+---------------------------------------------+
-; Flow Status                     ; Successful - Thu Dec 02 16:47:12 2021       ;
+; Flow Status                     ; Successful - Fri Dec 03 09:16:13 2021       ;
 ; Quartus Prime Version           ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                   ; riscv_hardware                              ;
 ; Top-level Entity Name           ; riscv_hardware                              ;
 ; Family                          ; Cyclone V                                   ;
 ; Device                          ; 5CSXFC6D6F31C6                              ;
 ; Timing Models                   ; Final                                       ;
-; Logic utilization (in ALMs)     ; 2,816 / 41,910 ( 7 % )                      ;
-; Total registers                 ; 2800                                        ;
-; Total pins                      ; 98 / 499 ( 20 % )                           ;
+; Logic utilization (in ALMs)     ; N/A                                         ;
+; Total registers                 ; 2824                                        ;
+; Total pins                      ; 98                                          ;
 ; Total virtual pins              ; 0                                           ;
-; Total block memory bits         ; 3,268,672 / 5,662,720 ( 58 % )              ;
-; Total DSP Blocks                ; 0 / 112 ( 0 % )                             ;
-; Total HSSI RX PCSs              ; 0 / 9 ( 0 % )                               ;
-; Total HSSI PMA RX Deserializers ; 0 / 9 ( 0 % )                               ;
-; Total HSSI TX PCSs              ; 0 / 9 ( 0 % )                               ;
-; Total HSSI PMA TX Serializers   ; 0 / 9 ( 0 % )                               ;
-; Total PLLs                      ; 0 / 15 ( 0 % )                              ;
-; Total DLLs                      ; 0 / 4 ( 0 % )                               ;
+; Total block memory bits         ; 3,268,672                                   ;
+; Total DSP Blocks                ; 0                                           ;
+; Total HSSI RX PCSs              ; 0                                           ;
+; Total HSSI PMA RX Deserializers ; 0                                           ;
+; Total HSSI TX PCSs              ; 0                                           ;
+; Total HSSI PMA TX Serializers   ; 0                                           ;
+; Total PLLs                      ; 0                                           ;
+; Total DLLs                      ; 0                                           ;
 +---------------------------------+---------------------------------------------+
 
 
@@ -68,7 +68,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 12/02/2021 16:42:31 ;
+; Start date & time ; 12/03/2021 09:15:27 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; riscv_hardware      ;
 +-------------------+---------------------+
@@ -79,7 +79,7 @@ https://fpgasoftware.intel.com/eula.
 +--------------------------------------+----------------------------------------+---------------+-------------+-------------------+
 ; Assignment Name                      ; Value                                  ; Default Value ; Entity Name ; Section Id        ;
 +--------------------------------------+----------------------------------------+---------------+-------------+-------------------+
-; COMPILER_SIGNATURE_ID                ; 91764346616.163843455105040            ; --            ; --          ; --                ;
+; COMPILER_SIGNATURE_ID                ; 91764346616.163849412621228            ; --            ; --          ; --                ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --            ; --          ; cpu_batch_vlg_tst ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --            ; --          ; hardware_tst      ;
 ; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; hardware_tst                           ; --            ; --          ; eda_simulation    ;
@@ -109,12 +109,8 @@ https://fpgasoftware.intel.com/eula.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:47     ; 1.0                     ; 4990 MB             ; 00:01:09                           ;
-; Fitter               ; 00:02:33     ; 1.4                     ; 6668 MB             ; 00:06:36                           ;
-; Assembler            ; 00:00:21     ; 1.0                     ; 4935 MB             ; 00:00:20                           ;
-; Timing Analyzer      ; 00:00:44     ; 2.5                     ; 5320 MB             ; 00:01:42                           ;
-; EDA Netlist Writer   ; 00:00:06     ; 1.0                     ; 4801 MB             ; 00:00:06                           ;
-; Total                ; 00:04:31     ; --                      ; --                  ; 00:09:53                           ;
+; Analysis & Synthesis ; 00:00:45     ; 1.0                     ; 4997 MB             ; 00:01:08                           ;
+; Total                ; 00:00:45     ; --                      ; --                  ; 00:01:08                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -124,10 +120,6 @@ https://fpgasoftware.intel.com/eula.
 ; Module Name          ; Machine Hostname ; OS Name    ; OS Version ; Processor type ;
 +----------------------+------------------+------------+------------+----------------+
 ; Analysis & Synthesis ; LE-Laptop        ; Windows 10 ; 10.0       ; x86_64         ;
-; Fitter               ; LE-Laptop        ; Windows 10 ; 10.0       ; x86_64         ;
-; Assembler            ; LE-Laptop        ; Windows 10 ; 10.0       ; x86_64         ;
-; Timing Analyzer      ; LE-Laptop        ; Windows 10 ; 10.0       ; x86_64         ;
-; EDA Netlist Writer   ; LE-Laptop        ; Windows 10 ; 10.0       ; x86_64         ;
 +----------------------+------------------+------------+------------+----------------+
 
 
@@ -135,10 +127,6 @@ https://fpgasoftware.intel.com/eula.
 ; Flow Log ;
 ------------
 quartus_map --read_settings_files=on --write_settings_files=off riscv_hardware -c riscv_hardware
-quartus_fit --read_settings_files=off --write_settings_files=off riscv_hardware -c riscv_hardware
-quartus_asm --read_settings_files=off --write_settings_files=off riscv_hardware -c riscv_hardware
-quartus_sta riscv_hardware -c riscv_hardware
-quartus_eda --read_settings_files=off --write_settings_files=off riscv_hardware -c riscv_hardware
 
 
 

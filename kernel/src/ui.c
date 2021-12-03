@@ -46,7 +46,7 @@ void fib()
 
     int n = atoi(param);
     if(n < 0)
-        error("n shouldn't be less than zero\n");
+        error("expect positive number: [n]\n");
     else
     {
         int res = 1;

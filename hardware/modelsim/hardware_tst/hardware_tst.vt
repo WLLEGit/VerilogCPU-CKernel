@@ -6,8 +6,21 @@ reg [9:0] SW;
 wire PS2_CLK;
 wire PS2_DAT;
 
-parameter INT_HANDLER = 32'h00000ea4,
-		  UI_MAIN_LOOP_ADDR = 32'h00000748;
+parameter UI_MAIN_LOOP_ADDR = 32'h0000086c,
+			ITOARET_ADDR = 32'hf68,
+			ITOA_ADDR = 32'hdb8;
+
+parameter INSTR_OFFSET        = 32'h00000000;
+parameter DATA_OFFSET         = 32'h00100000;
+parameter VGA_INFO_OFFSET     = 32'h00200000;
+parameter VGA_CHAR_OFFSET     = 32'h00300000;
+parameter VGA_COLOR_OFFSET    = 32'h00400000;
+parameter KB_INFO_OFFSET      = 32'h00500000;
+parameter IDT_OFFSET          = 32'h00600000;
+parameter TMP_STACK_OFFSET    = 32'h00700000;
+parameter PREFIX_MASK 		  =	32'hfff00000;	
+parameter ADDR_MASK 		  =	32'h000fffff;
+
 
 integer cycle = 0;
 riscv_hardware i1 (
@@ -29,12 +42,17 @@ initial begin
 		cycle = cycle+1;
 		CLOCK_50 = ~CLOCK_50;
 		#1;
-		if(i1.cpu.pc == INT_HANDLER)
-			$display("enter func int_handler, cycle: %x", cycle);
-		else if(i1.cpu.pc == UI_MAIN_LOOP_ADDR)
+		if(i1.cpu.pc == UI_MAIN_LOOP_ADDR)
 			$display("enter func ui_main_loop, cycle: %x", cycle);
 		else if(i1.cpu.pc == 0)
 			$display("pc reset, cycle: %x", cycle);
+		else if(i1.cpu.pc == ITOA_ADDR)
+			$display("enter func itoa, cycle: %x", cycle);
+		else if(i1.cpu.pc == ITOARET_ADDR)
+			$display("func itoa ret, cycle: %x", cycle);
+
+		if(i1.mm_instance.char_we==1)
+			$display("write vga char: %x , addr: %x, at cycle: %x", i1.mm_instance.cpu_wrdata, i1.mm_instance.cpu_addr, cycle);
 	end
 end
 

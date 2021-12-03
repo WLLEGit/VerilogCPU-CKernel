@@ -284,8 +284,12 @@ static int32_t eval(int p, int q, bool* success)
 					{
 						eval_case_helper('+', +);
 						eval_case_helper('-', -);
-						eval_case_helper('*', *);
-						eval_case_helper('/', / );
+						case '*':
+							res = __mulsi3(val1, val2);
+							break;
+						case '/':
+							res = __udivsi3(val1, val2);
+							break;
 						eval_case_helper(EQ, == );
 						eval_case_helper(NEQ, != );
 						eval_case_helper(GREATER, > );

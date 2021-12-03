@@ -2,6 +2,8 @@
 .extern irq_handler
 int_handler_entrance: 
     csrrw t6, mscratch, t6
+    nop
+    nop
     sw a0, 0(t6)
     sw a1, 4(t6)
     sw a2, 8(t6)

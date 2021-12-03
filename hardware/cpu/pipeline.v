@@ -36,7 +36,7 @@ wire [`PL_STATUS_BUS_WIDTH] pl_ctrl_pc, pl_ctrl_ID, pl_ctrl_EX, pl_ctrl_MEM, pl_
 //interrupt signals
 wire we_ex, we_client, global_int_en, int_set_pl_pause, int_flag, csr2reg, csr2reg2, csr2reg3, csr2reg4, csr_we, csr_we2, csr_we3, csr_we4;
 wire [31:0] waddr_ex, raddr_ex, wdata_ex, waddr_client, wdata_client, mtvec, mepc, mstatus, data_out_ex, int_pc_posedge, int_pc_negedge,
-            csr_data, csr_data2, csr_aluresult, csr_aluresult3, csr_aluresult4, csr_waddr3, csr_waddr4, pc_intr_ret;
+            csr_data, csr_data2, csr_data3, csr_data4, csr_aluresult, csr_aluresult3, csr_aluresult4, csr_waddr3, csr_waddr4, pc_intr_ret;
 wire [2:0] csr_aluctr, csr_aluctr2;
 
 assign dbgdata = pc;
@@ -63,14 +63,14 @@ EX EX_instance(clr, clk, pc2, imm2, rs12, rs22, ALUAsrc2, ALUBsrc2, ALUctr2,
                         nextpc_pc, nextpc_rs1, less, zero, aluresult,
                         rs2_forward,
                         rs1_addr2, csr_data2, csr_aluctr2, csr_aluresult);
-EX_M_reg EX_M_reg_instance(pl_ctrl_MEM, clk, instr2, pc2, nextpc_pc, nextpc_rs1, less, zero, rs2_forward, aluresult, rd2, branch2, MemtoReg2, memwr2, memop2, regwr2, csr_aluresult, csr_we2, csr2reg2, imm2,
-                                        instr3, pc3, nextpc_pc3, nextpc_rs13, less3, zero3, rs23, aluresult3, rd3, branch3, MemtoReg3, memwr3, memop3, regwr3, csr_aluresult3, csr_we3, csr2reg3, csr_waddr3);
+EX_M_reg EX_M_reg_instance(pl_ctrl_MEM, clk, instr2, pc2, nextpc_pc, nextpc_rs1, less, zero, rs2_forward, aluresult, rd2, branch2, MemtoReg2, memwr2, memop2, regwr2, csr_aluresult, csr_we2, csr2reg2, imm2, csr_data2,
+                                        instr3, pc3, nextpc_pc3, nextpc_rs13, less3, zero3, rs23, aluresult3, rd3, branch3, MemtoReg3, memwr3, memop3, regwr3, csr_aluresult3, csr_we3, csr2reg3, csr_waddr3, csr_data3);
 M M_instance(clr, clk, aluresult3, nextpc_pc3, nextpc_rs13, less3, zero3, branch3, memop3, memwr3, rs23, 
                         nextpc_mem, dmemdata, pc_branch,
                         dmemaddr, dmemdataout, dmemdatain, dmemrdclk, dmemwrclk, dmemop, dmemwe);
-M_WB_reg M_WB_reg_instance(pl_ctrl_WB, clk, dmemdata, aluresult3, rd3, MemtoReg3, regwr3, csr_aluresult3, csr_we3, csr2reg3, csr_waddr3,
-                                        dmemdata4, aluresult4, rw, MemtoReg4, regwr4, csr_aluresult4, csr_we4, csr2reg4, csr_waddr4);
-WB WB_instance(clr, clk, dmemdata4, aluresult4, MemtoReg4, busW, csr_aluresult4, csr2reg4);
+M_WB_reg M_WB_reg_instance(pl_ctrl_WB, clk, dmemdata, aluresult3, rd3, MemtoReg3, regwr3, csr_aluresult3, csr_we3, csr2reg3, csr_waddr3, csr_data3,
+                                        dmemdata4, aluresult4, rw, MemtoReg4, regwr4, csr_aluresult4, csr_we4, csr2reg4, csr_waddr4, csr_data4);
+WB WB_instance(clr, clk, dmemdata4, aluresult4, MemtoReg4, busW, csr_data4, csr2reg4);
 
 assign we_ex = csr_we4;
 assign wdata_ex = csr_aluresult4;
@@ -360,6 +360,7 @@ module EX_M_reg (
     input               csr_we_in,
     input               csr2reg_in,
     input      [31:0]   csr_waddr_in,
+    input      [31:0]   csr_data_in,
 
     output reg  [31:0]  instr_out,
     output reg  [31:0]  pc_out,
@@ -378,7 +379,8 @@ module EX_M_reg (
     output reg  [31:0]  csr_aluresult_out,
     output reg          csr_we_out,
     output reg          csr2reg_out,
-    output reg  [31:0]  csr_waddr_out
+    output reg  [31:0]  csr_waddr_out,
+    output reg  [31:0]  csr_data_out
 );
 
 always @(negedge clk) begin
@@ -401,6 +403,7 @@ always @(negedge clk) begin
         csr_we_out <= 1'b0;
         csr2reg_out <= 1'b0;
         csr_waddr_out <= 32'd0;
+        csr_data_out <= 32'd0;
     end else if(pl_ctrl_MEM == `PL_PAUSE) begin
         instr_out <= instr_out;
         pc_out <= pc_out;
@@ -420,6 +423,7 @@ always @(negedge clk) begin
         csr_we_out <= csr_we_out;
         csr2reg_out <= csr2reg_out;
         csr_waddr_out <= csr_waddr_out;
+        csr_data_out <= csr_data_out;
     end else begin
         instr_out <= instr_in;
         pc_out <= pc;
@@ -439,6 +443,7 @@ always @(negedge clk) begin
         csr_we_out <= csr_we_in;
         csr2reg_out <= csr2reg_in;
         csr_waddr_out <= csr_waddr_in;
+        csr_data_out <= csr_data_in;
     end
 end
     
@@ -499,6 +504,7 @@ module M_WB_reg (
     input               csr_we_in,
     input               csr2reg_in,
     input    [31:0]     csr_waddr_in,
+    input    [31:0]     csr_data_in,
 
     output reg[31:0]    dmemdata_out,
     output reg[31:0]    aluresult_out,
@@ -508,7 +514,8 @@ module M_WB_reg (
     output reg[31:0]    csr_aluresult_out,
     output reg          csr_we_out,
     output reg          csr2reg_out,
-    output reg[31:0]    csr_waddr_out
+    output reg[31:0]    csr_waddr_out,
+    output reg[31:0]    csr_data_out
 );
 
 always @(negedge clk) begin
@@ -522,6 +529,7 @@ always @(negedge clk) begin
         csr_we_out <= 1'b0;
         csr2reg_out <= 1'b0;
         csr_waddr_out <= 32'd0;
+        csr_data_out <= 32'd0;
     end else if(pl_ctrl_WB == `PL_PAUSE) begin
         dmemdata_out <= dmemdata_out;
         aluresult_out <= aluresult_out;
@@ -532,6 +540,7 @@ always @(negedge clk) begin
         csr_we_out <= csr_we_out;
         csr2reg_out <= csr2reg_out;
         csr_waddr_out <= csr_waddr_out;
+        csr_data_out <= csr_data_out;
     end else begin
         dmemdata_out <= dmemdata;
         aluresult_out <= aluresult;
@@ -542,6 +551,7 @@ always @(negedge clk) begin
         csr_we_out <= csr_we_in;
         csr2reg_out <= csr2reg_in;
         csr_waddr_out <= csr_waddr_in;
+        csr_data_out <= csr_data_in;
     end
 end
     

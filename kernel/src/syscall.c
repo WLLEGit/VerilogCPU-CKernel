@@ -1,4 +1,5 @@
 #include "syscall.h"
+#include "stdfuncs.h"
 
 uint8_t * const ch_mem  = (uint8_t*)VGA_CHAR_OFFSET;
 uint8_t * const color_mem  = (uint8_t*)VGA_COLOR_OFFSET;
@@ -27,10 +28,11 @@ void putc(const char c, const uint8_t color)
     }
     else
     {
-        _setc(c, color, monitor_write_cursor);
+        _setc(c, color, monitor_write_cursor++);
         if(monitor_write_cursor == TOTAL_CHAR)
             scroll_screen();
     }
+    _update_cursor();
 }
 
 void print(const char* str, const uint8_t color)
@@ -83,13 +85,14 @@ void clear_screen()
 
 static void _update_cursor()
 {
-    int r = monitor_write_cursor / COL_CNT;
-    int c = monitor_write_cursor % COL_CNT;
+    uint32_t r, c;
+    _udiv_mod(monitor_write_cursor, COL_CNT, &r, &c);
     vga_info.cursor_y = CHAR_HEIGHT * r + 1;
     if(c != COL_CNT - 1)
         vga_info.cursor_x = CHAR_WIDTH * c + 1;
     else
         vga_info.cursor_x = 1;
+    *p_vga_info = vga_info;
 }
 
 

@@ -8,28 +8,23 @@ add wave -noupdate /hardware_tst/i1/cpu/client_instance/int_addr
 add wave -noupdate /hardware_tst/i1/cpu/client_instance/int_flag
 add wave -noupdate /hardware_tst/i1/cpu/pc
 add wave -noupdate /hardware_tst/i1/cpu/instr
-add wave -noupdate /hardware_tst/i1/mm_instance/kb_info_instance/data
-add wave -noupdate /hardware_tst/i1/mm_instance/vga_info_instance/extra_line_cnt
-add wave -noupdate /hardware_tst/i1/mm_instance/vga_info_instance/cursor_x
-add wave -noupdate /hardware_tst/i1/mm_instance/vga_info_instance/cursor_y
-add wave -noupdate /hardware_tst/i1/cpu/ID_instance/myregfile/regs
-add wave -noupdate /hardware_tst/i1/cpu/csrs/mcause
-add wave -noupdate /hardware_tst/i1/cpu/ID_instance/myregfile/rw
-add wave -noupdate /hardware_tst/i1/cpu/ID_instance/myregfile/busW
-add wave -noupdate /hardware_tst/i1/cpu/ID_instance/myregfile/wren
-add wave -noupdate /hardware_tst/i1/cpu/ID_instance/contr_gen_instance/instr
-add wave -noupdate /hardware_tst/i1/cpu/ID_instance/contr_gen_instance/csr_alu_ctr
-add wave -noupdate /hardware_tst/i1/cpu/ID_instance/contr_gen_instance/csr_we
-add wave -noupdate /hardware_tst/i1/cpu/ID_instance/contr_gen_instance/csr2reg
-add wave -noupdate /hardware_tst/i1/cpu/EX_instance/csr_alu_instance/csr
-add wave -noupdate /hardware_tst/i1/cpu/EX_instance/csr_alu_instance/rs1
-add wave -noupdate /hardware_tst/i1/cpu/EX_instance/csr_alu_instance/zimm
-add wave -noupdate -radix binary /hardware_tst/i1/cpu/EX_instance/csr_alu_instance/ALUctr
-add wave -noupdate /hardware_tst/i1/cpu/EX_instance/csr_alu_instance/aluresult
-add wave -noupdate /hardware_tst/i1/cpu/csrs/raddr_ex
-add wave -noupdate /hardware_tst/i1/cpu/csrs/data_out_ex
+add wave -noupdate /hardware_tst/i1/mm_instance/cpu_addr
+add wave -noupdate /hardware_tst/i1/mm_instance/cpu_wrdata
+add wave -noupdate /hardware_tst/i1/mm_instance/cpu_rddata
+add wave -noupdate /hardware_tst/i1/mm_instance/cpu_memop
+add wave -noupdate /hardware_tst/i1/mm_instance/cpu_we
+add wave -noupdate /hardware_tst/i1/mm_instance/vga_extra_line_cnt
+add wave -noupdate /hardware_tst/i1/mm_instance/vga_cursor_x
+add wave -noupdate /hardware_tst/i1/mm_instance/vga_cursor_y
+add wave -noupdate /hardware_tst/i1/mm_instance/dram_dataout
+add wave -noupdate /hardware_tst/i1/mm_instance/kb_info_dataout
+add wave -noupdate /hardware_tst/i1/mm_instance/tmp_stack_dataout
+add wave -noupdate /hardware_tst/i1/mm_instance/dram_we
+add wave -noupdate /hardware_tst/i1/mm_instance/vga_we
+add wave -noupdate /hardware_tst/i1/mm_instance/char_we
+add wave -noupdate /hardware_tst/i1/mm_instance/color_we
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {10540000 ps} 0}
+WaveRestoreCursors {{Cursor 1} {10423539 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 379
 configure wave -valuecolwidth 100
@@ -45,4 +40,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {10328358 ps} {11080966 ps}
+WaveRestoreZoom {137685023 ps} {138437631 ps}

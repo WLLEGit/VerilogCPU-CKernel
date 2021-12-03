@@ -6,7 +6,7 @@
 
 
 extern uint32_t monitor_write_cursor;
-extern uint32_t output_front_cursor; //can't backspace when monitor_write_cursor <= output_front_cursor
+extern uint32_t output_front_cursor; //forbid backspace when monitor_write_cursor <= output_front_cursor
 
 /* std IO */
 void lock_output_front();

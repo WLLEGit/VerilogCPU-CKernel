@@ -14,6 +14,13 @@ reg [31:0] regs[31:0];
 assign busA = regs[ra];
 assign busB = regs[rb];
 
+integer tmp;
+initial begin
+    for(tmp=0; tmp<32; tmp=tmp+1) begin
+        regs[tmp] = 0;
+    end
+end
+
 always @(posedge clk) begin
     if(wren) begin
         regs[rw] <= busW;

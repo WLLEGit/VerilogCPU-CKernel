@@ -66,14 +66,16 @@ void itoa(int n,char str[])
     if((sign=n)<0)    
         n=-n;         
     i=0;
+	uint32_t d, m;
     do{
-        str[i++]=(uint8_t)(n%10)+'0';    
-    }while((n/=10)>0);      
+		_udiv_mod(n, 10, &d, &m);
+        str[i++]=(uint8_t)(m)+'0';    
+    }while(d>0);      
 
     if(sign<0)
         str[i++]='-';
     str[i]='\0';
-    len = i;//
+    len = i;
     for(j=len-1,i=0;j>i;j--,i++)        
     {
         str[j] ^= str[i];
@@ -91,6 +93,52 @@ int atoi(char s[])
     if(s[i]=='+'||s[i]=='-')   
         i++;
     for(n=0;isdigit(s[i]);i++)
-        n=10*n+(s[i]-'0');    
-    return sign*n;
+        n=__mulsi3(n, 10)+(s[i]-'0');    
+    return __mulsi3(sign, n);
+}
+
+uint32_t __mulsi3(uint32_t a, uint32_t b)
+{
+	uint32_t result = 0;
+	while(b != 0)
+	{
+		if(b & 1)
+			result += a;
+		a <<= 1;
+		b >>= 1;
+	}
+	return result;
+}
+
+void _udiv_mod(uint32_t a, uint32_t b, uint32_t *res, uint32_t *remain)
+{
+	unsigned int bit = 1;
+	unsigned int result = 0;
+
+	while(b < a && bit && !(b & (1UL << 31)))
+	{
+		b <<= 1;
+		bit <<= 1;
+	}
+	while(bit)
+	{
+		if(a >= b)
+		{
+			a -= b;
+			result |= bit;
+		}
+		b >>= 1;
+		bit >>= 1;
+	}
+	if(res)
+		*res = result;
+	if(remain)
+		*remain = a;
+}
+
+uint32_t __udivsi3(uint32_t a, uint32_t b)
+{
+	uint32_t result;
+	_udiv_mod(a, b, &result, NULL);
+	return result;
 }
