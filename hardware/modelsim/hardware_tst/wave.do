@@ -23,9 +23,14 @@ add wave -noupdate /hardware_tst/i1/mm_instance/dram_we
 add wave -noupdate /hardware_tst/i1/mm_instance/vga_we
 add wave -noupdate /hardware_tst/i1/mm_instance/char_we
 add wave -noupdate /hardware_tst/i1/mm_instance/color_we
+add wave -noupdate /hardware_tst/i1/dbg_data
+add wave -noupdate /hardware_tst/i1/mm_instance/dbg_we
+add wave -noupdate {/hardware_tst/i1/cpu/ID_instance/myregfile/regs[1]}
+add wave -noupdate {/hardware_tst/i1/cpu/ID_instance/myregfile/regs[10]}
+add wave -noupdate {/hardware_tst/i1/cpu/ID_instance/myregfile/regs[11]}
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {10423539 ps} 0}
-quietly wave cursor active 1
+WaveRestoreCursors {{Cursor 1} {112300000 ps} 0}
+quietly wave cursor active 0
 configure wave -namecolwidth 379
 configure wave -valuecolwidth 100
 configure wave -justifyvalue left
@@ -40,4 +45,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {137685023 ps} {138437631 ps}
+WaveRestoreZoom {112050186 ps} {112746087 ps}

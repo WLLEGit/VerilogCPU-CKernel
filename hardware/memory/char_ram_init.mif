@@ -1,10 +1,10 @@
 -- Copyright (C) 2020  Intel Corporation. All rights reserved.
--- Your use of Intel Corporation's design tools, logic functions 
--- and other software and tools, and any partner logic 
--- functions, and any output files from any of the foregoing 
--- (including device programming or simulation files), and any 
--- associated documentation or information are expressly subject 
--- to the terms and conditions of the Intel Program License 
+-- Your use of Intel Corporation's design tools, logic functions
+-- and other software and tools, and any partner logic
+-- functions, and any output files from any of the foregoing
+-- (including device programming or simulation files), and any
+-- associated documentation or information are expressly subject
+-- to the terms and conditions of the Intel Program License
 -- Subscription Agreement, the Intel Quartus Prime License Agreement,
 -- the Intel FPGA IP License Agreement, or other applicable license
 -- agreement, including, without limitation, that your use is for
@@ -22,51 +22,5 @@ ADDRESS_RADIX=HEX;
 DATA_RADIX=HEX;
 
 CONTENT BEGIN
-	[0000..02CF]  :   00;
-	02D0  :   61;
-	02D1  :   62;
-	[02D2..02E4]  :   00;
-	02E5  :   61;
-	02E6  :   62;
-	02E7  :   63;
-	02E8  :   64;
-	[02E9..02F4]  :   00;
-	02F5  :   55;
-	[02F6..0303]  :   00;
-	0304  :   33;
-	[0305..0307]  :   00;
-	0308  :   44;
-	[0309..0311]  :   00;
-	0312  :   29;
-	[0313..0319]  :   00;
-	031A  :   45;
-	031B  :   00;
-	031C  :   FF;
-	[031D..0321]  :   00;
-	0322  :   77;
-	[0323..0326]  :   00;
-	0327  :   48;
-	[0328..0329]  :   00;
-	032A  :   61;
-	[032B..0353]  :   00;
-	0354  :   65;
-	[0355..037B]  :   00;
-	037C  :   45;
-	[037D..038D]  :   00;
-	038E  :   65;
-	[038F..039E]  :   00;
-	039F  :   97;
-	[03A0..03AF]  :   00;
-	03B0  :   99;
-	[03B1..03B8]  :   00;
-	03B9  :   44;
-	[03BA..03ED]  :   00;
-	03EE  :   66;
-	03EF  :   00;
-	03F0  :   55;
-	[03F1..0405]  :   00;
-	0406  :   44;
-	0407  :   00;
-	0408  :   58;
-	[0409..0FFF]  :   00;
+	[0000..0FFF]  :   00;
 END;

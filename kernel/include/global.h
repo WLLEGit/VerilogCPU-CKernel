@@ -9,6 +9,7 @@
 #define KB_INFO_OFFSET      0x00500000
 #define IDT_OFFSET          0x00600000
 #define TMP_STACK_OFFSET    0x00700000
+#define DEBUG_OFFSET        0x00800000
 
 #define VGA_WIDTH 640
 #define VGA_HEIGHT 480
@@ -16,6 +17,7 @@
 #define ROW_CNT 30
 #define COL_CNT 64
 #define TOTAL_CHAR (ROW_CNT * COL_CNT)
+#define TOTAL_CHAR_WITH_BUF (2 * ROW_CNT * COL_CNT)
 #define VGA_BUFFER_ROW 64
 
 #define CHAR_WIDTH 9

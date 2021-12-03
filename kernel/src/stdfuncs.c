@@ -66,8 +66,9 @@ void itoa(int n,char str[])
     if((sign=n)<0)    
         n=-n;         
     i=0;
-	uint32_t d, m;
+	uint32_t d=n, m;
     do{
+		n = d;
 		_udiv_mod(n, 10, &d, &m);
         str[i++]=(uint8_t)(m)+'0';    
     }while(d>0);      

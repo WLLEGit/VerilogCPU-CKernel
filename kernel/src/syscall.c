@@ -16,8 +16,10 @@ void putc(const char c, const uint8_t color)
     if(c == '\n')
     {
         monitor_write_cursor = (monitor_write_cursor / COL_CNT) * (COL_CNT) + COL_CNT;
-        if(monitor_write_cursor == TOTAL_CHAR)
+        if(monitor_write_cursor == TOTAL_CHAR + vga_info.extra_line_cnt*COL_CNT)
             scroll_screen();
+        if(monitor_write_cursor == TOTAL_CHAR_WITH_BUF)
+            monitor_write_cursor = 0;
     }
     else if(c == '\t')
         print("    ", COLOR_WHITE);
@@ -31,6 +33,8 @@ void putc(const char c, const uint8_t color)
         _setc(c, color, monitor_write_cursor++);
         if(monitor_write_cursor == TOTAL_CHAR)
             scroll_screen();
+        if(monitor_write_cursor == TOTAL_CHAR_WITH_BUF)
+            monitor_write_cursor = 0;
     }
     _update_cursor();
 }
@@ -68,7 +72,6 @@ void scroll_screen()
     vga_info.extra_line_cnt++;
     if(vga_info.extra_line_cnt == ROW_CNT)
         vga_info.extra_line_cnt = 0;
-    monitor_write_cursor -= COL_CNT;
     for(int i = monitor_write_cursor; i < monitor_write_cursor + COL_CNT; ++i)
         _setc(' ', COLOR_WHITE, i);
     _update_cursor();

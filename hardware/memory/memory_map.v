@@ -21,7 +21,9 @@ module memory_map (
 
 	input [31:0] kb_wraddr,
 	input [31:0] kb_wrdata,
-	input kb_we
+	input kb_we,
+
+	output [31:0] dbg_data
 );
 
 parameter INSTR_OFFSET        = 32'h00000000;
@@ -32,17 +34,19 @@ parameter VGA_COLOR_OFFSET    = 32'h00400000;
 parameter KB_INFO_OFFSET      = 32'h00500000;
 parameter IDT_OFFSET          = 32'h00600000;
 parameter TMP_STACK_OFFSET    = 32'h00700000;
+parameter DEBUG_OFFSET 		  = 32'h00800000;
 parameter PREFIX_MASK 		  =	32'hfff00000;	
 parameter ADDR_MASK 		  =	32'h000fffff;
 
 wire [31:0] dram_dataout, kb_info_dataout, tmp_stack_dataout;
-wire dram_we, vga_we, char_we, color_we, tmp_stack_we;
+wire dram_we, vga_we, char_we, color_we, tmp_stack_we, dbg_we;
 
 assign dram_we = cpu_we && ((cpu_addr & PREFIX_MASK) == DATA_OFFSET);
 assign vga_we = cpu_we && ((cpu_addr & PREFIX_MASK) == VGA_INFO_OFFSET);
 assign char_we = cpu_we && ((cpu_addr & PREFIX_MASK) == VGA_CHAR_OFFSET);
 assign color_we = cpu_we && ((cpu_addr & PREFIX_MASK) == VGA_COLOR_OFFSET);
 assign tmp_stack_we = cpu_we && ((cpu_addr & PREFIX_MASK) == TMP_STACK_OFFSET);
+assign dbg_we = cpu_we && ((cpu_addr & PREFIX_MASK) == DEBUG_OFFSET);
 
 always @(*) begin
 	if((cpu_addr & PREFIX_MASK) == DATA_OFFSET)
@@ -62,6 +66,8 @@ char_ram vga_ram_instance(cpu_wrdata, vga_char_addr&ADDR_MASK, clk, cpu_addr&ADD
 color_ram color_ram_instance(cpu_wrdata, vga_color_addr&ADDR_MASK, clk, cpu_addr&ADDR_MASK, clk, color_we, vga_color_data);	//	read: vga, 	write: cpu
 kb_info kb_info_instance(clk, cpu_addr&ADDR_MASK, kb_info_dataout, kb_wraddr&ADDR_MASK, kb_wrdata, kb_we);					//	read: cpu, 	write: kb
 tmp_stack tmp_stack_ram_instance(cpu_addr&ADDR_MASK, tmp_stack_dataout, cpu_wrdata, clk, clk, cpu_memop, tmp_stack_we);		//	read: cpu, 	write: cpu
+dbg_ram dbg_ram_instance(clk, cpu_wrdata, dbg_we, dbg_data);															//	read: cpu, 	write: cpu
+
 
 endmodule
 
@@ -108,6 +114,21 @@ always @(posedge clk) begin
 	if(wren) begin
 		data <= kbinfo_wrdata;
 	end
+end
+	
+endmodule
+
+module dbg_ram (
+	input clk,
+	input [31:0] dbg_wrdata,
+	input wren,
+
+	output reg [31:0] dbg_data
+);
+
+always @(posedge clk) begin
+	if(wren)
+		dbg_data <= dbg_wrdata;
 end
 	
 endmodule

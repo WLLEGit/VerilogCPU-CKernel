@@ -6,7 +6,7 @@ reg [9:0] SW;
 wire PS2_CLK;
 wire PS2_DAT;
 
-parameter UI_MAIN_LOOP_ADDR = 32'h0000086c,
+parameter UI_MAIN_LOOP_ADDR = 32'h8e8,
 			ITOARET_ADDR = 32'hf68,
 			ITOA_ADDR = 32'hdb8;
 
@@ -64,7 +64,7 @@ initial begin
 	#100 model.kbd_sendcode(8'h1C);
 	#100 model.kbd_sendcode(8'hF0);
 	#100 model.kbd_sendcode(8'h1C);
-	#10000; $stop;
+	#50000; $stop;
 end
 endmodule
 
