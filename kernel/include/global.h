@@ -9,7 +9,9 @@
 #define KB_INFO_OFFSET      0x00500000
 #define IDT_OFFSET          0x00600000
 #define TMP_STACK_OFFSET    0x00700000
-#define DEBUG_OFFSET        0x00800000
+#define OUTPUT_PIN_OFFSET   0x00800000
+#define SEG7_OFFSET  	    0x00810000
+#define LEDR_OFFSET         0x00820000
 
 #define VGA_WIDTH 640
 #define VGA_HEIGHT 480
@@ -44,7 +46,7 @@ typedef signed int int32_t;         /* Signed 32 bit quantity   */
 #define false 0
 #define NULL 0
 
-#define KEY_REPEAT_INTERVAL 250  // input interval if one key keep pressed
+#define KEY_REPEAT_INTERVAL 500  // input interval if one key keep pressed
 
 enum{COLOR_RED, COLOR_GREEN, COLOR_BLUE, 
         COLOR_BLACK, COLOR_WHITE,};

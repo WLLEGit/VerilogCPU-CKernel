@@ -27,7 +27,13 @@ void irq_handler(uint32_t mcause)
     {
         //clock interrupt
         sys_time++;
-        kb_info = *p_kb_info;
+        KBInfo tmp_info = *p_kb_info;
+        if(kb_info.c != tmp_info.c)
+        {
+            input_controller.pre_c = kb_info.c;
+            input_controller.input_time = sys_time;
+            kb_info = tmp_info;
+        }
     }
     else if(mcause == ECALL_MCAUSE)
     {

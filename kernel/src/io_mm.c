@@ -6,6 +6,8 @@ KBInfo volatile kb_info;
 VGAInfo* const p_vga_info = (VGAInfo*)VGA_INFO_OFFSET;
 VGAInfo vga_info;
 
+InputController input_controller;
+
 
 void init_io_mm()
 {

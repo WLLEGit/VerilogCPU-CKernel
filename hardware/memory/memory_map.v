@@ -34,7 +34,9 @@ parameter VGA_COLOR_OFFSET    = 32'h00400000;
 parameter KB_INFO_OFFSET      = 32'h00500000;
 parameter IDT_OFFSET          = 32'h00600000;
 parameter TMP_STACK_OFFSET    = 32'h00700000;
-parameter DEBUG_OFFSET 		  = 32'h00800000;
+parameter OUTPUT_PIN_OFFSET   = 32'h00800000;
+parameter SEG7_OFFSET  		  = 32'h00810000;
+parameter LEDR_OFFSET         = 32'h00820000;
 parameter PREFIX_MASK 		  =	32'hfff00000;	
 parameter ADDR_MASK 		  =	32'h000fffff;
 
@@ -46,7 +48,7 @@ assign vga_we = cpu_we && ((cpu_addr & PREFIX_MASK) == VGA_INFO_OFFSET);
 assign char_we = cpu_we && ((cpu_addr & PREFIX_MASK) == VGA_CHAR_OFFSET);
 assign color_we = cpu_we && ((cpu_addr & PREFIX_MASK) == VGA_COLOR_OFFSET);
 assign tmp_stack_we = cpu_we && ((cpu_addr & PREFIX_MASK) == TMP_STACK_OFFSET);
-assign dbg_we = cpu_we && ((cpu_addr & PREFIX_MASK) == DEBUG_OFFSET);
+assign dbg_we = cpu_we && ((cpu_addr & PREFIX_MASK) == OUTPUT_PIN_OFFSET);
 
 always @(*) begin
 	if((cpu_addr & PREFIX_MASK) == DATA_OFFSET)
@@ -66,7 +68,6 @@ char_ram vga_ram_instance(cpu_wrdata, vga_char_addr&ADDR_MASK, clk, cpu_addr&ADD
 color_ram color_ram_instance(cpu_wrdata, vga_color_addr&ADDR_MASK, clk, cpu_addr&ADDR_MASK, clk, color_we, vga_color_data);	//	read: vga, 	write: cpu
 kb_info kb_info_instance(clk, cpu_addr&ADDR_MASK, kb_info_dataout, kb_wraddr&ADDR_MASK, kb_wrdata, kb_we);					//	read: cpu, 	write: kb
 tmp_stack tmp_stack_ram_instance(cpu_addr&ADDR_MASK, tmp_stack_dataout, cpu_wrdata, clk, clk, cpu_memop, tmp_stack_we);		//	read: cpu, 	write: cpu
-dbg_ram dbg_ram_instance(clk, cpu_wrdata, dbg_we, dbg_data);															//	read: cpu, 	write: cpu
 
 
 endmodule
@@ -118,17 +119,42 @@ end
 	
 endmodule
 
-module dbg_ram (
+module output_pin_ram (
 	input clk,
-	input [31:0] dbg_wrdata,
 	input wren,
+	input [31:0] wraddr,
+	input [31:0] wrdata,
 
-	output reg [31:0] dbg_data
+	output reg [6:0] HEX0,
+	output reg [6:0] HEX1,
+	output reg [6:0] HEX2,
+	output reg [6:0] HEX3,
+	output reg [6:0] HEX4,
+	output reg [6:0] HEX5,
+
+	output reg [9:0] LEDR
 );
 
+wire [31:0] addr = wraddr & 32'h0000FFFF;
 always @(posedge clk) begin
-	if(wren)
-		dbg_data <= dbg_wrdata;
+	if(wren) begin
+		if((wraddr&32'hFFFF0000)==32'h00810000) begin
+			if(addr == 32'h0)
+				HEX0 <= wrdata[6:0];
+			else if(addr == 32'h4)
+				HEX1 <= wrdata[6:0];
+			else if(addr == 32'h8)
+				HEX2 <= wrdata[6:0];
+			else if(addr == 32'hC)
+				HEX3 <= wrdata[6:0];
+			else if(addr == 32'h10)
+				HEX4 <= wrdata[6:0];
+			else if(addr == 32'h14)
+				HEX5 <= wrdata[6:0];
+		end else if((wraddr&32'hFFFF0000)==32'h00820000) begin
+				LEDR <= wrdata[9:0];
+		end
+	end
 end
 	
 endmodule

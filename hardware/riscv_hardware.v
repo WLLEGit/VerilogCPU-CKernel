@@ -73,7 +73,6 @@ wire		dmemwe;
 
 wire rst = SW[0];
 
-wire clk = CLOCK_50 & (KEY[0]);
 
 /*=====vga=====*/
 //	640*480

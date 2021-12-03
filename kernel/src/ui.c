@@ -6,7 +6,7 @@ void ui_mainloop()
 {
     while (true)
     {
-        print("$", COLOR_WHITE);
+        print("$ ", COLOR_WHITE);
         lock_output_front();
 
         char line[32];
@@ -23,7 +23,6 @@ void ui_mainloop()
             calc();
         else
             error("Command not found\n");
-            
     }
 }
 
@@ -34,23 +33,28 @@ void hello()
 
 void time()
 {
+    lock_output_front();
     char s[10];
-    itoa(sys_time, s);
-    print(s, COLOR_WHITE);
-    print("\n", COLOR_WHITE);
+    while (!is_ctrl_c())
+    {
+        print("\b\b\b\b\b\b\b\b\b", COLOR_WHITE);
+        itoa(sys_time, s);
+        print(s, COLOR_WHITE);
+        print("\n", COLOR_WHITE);
+    }
 }
 
 void fib()
 {
-    char* param = strtok(NULL, " ");
+    char *param = strtok(NULL, " ");
 
     int n = atoi(param);
-    if(n < 0)
+    if (n < 0)
         error("expect positive number: [n]\n");
     else
     {
         int res = 1;
-        while(n)
+        while (n)
         {
             res *= n;
             --n;
@@ -59,19 +63,21 @@ void fib()
         char res_str[10];
         itoa(res, res_str);
         print(res_str, COLOR_WHITE);
+        putc('\n', COLOR_WHITE);
     }
 }
 
 void calc()
 {
-    char* expr = strtok(NULL, "");
-    bool* success;
+    char *expr = strtok(NULL, "");
+    bool *success;
     int res = calc_expr(expr, success);
-    if(*success)
+    if (*success)
     {
         char res_str[10];
         itoa(res, res_str);
         print(res_str, COLOR_WHITE);
+        putc('\n', COLOR_WHITE);
     }
     else
         error("Invalid expression\n");

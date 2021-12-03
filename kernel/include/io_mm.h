@@ -24,11 +24,13 @@ typedef struct KBInfoStruct
 typedef struct InputControllerStruct
 {
     uint8_t pre_c;
-    uint32_t pre_time;
+    uint32_t input_time;
 } InputController;
 
 extern KBInfo * const p_kb_info;
 extern volatile KBInfo kb_info;
+
+extern InputController input_controller;
 
 typedef struct VGAInfoStruct
 {
