@@ -82,6 +82,7 @@ void getline(char *buf)
             buf[i++] = c;
         }
     }
+    buf[i] = '\0';
 }
 
 bool is_ctrl_c()
@@ -148,4 +149,33 @@ static inline bool _next_key_arrived()
     }
     else
         return false;
+}
+
+static uint32_t* HEX = (uint32_t*)SEG7_OFFSET;
+static uint32_t* p_LEDR = (uint32_t*)LEDR_OFFSET; 
+static uint32_t num2hexoutdict[] = {0x40, 0x79, 0x24, 0x30, 0x19, 0x12, 0x2, 0x78, 
+                                        ~0x7f&0x7f, ~0x6f&0x7f, ~0x77&0x7f, ~0x7c&0x7f, ~0x39&0x7f, ~0x5e&0x7f, ~0x79&0x7f, ~0x71&0x7f};
+inline uint32_t num2hexout(uint32_t num)
+{
+    if(num <= 0xF)
+        return num2hexoutdict[num];
+    else
+        return 0x55;
+}
+void set_hex(uint32_t hex, uint32_t id)
+{
+    HEX[id] = num2hexout(hex);
+}
+void set_ledr(uint32_t id, bool is_on)
+{
+    uint32_t ledr = *p_LEDR;
+    if(is_on)
+        ledr |= (1 << id);
+    else
+        ledr &= ~(1 << id);
+    set_ledr_all(ledr);
+}
+inline void set_ledr_all(uint32_t ledr)
+{
+    *p_LEDR = ledr&0x3ff;
 }

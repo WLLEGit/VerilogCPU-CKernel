@@ -23,7 +23,16 @@ module memory_map (
 	input [31:0] kb_wrdata,
 	input kb_we,
 
-	output [31:0] dbg_data
+	output [31:0] dbg_data,
+
+	output [6:0] HEX0,
+	output [6:0] HEX1,
+	output [6:0] HEX2,
+	output [6:0] HEX3,
+	output [6:0] HEX4,
+	output [6:0] HEX5,
+
+	output [9:0] LEDR
 );
 
 parameter INSTR_OFFSET        = 32'h00000000;
@@ -68,7 +77,7 @@ char_ram vga_ram_instance(cpu_wrdata, vga_char_addr&ADDR_MASK, clk, cpu_addr&ADD
 color_ram color_ram_instance(cpu_wrdata, vga_color_addr&ADDR_MASK, clk, cpu_addr&ADDR_MASK, clk, color_we, vga_color_data);	//	read: vga, 	write: cpu
 kb_info kb_info_instance(clk, cpu_addr&ADDR_MASK, kb_info_dataout, kb_wraddr&ADDR_MASK, kb_wrdata, kb_we);					//	read: cpu, 	write: kb
 tmp_stack tmp_stack_ram_instance(cpu_addr&ADDR_MASK, tmp_stack_dataout, cpu_wrdata, clk, clk, cpu_memop, tmp_stack_we);		//	read: cpu, 	write: cpu
-
+output_pin_ram output_pin_ram_instance(clk, dbg_we, cpu_addr, cpu_wrdata, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, LEDR);
 
 endmodule
 

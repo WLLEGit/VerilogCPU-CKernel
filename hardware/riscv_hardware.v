@@ -128,7 +128,8 @@ kb_driver keyboard(CLOCK_50, rst, PS2_CLK, PS2_DAT, is_shift, is_ctrl, is_capita
 memory_map mm_instance(CLOCK_50, imemaddr, imemdataout, dmemaddr, dmemdatain, dmemdataout, dmemop, dmemwe, 
 							vga_addr, vga_char_data, vga_addr, vga_color_data, 
 							vga_extra_line_cnt, cursor_x, cursor_y,
-							32'd0, {16'd0, 3'd0, is_error, is_special, is_capital, is_ctrl, is_shift, ascii}, 1'b1, dbg_data);
+							32'd0, {16'd0, 3'd0, is_error, is_special, is_capital, is_ctrl, is_shift, ascii}, 1'b1, dbg_data,
+							HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, LEDR);
 
 always @(posedge CLOCK_50) begin
 	if(cursor_cnt >= MS1000)
@@ -163,16 +164,6 @@ always @(posedge CLOCK_50) begin
 		endcase
 	end
 end
-
-assign LEDR[0] = global_int_en;
-assign LEDR[1] = timer_irq;
-assign LEDR[9] = is_error;
-display7seg seg0(dbg_data[3:0], HEX0, 1'b0);
-display7seg seg1(dbg_data[7:4], HEX1, 1'b0);
-display7seg seg2(dbg_data[11:8], HEX2, 1'b0);
-display7seg seg3(dbg_data[15:12], HEX3, 1'b0);
-display7seg seg4(ascii[3:0], HEX4, 1'b0);
-display7seg seg5(ascii[7:4], HEX5, 1'b0);
 
 function [11:0] mul12;
 	input [11:0]x;
