@@ -13,6 +13,7 @@ void wait_ms(uint32_t ms);
 void lock_output_front();
 void putc(const char c, const uint8_t color);
 void print(const char* str, const uint8_t color);
+void printint(const int n, const uint8_t color);
 
 char getc();
 void getline(char* buf);

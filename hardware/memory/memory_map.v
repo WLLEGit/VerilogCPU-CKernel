@@ -50,7 +50,7 @@ parameter PREFIX_MASK 		  =	32'hfff00000;
 parameter ADDR_MASK 		  =	32'h000fffff;
 
 wire [31:0] dram_dataout, kb_info_dataout, tmp_stack_dataout;
-wire dram_we, vga_we, char_we, color_we, tmp_stack_we, dbg_we;
+wire dram_we, vga_we, char_we, color_we, tmp_, stack_we, dbg_we;
 
 assign dram_we = cpu_we && ((cpu_addr & PREFIX_MASK) == DATA_OFFSET);
 assign vga_we = cpu_we && ((cpu_addr & PREFIX_MASK) == VGA_INFO_OFFSET);

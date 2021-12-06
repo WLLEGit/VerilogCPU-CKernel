@@ -23,7 +23,7 @@ assign forward_rs2[0] = rs2 != 5'h0 && regwr_wb && !tmp_rs2 && (rs2 == rd_addr_w
 
 endmodule
 
-module load_store_detecter (
+module load_use_detecter (
    input            mem2reg_ex,
    input  [4 : 0]   rd_addr_ex,
    input  [4 : 0]   rs1_addr_id,

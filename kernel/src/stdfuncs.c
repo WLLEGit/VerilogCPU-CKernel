@@ -1,4 +1,7 @@
 #include "stdfuncs.h"
+#ifdef DEBUG
+#include "syscall.h"
+#endif
 
 inline bool isdigit(const char c){return c >= '0' && c <= '9';}
 
@@ -15,10 +18,25 @@ int strcmp(const char* src, const char* dst)
     return ret;
 }
 
+int strlen(const char* str)
+{
+	int len = 0;
+	while(*str++) len++;
+	return len;
+}
+
 char * strtok ( char * str, const char * delimiters ){
+#ifdef DEBUG
+	print("strtok parameters:\n", COLOR_WHITE);
+	print(str, COLOR_WHITE); print(" ", COLOR_WHITE);
+	print(delimiters, COLOR_WHITE); print(" ", COLOR_WHITE); 
+	printint(strlen(str), COLOR_WHITE); print(" ", COLOR_WHITE);
+	printint(*delimiters, COLOR_WHITE); print("\n", COLOR_WHITE);
+#endif
 	if(!delimiters) return NULL;
 	static char * s_mem = NULL;
 	if( str == NULL && s_mem == NULL) return NULL;
+	if(*delimiters == '\0') {char* res = s_mem; s_mem = NULL; return res;}
 	
 	char *s;
 	if(str != NULL) s=str;

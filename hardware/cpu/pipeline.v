@@ -42,7 +42,7 @@ wire [2:0] csr_aluctr, csr_aluctr2;
 assign dbgdata = pc;
 // cpu ctrl
 forward_detecter f_d_i(regwr3, regwr4, rs1_addr2, rs2_addr2, rd3, rw, forward_rs1, forward_rs2);
-load_store_detecter l_s_d(MemtoReg2, rd2, instr1[19:15], instr1[24:20], stall);
+load_use_detecter l_u_d(MemtoReg2, rd2, instr1[19:15], instr1[24:20], stall);
 pipeline_status pipeline_status_ctrl(clr, clk, pc_branch, stall, int_set_pl_pause, int_flag, int_pc_posedge,
                                              pl_ctrl_pc, pl_ctrl_ID, pl_ctrl_EX, pl_ctrl_MEM, pl_ctrl_WB, int_pc_negedge);
 

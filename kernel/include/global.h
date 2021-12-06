@@ -1,13 +1,14 @@
 #ifndef _GLOBAL_H
 #define _GLOBAL_H
 
+#define DEBUG
+
 #define INSTR_OFFSET        0x00000000 
 #define DATA_OFFSET         0x00100000
 #define VGA_INFO_OFFSET     0x00200000
 #define VGA_CHAR_OFFSET     0x00300000
 #define VGA_COLOR_OFFSET    0x00400000
 #define KB_INFO_OFFSET      0x00500000
-#define IDT_OFFSET          0x00600000
 #define TMP_STACK_OFFSET    0x00700000
 #define OUTPUT_PIN_OFFSET   0x00800000
 #define SEG7_OFFSET  	    0x00810000
@@ -51,7 +52,6 @@ typedef signed int int32_t;         /* Signed 32 bit quantity   */
 enum{COLOR_RED, COLOR_GREEN, COLOR_BLUE, 
         COLOR_BLACK, COLOR_WHITE,};
 
-extern uint32_t * const idt_mem;
 extern uint8_t * const ch_mem;
 extern uint8_t * const color_mem;
 extern volatile uint32_t sys_time;

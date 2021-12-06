@@ -1,5 +1,5 @@
 Analysis & Synthesis report for riscv_hardware
-Sat Dec 04 14:00:12 2021
+Mon Dec 06 18:57:09 2021
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -95,7 +95,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Sat Dec 04 14:00:12 2021       ;
+; Analysis & Synthesis Status     ; Successful - Mon Dec 06 18:57:09 2021       ;
 ; Quartus Prime Version           ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                   ; riscv_hardware                              ;
 ; Top-level Entity Name           ; riscv_hardware                              ;
@@ -411,7 +411,7 @@ https://fpgasoftware.intel.com/eula.
 ;       |client:client_instance|                                                                                                          ; 221 (221)           ; 109 (109)                 ; 0                 ; 0          ; 0    ; 0            ; |riscv_hardware|pipeline:cpu|client:client_instance                                                                                                                                                                                                                                                                                                        ; client                            ; work         ;
 ;       |forward_detecter:f_d_i|                                                                                                          ; 14 (14)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |riscv_hardware|pipeline:cpu|forward_detecter:f_d_i                                                                                                                                                                                                                                                                                                        ; forward_detecter                  ; work         ;
 ;       |last_valid_pc:last_valid_pc_instance|                                                                                            ; 14 (14)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |riscv_hardware|pipeline:cpu|last_valid_pc:last_valid_pc_instance                                                                                                                                                                                                                                                                                          ; last_valid_pc                     ; work         ;
-;       |load_store_detecter:l_s_d|                                                                                                       ; 4 (4)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |riscv_hardware|pipeline:cpu|load_store_detecter:l_s_d                                                                                                                                                                                                                                                                                                     ; load_store_detecter               ; work         ;
+;       |load_use_detecter:l_u_d|                                                                                                         ; 4 (4)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |riscv_hardware|pipeline:cpu|load_use_detecter:l_u_d                                                                                                                                                                                                                                                                                                       ; load_use_detecter                 ; work         ;
 ;       |pipeline_status:pipeline_status_ctrl|                                                                                            ; 8 (8)               ; 39 (39)                   ; 0                 ; 0          ; 0    ; 0            ; |riscv_hardware|pipeline:cpu|pipeline_status:pipeline_status_ctrl                                                                                                                                                                                                                                                                                          ; pipeline_status                   ; work         ;
 ;    |process_haddr:haddr_pro|                                                                                                            ; 151 (151)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |riscv_hardware|process_haddr:haddr_pro                                                                                                                                                                                                                                                                                                                    ; process_haddr                     ; work         ;
 ;    |process_vaddr:vaddr_pro|                                                                                                            ; 38 (38)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |riscv_hardware|process_vaddr:vaddr_pro                                                                                                                                                                                                                                                                                                                    ; process_vaddr                     ; work         ;
@@ -1833,7 +1833,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:11     ;
+; Top            ; 00:00:12     ;
 +----------------+--------------+
 
 
@@ -1843,7 +1843,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
-    Info: Processing started: Sat Dec 04 13:59:30 2021
+    Info: Processing started: Mon Dec 06 18:56:24 2021
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off riscv_hardware -c riscv_hardware
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20032): Parallel compilation is enabled and will use up to 4 processors
@@ -1867,7 +1867,7 @@ Info (12021): Found 1 design units, including 1 entities, in source file cpu/imm
 Info (12021): Found 0 design units, including 0 entities, in source file cpu/define.v
 Info (12021): Found 4 design units, including 4 entities, in source file cpu/cpu_ctrl.v
     Info (12023): Found entity 1: forward_detecter File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/cpu_ctrl.v Line: 2
-    Info (12023): Found entity 2: load_store_detecter File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/cpu_ctrl.v Line: 26
+    Info (12023): Found entity 2: load_use_detecter File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/cpu_ctrl.v Line: 26
     Info (12023): Found entity 3: PC File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/cpu_ctrl.v Line: 36
     Info (12023): Found entity 4: pipeline_status File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/cpu_ctrl.v Line: 66
 Info (12021): Found 1 design units, including 1 entities, in source file cpu/contrgen.v
@@ -1926,6 +1926,7 @@ Info (12021): Found 1 design units, including 1 entities, in source file riscv_h
     Info (12023): Found entity 1: riscv_hardware File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/riscv_hardware.v Line: 2
 Info (12021): Found 1 design units, including 1 entities, in source file memory/tmp_stack_ram.v
     Info (12023): Found entity 1: tmp_stack_ram File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/memory/tmp_stack_ram.v Line: 40
+Warning (10236): Verilog HDL Implicit Net warning at memory_map.v(59): created implicit net for "tmp_stack_we" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/memory/memory_map.v Line: 59
 Info (12127): Elaborating entity "riscv_hardware" for the top level hierarchy
 Warning (10230): Verilog HDL assignment warning at riscv_hardware.v(121): truncated value with size 32 to match size of target (24) File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/riscv_hardware.v Line: 121
 Warning (10030): Net "x_remain[7..4]" at riscv_hardware.v(90) has no driver or initial value, using a default initial value '0' File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/riscv_hardware.v Line: 90
@@ -1976,7 +1977,7 @@ Info (12128): Elaborating entity "sld_rom_sr" for hierarchy "font_rom:font_rom_i
 Info (12128): Elaborating entity "timer_device" for hierarchy "timer_device:timer_device_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/riscv_hardware.v Line: 123
 Info (12128): Elaborating entity "pipeline" for hierarchy "pipeline:cpu" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/riscv_hardware.v Line: 124
 Info (12128): Elaborating entity "forward_detecter" for hierarchy "pipeline:cpu|forward_detecter:f_d_i" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 44
-Info (12128): Elaborating entity "load_store_detecter" for hierarchy "pipeline:cpu|load_store_detecter:l_s_d" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 45
+Info (12128): Elaborating entity "load_use_detecter" for hierarchy "pipeline:cpu|load_use_detecter:l_u_d" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 45
 Info (12128): Elaborating entity "pipeline_status" for hierarchy "pipeline:cpu|pipeline_status:pipeline_status_ctrl" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 47
 Info (12128): Elaborating entity "CSRs" for hierarchy "pipeline:cpu|CSRs:csrs" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 50
 Info (12128): Elaborating entity "last_valid_pc" for hierarchy "pipeline:cpu|last_valid_pc:last_valid_pc_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/cpu/pipeline.v Line: 51
@@ -2086,8 +2087,8 @@ Info (12128): Elaborating entity "altsyncram_q5i1" for hierarchy "memory_map:mm_
 Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_goj2.tdf
     Info (12023): Found entity 1: altsyncram_goj2 File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/db/altsyncram_goj2.tdf Line: 34
 Info (12128): Elaborating entity "altsyncram_goj2" for hierarchy "memory_map:mm_instance|instr_rom:instr_rom_instance|altsyncram:altsyncram_component|altsyncram_q5i1:auto_generated|altsyncram_goj2:altsyncram1" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/db/altsyncram_q5i1.tdf Line: 35
-Warning (113028): 62913 out of 65536 addresses are uninitialized. The Quartus Prime software will initialize them to "0". There are 1 warnings found, and 1 warnings are reported. File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/memory/main.mif Line: 1
-    Warning (113027): Addresses ranging from 2623 to 65535 are not initialized File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/memory/main.mif Line: 1
+Warning (113028): 62805 out of 65536 addresses are uninitialized. The Quartus Prime software will initialize them to "0". There are 1 warnings found, and 1 warnings are reported. File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/memory/main.mif Line: 1
+    Warning (113027): Addresses ranging from 2731 to 65535 are not initialized File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/memory/main.mif Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file db/decode_dla.tdf
     Info (12023): Found entity 1: decode_dla File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/db/decode_dla.tdf Line: 23
 Info (12128): Elaborating entity "decode_dla" for hierarchy "memory_map:mm_instance|instr_rom:instr_rom_instance|altsyncram:altsyncram_component|altsyncram_q5i1:auto_generated|altsyncram_goj2:altsyncram1|decode_dla:decode4" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/db/altsyncram_goj2.tdf Line: 48
@@ -2136,8 +2137,8 @@ Info (12133): Instantiated megafunction "memory_map:mm_instance|dram:dram_instan
 Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_mru1.tdf
     Info (12023): Found entity 1: altsyncram_mru1 File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/db/altsyncram_mru1.tdf Line: 34
 Info (12128): Elaborating entity "altsyncram_mru1" for hierarchy "memory_map:mm_instance|dram:dram_instance|data_ram:ram_instance|altsyncram:altsyncram_component|altsyncram_mru1:auto_generated" File: d:/programfiles/intelfpga_lite/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
-Warning (113028): 32581 out of 32768 addresses are uninitialized. The Quartus Prime software will initialize them to "0". There are 1 warnings found, and 1 warnings are reported. File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/memory/main_d.mif Line: 1
-    Warning (113027): Addresses ranging from 187 to 32767 are not initialized File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/memory/main_d.mif Line: 1
+Warning (113028): 32568 out of 32768 addresses are uninitialized. The Quartus Prime software will initialize them to "0". There are 1 warnings found, and 1 warnings are reported. File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/memory/main_d.mif Line: 1
+    Warning (113027): Addresses ranging from 200 to 32767 are not initialized File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/memory/main_d.mif Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file db/decode_8la.tdf
     Info (12023): Found entity 1: decode_8la File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/db/decode_8la.tdf Line: 23
 Info (12128): Elaborating entity "decode_8la" for hierarchy "memory_map:mm_instance|dram:dram_instance|data_ram:ram_instance|altsyncram:altsyncram_component|altsyncram_mru1:auto_generated|decode_8la:decode2" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/db/altsyncram_mru1.tdf Line: 47
@@ -2229,7 +2230,7 @@ Info (12021): Found 1 design units, including 1 entities, in source file db/alts
 Info (12128): Elaborating entity "altsyncram_kgs1" for hierarchy "memory_map:mm_instance|tmp_stack:tmp_stack_ram_instance|tmp_stack_ram:ram_instance|altsyncram:altsyncram_component|altsyncram_kgs1:auto_generated" File: d:/programfiles/intelfpga_lite/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
 Info (12128): Elaborating entity "output_pin_ram" for hierarchy "memory_map:mm_instance|output_pin_ram:output_pin_ram_instance" File: D:/HomeWork/ShuDianShiYan/12/exp12/hardware/memory/memory_map.v Line: 80
 Info (11170): Starting IP generation for the debug fabric: alt_sld_fab.
-Info (11172): 2021.12.04.13:59:46 Progress: Loading sld6147066e/alt_sld_fab_wrapper_hw.tcl
+Info (11172): 2021.12.06.18:56:43 Progress: Loading sld6147066e/alt_sld_fab_wrapper_hw.tcl
 Info (11172): Alt_sld_fab.alt_sld_fab: SLD fabric agents which did not specify prefer_host were connected to JTAG
 Info (11172): Alt_sld_fab: Generating alt_sld_fab "alt_sld_fab" for QUARTUS_SYNTH
 Info (11172): Alt_sld_fab: "alt_sld_fab" instantiated alt_sld_fab "alt_sld_fab"
@@ -2318,11 +2319,11 @@ Info (21057): Implemented 6205 device resources after synthesis - the final reso
     Info (21060): Implemented 2 bidirectional pins
     Info (21061): Implemented 5454 logic cells
     Info (21064): Implemented 648 RAM segments
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 31 warnings
-    Info: Peak virtual memory: 4985 megabytes
-    Info: Processing ended: Sat Dec 04 14:00:12 2021
-    Info: Elapsed time: 00:00:42
-    Info: Total CPU time (on all processors): 00:01:01
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 32 warnings
+    Info: Peak virtual memory: 4983 megabytes
+    Info: Processing ended: Mon Dec 06 18:57:09 2021
+    Info: Elapsed time: 00:00:45
+    Info: Total CPU time (on all processors): 00:01:09
 
 
 +------------------------------------------+

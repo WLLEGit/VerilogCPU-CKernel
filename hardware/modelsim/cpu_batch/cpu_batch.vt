@@ -132,29 +132,7 @@ endtask
 
 integer maxcycles =10000;
 
-task run;
-   integer i;
-   integer cont;
-	begin
-	   	i = 0;
-		cont = 1;
-	   	while(cont != 0) begin
-		   	cont = 0;
-			while( (idataout!=32'hdead10cc) && (i<maxcycles))
-			begin
-				step();
-				i=i+1;
-			end
-			if(mycpu.pc_branch!=0) begin cont = 1; step(); end
-			else begin
-				if(cont != 1) begin step(); if(mycpu.pc_branch!=0) cont = 1; end
-				if(cont != 1) begin step(); if(mycpu.pc_branch!=0) cont = 1; end
-				if(cont != 1) begin step(); if(mycpu.pc_branch!=0) cont = 1; end
-				if(cont != 1) begin step(); if(mycpu.pc_branch!=0) cont = 1; end
-			end
-		end
-	end
-endtask
+jishi
 
 task checkmagnum;
     begin

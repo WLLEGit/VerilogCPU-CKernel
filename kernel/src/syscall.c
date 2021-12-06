@@ -3,7 +3,6 @@
 
 uint8_t *const ch_mem = (uint8_t *)VGA_CHAR_OFFSET;
 uint8_t *const color_mem = (uint8_t *)VGA_COLOR_OFFSET;
-uint32_t *const idt_mem = (uint32_t *)IDT_OFFSET;
 volatile uint32_t sys_time = 0;
 
 uint32_t monitor_write_cursor = 0;
@@ -53,6 +52,13 @@ void print(const char *str, const uint8_t color)
         ++str;
         c = *str;
     }
+}
+
+inline void printint(const int num, const uint8_t color)
+{
+    char str[16];
+    itoa(num, str);
+    print(str, color);
 }
 
 char getc()
@@ -124,6 +130,14 @@ static void _update_cursor()
 inline void lock_output_front() { output_front_cursor = monitor_write_cursor; }
 inline static void _setc(const char c, const uint8_t color, const uint32_t addr)
 {
+#ifdef DEBUG
+    if(c < 32 || c > 126)
+    {
+        print("Invisible char: ", COLOR_RED);
+        printint(c, COLOR_RED);
+        print("\n", COLOR_RED);
+    }
+#endif
     ch_mem[addr] = c;
     color_mem[addr] = color;
 }
