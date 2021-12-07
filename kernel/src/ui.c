@@ -88,6 +88,7 @@ void calc()
     int res = calc_expr(expr, success);
     if (*success)
     {
+        print("Result: ", COLOR_WHITE);
         printint(res, COLOR_WHITE);
         putc('\n', COLOR_WHITE);
     }

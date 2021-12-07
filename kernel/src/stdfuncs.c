@@ -25,56 +25,36 @@ int strlen(const char* str)
 	return len;
 }
 
-char * strtok ( char * str, const char * delimiters ){
-#ifdef DEBUG
-	print("strtok parameters:\n", COLOR_WHITE);
-	print(str, COLOR_WHITE); print(" ", COLOR_WHITE);
-	print(delimiters, COLOR_WHITE); print(" ", COLOR_WHITE); 
-	printint(strlen(str), COLOR_WHITE); print(" ", COLOR_WHITE);
-	printint(*delimiters, COLOR_WHITE); print("\n", COLOR_WHITE);
-#endif
-	if(!delimiters) return NULL;
-	static char * s_mem = NULL;
-	if( str == NULL && s_mem == NULL) return NULL;
-	if(*delimiters == '\0') {char* res = s_mem; s_mem = NULL; return res;}
-	
-	char *s;
-	if(str != NULL) s=str;
-	else s=s_mem;
-	char const * delim;
-	
-
-	int stat=1;
-	while(stat){
-		delim = delimiters;
-		while( *delim && *s != *delim){
-			delim++;
-		}
-		if(*delim){
-			s++;
-		}
-		else stat=0; 
-	}
-	s_mem = s;
-	
-	while( *s){
-		delim = delimiters;
-		while( *delim && *s != *delim){
-			delim++;
-		}
-
-		if(*delim){
-			*s = '\0';
-			char *t = s_mem;
-			s_mem = s+1;
-			return t;
-		}
-		s++;
+inline int get_pos(uint8_t x) {
+	return (x & 0x1f);
+}
+char* strtok(char* src, const char* delimiters) {
+	char* sbegin, * send;
+	static char* ssave = NULL;
+	sbegin = src ? src : ssave;           
+	uint8_t cset[32] = { 0 };                 
+	while ((*delimiters) != '\0') {       
+		uint8_t t = (uint8_t)*delimiters++;
+		cset[get_pos(t)] |= 1 << (t / 32);
 	}
 
-	char *t = s_mem;
-	s_mem = NULL; 
-	return t;
+	while (*sbegin != '\0' && (cset[get_pos(*sbegin)] & (1 << (((uint8_t)*sbegin) / 32)))) {
+		++sbegin;
+	}
+	if (*sbegin == '\0') {
+		ssave = NULL;
+		return NULL;
+	}
+	int idx = 0;
+
+	while (sbegin[idx] != '\0' && !(cset[get_pos(sbegin[idx])] & (1 << ((uint8_t)sbegin[idx] / 32)))) {
+		++idx;
+	}
+	send = sbegin + idx;
+	if (*send != '\0')
+		*send++ = '\0';                   
+	ssave = send;                         
+	return sbegin;
 }
 
 void itoa(int n,char str[])

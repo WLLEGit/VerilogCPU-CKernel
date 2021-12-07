@@ -13,5 +13,6 @@ uint32_t __mulsi3(uint32_t, uint32_t);
 void _udiv_mod(uint32_t, uint32_t, uint32_t*, uint32_t*);
 uint32_t __udivsi3(uint32_t, uint32_t);
 
+int get_pos(uint8_t x);
 
 #endif
