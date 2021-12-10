@@ -59,4 +59,7 @@ extern volatile uint32_t sys_time;
 #define CLOCK_INT_MCAUSE  0x80000007
 #define ECALL_MCAUSE  0x0000000b
 
+#define CMD_MODE 0
+#define VIDEO_MODE 1
+
 #endif

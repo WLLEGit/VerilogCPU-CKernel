@@ -8,6 +8,11 @@ volatile uint32_t sys_time = 0;
 uint32_t monitor_write_cursor = 0;
 uint32_t output_front_cursor = 0;
 
+uint32_t buffer_write_cursor = 0;
+bool which_screen = 0;
+
+static bool mode;   //0: cmd mode, 1: video mode
+
 void wait_ms(uint32_t ms)
 {
     uint32_t start_time = sys_time;
@@ -96,15 +101,25 @@ bool is_ctrl_c()
     return kb_info.c == 'c' && kb_info.is_ctrl;
 }
 
+void clear_all()
+{
+    memset(ch_mem, ' ', TOTAL_CHAR);
+    memset(color_mem, COLOR_WHITE, TOTAL_CHAR);
+    which_screen = 0;
+    buffer_write_cursor = 0;
+    monitor_write_cursor = 0;
+    output_front_cursor = 0;
+    vga_info.extra_line_cnt = 0;
+    _update_cursor();
+}
+
 void scroll_screen()
 {
     vga_info.extra_line_cnt++;
-    if (vga_info.extra_line_cnt == ROW_CNT)
-        vga_info.extra_line_cnt = 0;
+    vga_info.extra_line_cnt &= 0x3f;
     for (int i = monitor_write_cursor; i < monitor_write_cursor + COL_CNT; ++i)
         _setc(' ', COLOR_WHITE, i);
     _update_cursor();
-    *p_vga_info = vga_info;
 }
 
 void clear_screen()
@@ -192,4 +207,38 @@ void set_ledr(uint32_t id, bool is_on)
 inline void set_ledr_all(uint32_t ledr)
 {
     *p_LEDR = ledr&0x3ff;
+}
+
+
+void switch_mode(bool m)
+{
+    clear_all();
+    mode = m;
+    if(m==VIDEO_MODE)
+    {
+        buffer_write_cursor = 32 * COL_CNT;
+        vga_info.cursor_x = 0xFFF;
+        vga_info.cursor_y = 0xFFF;
+    }
+}
+void putc_buffer(char c, uint8_t color)
+{
+    _setc(c, color, buffer_write_cursor++);
+}
+void switch_screen()
+{
+    uint32_t tmp = monitor_write_cursor;
+    monitor_write_cursor = buffer_write_cursor;
+    buffer_write_cursor = tmp;
+
+    which_screen = 1-which_screen;
+    if(which_screen)
+    {
+        vga_info.extra_line_cnt = 32;
+    }
+    else
+    {
+        vga_info.extra_line_cnt = 0;
+    }
+    *p_vga_info = vga_info;
 }

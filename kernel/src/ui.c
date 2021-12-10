@@ -74,9 +74,7 @@ void fib()
         while (n)
             res = __mulsi3(res, n--);
         print("Result: ", COLOR_WHITE);
-        char res_str[15];
-        itoa(res, res_str);
-        print(res_str, COLOR_WHITE);
+        printint(res, COLOR_WHITE);
         putc('\n', COLOR_WHITE);
     }
 }

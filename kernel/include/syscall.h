@@ -20,14 +20,16 @@ void getline(char* buf);
 bool is_ctrl_c();
 /* std IO end */
 
+void clear_all();
+
 void scroll_screen();
 void clear_screen();
 
-// /* video support */
-// void clear_screen_buffer();
-// void putc_buffer(char c, uint8_t color);
-// void switch_screen();
-// /* video support end */
+/* video support */
+void switch_mode(bool m);
+void putc_buffer(char c, uint8_t color);
+void switch_screen();
+/* video support end */
 
 void error(const char* msg);
 static bool _next_key_arrived();
