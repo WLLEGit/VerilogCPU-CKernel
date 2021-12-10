@@ -46,10 +46,11 @@ parameter TMP_STACK_OFFSET    = 32'h00700000;
 parameter OUTPUT_PIN_OFFSET   = 32'h00800000;
 parameter SEG7_OFFSET  		  = 32'h00810000;
 parameter LEDR_OFFSET         = 32'h00820000;
+parameter VIDEO_OFFSET 		  = 32'h00900000;
 parameter PREFIX_MASK 		  =	32'hfff00000;	
 parameter ADDR_MASK 		  =	32'h000fffff;
 
-wire [31:0] dram_dataout, kb_info_dataout, tmp_stack_dataout;
+wire [31:0] dram_dataout, kb_info_dataout, tmp_stack_dataout, video_dataout;
 wire dram_we, vga_we, char_we, color_we, tmp_, stack_we, dbg_we;
 
 assign dram_we = cpu_we && ((cpu_addr & PREFIX_MASK) == DATA_OFFSET);
@@ -66,6 +67,8 @@ always @(*) begin
 		cpu_rddata <= kb_info_dataout;
 	else if((cpu_addr & PREFIX_MASK) == TMP_STACK_OFFSET)
 		cpu_rddata <= tmp_stack_dataout;
+	else if((cpu_addr & PREFIX_MASK) == VIDEO_OFFSET)
+		cpu_rddata <= video_dataout;
 	else
 		cpu_rddata <= 0;
 end
@@ -78,6 +81,7 @@ color_ram color_ram_instance(cpu_wrdata, vga_color_addr&ADDR_MASK, clk, cpu_addr
 kb_info kb_info_instance(clk, cpu_addr&ADDR_MASK, kb_info_dataout, kb_wraddr&ADDR_MASK, kb_wrdata, kb_we);					//	read: cpu, 	write: kb
 tmp_stack tmp_stack_ram_instance(cpu_addr&ADDR_MASK, tmp_stack_dataout, cpu_wrdata, clk, clk, cpu_memop, tmp_stack_we);		//	read: cpu, 	write: cpu
 output_pin_ram output_pin_ram_instance(clk, dbg_we, cpu_addr, cpu_wrdata, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, LEDR);
+video_rom video_rom_instance((cpu_addr&ADDR_MASK), clk, video_dataout);														//	read: cpu, 	write: none
 
 endmodule
 

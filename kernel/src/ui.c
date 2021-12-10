@@ -24,6 +24,8 @@ void ui_mainloop()
             calc();
         else if (strcmp(cmd, "marquee") == 0)
             marquee();
+        else if (strcmp(cmd, "chardance") == 0)
+            chardance();
         else if (strcmp(cmd, "") == 0)
             continue;
         // else if (strcmp(cmd, "help") == 0)
@@ -114,4 +116,40 @@ void marquee()
     for (int i = 0; i < 6; ++i)
         set_hex(0, i);
     set_ledr_all(0);
+}
+
+char type2char[] = {'.',':','+','*','?','%','#','@'};
+uint32_t ms_per_frame = 1000;
+typedef struct
+{
+    uint8_t num : 5;
+    uint8_t type : 3;
+} VideoChar;
+
+void chardance()
+{
+    switch_mode(VIDEO_MODE);
+    uint8_t *p = (uint8_t *)VIDEO_OFFSET;
+    uint32_t cnt_out = 0;
+
+    while (!is_ctrl_c())
+    {
+        uint32_t frame_start = sys_time;
+        cnt_out = 0;
+        while(cnt_out < 30*64)
+        {
+            // prepare next frame
+            VideoChar vc = *(VideoChar*)p;
+            ++p;
+            for(int i = 0; i < vc.num; ++i)
+            {
+                cnt_out++;
+                putc_buffer(type2char[vc.type], COLOR_WHITE);
+            }
+        }
+        wait_ms(ms_per_frame - (sys_time - frame_start));
+        switch_screen();
+    }
+
+    switch_mode(CMD_MODE);
 }

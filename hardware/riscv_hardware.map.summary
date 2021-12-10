@@ -1,13 +1,13 @@
-Analysis & Synthesis Status : Successful - Tue Dec 07 16:07:18 2021
+Analysis & Synthesis Status : Successful - Fri Dec 10 15:35:30 2021
 Quartus Prime Version : 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 Revision Name : riscv_hardware
 Top-level Entity Name : riscv_hardware
 Family : Cyclone V
 Logic utilization (in ALMs) : N/A
-Total registers : 2876
+Total registers : 2878
 Total pins : 98
 Total virtual pins : 0
-Total block memory bits : 3,268,672
+Total block memory bits : 4,317,248
 Total DSP Blocks : 0
 Total HSSI RX PCSs : 0
 Total HSSI PMA RX Deserializers : 0

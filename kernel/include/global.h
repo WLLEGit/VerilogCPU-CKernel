@@ -13,6 +13,7 @@
 #define OUTPUT_PIN_OFFSET   0x00800000
 #define SEG7_OFFSET  	    0x00810000
 #define LEDR_OFFSET         0x00820000
+#define VIDEO_OFFSET        0x00900000
 
 #define VGA_WIDTH 640
 #define VGA_HEIGHT 480
@@ -20,7 +21,7 @@
 #define ROW_CNT 30
 #define COL_CNT 64
 #define TOTAL_CHAR (ROW_CNT * COL_CNT)
-#define TOTAL_CHAR_WITH_BUF (2 * ROW_CNT * COL_CNT)
+#define TOTAL_CHAR_WITH_BUF (64 * 64)
 #define VGA_BUFFER_ROW 64
 
 #define CHAR_WIDTH 9

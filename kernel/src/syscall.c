@@ -11,6 +11,9 @@ uint32_t output_front_cursor = 0;
 uint32_t buffer_write_cursor = 0;
 bool which_screen = 0;
 
+const uint32_t DISPLAY_CURSOR_OFFSET = 0;
+const uint32_t BUFFER_CURSOR_OFFSET = 32 * COL_CNT;
+
 static bool mode;   //0: cmd mode, 1: video mode
 
 void wait_ms(uint32_t ms)
@@ -25,10 +28,10 @@ void putc(const char c, const uint8_t color)
     if (c == '\n')
     {
         monitor_write_cursor = (monitor_write_cursor / COL_CNT) * (COL_CNT) + COL_CNT;
-        if (monitor_write_cursor == TOTAL_CHAR + vga_info.extra_line_cnt * COL_CNT)
-            scroll_screen();
-        if (monitor_write_cursor == TOTAL_CHAR_WITH_BUF)
+        if(monitor_write_cursor == TOTAL_CHAR_WITH_BUF)
             monitor_write_cursor = 0;
+        if (monitor_write_cursor == (TOTAL_CHAR + vga_info.extra_line_cnt * COL_CNT) % TOTAL_CHAR_WITH_BUF)
+            scroll_screen();
     }
     else if (c == '\t')
         print("    ", COLOR_WHITE);
@@ -40,10 +43,10 @@ void putc(const char c, const uint8_t color)
     else
     {
         _setc(c, color, monitor_write_cursor++);
-        if (monitor_write_cursor == TOTAL_CHAR)
-            scroll_screen();
-        if (monitor_write_cursor == TOTAL_CHAR_WITH_BUF)
+        if(monitor_write_cursor == TOTAL_CHAR_WITH_BUF)
             monitor_write_cursor = 0;
+        if (monitor_write_cursor == (TOTAL_CHAR + vga_info.extra_line_cnt * COL_CNT) % TOTAL_CHAR_WITH_BUF)
+            scroll_screen();
     }
     _update_cursor();
 }
@@ -103,8 +106,8 @@ bool is_ctrl_c()
 
 void clear_all()
 {
-    memset(ch_mem, ' ', TOTAL_CHAR);
-    memset(color_mem, COLOR_WHITE, TOTAL_CHAR);
+    for(int i = 0; i < TOTAL_CHAR; i++)
+        _setc(' ', COLOR_WHITE, i);
     which_screen = 0;
     buffer_write_cursor = 0;
     monitor_write_cursor = 0;
@@ -133,7 +136,10 @@ void clear_screen()
 static void _update_cursor()
 {
     uint32_t r, c;
-    _udiv_mod(monitor_write_cursor, COL_CNT, &r, &c);
+    int offset = monitor_write_cursor-(vga_info.extra_line_cnt<<6);
+    if(offset < 0)
+        offset += TOTAL_CHAR_WITH_BUF;
+    _udiv_mod(offset, COL_CNT, &r, &c);
     vga_info.cursor_y = CHAR_HEIGHT * r + 1;
     if (c != COL_CNT - 1)
         vga_info.cursor_x = CHAR_WIDTH * c + 1;
@@ -216,7 +222,7 @@ void switch_mode(bool m)
     mode = m;
     if(m==VIDEO_MODE)
     {
-        buffer_write_cursor = 32 * COL_CNT;
+        buffer_write_cursor = BUFFER_CURSOR_OFFSET;
         vga_info.cursor_x = 0xFFF;
         vga_info.cursor_y = 0xFFF;
     }
@@ -227,11 +233,10 @@ void putc_buffer(char c, uint8_t color)
 }
 void switch_screen()
 {
-    uint32_t tmp = monitor_write_cursor;
-    monitor_write_cursor = buffer_write_cursor;
-    buffer_write_cursor = tmp;
-
     which_screen = 1-which_screen;
+    monitor_write_cursor = which_screen ? BUFFER_CURSOR_OFFSET : DISPLAY_CURSOR_OFFSET;
+    buffer_write_cursor = which_screen ? DISPLAY_CURSOR_OFFSET : BUFFER_CURSOR_OFFSET;
+
     if(which_screen)
     {
         vga_info.extra_line_cnt = 32;

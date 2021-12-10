@@ -98,7 +98,7 @@ def CompressText(lines):
     
     return res
     
-MAX_MEM = 512 * 1024   #512KB
+MAX_MEM = 128 * 1024   #128KB
 def bytes2mif(bytes):
     mif_path = "out.mif"
     mif = "WIDTH=8;\nDEPTH=%d;\n\nADDRESS_RADIX=HEX;\nDATA_RADIX=HEX;\n\nCONTENT BEGIN\n" % (MAX_MEM)
@@ -109,11 +109,31 @@ def bytes2mif(bytes):
     
     with open(mif_path, "w") as f:
         f.write(mif)
+        
+def decode(bytes):
+    s = ".:+*?%#@"
+    cnter = 0
+    i = 0
+    line = 0
+    while cnter < 30 * 64:
+        info = bytes[i]
+        i += 1
+        num = info >> 3
+        c = s[info & 7]
+        for j in range(num):
+            if line == 64:
+                print("")
+                line = 0   
+            print(c, end="")
+            cnter += 1
+            line += 1
+    print("")
 
 
 if __name__ == "__main__":
     path = sys.argv[1]
 
+    print("fps: {}".format(get_fps(path)))
     ratio = get_ratio(path)
     width, height = int(ratio * 30), 30
 

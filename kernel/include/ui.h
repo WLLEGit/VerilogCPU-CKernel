@@ -14,7 +14,6 @@ void fib();
 // // extend
 void calc();
 void marquee();
-// void benchmark(); //https://github.com/ucb-bar/riscv-benchmarks
-// void chardance();  
+void chardance();
 
 #endif
