@@ -122,8 +122,8 @@ char type2char[] = {'.',':','+','*','?','%','#','@'};
 uint32_t ms_per_frame = 1000;
 typedef struct
 {
-    uint8_t num : 5;
     uint8_t type : 3;
+    uint8_t num : 5;
 } VideoChar;
 
 void chardance()
