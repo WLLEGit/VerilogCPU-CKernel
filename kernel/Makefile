@@ -5,7 +5,7 @@ XLEN ?= 32
 RISCV_PREFIX ?= riscv$(XLEN)-unknown-elf-
 RISCV_GCC ?= $(RISCV_PREFIX)gcc
 GCC_WARNS := -Wall -Wextra -Wconversion -pedantic -Wcast-qual -Wcast-align -Wwrite-strings
-RISCV_GCC_OPTS ?= -march=rv32g -mabi=ilp32 -static -mcmodel=medany -fvisibility=hidden -Tsections.ld -nostdlib -nolibc -nostartfiles ${GCC_WARNS} ${INCL} -fno-builtin 
+RISCV_GCC_OPTS ?= -march=rv32i -mabi=ilp32 -static -mcmodel=medany -fvisibility=hidden -Tsections.ld -nostdlib -nolibc -nostartfiles ${GCC_WARNS} ${INCL} -fno-builtin 
 RISCV_OBJDUMP ?= $(RISCV_PREFIX)objdump --disassemble-all --disassemble-zeroes --section=.text --section=.text.startup --section=.text.init --section=.data
 RISCV_OBJCOPY ?= $(RISCV_PREFIX)objcopy -O verilog
 RISCV_HEXGEN ?= 'BEGIN{output=0;}{gsub("\r", "", $$(NF)); if($$1 ~/@/)	\

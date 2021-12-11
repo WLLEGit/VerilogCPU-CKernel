@@ -119,7 +119,7 @@ void marquee()
 }
 
 char type2char[] = {'.',':','+','*','?','%','#','@'};
-uint32_t ms_per_frame = 1000;
+uint32_t ms_per_frame = 125;
 typedef struct
 {
     uint8_t type : 3;
@@ -129,8 +129,9 @@ typedef struct
 void chardance()
 {
     switch_mode(VIDEO_MODE);
-    uint8_t *p = (uint8_t *)VIDEO_OFFSET;
-    uint32_t cnt_out = 0;
+    VideoChar *p = (VideoChar *)VIDEO_OFFSET;
+    volatile uint32_t cnt_out = 0;
+    char c;
 
     while (!is_ctrl_c())
     {
@@ -139,12 +140,33 @@ void chardance()
         while(cnt_out < 30*64)
         {
             // prepare next frame
-            VideoChar vc = *(VideoChar*)p;
+            volatile VideoChar vc = *p;
+            const uint8_t num = vc.num;
+            c = type2char[vc.type];
+            const char c_check = c;
             ++p;
+            cnt_out += vc.num;
             for(int i = 0; i < vc.num; ++i)
             {
-                cnt_out++;
-                putc_buffer(type2char[vc.type], COLOR_WHITE);
+                if(c != c_check)
+                {
+                    error("char changed");
+                    putc(c, COLOR_WHITE);
+                    putc(' ', COLOR_WHITE);
+                    putc(c_check, COLOR_WHITE);
+                    putc('\n', COLOR_WHITE);
+                    wait_ms(5000);
+                }
+                if(num != vc.num)
+                {
+                    error("num changed");
+                    printint(num, COLOR_WHITE);
+                    putc(' ', COLOR_WHITE);
+                    printint(vc.num, COLOR_WHITE);
+                    putc('\n', COLOR_WHITE);
+                    wait_ms(5000);
+                }
+                putc_buffer(c, COLOR_WHITE);
             }
         }
         wait_ms(ms_per_frame - (sys_time - frame_start));

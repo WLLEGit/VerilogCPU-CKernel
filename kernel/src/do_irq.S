@@ -13,6 +13,8 @@ int_handler_entrance:
     sw a6, 24(t6)
     sw a7, 28(t6)
     sw x1, 32(t6)
+    sw s0, 36(t6)
+    sw s1, 40(t6)
     
     csrr a0, mcause //load parameter
     call irq_handler
@@ -26,6 +28,8 @@ int_handler_entrance:
     lw a6, 24(t6)
     lw a7, 28(t6)
     lw x1, 32(t6)
+    lw s0, 36(t6)
+    lw s1, 40(t6)
     csrrw t6, mscratch, t6
     mret
     
