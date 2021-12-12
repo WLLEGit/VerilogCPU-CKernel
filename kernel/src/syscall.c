@@ -74,6 +74,10 @@ char getc()
     while (!_next_key_arrived())
         ; //wait input
     char c = kb_info.c;
+#ifndef DEBUG
+    if(c == 0)
+        return getc();
+#endif
     input_controller.pre_c = c;
     input_controller.input_time = sys_time;
     putc(c, COLOR_WHITE);
@@ -158,6 +162,9 @@ inline static void _setc(const char c, const uint8_t color, const uint32_t addr)
         printint(c, COLOR_RED);
         print("\n", COLOR_RED);
     }
+#else
+    if(c < 32 || c > 126)
+        return;
 #endif
     ch_mem[addr] = c;
     color_mem[addr] = color;
@@ -227,7 +234,7 @@ void switch_mode(bool m)
         vga_info.cursor_y = 0xFFF;
     }
 }
-void putc_buffer(char c, uint8_t color)
+inline void putc_buffer(char c, uint8_t color)
 {
     _setc(c, color, buffer_write_cursor++);
 }

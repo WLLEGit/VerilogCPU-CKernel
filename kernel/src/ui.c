@@ -119,7 +119,7 @@ void marquee()
 }
 
 char type2char[] = {'.',':','+','*','?','%','#','@'};
-uint32_t ms_per_frame = 125;
+uint32_t ms_per_frame = 33;
 typedef struct
 {
     uint8_t type : 3;

@@ -1,7 +1,9 @@
 #ifndef _GLOBAL_H
 #define _GLOBAL_H
 
-#define DEBUG
+// #define DEBUG
+#define inline __attribute((always_inline))  // able to play the chardance, but may cause some problems
+// #define inline 
 
 #define INSTR_OFFSET        0x00000000 
 #define DATA_OFFSET         0x00100000
