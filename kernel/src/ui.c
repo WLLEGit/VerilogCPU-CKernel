@@ -137,35 +137,21 @@ void chardance()
     {
         uint32_t frame_start = sys_time;
         cnt_out = 0;
+        if(*(uint8_t*)p != 0)
+        {
+            while(*(uint8_t*)p != 0)
+                --p;
+        }
+        ++p;
         while(cnt_out < 30*64)
         {
             // prepare next frame
             volatile VideoChar vc = *p;
-            const uint8_t num = vc.num;
             c = type2char[vc.type];
-            const char c_check = c;
             ++p;
             cnt_out += vc.num;
             for(int i = 0; i < vc.num; ++i)
             {
-                if(c != c_check)
-                {
-                    error("char changed");
-                    putc(c, COLOR_WHITE);
-                    putc(' ', COLOR_WHITE);
-                    putc(c_check, COLOR_WHITE);
-                    putc('\n', COLOR_WHITE);
-                    wait_ms(5000);
-                }
-                if(num != vc.num)
-                {
-                    error("num changed");
-                    printint(num, COLOR_WHITE);
-                    putc(' ', COLOR_WHITE);
-                    printint(vc.num, COLOR_WHITE);
-                    putc('\n', COLOR_WHITE);
-                    wait_ms(5000);
-                }
                 putc_buffer(c, COLOR_WHITE);
             }
         }

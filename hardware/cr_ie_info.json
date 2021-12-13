@@ -1,0 +1,22 @@
+{
+	"system" : {
+		"platform" : "windows64",
+		"os_name" : "Windows 10",
+		"os_version" : "10.0"
+	},
+	"error" : {
+		"executable" : "quartus_cdb",
+		"comment" : "not_applicable",
+		"error_message" : "Access Violation at 0X00007FFAD647CDC2",
+		"source_file" : "unknown",
+		"line" : "0",
+		"stack_trace" : "\t0x7ffad647cdc1: DB_HDB + 0xcdc1 (?get_short_hpath@HDB_INSTANCE_NAME@@QEBA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@W4HDB_HPATH_FORMAT_TYPE@@@Z + 0xc1)\n\t0x7ffad446d7fe: db_cdb + 0xd7fe (?cdb_set_ram_content@@YA_NPEAVQTL_BOOL_VECTOR@@PEAVFIO_PATH@@PEBDIIIIIPEAVHDB_INSTANCE_NAME@@PEAVMSG_LOCATION_SCHEMA@@PEAVHDB_NAMESPACE@@III_N6PEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z + 0x182e)\n\t0x7ffabdcf7d1d: db_cdb_atom_stratixv + 0x77d1d (?on_reconfig@CDB_ATOM_STRATIXV_RAM@@UEAA_NPEAVCDB_RECONFIG_INFO@@@Z + 0x5ed)\n\t0x7ff7869755c8: quartus_cdb + 0x255c8 (?qatm_update_mif_files_for_atom_netlist@@YA_NPEAVCMP_FACADE@@PEAVCDB_ATOM_NETLIST@@AEBV?$list@U?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PEAVHDB_SOURCE_FILE@@@std@@V?$allocator@U?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PEAVHDB_SOURCE_FILE@@@std@@@2@@std@@AEAV34@@Z + 0x2e8)\n\t0x7ff786975db1: quartus_cdb + 0x25db1 (?qatm_update_mif_files_for_atoms@@YAXPEAVCMP_FACADE@@AEBV?$list@U?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PEAVHDB_SOURCE_FILE@@@std@@V?$allocator@U?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PEAVHDB_SOURCE_FILE@@@std@@@2@@std@@AEAV23@@Z + 0xc1)\n\t0x7ff786974d91: quartus_cdb + 0x24d91 (?qatm_update_mif_files@@YA_NXZ + 0x3b1)\n\t0x7ff7869660c6: quartus_cdb + 0x160c6 (?execute@QATM_FRAMEWORK@@UEAA_NXZ + 0x11c6)\n\t0x7ffaefd2150c: comp_qexe + 0x1150c (qexe_do_normal + 0x1ec)\n\t0x7ffaefd26622: comp_qexe + 0x16622 (qexe_run + 0x432)\n\t0x7ffaefd27371: comp_qexe + 0x17371 (?qexe_standard_main@@YAHPEAVQEXE_FRAMEWORK@@PEAPEBUQEXE_OPTION_DEFINITION@@HPEAPEBD@Z + 0xc1)\n\t0x7ff78696f254: quartus_cdb + 0x1f254 (?qatm_main@@YAHHPEAPEBD@Z + 0xa4)\n\t0x7ffae00e3258: CCL_MSG + 0x13258 (?msg_main_thread@@YAPEAXPEAX@Z + 0x18)\n\t0x7ffae00e4a5e: CCL_MSG + 0x14a5e (?msg_thread_wrapper@@YAPEAXP6APEAXPEAX@Z0@Z + 0x6e)\n\t0x7ffb060d6af0: ccl_mem + 0x16af0 (?mem_thread_wrapper@@YAPEAXP6APEAXPEAX@Z0@Z + 0x70)\n\t0x7ffae00e2af1: CCL_MSG + 0x12af1 (?msg_exe_main@@YAHHPEAPEBDP6AHH0@Z@Z + 0xa1)\n\t0x7ff786994b62: quartus_cdb + 0x44b62 (__tmainCRTStartup + 0x10e)\n\t0x7ffb2d907033: KERNEL32 + 0x17033 (BaseThreadInitThunk + 0x13)\n\t0x7ffb2e9e2650: ntdll + 0x52650 (RtlUserThreadStart + 0x20)\n",
+		"subsystem" : "unknown"
+	},
+	"quartus" : {
+		"quartus_bits" : "64",
+		"version" : "20.1.1",
+		"build" : "720",
+		"edition" : "Lite Edition"
+	}
+}

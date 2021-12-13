@@ -100,7 +100,7 @@ def CompressText(lines):
     
 MAX_MEM = 128 * 1024   #128KB
 def bytes2mif(bytes):
-    mif_path = "out.mif"
+    mif_path = "video.mif"
     mif = "WIDTH=8;\nDEPTH=%d;\n\nADDRESS_RADIX=HEX;\nDATA_RADIX=HEX;\n\nCONTENT BEGIN\n" % (MAX_MEM)
     
     for i in range(len(bytes)):
@@ -146,9 +146,15 @@ if __name__ == "__main__":
     bytes = []
     
     for i in range(len(frames)):
+        bytes .append(0)
         bytes += frames[i]
         total_mem += len(frames[i])
-        if total_mem + 200> MAX_MEM:
+        if total_mem > MAX_MEM:
+            print("Exceed Max Memory")
+            exit(0)
+        if total_mem + 1000> MAX_MEM:
+            print("Last frame: {}s".format(i/get_fps(path)))
+            decode(frames[i])
             break
     
     bytes2mif(bytes)

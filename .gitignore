@@ -12,3 +12,4 @@ hardware/riscv_hardware*
 !hardware/riscv_hardware.v
 *.o
 *.flv
+hardware/*.mif
